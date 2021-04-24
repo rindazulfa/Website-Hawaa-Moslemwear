@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
-<div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');">
+<div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1Coba.jpg');">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-            <h3 class="v">Modist - Time to get dress</h3>
-            <h3 class="vr">Since - 1985</h3>
+            <h3 class="v">Hawaa Moslemwear - Better Moslem wear</h3>
+            <h3 class="vr">Since - 2019</h3>
             <div class="col-md-11 ftco-animate text-center">
-                <h1>Le Stylist</h1>
-                <h2><span>Wear Your Dress</span></h2>
+                <h1>Islamic Style</h1>
+                <h2><span>Better Moslem wear</span></h2>
             </div>
             <div class="mouse">
                 <a href="#" class="mouse-icon">
@@ -21,12 +21,12 @@
 
 <div class="goto-here"></div>
 
-<section class="ftco-section ftco-product">
+<section id="promo" class="ftco-section ftco-product">
     <div class="container">
         <div class="row justify-content-center mb-3 pb-3">
             <div class="col-md-12 heading-section text-center ftco-animate">
-                <h1 class="big">Trending</h1>
-                <h2 class="mb-4">Trending</h2>
+                <h1 class="big">PROMO</h1>
+                <h2 class="mb-4">PROMO</h2>
             </div>
         </div>
         <div class="row">
@@ -43,14 +43,15 @@
                                     <div class="pricing">
                                         <p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span></p>
                                     </div>
+                                    <!-- rencananya dibuat time left promonya -->
                                     <div class="rating">
-                                        <p class="text-right">
+                                        <!-- <p class="text-right">
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
-                                        </p>
+                                        </p> -->
                                     </div>
                                 </div>
                             </div>
@@ -58,21 +59,24 @@
                     </div>
                     <div class="item">
                         <div class="product">
-                            <a href="#" class="img-prod"><img class="img-fluid" src="images/product-2.jpg" alt="Colorlib Template"></a>
+                            <a href="#" class="img-prod"><img class="img-fluid" src="images/product-2.jpg" alt="Colorlib Template">
+                                <span class="status">30%</span>
+                            </a>
                             <div class="text pt-3 px-3">
                                 <h3><a href="#">Young Woman Wearing Dress</a></h3>
                                 <div class="d-flex">
                                     <div class="pricing">
-                                        <p class="price"><span>$120.00</span></p>
+                                        <p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span></p>
                                     </div>
+                                    <!-- rencananya dibuat time left promonya -->
                                     <div class="rating">
-                                        <p class="text-right">
+                                        <!-- <p class="text-right">
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
-                                        </p>
+                                        </p> -->
                                     </div>
                                 </div>
                             </div>
@@ -80,21 +84,24 @@
                     </div>
                     <div class="item">
                         <div class="product">
-                            <a href="#" class="img-prod"><img class="img-fluid" src="images/product-3.jpg" alt="Colorlib Template"></a>
+                            <a href="#" class="img-prod"><img class="img-fluid" src="images/product-3.jpg" alt="Colorlib Template">
+                                <span class="status">30%</span>
+                            </a>
                             <div class="text pt-3 px-3">
                                 <h3><a href="#">Young Woman Wearing Dress</a></h3>
                                 <div class="d-flex">
                                     <div class="pricing">
-                                        <p class="price"><span>$120.00</span></p>
+                                        <p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span></p>
                                     </div>
+                                    <!-- rencananya dibuat time left promonya -->
                                     <div class="rating">
-                                        <p class="text-right">
+                                        <!-- <p class="text-right">
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
-                                        </p>
+                                        </p> -->
                                     </div>
                                 </div>
                             </div>
@@ -102,21 +109,24 @@
                     </div>
                     <div class="item">
                         <div class="product">
-                            <a href="#" class="img-prod"><img class="img-fluid" src="images/product-4.jpg" alt="Colorlib Template"></a>
+                            <a href="#" class="img-prod"><img class="img-fluid" src="images/product-4.jpg" alt="Colorlib Template">
+                                <span class="status">30%</span>
+                            </a>
                             <div class="text pt-3 px-3">
                                 <h3><a href="#">Young Woman Wearing Dress</a></h3>
                                 <div class="d-flex">
                                     <div class="pricing">
-                                        <p class="price"><span>$120.00</span></p>
+                                        <p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span></p>
                                     </div>
+                                    <!-- rencananya dibuat time left promonya -->
                                     <div class="rating">
-                                        <p class="text-right">
+                                        <!-- <p class="text-right">
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
-                                        </p>
+                                        </p> -->
                                     </div>
                                 </div>
                             </div>
@@ -133,14 +143,15 @@
                                     <div class="pricing">
                                         <p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span></p>
                                     </div>
+                                    <!-- rencananya dibuat time left promonya -->
                                     <div class="rating">
-                                        <p class="text-right">
+                                        <!-- <p class="text-right">
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
-                                        </p>
+                                        </p> -->
                                     </div>
                                 </div>
                             </div>
@@ -148,21 +159,24 @@
                     </div>
                     <div class="item">
                         <div class="product">
-                            <a href="#" class="img-prod"><img src="images/product-6.jpg" alt="Colorlib Template"></a>
+                            <a href="#" class="img-prod"><img src="images/product-6.jpg" alt="Colorlib Template">
+                                <span class="status">30%</span>
+                            </a>
                             <div class="text pt-3 px-3">
                                 <h3><a href="#">Young Woman Wearing Dress</a></h3>
                                 <div class="d-flex">
                                     <div class="pricing">
-                                        <p class="price"><span>$120.00</span></p>
+                                        <p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span></p>
                                     </div>
+                                    <!-- rencananya dibuat time left promonya -->
                                     <div class="rating">
-                                        <p class="text-right">
+                                        <!-- <p class="text-right">
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
                                             <span class="ion-ios-star-outline"></span>
-                                        </p>
+                                        </p> -->
                                     </div>
                                 </div>
                             </div>
@@ -204,8 +218,8 @@
     <div class="container">
         <div class="row justify-content-center mb-3 pb-3">
             <div class="col-md-12 heading-section text-center ftco-animate">
-                <h1 class="big">Products</h1>
-                <h2 class="mb-4">Our Products</h2>
+                <h1 class="big">Best Seller</h1>
+                <h2 class="mb-4">Our Best Seller</h2>
             </div>
         </div>
     </div>
@@ -220,7 +234,7 @@
                             <div class="pricing">
                                 <p class="price"><span>$120.00</span></p>
                             </div>
-                            <div class="rating">
+                            <!-- <div class="rating">
                                 <p class="text-right">
                                     <span class="ion-ios-star-outline"></span>
                                     <span class="ion-ios-star-outline"></span>
@@ -228,12 +242,12 @@
                                     <span class="ion-ios-star-outline"></span>
                                     <span class="ion-ios-star-outline"></span>
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
                         <hr>
                         <p class="bottom-area d-flex">
                             <a href="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                            <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
+                            <!-- <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a> -->
                         </p>
                     </div>
                 </div>
@@ -247,7 +261,7 @@
                             <div class="pricing">
                                 <p class="price"><span>$120.00</span></p>
                             </div>
-                            <div class="rating">
+                            <!-- <div class="rating">
                                 <p class="text-right">
                                     <span class="ion-ios-star-outline"></span>
                                     <span class="ion-ios-star-outline"></span>
@@ -255,12 +269,12 @@
                                     <span class="ion-ios-star-outline"></span>
                                     <span class="ion-ios-star-outline"></span>
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
                         <hr>
                         <p class="bottom-area d-flex">
                             <a href="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                            <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
+                            <!-- <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a> -->
                         </p>
                     </div>
                 </div>
@@ -274,7 +288,7 @@
                             <div class="pricing">
                                 <p class="price"><span>$120.00</span></p>
                             </div>
-                            <div class="rating">
+                            <!-- <div class="rating">
                                 <p class="text-right">
                                     <span class="ion-ios-star-outline"></span>
                                     <span class="ion-ios-star-outline"></span>
@@ -282,12 +296,12 @@
                                     <span class="ion-ios-star-outline"></span>
                                     <span class="ion-ios-star-outline"></span>
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
                         <hr>
                         <p class="bottom-area d-flex">
                             <a href="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                            <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
+                            <!-- <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a> -->
                         </p>
                     </div>
                 </div>
@@ -301,7 +315,7 @@
                             <div class="pricing">
                                 <p class="price"><span>$120.00</span></p>
                             </div>
-                            <div class="rating">
+                            <!-- <div class="rating">
                                 <p class="text-right">
                                     <span class="ion-ios-star-outline"></span>
                                     <span class="ion-ios-star-outline"></span>
@@ -309,12 +323,12 @@
                                     <span class="ion-ios-star-outline"></span>
                                     <span class="ion-ios-star-outline"></span>
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
                         <hr>
                         <p class="bottom-area d-flex">
                             <a href="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                            <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
+                            <!-- <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a> -->
                         </p>
                     </div>
                 </div>
@@ -488,7 +502,7 @@
                         <div class="block-18 text-center">
                             <div class="text">
                                 <strong class="number" data-number="10000">0</strong>
-                                <span>Happy Customers</span>
+                                <span>Produk Terjual</span>
                             </div>
                         </div>
                     </div>
@@ -496,15 +510,7 @@
                         <div class="block-18 text-center">
                             <div class="text">
                                 <strong class="number" data-number="100">0</strong>
-                                <span>Branches</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-                        <div class="block-18 text-center">
-                            <div class="text">
-                                <strong class="number" data-number="1000">0</strong>
-                                <span>Partner</span>
+                                <span>Transaksi Berhasil</span>
                             </div>
                         </div>
                     </div>
@@ -512,7 +518,15 @@
                         <div class="block-18 text-center">
                             <div class="text">
                                 <strong class="number" data-number="100">0</strong>
-                                <span>Awards</span>
+                                <span>Produk Tersedia</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <strong class="number" data-number="100">0</strong>
+                                <span>Jumlah Cabang</span>
                             </div>
                         </div>
                     </div>

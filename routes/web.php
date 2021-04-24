@@ -16,5 +16,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
 Route::resource('/','HomepageController');
+
 Route::resource('/about','AboutController');
+Route::resource('/product','ProductController');
