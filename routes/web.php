@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::resource('/','HomepageController');
+Route::resource('/about','AboutController');
