@@ -11,9 +11,9 @@
       </div>
     </div>
 		
-		<section class="ftco-section bg-light">
+	<section class="ftco-section bg-light">
     	<div class="container-fluid">
-    		<div class="row">
+    		<div class="row justify-content-center">
     			<div class="col-sm col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
     					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
