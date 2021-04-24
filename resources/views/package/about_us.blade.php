@@ -1,4 +1,4 @@
-@extends('../layouts.app')
+@extends('layouts.app')
 @section('content')
 <div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
       <div class="container">
