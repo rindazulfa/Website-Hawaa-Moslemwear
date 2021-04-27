@@ -17,7 +17,17 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// ADMIN
+Route::resource('/admin','Admin\DashboardController');
+
+//
+
+
 Route::resource('/','HomepageController');
+
+Route::get('/login', function () {
+    return view('login');
+});
 
 Route::resource('/about','AboutController');
 Route::resource('/product','ProductController');

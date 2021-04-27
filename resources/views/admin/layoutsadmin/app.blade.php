@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+    <title>Admin</title>
     <!-- Favicon -->
     <link rel="icon" href="{{asset('img/brand/favicon.png')}}" type="image/png">
     <!-- Fonts -->
@@ -21,17 +21,16 @@
 
 <body>
     <!-- Sidenav -->
-    @include('layouts.sidebar')
-
+    @include('admin/layoutsadmin.sidebar')
 
     <!-- Main content -->
     <div class="main-content" id="panel">
         <!-- Topnav -->
-        @include('layouts.header')
+        @include('admin/layoutsadmin.header')
         <!-- Header -->
         <!-- Header -->
-        @yield('content')
-        @include('layouts.footer')
+        @yield('admin/contentadmin')
+        @include('admin/layoutsadmin.footer')
     </div>
     <!-- Argon Scripts -->
     <!-- Core -->
