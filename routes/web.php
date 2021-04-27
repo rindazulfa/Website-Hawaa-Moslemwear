@@ -21,3 +21,10 @@ Route::resource('/','HomepageController');
 
 Route::resource('/about','AboutController');
 Route::resource('/product','ProductController');
+Route::resource('/detailproduct','DetailProductController');
+Route::resource('/promo','PromoController');
+Route::resource('/profil','ProfileController');
+Route::resource('/confirmpayment','Confirm_PaymentController');
+Route::resource('/cart','CartController');
+Route::resource('/custom','CustomProductController');
+Route::resource('/checkout','CheckoutController');

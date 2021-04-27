@@ -17,7 +17,7 @@
                     <ul class="list-unstyled">
                         <li><a href="#" class="py-2 d-block">Shop</a></li>
                         <li><a href="#" class="py-2 d-block">About</a></li>
-                        <li><a href="#" class="py-2 d-block">Journal</a></li>
+                        <li><a href="#" class="py-2 d-block">Custom Order</a></li>
                         <li><a href="#" class="py-2 d-block">Contact Us</a></li>
                     </ul>
                 </div>
@@ -32,10 +32,6 @@
                             <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
                             <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
                         </ul>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">FAQs</a></li>
-                            <li><a href="#" class="py-2 d-block">Contact</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -44,8 +40,8 @@
                     <h2 class="ftco-heading-2">Have a Questions?</h2>
                     <div class="block-23 mb-3">
                         <ul>
-                            <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+                            <li><span class="icon icon-map-marker"></span><span class="text">Ketintang, Surabaya</span></li>
+                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+62 811-3104-430</span></a></li>
                             <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
                         </ul>
                     </div>
@@ -60,8 +56,7 @@
                     Copyright &copy;
                     <script>
                         document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </script> All rights reserved | Team Bluzz
                 </p>
             </div>
         </div>
