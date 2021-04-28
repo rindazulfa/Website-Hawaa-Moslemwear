@@ -18,7 +18,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // ADMIN
-Route::resource('/admin','Admin\DashboardController');
+Route::group([  
+    'namespace' => 'Admin'
+], function () {
+    Route::resource('/admin','DashboardController');
+
+});
+
 
 //
 

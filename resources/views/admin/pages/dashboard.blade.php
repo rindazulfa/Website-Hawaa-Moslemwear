@@ -1,5 +1,5 @@
-@extends('admin/layoutsadmin.app')
-@section('admin/contentadmin')
+@extends('admin.layouts.app')
+@section('content')
 <?php
 echo 'hello world';
 ?>
