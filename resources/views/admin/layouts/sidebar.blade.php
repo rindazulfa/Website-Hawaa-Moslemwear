@@ -27,43 +27,43 @@
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Produk</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-palette"></i>
               <span class="nav-link-text">Bahan Baku</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Stok Produk</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Promo</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Supplier</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Customer</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">User</span>
             </a>
@@ -79,19 +79,19 @@
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Penjualan</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-palette"></i>
               <span class="nav-link-text">Penjualan Custom</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Pembelian</span>
             </a>
@@ -107,25 +107,25 @@
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Laporan Penjualan</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Laporan Persediaan</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-palette"></i>
               <span class="nav-link-text">Laporan Pembelian</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
+            <a class="nav-link" href="#">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Laporan Keuangan</span>
             </a>

@@ -32,7 +32,11 @@ Route::group([
 Route::resource('/','HomepageController');
 
 Route::get('/login', function () {
-    return view('login');
+    return view('package/login');
+});
+
+Route::get('/register', function () {
+    return view('package/register');
 });
 
 Route::resource('/about','AboutController');
