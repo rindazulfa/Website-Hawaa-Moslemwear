@@ -25,45 +25,25 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Form Pembelian</h3>
+                    <h3 class="mb-0">Form Bahan Baku</h3>
                 </div>
                 <form class="form" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group row">
-                            <div class="col-lg-6">
-                                <label>Tanggal</label>
-                                <input type="date" class="form-control" value="{{ old('name') }}" name="name" />
-                            </div>
-                            <div class="col-lg-6">
-                                <label>Keterangan Beli</label>
-                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-lg-6">
-                                <label>Total Beli</label>
-                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" />
-                            </div>
-                            <div class="col-lg-6">
-                                <label>Status Beli</label>
-                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 mt-4">
                                 <label>Nama Bahan</label>
-                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" />
+                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Masukkan Nama Produk" />
                             </div>
                             <div class="col-lg-6">
-                                <label>QTY Beli</label>
-                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" />
+                                <label>Harga</label>
+                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" placeholder="Masukkan Harga" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Nama Supplier</label>
-                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" />
+                                <label for="exampleTextarea">Stok</label>
+                                <textarea class="form-control" rows="3" name="desc" placeholder="Masukkan Deskripsi">{{ old('desc') }}</textarea>
                             </div>
                         </div>
                     </div>

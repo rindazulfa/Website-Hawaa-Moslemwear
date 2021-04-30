@@ -14,13 +14,8 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="col-lg-6 col-7 text-right">
-                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                        <button class="btn btn-icon btn-primary" type="button">
-                            <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                            <span class="btn-inner--text">Tambah Data</span>
-                        </button>
-                    </nav>
+                <div class="col-lg-6 col-5 text-right">
+                    <a href="{{route('datatranspembelian.create')}}" class="btn btn-sm btn-neutral">Tambah Pembelian</a>
                 </div>
             </div>
         </div>

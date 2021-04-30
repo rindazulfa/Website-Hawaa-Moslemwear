@@ -14,10 +14,6 @@
             </ol>
           </nav>
         </div>
-        <div class="col-lg-6 col-5 text-right">
-          <a href="#" class="btn btn-sm btn-neutral">New</a>
-          <a href="#" class="btn btn-sm btn-neutral">Filters</a>
-        </div>
       </div>
       <!-- Card stats -->
       <div class="row">
@@ -27,7 +23,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Total traffic</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Pengeluaran</h5>
                   <span class="h2 font-weight-bold mb-0">350,897</span>
                 </div>
                 <div class="col-auto">
@@ -36,10 +32,6 @@
                   </div>
                 </div>
               </div>
-              <p class="mt-3 mb-0 text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
-              </p>
             </div>
           </div>
         </div>
@@ -49,7 +41,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Pemasukan</h5>
                   <span class="h2 font-weight-bold mb-0">2,356</span>
                 </div>
                 <div class="col-auto">
@@ -58,10 +50,6 @@
                   </div>
                 </div>
               </div>
-              <p class="mt-3 mb-0 text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
-              </p>
             </div>
           </div>
         </div>
@@ -71,8 +59,8 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                  <span class="h2 font-weight-bold mb-0">924</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Keuntungan</h5>
+                  <span class="h2 font-weight-bold mb-0">9240000</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -80,10 +68,6 @@
                   </div>
                 </div>
               </div>
-              <p class="mt-3 mb-0 text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
-              </p>
             </div>
           </div>
         </div>
@@ -93,8 +77,8 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                  <span class="h2 font-weight-bold mb-0">49,65%</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Pesanan</h5>
+                  <span class="h2 font-weight-bold mb-0">49</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -102,10 +86,6 @@
                   </div>
                 </div>
               </div>
-              <p class="mt-3 mb-0 text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
-              </p>
             </div>
           </div>
         </div>
@@ -121,19 +101,19 @@
           <div class="row align-items-center">
             <div class="col">
               <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-              <h5 class="h3 text-white mb-0">Sales value</h5>
+              <h5 class="h3 text-white mb-0">Total Pemasukan</h5>
             </div>
             <div class="col">
               <ul class="nav nav-pills justify-content-end">
                 <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
                   <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
-                    <span class="d-none d-md-block">Month</span>
+                    <span class="d-none d-md-block">Bulan</span>
                     <span class="d-md-none">M</span>
                   </a>
                 </li>
                 <li class="nav-item" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
                   <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                    <span class="d-none d-md-block">Week</span>
+                    <span class="d-none d-md-block">Minggu</span>
                     <span class="d-md-none">W</span>
                   </a>
                 </li>
@@ -156,7 +136,7 @@
           <div class="row align-items-center">
             <div class="col">
               <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-              <h5 class="h3 mb-0">Total orders</h5>
+              <h5 class="h3 mb-0">Total Pesanan</h5>
             </div>
           </div>
         </div>
@@ -175,10 +155,10 @@
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col">
-              <h3 class="mb-0">Page visits</h3>
+              <h3 class="mb-0">Pesanan</h3>
             </div>
             <div class="col text-right">
-              <a href="#!" class="btn btn-sm btn-primary">See all</a>
+              <a href="#!" class="btn btn-sm btn-primary">Lihat Semua</a>
             </div>
           </div>
         </div>
@@ -187,81 +167,81 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Page name</th>
-                <th scope="col">Visitors</th>
-                <th scope="col">Unique users</th>
-                <th scope="col">Bounce rate</th>
+                <th scope="col">Nama Pelanggan</th>
+                <th scope="col">Total</th>
+                <th scope="col">Jumlah Produk</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">
-                  /argon/
+                  Ricky Rikado
                 </th>
                 <td>
-                  4,569
+                  4,569,000
                 </td>
                 <td>
                   340
                 </td>
                 <td>
-                  <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
+                  Lunas
                 </td>
               </tr>
               <tr>
                 <th scope="row">
-                  /argon/index.html
+                  Ricky Rikado
                 </th>
                 <td>
-                  3,985
+                  4,569,000
                 </td>
                 <td>
-                  319
+                  340
                 </td>
                 <td>
-                  <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
+                  Belum Bayar
                 </td>
               </tr>
               <tr>
                 <th scope="row">
-                  /argon/charts.html
+                  Ricky Rikado
                 </th>
                 <td>
-                  3,513
+                  4,569,000
                 </td>
                 <td>
-                  294
+                  340
                 </td>
                 <td>
-                  <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
+                  Lunas
                 </td>
               </tr>
               <tr>
                 <th scope="row">
-                  /argon/tables.html
+                  Ricky Rikado
                 </th>
                 <td>
-                  2,050
+                  4,569,000
                 </td>
                 <td>
-                  147
+                  340
                 </td>
                 <td>
-                  <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
+                  Belum Bayar
                 </td>
               </tr>
               <tr>
                 <th scope="row">
-                  /argon/profile.html
+                  Ricky Rikado
                 </th>
                 <td>
-                  1,795
+                  4,569,000
                 </td>
                 <td>
-                  190
+                  340
                 </td>
                 <td>
-                  <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
+                  Lunas
                 </td>
               </tr>
             </tbody>
@@ -274,10 +254,10 @@
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col">
-              <h3 class="mb-0">Social traffic</h3>
+              <h3 class="mb-0">Produk</h3>
             </div>
             <div class="col text-right">
-              <a href="#!" class="btn btn-sm btn-primary">See all</a>
+              <a href="#!" class="btn btn-sm btn-primary">Lihat Semua</a>
             </div>
           </div>
         </div>
@@ -286,15 +266,15 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Referral</th>
-                <th scope="col">Visitors</th>
+                <th scope="col">Nama Produk</th>
+                <th scope="col">Stok</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">
-                  Facebook
+                  Produk 1
                 </th>
                 <td>
                   1,480
@@ -312,7 +292,7 @@
               </tr>
               <tr>
                 <th scope="row">
-                  Facebook
+                Produk 1
                 </th>
                 <td>
                   5,480
@@ -330,7 +310,7 @@
               </tr>
               <tr>
                 <th scope="row">
-                  Google
+                Produk 1
                 </th>
                 <td>
                   4,807
@@ -348,7 +328,7 @@
               </tr>
               <tr>
                 <th scope="row">
-                  Instagram
+                Produk 1
                 </th>
                 <td>
                   3,678
@@ -366,7 +346,7 @@
               </tr>
               <tr>
                 <th scope="row">
-                  twitter
+                Produk 1
                 </th>
                 <td>
                   2,645

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class StokProductController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class StokProductController extends Controller
      */
     public function index()
     {
-        return view('admin/pages/stok_produk/index');
+        return view('admin/pages/user/index');
     }
 
     /**
@@ -24,7 +24,7 @@ class StokProductController extends Controller
      */
     public function create()
     {
-        return view('admin/pages/stok_produk/create');
+        return view('admin/pages/user/create');
     }
 
     /**

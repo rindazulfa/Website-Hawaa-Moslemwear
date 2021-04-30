@@ -14,7 +14,7 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        //
+        return view ('admin/pages/bahan_baku/index');
     }
 
     /**
@@ -24,7 +24,7 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/pages/bahan_baku/create');
     }
 
     /**

@@ -25,45 +25,43 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Form Pembelian</h3>
+                    <h3 class="mb-0">Form Banner</h3>
                 </div>
                 <form class="form" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
+                        <!-- Photos -->
                         <div class="form-group row">
+                            <!-- Pict 1 -->
                             <div class="col-lg-6">
-                                <label>Tanggal</label>
-                                <input type="date" class="form-control" value="{{ old('name') }}" name="name" />
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFileLang" lang="en">
+                                    <label class="custom-file-label" for="customFileLang">Select file</label>
+                                </div>
                             </div>
+                            <!-- Pict 2 -->
                             <div class="col-lg-6">
-                                <label>Keterangan Beli</label>
-                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" />
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFileLang" lang="en">
+                                    <label class="custom-file-label" for="customFileLang">Select file</label>
+                                </div>
+                            </div>
+                            <!-- Pict 3 -->
+                            <div class="col-lg-6">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFileLang" lang="en">
+                                    <label class="custom-file-label" for="customFileLang">Select file</label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Total Beli</label>
-                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" />
+                                <label>Judul</label>
+                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Masukkan Nama Produk" />
                             </div>
                             <div class="col-lg-6">
-                                <label>Status Beli</label>
-                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-lg-6">
-                                <label>Nama Bahan</label>
-                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" />
-                            </div>
-                            <div class="col-lg-6">
-                                <label>QTY Beli</label>
-                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-lg-6">
-                                <label>Nama Supplier</label>
-                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" />
+                                <label>Sub Judul</label>
+                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" placeholder="Masukkan Harga" />
                             </div>
                         </div>
                     </div>
@@ -72,7 +70,7 @@
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button type="button" class="btn btn-secondary"><a href="{{route('bahan_baku.index')}}">Cancel</a></button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('dataproduk.index')}}">Cancel</a></button>
                             </div>
                         </div>
                     </div>

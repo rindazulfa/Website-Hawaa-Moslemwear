@@ -22,10 +22,16 @@ Route::group([
     'namespace' => 'Admin'
 ], function () {
     Route::resource('admin','DashboardController');
-    
+    Route::resource('datapromo','PromoController');
+    Route::resource('customer','CustomerController');
+    Route::resource('supplier','SupplierController');
+    Route::resource('bahan_baku','MaterialController');
+    Route::resource('user','UserController');
+    Route::resource('stok_produk','StokProductController');
+    Route::resource('banner','BannerController');
+    Route::resource('profilumkm','ProfilController');
     // Produk
     Route::resource('dataproduk','ProductController');
-    // Route::resource('tambahproduk','ProductController');
 
     // Transaksi Pembelian
     Route::resource('datatranspembelian','Transaksi_PembelianController');

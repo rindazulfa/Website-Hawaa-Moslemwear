@@ -26,6 +26,18 @@
         </h6>
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
+        <li class="nav-item">
+            <a class="nav-link" href="/banner">
+              <i class="ni ni-spaceship"></i>
+              <span class="nav-link-text">Banner</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/profilumkm">
+              <i class="ni ni-app"></i>
+              <span class="nav-link-text">Profil UMKM</span>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="/dataproduk">
               <i class="ni ni-spaceship"></i>
@@ -33,37 +45,37 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/bahan_baku">
               <i class="ni ni-app"></i>
               <span class="nav-link-text">Bahan Baku</span>
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item">
+            <a class="nav-link" href="/stok_produk">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Stok Produk</span>
             </a>
-          </li> -->
+          </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/datapromo">
               <i class="ni ni-tag"></i>
               <span class="nav-link-text">Promo</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/supplier">
               <i class="ni ni-single-02"></i>
               <span class="nav-link-text">Supplier</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/customer">
               <i class="ni ni-single-02"></i>
               <span class="nav-link-text">Customer</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/user">
               <i class="ni ni-circle-08"></i>
               <span class="nav-link-text">User</span>
             </a>

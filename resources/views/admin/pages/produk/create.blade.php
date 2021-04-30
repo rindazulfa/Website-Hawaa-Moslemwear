@@ -14,9 +14,6 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="col-lg-6 col-5 text-right">
-                    <a href="#" class="btn btn-sm btn-neutral">Tambah Produk</a>
-                </div>
             </div>
         </div>
     </div>
@@ -28,16 +25,62 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Light table</h3>
+                    <h3 class="mb-0">Form Produk</h3>
                 </div>
-                <!-- Light table -->
-                <div class="table-responsive">
-                  
-                </div>
-                <!-- Card footer -->
-                <div class="card-footer py-4">
-                    
-                </div>
+                <form class="form" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card-body">
+                        <!-- Photos -->
+                        <div class="form-group row">
+                            <!-- Pict 1 -->
+                            <div class="col-lg-6">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFileLang" lang="en">
+                                    <label class="custom-file-label" for="customFileLang">Select file</label>
+                                </div>
+                            </div>
+                            <!-- Pict 2 -->
+                            <div class="col-lg-6">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFileLang" lang="en">
+                                    <label class="custom-file-label" for="customFileLang">Select file</label>
+                                </div>
+                            </div>
+                            <!-- Pict 3 -->
+                            <div class="col-lg-6">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFileLang" lang="en">
+                                    <label class="custom-file-label" for="customFileLang">Select file</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-6 mt-4">
+                                <label>Nama Produk</label>
+                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Masukkan Nama Produk" />
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Harga</label>
+                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" placeholder="Masukkan Harga" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label for="exampleTextarea">Deskripsi</label>
+                                <textarea class="form-control" rows="3" name="desc" placeholder="Masukkan Deskripsi">{{ old('desc') }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-8">
+                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('dataproduk.index')}}">Cancel</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
