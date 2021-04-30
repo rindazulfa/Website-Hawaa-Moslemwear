@@ -10,13 +10,13 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Daftar Produk</li>
+                            <li class="breadcrumb-item active" aria-current="page">Daftar Transaksi Pembelian</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-lg-6 col-7 text-right">
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                        <button class="btn btn-icon btn-primary" type="button" href="">
+                        <button class="btn btn-icon btn-primary" type="button">
                             <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
                             <span class="btn-inner--text">Tambah Data</span>
                         </button>
@@ -33,7 +33,7 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Daftar Produk</h3>
+                    <h3 class="mb-0">Daftar Transaksi Pembelian</h3>
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">
@@ -41,13 +41,12 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col" class="sort" data-sort="no">No. </th>
-                                <th scope="col" class="sort" data-sort="id_produk">Id Produk</th>
-                                <th scope="col" class="sort" data-sort="nama_produk">Nama Produk</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Harga Produk</th>
-                                <th scope="col" class="sort" data-sort="stok_produk">Stok Produk</th>
-                                <th scope="col" class="sort" data-sort="jenis_produk">Jenis_Produk</th>
-                                <th scope="col" class="sort" data-sort="deskripsi_produk">Deskripsi Produk</th>
-                                <th scope="col" class="sort" data-sort="gambar_produk">Gambar Produk</th>
+                                <th scope="col" class="sort" data-sort="id_transaksi_pembelian">Id Transaksi Pembelian</th>
+                                <th scope="col" class="sort" data-sort="nama_bahan_baku">Nama Bahan Baku</th>
+                                <th scope="col" class="sort" data-sort="jumlah_beli">Jumlah Beli</th>
+                                <th scope="col" class="sort" data-sort="harga_bahan">Harga Bahan</th>
+                                <th scope="col" class="sort" data-sort="total_harga">Total Harga</th>
+                                <th scope="col" class="sort" data-sort="status">status Transaksi</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
@@ -55,83 +54,94 @@
                         <tbody class="list">
                             <tr>
                                 <th class="no">1.</th>
-                                <td class="id_produk">P0001</td>
-                                <td class="nama_produk">Gamis</td>
-                                <td class="harga_produk">Rp. 300.000</td>
-                                <td class="stok_produk">5 Set</td>
-                                <td class="jenis_produk">Pakaian</td>
-                                <td class="deskripsi_produk">Lorem ipsuxxxx</td>
-                                <td class="gambar_produk">
-                                    <a href="#">Gambar 1</a>
+                                <td class="id_transaksi_pembelian">TB001</td>
+                                <td class="nama_bahan_baku">Kain</td>
+                                <td class="jumlah_beli">10 Meter</td>
+                                <td class="harga_bahan">Rp. 100.000</td>
+                                <td class="total_harga">Rp. 1.000.000</td>
+                                <td>
+                                    <span class="badge badge-dot mr-4">
+                                        <i class="bg-success"></i>
+                                        <span class="status">success</span>
+                                    </span>
                                 </td>
                                 <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
+                                    <button type="button" class="btn btn-outline-success">Cetak</button>
                                     <button type="button" class="btn btn-outline-danger">Delete</button>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="no">2.</th>
-                                <td class="id_produk">P0002</td>
-                                <td class="nama_produk">Mukenah</td>
-                                <td class="harga_produk">Rp. 300.000</td>
-                                <td class="stok_produk">15 Set</td>
-                                <td class="jenis_produk">Perlengkapan Sholat</td>
-                                <td class="deskripsi_produk">Lorem ipsuxxxx</td>
-                                <td class="gambar_produk">
-                                    <a href="#">Gambar 1</a>
+                                <td class="id_transaksi_pembelian">TB002</td>
+                                <td class="nama_bahan_baku">Benang</td>
+                                <td class="jumlah_beli">10 Meter</td>
+                                <td class="harga_bahan">Rp. 100.000</td>
+                                <td class="total_harga">Rp. 1.000.000</td>
+                                <td>
+                                    <span class="badge badge-dot mr-4">
+                                        <i class="bg-warning"></i>
+                                        <span class="status">pending</span>
+                                    </span>
                                 </td>
                                 <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
+                                    <button type="button" class="btn btn-outline-success">Cetak</button>
                                     <button type="button" class="btn btn-outline-danger">Delete</button>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="no">3.</th>
-                                <td class="id_produk">P0003</td>
-                                <td class="nama_produk">Masker</td>
-                                <td class="harga_produk">Rp. 30.000</td>
-                                <td class="stok_produk">50 Pack</td>
-                                <td class="jenis_produk">Aksesoris</td>
-                                <td class="deskripsi_produk">Lorem ipsuxxxx</td>
-                                <td class="gambar_produk">
-                                    <a href="#">Gambar 1</a>
+                                <td class="id_transaksi_pembelian">TB003</td>
+                                <td class="nama_bahan_baku">Pewarna</td>
+                                <td class="jumlah_beli">10 Liter</td>
+                                <td class="harga_bahan">Rp. 100.000</td>
+                                <td class="total_harga">Rp. 1.000.000</td>
+                                <td>
+                                    <span class="badge badge-dot mr-4">
+                                        <i class="bg-warning"></i>
+                                        <span class="status">Cancel</span>
+                                    </span>
                                 </td>
                                 <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
+                                    <button type="button" class="btn btn-outline-success">Cetak</button>
                                     <button type="button" class="btn btn-outline-danger">Delete</button>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="no">4.</th>
-                                <td class="id_produk">P0004</td>
-                                <td class="nama_produk">Sajadah</td>
-                                <td class="harga_produk">Rp. 200.000</td>
-                                <td class="stok_produk">2 Set</td>
-                                <td class="jenis_produk">Perlengkapan sholat</td>
-                                <td class="deskripsi_produk">Lorem ipsuxxxx</td>
-                                <td class="gambar_produk">
-                                    <a href="#">Gambar 1</a>
+                                <td class="id_transaksi_pembelian">TB004</td>
+                                <td class="nama_bahan_baku">Kain</td>
+                                <td class="jumlah_beli">10 Meter</td>
+                                <td class="harga_bahan">Rp. 100.000</td>
+                                <td class="total_harga">Rp. 1.000.000</td>
+                                <td>
+                                    <span class="badge badge-dot mr-4">
+                                        <i class="bg-success"></i>
+                                        <span class="status">success</span>
+                                    </span>
                                 </td>
                                 <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
+                                    <button type="button" class="btn btn-outline-success">Cetak</button>
                                     <button type="button" class="btn btn-outline-danger">Delete</button>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="no">5.</th>
-                                <td class="id_produk">P0005</td>
-                                <td class="nama_produk">Gamis</td>
-                                <td class="harga_produk">Rp. 300.000</td>
-                                <td class="stok_produk">5 Set</td>
-                                <td class="jenis_produk">Pakaian</td>
-                                <td class="deskripsi_produk">Lorem ipsuxxxx</td>
-                                <td class="gambar_produk">
-                                    <a href="#">Gambar 1</a>
+                                <td class="id_transaksi_pembelian">TB005</td>
+                                <td class="nama_bahan_baku">Kain</td>
+                                <td class="jumlah_beli">10 Meter</td>
+                                <td class="harga_bahan">Rp. 100.000</td>
+                                <td class="total_harga">Rp. 1.000.000</td>
+                                <td>
+                                    <span class="badge badge-dot mr-4">
+                                        <i class="bg-success"></i>
+                                        <span class="status">success</span>
+                                    </span>
                                 </td>
                                 <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
+                                    <button type="button" class="btn btn-outline-success">Cetak</button>
                                     <button type="button" class="btn btn-outline-danger">Delete</button>
                                 </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

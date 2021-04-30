@@ -34,37 +34,37 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <i class="ni ni-palette"></i>
+              <i class="ni ni-app"></i>
               <span class="nav-link-text">Bahan Baku</span>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Stok Produk</span>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <i class="ni ni-spaceship"></i>
+              <i class="ni ni-tag"></i>
               <span class="nav-link-text">Promo</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <i class="ni ni-spaceship"></i>
+              <i class="ni ni-single-02"></i>
               <span class="nav-link-text">Supplier</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <i class="ni ni-spaceship"></i>
+              <i class="ni ni-single-02"></i>
               <span class="nav-link-text">Customer</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <i class="ni ni-spaceship"></i>
+              <i class="ni ni-circle-08"></i>
               <span class="nav-link-text">User</span>
             </a>
           </li>
@@ -79,19 +79,19 @@
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ni ni-spaceship"></i>
+            <a class="nav-link" href="/datatranspenjualan">
+              <i class="ni ni-cart"></i>
               <span class="nav-link-text">Penjualan</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/datatranspenjualancustom">
               <i class="ni ni-palette"></i>
               <span class="nav-link-text">Penjualan Custom</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/datatranspembelian">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Pembelian</span>
             </a>
@@ -130,6 +130,12 @@
               <span class="nav-link-text">Laporan Keuangan</span>
             </a>
           </li>
+          <!-- <li class="nav-item">
+            <label class="custom-toggle">
+              <input type="checkbox">
+              <span class="custom-toggle-slider rounded-circle nav-link-text" data-label-off="Light" data-label-on="Dark"></span>
+            </label>
+          </li> -->
         </ul>
       </div>
     </div>

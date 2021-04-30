@@ -22,8 +22,19 @@ Route::group([
     'namespace' => 'Admin'
 ], function () {
     Route::resource('admin','DashboardController');
+    
+    // Produk
     Route::resource('dataproduk','ProductController');
+    // Route::resource('tambahproduk','ProductController');
 
+    // Transaksi Pembelian
+    Route::resource('datatranspembelian','Transaksi_PembelianController');
+
+    // Transaksi Penjualan
+    Route::resource('datatranspenjualan','Transaksi_PenjualanController');
+
+    // Transaksi Penjualan Custom
+    Route::resource('datatranspenjualancustom','Transaksi_PenjualanCustomController');
 });
 
 
