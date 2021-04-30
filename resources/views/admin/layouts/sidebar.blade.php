@@ -12,7 +12,7 @@
         <!-- Nav items -->
         <ul class="navbar-nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="dashboard.html">
+            <a class="nav-link active" href="/admin">
               <i class="ni ni-tv-2 text-primary"></i>
               <span class="nav-link-text">Dashboard</span>
             </a>
@@ -27,7 +27,7 @@
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/dataproduk">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Produk</span>
             </a>

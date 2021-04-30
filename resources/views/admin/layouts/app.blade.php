@@ -31,7 +31,7 @@
         <!-- Header -->
         <!-- Header -->
         @yield('content')
-        @include('admin.layouts.footer')
+        
     </div>
     <!-- Argon Scripts -->
     <!-- Core -->

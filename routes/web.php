@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::group([  
     'namespace' => 'Admin'
 ], function () {
-    Route::resource('/admin','DashboardController');
+    Route::resource('admin','DashboardController');
+    Route::resource('dataproduk','ProductController');
 
 });
 
