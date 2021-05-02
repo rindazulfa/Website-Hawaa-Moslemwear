@@ -15,7 +15,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="{{route('datapromo.create')}}" class="btn btn-sm btn-neutral">Tambah Promo</a>
+                    <a href="/admin/datapromo/formpromo" class="btn btn-sm btn-neutral">Tambah Promo</a>
                 </div>
             </div>
         </div>

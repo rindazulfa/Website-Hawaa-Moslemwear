@@ -57,7 +57,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/datapromo">
+            <a class="nav-link" href="/admin/datapromo">
               <i class="ni ni-tag"></i>
               <span class="nav-link-text">Promo</span>
             </a>

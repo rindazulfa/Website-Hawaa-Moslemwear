@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PromoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,31 +19,38 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// Route::group([  
+//     'namespace' => 'Admin'
+// ], function () {
+//     // Route::resource('admin','DashboardController');
+//     // Route::resource('datapromo','PromoController');
+//     Route::resource('customer','CustomerController');
+//     Route::resource('supplier','SupplierController');
+//     Route::resource('bahan_baku','MaterialController');
+//     Route::resource('user','UserController');
+//     Route::resource('stok_produk','StokProductController');
+//     Route::resource('banner','BannerController');
+//     Route::resource('profilumkm','ProfilController');
+//     // Produk
+//     Route::resource('dataproduk','ProductController');
+
+//     // Transaksi Pembelian
+//     Route::resource('datatranspembelian','Transaksi_PembelianController');
+
+//     // Transaksi Penjualan
+//     Route::resource('datatranspenjualan','Transaksi_PenjualanController');
+
+//     // Transaksi Penjualan Custom
+//     Route::resource('datatranspenjualancustom','Transaksi_PenjualanCustomController');
+// });
+
 // ADMIN
-Route::group([  
-    'namespace' => 'Admin'
-], function () {
-    Route::resource('admin','DashboardController');
-    Route::resource('datapromo','PromoController');
-    Route::resource('customer','CustomerController');
-    Route::resource('supplier','SupplierController');
-    Route::resource('bahan_baku','MaterialController');
-    Route::resource('user','UserController');
-    Route::resource('stok_produk','StokProductController');
-    Route::resource('banner','BannerController');
-    Route::resource('profilumkm','ProfilController');
-    // Produk
-    Route::resource('dataproduk','ProductController');
+Route::get('/admin', [DashboardController::class, 'index']);
 
-    // Transaksi Pembelian
-    Route::resource('datatranspembelian','Transaksi_PembelianController');
+// Data Promo
+Route::get('/admin/datapromo', [PromoController::class, 'index']);
+Route::get('/admin/datapromo/formpromo', [PromoController::class, 'create']);
 
-    // Transaksi Penjualan
-    Route::resource('datatranspenjualan','Transaksi_PenjualanController');
-
-    // Transaksi Penjualan Custom
-    Route::resource('datatranspenjualancustom','Transaksi_PenjualanCustomController');
-});
 
 
 //

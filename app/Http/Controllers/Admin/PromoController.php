@@ -12,8 +12,7 @@ class PromoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         return view('admin/pages/promo/index');
     }
 
@@ -22,8 +21,7 @@ class PromoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         return view('admin/pages/promo/create');
     }
 
