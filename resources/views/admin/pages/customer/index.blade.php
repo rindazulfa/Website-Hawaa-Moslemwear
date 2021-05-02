@@ -15,7 +15,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="{{route('customer.create')}}" class="btn btn-sm btn-neutral">Tambah Customer</a>
+                    <!-- <a href="/admin/datacustomer/formcustomer" class="btn btn-sm btn-neutral">Tambah Customer</a> -->
                 </div>
             </div>
         </div>

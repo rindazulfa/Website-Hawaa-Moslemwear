@@ -15,7 +15,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="{{route('bahan_baku.create')}}" class="btn btn-sm btn-neutral">Tambah Bahan Baku</a>
+                    <a href="/admin/databahan_baku/formmaterial" class="btn btn-sm btn-neutral">Tambah Bahan Baku</a>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                             <tr>
                                 <th scope="col" class="sort" data-sort="no">No. </th>
                                 <th scope="col" class="sort" data-sort="id_produk">Id Bahan</th>
-                                <th scope="col" class="sort" data-sort="nama_produk">Nama Kain</th>
+                                <th scope="col" class="sort" data-sort="nama_produk">Nama Bahan</th>
                                 <th scope="col" class="sort" data-sort="harga_produk">Harga</th>
                                 <th scope="col" class="sort" data-sort="stok_produk">Stok</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>

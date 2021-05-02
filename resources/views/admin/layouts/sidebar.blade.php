@@ -45,7 +45,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/bahan_baku">
+            <a class="nav-link" href="admin/datamaterial">
               <i class="ni ni-app"></i>
               <span class="nav-link-text">Bahan Baku</span>
             </a>
@@ -63,19 +63,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/supplier">
+            <a class="nav-link" href="/admin/datasupplier">
               <i class="ni ni-single-02"></i>
               <span class="nav-link-text">Supplier</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/customer">
+            <a class="nav-link" href="/admin/datacustomer">
               <i class="ni ni-single-02"></i>
               <span class="nav-link-text">Customer</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/user">
+            <a class="nav-link" href="/admin/datauser">
               <i class="ni ni-circle-08"></i>
               <span class="nav-link-text">User</span>
             </a>

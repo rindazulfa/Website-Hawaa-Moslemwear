@@ -15,7 +15,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="{{route('user.create')}}" class="btn btn-sm btn-neutral">Tambah User</a>
+                    <a href="/admin/datauser/formuser" class="btn btn-sm btn-neutral">Tambah User</a>
                 </div>
             </div>
         </div>

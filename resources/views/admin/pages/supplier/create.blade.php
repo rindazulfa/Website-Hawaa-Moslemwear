@@ -9,8 +9,8 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Tables</li>
+                            <li class="breadcrumb-item"><a href="#">Data Supplier</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Form Data Supplier</li>
                         </ol>
                     </nav>
                 </div>
@@ -27,23 +27,23 @@
                 <div class="card-header border-0">
                     <h3 class="mb-0">Form Supplier</h3>
                 </div>
-                <form class="form" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
+                <form class="form" method="post" action="" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>Nama</label>
-                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" />
+                                <input type="text" class="form-control" name="name" />
                             </div>
                             <div class="col-lg-6">
                                 <label>Email</label>
-                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" />
+                                <input type="number" class="form-control" name="price" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">No Telepon</label>
-                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" /> 
+                                <input type="number" class="form-control" name="price" data-rule="maxlen:13"/> 
                             </div>
 
 
@@ -51,7 +51,7 @@
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">Alamat</label>
-                                <textarea class="form-control" rows="3" name="desc">{{ old('desc') }}</textarea>
+                                <textarea class="form-control" rows="3" name="desc"></textarea>
                             </div>
                         </div>
                     </div>
@@ -59,8 +59,8 @@
                         <div class="row">
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button type="button" class="btn btn-secondary"><a href="{{route('bahan_baku.index')}}">Cancel</a></button>
+                                <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                                <button type="button" class="btn btn-secondary"><a href="#">Cancel</a></button>
                             </div>
                         </div>
                     </div>

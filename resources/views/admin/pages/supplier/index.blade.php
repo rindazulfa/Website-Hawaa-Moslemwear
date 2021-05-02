@@ -15,7 +15,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="{{route('supplier.create')}}" class="btn btn-sm btn-neutral">Tambah Supplier</a>
+                    <a href="/admin/datasupplier/formsupplier" class="btn btn-sm btn-neutral">Tambah Supplier</a>
                 </div>
             </div>
         </div>
