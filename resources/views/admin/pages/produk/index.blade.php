@@ -35,98 +35,69 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="no">No. </th>
-                                <th scope="col" class="sort" data-sort="id_produk">Id Produk</th>
-                                <th scope="col" class="sort" data-sort="nama_produk">Nama Produk</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Harga Produk</th>
-                                <th scope="col" class="sort" data-sort="stok_produk">Stok Produk</th>
-                                <th scope="col" class="sort" data-sort="jenis_produk">Jenis_Produk</th>
-                                <th scope="col" class="sort" data-sort="deskripsi_produk">Deskripsi Produk</th>
-                                <th scope="col" class="sort" data-sort="gambar_produk">Gambar Produk</th>
-                                <th scope="col" class="sort" data-sort="aksi">Aksi</th>
-                                <th scope="col"></th>
+                                <th>Pict</th>
+                                <th>Price</th>
+                                <th>Desc</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="list">
+                            @forelse($products as $key)
                             <tr>
-                                <th class="no">1.</th>
-                                <td class="id_produk">P0001</td>
-                                <td class="nama_produk">Gamis</td>
-                                <td class="harga_produk">Rp. 300.000</td>
-                                <td class="stok_produk">5 Set</td>
-                                <td class="jenis_produk">Pakaian</td>
-                                <td class="deskripsi_produk">Lorem ipsuxxxx</td>
-                                <td class="gambar_produk">
-                                    <a href="#">Gambar 1</a>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                <th scope="row">
+                                    <div class="media align-items-center">
+                                        <div class="avatar rounded-circle mr-3">
+                                            <img src="/uploads/products/{{$row->pict_1}}" alt="photo">
+                                        </div>
+                                        <div class="media-body">
+                                            <span class="name mb-0 text-sm">{{$key->name}}</span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td> Rp {{number_format($key->price,2,',','.')}}</td>
+                                <td>{{$key->desc}}</td>
+                                <td>
+                                    <a href="{{route('product.show',[$item->id])}}" class="btn btn-outline-primary" title="Detail">
+                                        Detail
+                                    </a>
+                                    <a href="{{route('product.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
+                                        Update
+                                    </a>
+                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button>
                                 </td>
                             </tr>
+                            <div class="modal fade" id="exampleModal-{{$key->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <form action="{{route('product.destroy', [$key->id])}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <div class="modal-content">
+                                            <div class="modal-header py-5">
+                                                <h5 class="modal-title" id="exampleModalLabel"> Hapus Product</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <i aria-hidden="true" class="ki ki-close"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>
+                                                    Yakin menghapus data {{ $key->name}} ?
+                                                </h6>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-danger font-weight-bold text-uppercase">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            @empty
+
                             <tr>
-                                <th class="no">2.</th>
-                                <td class="id_produk">P0002</td>
-                                <td class="nama_produk">Mukenah</td>
-                                <td class="harga_produk">Rp. 300.000</td>
-                                <td class="stok_produk">15 Set</td>
-                                <td class="jenis_produk">Perlengkapan Sholat</td>
-                                <td class="deskripsi_produk">Lorem ipsuxxxx</td>
-                                <td class="gambar_produk">
-                                    <a href="#">Gambar 1</a>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
+                                <td colspan="7" class="text-center">Data Kosong</td>
                             </tr>
-                            <tr>
-                                <th class="no">3.</th>
-                                <td class="id_produk">P0003</td>
-                                <td class="nama_produk">Masker</td>
-                                <td class="harga_produk">Rp. 30.000</td>
-                                <td class="stok_produk">50 Pack</td>
-                                <td class="jenis_produk">Aksesoris</td>
-                                <td class="deskripsi_produk">Lorem ipsuxxxx</td>
-                                <td class="gambar_produk">
-                                    <a href="#">Gambar 1</a>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="no">4.</th>
-                                <td class="id_produk">P0004</td>
-                                <td class="nama_produk">Sajadah</td>
-                                <td class="harga_produk">Rp. 200.000</td>
-                                <td class="stok_produk">2 Set</td>
-                                <td class="jenis_produk">Perlengkapan sholat</td>
-                                <td class="deskripsi_produk">Lorem ipsuxxxx</td>
-                                <td class="gambar_produk">
-                                    <a href="#">Gambar 1</a>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="no">5.</th>
-                                <td class="id_produk">P0005</td>
-                                <td class="nama_produk">Gamis</td>
-                                <td class="harga_produk">Rp. 300.000</td>
-                                <td class="stok_produk">5 Set</td>
-                                <td class="jenis_produk">Pakaian</td>
-                                <td class="deskripsi_produk">Lorem ipsuxxxx</td>
-                                <td class="gambar_produk">
-                                    <a href="#">Gambar 1</a>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
+
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

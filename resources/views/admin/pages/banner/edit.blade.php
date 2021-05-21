@@ -25,10 +25,11 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Form Banner</h3>
+                    <h3 class="mb-0">Form Edit Banner</h3>
                 </div>
-                <form class="form" method="post" action="{{route('banner.store')}}" enctype="multipart/form-data">
+                <form class="form" method="post" action="{{route('banner.update',[$page->id])}}" enctype="multipart/form-data">
                     @csrf
+                    {{method_field("PUT")}}
                     <div class="card-body">
                         @if($errors->any())
                         <div class="alert alert-danger">
@@ -53,11 +54,11 @@
                         <div class="form-group row">
                             <div class="col-lg-6 mt-4">
                                 <label>Title</label>
-                                <input type="text" class="form-control" value="{{ old('title') }}" name="title" placeholder="Masukkan Judul" />
+                                <input type="text" class="form-control" value="{{ $page->title }}"name="title" placeholder="Masukkan Judul" />
                             </div>
                             <div class="col-lg-6 mt-4">
                                 <label>Sub Title</label>
-                                <input type="text" class="form-control" value="{{ old('sub_title') }}" name="sub_title" placeholder="Masukkan Sub Judul" />
+                                <input type="text" class="form-control" value="{{ $page->subtitle }}" name="sub_title" placeholder="Masukkan Sub Judul" />
                             </div>
                         </div>
                     </div>
@@ -65,7 +66,7 @@
                         <div class="row">
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-primary mr-2">Update</button>
                                 <button type="button" class="btn btn-secondary"><a href="{{route('banner.index')}}">Cancel</a></button>
                             </div>
                         </div>

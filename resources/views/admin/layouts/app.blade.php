@@ -4,8 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
+    
     <title>Admin Hawaa Moslemwear</title>
     <!-- Favicon -->
     <link rel="icon" href="{{asset('images/icon.png')}}" type="image/png">
@@ -45,6 +47,7 @@
     <script src="{{asset('vendor/chart.js/dist/Chart.extension.js')}}"></script>
     <!-- Argon JS -->
     <script src="{{asset('js/argon.js?v=1.2.0')}}"></script>
+    @stack('custom-script')
 </body>
 
 </html>

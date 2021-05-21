@@ -35,57 +35,38 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="no">No. </th>
-                                <th scope="col" class="sort" data-sort="id_Banner">Id Banner</th>
-                                <th scope="col" class="sort" data-sort="nama_Banner">Gambar 1</th>
-                                <th scope="col" class="sort" data-sort="harga_Banner">Gambar 2</th>
-                                <th scope="col" class="sort" data-sort="stok_Banner">Gambar 3</th>
-                                <th scope="col" class="sort" data-sort="jenis_Banner">Judul</th>
-                                <th scope="col" class="sort" data-sort="deskripsi_Banner">Sub Judul</th>
-                                <th scope="col" class="sort" data-sort="aksi">Aksi</th>
-                                <th scope="col"></th>
+                                <th scope="col" class="sort" data-sort="no">Pict</th>
+                                <th scope="col" class="sort" data-sort="no">Judul</th>
+                                <th scope="col" class="sort" data-sort="no">SubJudul</th>
+                                <th scope="col" class="sort" data-sort="no">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="list">
+                            @forelse ($page as $item)
                             <tr>
-                                <th class="no">1.</th>
-                                <td class="id_Banner">Gambar 1</td>
-                                <td class="nama_Banner">Gambar 2</td>
-                                <td class="harga_Banner">Gambar 3</td>
-                                <td class="stok_Banner">LifeStyle</td>
-                                <td class="deskripsi_Banner">Lorem ipsuxxxx</td>
-                            
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                <td>
+                                    <div class="avatar rounded-circle mr-3">
+                                        <img src="{{asset('/uploads/banner/'.$item->picture)}}" alt="photo">
+                                    </div>
+                                </td>
+                                <td>{{$item->title}}</td>
+                                <td>{{$item->subtitle}}</td>
+                                <td>
+                                    <a href="{{route('banner.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
+                                        Update
+                                    </a>
+                                    <!-- <button type="button" class="btn btn-outline-primary">Update</button> -->
+                                    <button class="btn btn-outline-danger delete" data-id="{{$item->id}}">Delete</button>
                                 </td>
                             </tr>
+                            @empty
+
                             <tr>
-                                <th class="no">1.</th>
-                                <td class="id_Banner">Gambar 1</td>
-                                <td class="nama_Banner">Gambar 2</td>
-                                <td class="harga_Banner">Gambar 3</td>
-                                <td class="stok_Banner">LifeStyle</td>
-                                <td class="deskripsi_Banner">Lorem ipsuxxxx</td>
-                            
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
+                                <td colspan="7" class="text-center">Data Kosong</td>
                             </tr>
-                            <tr>
-                                <th class="no">1.</th>
-                                <td class="id_Banner">Gambar 1</td>
-                                <td class="nama_Banner">Gambar 2</td>
-                                <td class="harga_Banner">Gambar 3</td>
-                                <td class="stok_Banner">LifeStyle</td>
-                                <td class="deskripsi_Banner">Lorem ipsuxxxx</td>
-                            
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
+
+                            @endforelse
+
                         </tbody>
                     </table>
                 </div>
@@ -121,3 +102,52 @@
     @include('admin.layouts.footer')
 </div>
 @endsection
+
+
+
+@push('custom-script')
+
+<script>
+    $(document).ready(function() {
+        function ajax() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        }
+        $('.delete').on('click', function() {
+            var id = $(this).data('id');
+            Swal.fire({
+                text: "Are you sure to delete this banner.",
+                icon: "info",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Yes, delete!",
+                cancelButtonText: "No",
+                customClass: {
+                    confirmButton: "btn font-weight-bold btn-primary",
+                    cancelButton: "btn font-weight-bold btn-default"
+                }
+            }).then(function(result) {
+                if (result.value) {
+                    ajax();
+                    $.ajax({
+                        url: "{{url('/banner/')}}/" + id,
+                        method: "DELETE",
+                        success: function(data) {
+                            Swal.fire({
+                                icon: 'success',
+                                text: 'banner has been deleted!'
+                            })
+                            setTimeout(function() {
+                                window.location.href = "{{route('banner.index')}}"
+                            }, 1500);
+                        }
+                    });
+                }
+            });
+        })
+    })
+</script>
+@endpush

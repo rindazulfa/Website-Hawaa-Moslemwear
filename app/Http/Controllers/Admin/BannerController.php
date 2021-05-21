@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BannerController extends Controller
 {
@@ -14,7 +16,9 @@ class BannerController extends Controller
      */
     public function index()
     {
-        return view('admin/pages/banner/index');
+        $page = Banner::all();
+        return view('admin.pages.banner.index', ['page' => $page]);
+        // return view('admin/pages/banner/index');
     }
 
     /**
@@ -35,7 +39,54 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $page = new Banner();
+            $page->title = $request->get("title");
+            $page->subtitle = $request->get("sub_title");
+            if ($request->hasFile("picture")) {
+                try {
+
+                    $file1 = $request->file('picture');
+                    $namaFile1 = time() . '.' . $file1->getClientOriginalExtension();
+                    $file1->move('uploads/banner', $namaFile1);
+                } catch (\Throwable $th) {
+                    dd($th);
+                }
+
+                $page->picture = $namaFile1;
+            }
+            $page->save();
+
+            return redirect()->route("banner.index")->with("info", "Banner has been created");
+        
+        // $validator = Validator::make($request->all(), [
+        //     'title' => 'required',
+        //     'sub_title' => 'required',
+        //     'picture' => 'required|image|mimes:png,jpg,jpeg',
+        // ]);
+        
+
+        // if ($validator->fails()) {
+        //     return redirect()->back()->withErrors($validator->errors());
+        // } else {
+        //     $page = new Banner();
+        //     $page->title = $request->get("title");
+        //     $page->subtitle = $request->get("sub_title");
+        //     if ($request->hasFile("picture")) {
+        //         try {
+
+        //             $file1 = $request->file('picture');
+        //             $namaFile1 = time() . '.' . $file1->getClientOriginalExtension();
+        //             $file1->move('uploads/landing_page', $namaFile1);
+        //         } catch (\Throwable $th) {
+        //             dd($th);
+        //         }
+
+        //         $page->picture = $namaFile1;
+        //     }
+        //     $page->save();
+
+        //     return redirect()->route("banner.index")->with("info", "Banner has been created");
+        // }
     }
 
     /**
@@ -57,7 +108,9 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page = Banner::findOrFail($id);
+        return view('admin.pages.banner.edit', ['page' => $page]);
+    
     }
 
     /**
@@ -69,7 +122,25 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $page = Banner::findOrFail($id);
+        $page->title = $request->get("title");
+        $page->subtitle = $request->get("sub_title");
+        if ($request->hasFile("picture")) {
+            try {
+
+                $file1 = $request->file('picture');
+                $namaFile1 = time() . '.' . $file1->getClientOriginalExtension();
+                $file1->move('uploads/banner', $namaFile1);
+            } catch (\Throwable $th) {
+                dd($th);
+            }
+
+            $page->picture = $namaFile1;
+        }
+        $page->save();
+
+        return redirect()->route("banner.index")->with("info", "Banner has been updated");
+   
     }
 
     /**
@@ -78,8 +149,17 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        if($request->ajax()){
+            $page = Banner::findOrFail($id);
+            $namaFileLama1 = "uploads/banner/" . $page->picture;
+            File::delete($namaFileLama1);
+            $page->delete();
+    
+            return response()->json([
+                'message'=>'success'
+            ]);
+           }
     }
 }
