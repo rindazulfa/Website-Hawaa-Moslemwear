@@ -146,12 +146,23 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->get('size') == 'S') {
+            $size = 'S';
+        } elseif ($request->get('size') == 'M') {
+            $size = 'M';
+        } elseif ($request->get('size') == 'L') {
+            $size = 'L';
+        } elseif ($request->get('size') == 'XL') {
+            $size = 'XL';
+        } elseif ($request->get('size') == 'XXL') {
+            $size = 'XXL';
+        }
         $product = product::findOrFail($id);
         $product->name = $request->get('name');
         $product->price = $request->get('price');
         $product->desc = $request->get('desc');
         $product->category = $request->get('category');
-        $product->size = $request->get('size');
+        $product->size = $size;
         $product->save();
         if ($request->hasFile('pict_1') || $request->hasFile('pict_2') || $request->hasFile('pict_3')) {
             $request->validate([
