@@ -39,15 +39,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/dataproduk">
-              <i class="ni ni-spaceship"></i>
-              <span class="nav-link-text">Produk</span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="admin/datamaterial">
               <i class="ni ni-app"></i>
               <span class="nav-link-text">Bahan Baku</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/produk">
+              <i class="ni ni-spaceship"></i>
+              <span class="nav-link-text">Produk</span>
             </a>
           </li>
           <li class="nav-item">

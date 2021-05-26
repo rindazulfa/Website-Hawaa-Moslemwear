@@ -36,7 +36,7 @@ Route::group([
     Route::resource('banner','BannerController');
     Route::resource('profilumkm','ProfilController');
     // Produk
-    Route::resource('dataproduk','ProductController');
+    Route::resource('produk','ProductController');
 
     // Transaksi Pembelian
     Route::resource('datatranspembelian','Transaksi_PembelianController');
@@ -48,12 +48,14 @@ Route::group([
     Route::resource('datatranspenjualancustom','Transaksi_PenjualanCustomController');
 });
 
+
+
 // ADMIN
 Route::get('/admin', [DashboardController::class, 'index']);
 
 // Data Promo
-Route::get('/admin/datapromo', [PromoController::class, 'index']);
-Route::get('/admin/datapromo/formpromo', [PromoController::class, 'create']);
+// Route::get('/admin/datapromo', [PromoController::class, 'index']);
+// Route::get('/admin/datapromo/formpromo', [PromoController::class, 'create']);
 
 // Data Customer
 Route::get('/admin/datacustomer', [CustomerController::class, 'index']);
@@ -92,7 +94,7 @@ Route::get('/register', function () {
 });
 
 Route::resource('/about','AboutController');
-Route::resource('/product','ProductController');
+
 Route::resource('/detailproduct','DetailProductController');
 Route::resource('/promo','PromoController');
 Route::resource('/profil','ProfileController');

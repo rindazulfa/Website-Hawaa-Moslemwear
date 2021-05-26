@@ -27,23 +27,35 @@
                 <div class="card-header border-0">
                     <h3 class="mb-0">Form Stok Produk</h3>
                 </div>
-                <form class="form" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
+                <form class="form" method="post" action="{{route('stok_produk.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>Nama Produk</label>
-                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" />
+                                <select class="form-control" required name="products_id">
+                                    @foreach($items as $key)
+                                    <option value="{{ $key->id }}">{{ $key->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-lg-6">
                                 <label>Size Produk</label>
-                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" />
+                                <select class="form-control" required name="products_id">
+                                    @foreach($items as $key)
+                                    <option value="{{ $key->id }}">{{ $key->size }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Stok</label>
-                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" />
+                                <label>QTY</label>
+                                <input type="text" class="form-control" value="{{ old('qty') }}" name="qty" />
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Satuan</label>
+                                <input type="text" class="form-control" value="{{ old('satuan') }}" name="satuan" />
                             </div>
                         </div>
                     </div>
@@ -52,7 +64,7 @@
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button type="button" class="btn btn-secondary"><a href="{{route('bahan_baku.index')}}">Cancel</a></button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('stok_produk.index')}}">Cancel</a></button>
                             </div>
                         </div>
                     </div>

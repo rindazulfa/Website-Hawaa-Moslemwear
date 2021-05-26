@@ -27,48 +27,117 @@
                 <div class="card-header border-0">
                     <h3 class="mb-0">Form Produk</h3>
                 </div>
-                <form class="form" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
+                <form class="form" method="post" action="{{route('produk.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
+                        @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <!-- Photos -->
                         <div class="form-group row">
                             <!-- Pict 1 -->
                             <div class="col-lg-6">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFileLang" lang="en">
+                                    <input type="file" name="pict_1" accept=".png, .jpg, .jpeg" class="custom-file-input" id="customFileLang" lang="en">
+                                    <input type="hidden" name="id" value="{{ old('pict_1') }}" />
                                     <label class="custom-file-label" for="customFileLang">Select file</label>
                                 </div>
                             </div>
                             <!-- Pict 2 -->
                             <div class="col-lg-6">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFileLang" lang="en">
+                                    <input type="file" name="pict_2" accept=".png, .jpg, .jpeg" class="custom-file-input" id="customFileLang" lang="en">
+                                    <input type="hidden" name="id" value="{{ old('pict_2') }}" />
                                     <label class="custom-file-label" for="customFileLang">Select file</label>
                                 </div>
                             </div>
                             <!-- Pict 3 -->
                             <div class="col-lg-6">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFileLang" lang="en">
+                                    <input type="file" name="pict_3" accept=".png, .jpg, .jpeg" class="custom-file-input" id="customFileLang" lang="en">
+                                    <input type="hidden" name="id" value="{{ old('pict_3') }}" />
                                     <label class="custom-file-label" for="customFileLang">Select file</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-lg-6 mt-4">
+                            <div class="col-lg-3">
                                 <label>Nama Produk</label>
                                 <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Masukkan Nama Produk" />
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <label>Harga</label>
                                 <input type="number" class="form-control" value="{{ old('price') }}" name="price" placeholder="Masukkan Harga" />
                             </div>
+
+                            <div class="col-lg-3">
+                                <label>Size</label>
+                                <div class="radio-inline">
+                                    <!-- <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="customRadioInline1" type="radio" name="size" value="S" class="custom-control-input">
+                                        <label class="custom-control-label" for="customRadioInline1">S</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="customRadioInline2" type="radio" name="size" value="M" class="custom-control-input">
+                                        <label class="custom-control-label" for="customRadioInline2">M</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="customRadioInline1" type="radio" name="size" value="L" class="custom-control-input">
+                                        <label class="custom-control-label" for="customRadioInline1">L</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="customRadioInline2" type="radio" name="size" value="XL" class="custom-control-input">
+                                        <label class="custom-control-label" for="customRadioInline2">XL</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="customRadioInline2" type="radio" name="size" value="XXL" class="custom-control-input">
+                                        <label class="custom-control-label" for="customRadioInline2">XXL</label>
+                                    </div> -->
+
+                                    <label class="radio radio-solid">
+                                        <input type="radio" name="size" checked="checked" value="S" />
+                                        <span></span>
+                                        S
+                                    </label>
+                                    <label class="radio radio-solid">
+                                        <input type="radio" name="size" value="M" />
+                                        <span></span>
+                                        M
+                                    </label>
+                                    <label class="radio radio-solid">
+                                        <input type="radio" name="size" value="L" />
+                                        <span></span>
+                                        L
+                                    </label>
+                                    <label class="radio radio-solid">
+                                        <input type="radio" name="size" value="XL" />
+                                        <span></span>
+                                        XL
+                                    </label>
+                                    <label class="radio radio-solid">
+                                        <input type="radio" name="size" value="XXL" />
+                                        <span></span>
+                                        XXL
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group row">
+                            <div class="col-lg-3">
+                                <label>Category</label>
+                                <input type="text" class="form-control" value="{{ old('category') }}" name="category" placeholder="Masukkan Kategori" />
+                            </div>
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">Deskripsi</label>
                                 <textarea class="form-control" rows="3" name="desc" placeholder="Masukkan Deskripsi">{{ old('desc') }}</textarea>
                             </div>
+
                         </div>
                     </div>
                     <div class="card-footer">
@@ -76,7 +145,7 @@
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button type="button" class="btn btn-secondary"><a href="{{route('dataproduk.index')}}">Cancel</a></button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('produk.index')}}">Cancel</a></button>
                             </div>
                         </div>
                     </div>

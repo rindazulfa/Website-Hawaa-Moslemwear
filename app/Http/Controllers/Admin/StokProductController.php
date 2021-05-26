@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class StokProductController extends Controller
 {
@@ -14,7 +17,10 @@ class StokProductController extends Controller
      */
     public function index()
     {
-        return view('admin/pages/stok_produk/index');
+        $items = stock::with(['product'])->get();
+        return view('admin.pages.stok_produk.index', [
+            'items' => $items
+        ]);
     }
 
     /**
@@ -24,7 +30,10 @@ class StokProductController extends Controller
      */
     public function create()
     {
-        return view('admin/pages/stok_produk/create');
+        $items = Product::all();
+        return view('admin.pages.stok_produk.create', [
+            'items' => $items
+        ]);
     }
 
     /**
@@ -35,7 +44,39 @@ class StokProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        if ($request->get('size') == 'S') {
+            $size = 'S';
+        } elseif ($request->get('size') == 'M') {
+            $size = 'M';
+        } elseif ($request->get('size') == 'L') {
+            $size = 'L';
+        } elseif ($request->get('size') == 'XL') {
+            $size = 'XL';
+        } elseif ($request->get('size') == 'XXL') {
+            $size = 'XXL';
+        }
+
+        $item = Product::findOrFail($data['products_id']); //mencari id produk yg diinputkan
+
+        $cekproduk = Product::where('id',$data['products_id'])->count();
+        $ceksize = stock::where('products_id',$data['products_id'])
+        ->where('size',$data['size'])->count();
+
+        if ($cekproduk > 0) {
+            if ($ceksize >0) {
+                $update = stock::where('products_id',$data['products_id'])
+                ->where('size',$data['size'])->first();
+                $stokk =  $request->get('stok');
+                $update->stok = $update->stok + $stokk;
+                $update->save();
+            }
+            else {
+                $data['size'] = $size;
+                stock::create($data);
+            }
+        }
+        return redirect()->route('stok.index');
     }
 
     /**
@@ -57,7 +98,12 @@ class StokProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit = stock::findOrFail($id);
+        $product = Product::find($edit->products_id);
+        return view('admin.pages.stok_produk.edit', [
+            'edit' => $edit,
+            'product' => $product
+        ]);
     }
 
     /**
@@ -69,7 +115,19 @@ class StokProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'stok' => 'required|integer'
+        ]);
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator->errors());
+        }else{
+            $stok = stock::find($id);
+            $stok->stok = $request->get("stok");
+            $stok->save();
+
+            return redirect()->route("stok.index")->with('info','Stok has been updated');
+        }
     }
 
     /**
@@ -80,6 +138,8 @@ class StokProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = stock::findOrFail($id);
+        $delete->delete();
+        return redirect()->route('stok.index');
     }
 }

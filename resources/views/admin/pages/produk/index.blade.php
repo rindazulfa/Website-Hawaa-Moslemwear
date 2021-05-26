@@ -15,7 +15,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="{{route('dataproduk.create')}}" class="btn btn-sm btn-neutral">Tambah Produk</a>
+                    <a href="{{route('produk.create')}}" class="btn btn-sm btn-neutral">Tambah Produk</a>
                 </div>
             </div>
         </div>
@@ -37,6 +37,7 @@
                             <tr>
                                 <th>Pict</th>
                                 <th>Price</th>
+                                <th>Stock</th>
                                 <th>Desc</th>
                                 <th>Actions</th>
                             </tr>
@@ -47,7 +48,7 @@
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <div class="avatar rounded-circle mr-3">
-                                            <img src="/uploads/products/{{$row->pict_1}}" alt="photo">
+                                            <img src="{{asset('/uploads/products/'.$key->pict_1)}}" alt="photo">
                                         </div>
                                         <div class="media-body">
                                             <span class="name mb-0 text-sm">{{$key->name}}</span>
@@ -55,12 +56,13 @@
                                     </div>
                                 </th>
                                 <td> Rp {{number_format($key->price,2,',','.')}}</td>
+                                <td>{{$key->stock}}</td>
                                 <td>{{$key->desc}}</td>
                                 <td>
-                                    <a href="{{route('product.show',[$item->id])}}" class="btn btn-outline-primary" title="Detail">
+                                    <a href="{{route('produk.show',[$key->id])}}" class="btn btn-outline-primary" title="Detail">
                                         Detail
                                     </a>
-                                    <a href="{{route('product.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
+                                    <a href="{{route('produk.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
                                     </a>
                                     <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button>
@@ -68,7 +70,7 @@
                             </tr>
                             <div class="modal fade" id="exampleModal-{{$key->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
-                                    <form action="{{route('product.destroy', [$key->id])}}" method="post">
+                                    <form action="{{route('produk.destroy', [$key->id])}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <div class="modal-content">

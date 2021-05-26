@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\product;
-use App\Product;
+use App\Models\detail_order;
+use App\Models\Discount_Product;
+use App\Models\Product;
+use App\Models\stock;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -16,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = ModelsProduct::with([
+        $product = Product::with([
             'stok'
         ])
        ->get();
@@ -32,7 +36,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.package.product.create');
+        return view('admin.pages.produk.create');
     }
 
     /**
@@ -76,22 +80,31 @@ class ProductController extends Controller
             } catch (\Throwable $th) {
                 dd($th);
             }
-
-            $product = new Product;
+            if ($request->get('size') == 'S') {
+                $size = 'S';
+            } elseif ($request->get('size') == 'M') {
+                $size = 'M';
+            } elseif ($request->get('size') == 'L') {
+                $size = 'L';
+            } elseif ($request->get('size') == 'XL') {
+                $size = 'XL';
+            } elseif ($request->get('size') == 'XXL') {
+                $size = 'XXL';
+            }
+            $product = new Product();
             $product->name = $request->get('name');
             $product->price = $request->get('price');
             $product->desc = $request->get('desc');
+            $product->size = $size;
+            $product->category = $request->get('category');
+            $product->pict_1 = $namaFile1;
+            $product->pict_2 = $namaFile2;
+            $product->pict_3 = $namaFile3;
             $product->save();
 
-            $picture = new Picture;
-            $picture->products_id = $product->id;
-            $picture->pict_1 =     $namaFile1;
-            $picture->pict_2 =     $namaFile2;
-            $picture->pict_3 =     $namaFile3;
-            $picture->save();
         }
 
-        return redirect('/product');
+        return redirect()->route("produk.index")->with("info", "Product has been created");
     }
 
     /**
@@ -102,10 +115,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $detail = Product::findOrFail($id);
+        $detail = product::findOrFail($id);
         // dd($detail);
 
-        return view('admin.pages.product.detail', [
+        return view('admin.pages.produk.detail', [
             'detail' => $detail
         ]);
     }
@@ -118,11 +131,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $edit = Product::findOrFail($id);
-        $picture = Picture::all();
-        return view('admin.pages.product.edit', [
-            'edit' => $edit,
-            'picture' => $picture
+        $edit = product::findOrFail($id);
+        return view('admin.pages.produk.edit', [
+            'edit' => $edit
         ]);
     }
 
@@ -135,13 +146,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::findOrFail($id);
+        $product = product::findOrFail($id);
         $product->name = $request->get('name');
         $product->price = $request->get('price');
         $product->desc = $request->get('desc');
+        $product->category = $request->get('category');
+        $product->size = $request->get('size');
         $product->save();
-        $picture = Picture::where('products_id',$product->id)->first();
-
         if ($request->hasFile('pict_1') || $request->hasFile('pict_2') || $request->hasFile('pict_3')) {
             $request->validate([
                 'image' => 'mimes:jpeg,jpg,png' // Only allow .jpg, .bmp and .png file types.
@@ -152,7 +163,7 @@ class ProductController extends Controller
 
             if ($request->file('pict_1')) {
 
-                $namaFileLama1 = "uploads/products/" . $picture->pict_1;
+                $namaFileLama1 = "uploads/products/" . $product->pict_1;
                 File::delete($namaFileLama1);
 
                 try {
@@ -160,7 +171,7 @@ class ProductController extends Controller
                     $file1 = $request->file('pict_1');
                     $namaFile1 = $dateNow->year . $dateNow->month . '_' .  $request->get('name')  . '1' . '.' . $file1->getClientOriginalExtension();
                     $file1->move('uploads/products', $namaFile1);
-                    $picture->pict_1 = $namaFile1;
+                    $product->pict_1 = $namaFile1;
                 } catch (\Throwable $th) {
                     dd($th);
                 }
@@ -168,7 +179,7 @@ class ProductController extends Controller
 
             if ($request->file('pict_2')) {
 
-                $namaFileLama2 = "uploads/products/" . $picture->pict_2;
+                $namaFileLama2 = "uploads/products/" . $product->pict_2;
                 File::delete($namaFileLama2);
 
                 try {
@@ -176,7 +187,7 @@ class ProductController extends Controller
                     $file2 = $request->file('pict_2');
                     $namaFile2 = $dateNow->year . $dateNow->month . '_' .  $request->get('name')  . '2' . '.' . $file2->getClientOriginalExtension();
                     $file2->move('uploads/products', $namaFile2);
-                    $picture->pict_2 = $namaFile2;
+                    $product->pict_2 = $namaFile2;
                 } catch (\Throwable $th) {
                     dd($th);
                 }
@@ -184,7 +195,7 @@ class ProductController extends Controller
 
             if ($request->file('pict_3')) {
 
-                $namaFileLama3 = "uploads/products/" . $picture->pict_3;
+                $namaFileLama3 = "uploads/products/" . $product->pict_3;
                 File::delete($namaFileLama3);
 
                 try {
@@ -192,17 +203,17 @@ class ProductController extends Controller
                     $file3 = $request->file('pict_3');
                     $namaFile3 = $dateNow->year . $dateNow->month . '_' .  $request->get('name')  . '3' . '.' . $file3->getClientOriginalExtension();
                     $file3->move('uploads/products', $namaFile3);
-                    $picture->pict_3 = $namaFile3;
+                    $product->pict_3 = $namaFile3;
                 } catch (\Throwable $th) {
                     dd($th);
                 }
             }
 
-            $picture->save();
+            $product->save();
         }
 
 
-        return redirect()->route("product.index")->with("info","Product has been updated");
+        return redirect()->route("produk.index")->with("info","Product has been updated");
     }
 
     /**
@@ -214,9 +225,9 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //cek relasi
-        $cekStok = Stok::where('products_id',$id)->first();
-        $cekDcProduct = discount_product::where('products_id', $id)->first();
-        $cekDtOrder = Detail_order::where('products_id', $id)->first();
+        $cekStok = stock::where('products_id',$id)->first();
+        $cekDcProduct = Discount_Product::where('products_id', $id)->first();
+        $cekDtOrder = detail_order::where('products_id', $id)->first();
         if($cekStok){
             return redirect()->route('product.index')->with("info","Sorry, cant delete this product");
         }
@@ -229,33 +240,28 @@ class ProductController extends Controller
 
         if(!$cekStok && !$cekDcProduct && !$cekDtOrder ){
 
-            $pc = Picture::where('products_id', $id);
-            $picture = $pc->first();
-            $namaFileLama1 = "uploads/products/" . $picture->pict_1;
-            File::delete($namaFileLama1);
-            $namaFileLama2 = "uploads/products/" . $picture->pict_2;
-            File::delete($namaFileLama2);
-            $namaFileLama3 = "uploads/products/" . $picture->pict_3;
-            File::delete($namaFileLama3);
-
-            $pc->delete();
-
             $delete = Product::findOrFail($id);
+            $namaFileLama1 = "uploads/products/" . $delete->pict_1;
+            File::delete($namaFileLama1);
+            $namaFileLama2 = "uploads/products/" . $delete->pict_2;
+            File::delete($namaFileLama2);
+            $namaFileLama3 = "uploads/products/" . $delete->pict_3;
+            File::delete($namaFileLama3);
             $delete->delete();
-            return redirect()->route('product.index')->with("info","Product has been deleted");;
+            return redirect()->route('produk.index')->with("info","Product has been deleted");;
         }
 
     }
 
-    public function export_excel()
-	{
-		return Excel::download(new ProductExport(), 'product.xlsx');
-    }
+    // public function export_excel()
+	// {
+	// 	return Excel::download(new ProductExport(), 'product.xlsx');
+    // }
 
-    public function cetak_pdf()
-    {
-    	$product = Product::all();
-    	$pdf = PDF::loadview('admin.pages.product.pdf',['products'=>$product]);
-    	return $pdf->download('laporan-product-pdf');
-    }
+    // public function cetak_pdf()
+    // {
+    // 	$product = Product::all();
+    // 	$pdf = PDF::loadview('admin.pages.product.pdf',['products'=>$product]);
+    // 	return $pdf->download('laporan-product-pdf');
+    // }
 }

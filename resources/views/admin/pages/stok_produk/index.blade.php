@@ -32,53 +32,79 @@
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">
+                    @if ($message = Session::get('info'))
+                    <div class="alert alert-info alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    @endif
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="no">No. </th>
                                 <th scope="col" class="sort" data-sort="id_produk">Id Stok Produk</th>
                                 <th scope="col" class="sort" data-sort="nama_produk">Nama Produk</th>
-                                <th scope="col" class="sort" data-sort="nama_produk">Size Jual</th>
+                                <th scope="col" class="sort" data-sort="nama_produk">Size</th>
                                 <th scope="col" class="sort" data-sort="harga_produk">Stok</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody class="list">
+                            @forelse($items as $key)
                             <tr>
-                                <th class="no">1.</th>
-                                <td class="id_produk">P0001</td>
-                                <td class="nama_produk">Produk 1</td>
-                                <td class="harga_produk">S</td>
-                                <td class="harga_produk">12</td>
+                                <td>{{$key->id}}</td>
+                                <td>{{$key->product->name}}</td>
+                                @if($key->size == 'S')
+                                <td>1</td>
+                                @elseif($key->product->size == 'M')
+                                <td>2</td>
+                                @elseif($key->product->size == 'L')
+                                <td>3</td>
+                                @elseif($key->product->size == 'XL')
+                                <td>4</td>
+                                @elseif($key->product->size == 'XXL')
+                                <td>5</td>
+                                @endif
+                                <td>{{$key->stok}}</td>
                                 <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="no">1.</th>
-                                <td class="id_produk">P0001</td>
-                                <td class="nama_produk">Produk 1</td>
-                                <td class="harga_produk">S</td>
-                                <td class="harga_produk">12</td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="no">1.</th>
-                                <td class="id_produk">P0001</td>
-                                <td class="nama_produk">Produk 1</td>
-                                <td class="harga_produk">S</td>
-                                <td class="harga_produk">12</td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
+                                    <a href="{{route('stok_produk.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
+                                        Update
+                                    </a>
+                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button>
 
+                                </td>
+                            </tr>
+                            <div class="modal fade" id="exampleModal-{{$key->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <form action="{{route('stok_produk.destroy', [$key->id])}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <div class="modal-content">
+                                            <div class="modal-header py-5">
+                                                <h5 class="modal-title" id="exampleModalLabel"> Hapus Stok</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <i aria-hidden="true" class="ki ki-close"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>
+                                                    Yakin menghapus data {{ $key->product->name }} ukuran
+                                                    {{ $key->product->size }} ?
+                                                </h6>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-danger font-weight-bold text-uppercase">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            @empty
+                            <tr>
+                                <td colspan="7" class="text-center">Data Kosong</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -104,7 +130,7 @@
                                     <i class="fas fa-angle-right"></i>
                                     <span class="sr-only">Next</span>
                                 </a>
-                            </li>h
+                            </li>
                         </ul>
                     </nav>
                 </div>

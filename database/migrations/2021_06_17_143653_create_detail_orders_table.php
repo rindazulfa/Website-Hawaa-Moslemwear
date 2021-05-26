@@ -19,7 +19,7 @@ class CreateDetailOrdersTable extends Migration
             $table->foreign('orders_id')->references('id')->on('orders')->onDelete('cascade');
             $table->unsignedBigInteger('products_id');
             $table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
-            $table->unsignedBigInteger('customers_id');
+            // $table->unsignedBigInteger('customers_id');
             // $table->foreign('customers_id')->references('id')->on('customers')->onDelete('cascade');
             $table->string("size");
             $table->integer("qty");
