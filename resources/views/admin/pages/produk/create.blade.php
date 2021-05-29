@@ -76,57 +76,7 @@
                                 <input type="number" class="form-control" value="{{ old('price') }}" name="price" placeholder="Masukkan Harga" />
                             </div>
 
-                            <div class="col-lg-3">
-                                <label>Size</label>
-                                <div class="radio-inline">
-                                    <!-- <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline1" type="radio" name="size" value="S" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadioInline1">S</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline2" type="radio" name="size" value="M" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadioInline2">M</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline1" type="radio" name="size" value="L" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadioInline1">L</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline2" type="radio" name="size" value="XL" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadioInline2">XL</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline2" type="radio" name="size" value="XXL" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadioInline2">XXL</label>
-                                    </div> -->
-
-                                    <label class="radio radio-solid">
-                                        <input type="radio" name="size" checked="checked" value="S" />
-                                        <span></span>
-                                        S
-                                    </label>
-                                    <label class="radio radio-solid">
-                                        <input type="radio" name="size" value="M" />
-                                        <span></span>
-                                        M
-                                    </label>
-                                    <label class="radio radio-solid">
-                                        <input type="radio" name="size" value="L" />
-                                        <span></span>
-                                        L
-                                    </label>
-                                    <label class="radio radio-solid">
-                                        <input type="radio" name="size" value="XL" />
-                                        <span></span>
-                                        XL
-                                    </label>
-                                    <label class="radio radio-solid">
-                                        <input type="radio" name="size" value="XXL" />
-                                        <span></span>
-                                        XXL
-                                    </label>
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-3">

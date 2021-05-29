@@ -35,61 +35,47 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="no">No. </th>
-                                <th scope="col" class="sort" data-sort="id_produk">Id Profil UMKM</th>
+                                <th scope="col" class="sort" data-sort="id_produk">Id</th>
                                 <th scope="col" class="sort" data-sort="nama_produk">Gambar</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Deskripsi 1</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Deskripsi 2</th>
                                 <th scope="col" class="sort" data-sort="harga_produk">Telepon</th>
                                 <th scope="col" class="sort" data-sort="harga_produk">Alamat</th>
                                 <th scope="col" class="sort" data-sort="stok_produk">Instagram</th>
+                                <th scope="col" class="sort" data-sort="harga_produk">Deskripsi 1</th>
+                                <th scope="col" class="sort" data-sort="harga_produk">Deskripsi 2</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody class="list">
+                            @forelse ($page as $item)
                             <tr>
-                                <th class="no">1.</th>
-                                <td class="id_produk">P0001</td>
-                                <td class="nama_produk">Gambar 1</td>
-                                <td class="harga_produk">Lorem Ipsum </td>
-                                <td class="stok_produk">Lorem Ipsum</td>
-                                <td class="stok_produk">323312312</td>
-                                <td class="stok_produk">Taman Pinang</td>
-                                <td class="stok_produk">@ricky</td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                <td class="id_produk">{{$item->id}}</td>
+                                <td>
+                                    <div class="avatar rounded-circle mr-3">
+                                        <img src="{{asset('/uploads/profil/'.$item->picture)}}" alt="photo">
+                                    </div>
+                                </td>
+                                <td class="nama_produk">{{$item->subtitle}}</td>
+                                <td class="stok_produk">{{$item->telepon}}</td>
+                                <td class="stok_produk">{{$item->address}}</td>
+                                <td class="stok_produk">@ {{$item->ig}}</td>
+                                <td class="harga_produk">{{$item->desc_1}}</td>
+                                <td class="stok_produk">{{$item->desc_2}}</td>
+                                <td>
+                                    <a href="{{route('banner.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
+                                        Update
+                                    </a>
+                                    <!-- <button type="button" class="btn btn-outline-primary">Update</button> -->
+                                    <button class="btn btn-outline-danger delete" data-id="{{$item->id}}">Delete</button>
                                 </td>
                             </tr>
+                            @empty
+
                             <tr>
-                                <th class="no">1.</th>
-                                <td class="id_produk">P0001</td>
-                                <td class="nama_produk">Gambar 1</td>
-                                <td class="harga_produk">Lorem Ipsum </td>
-                                <td class="stok_produk">Lorem Ipsum</td>
-                                <td class="stok_produk">323312312</td>
-                                <td class="stok_produk">Taman Pinang</td>
-                                <td class="stok_produk">@ricky</td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
+                                <td colspan="7" class="text-center">Data Kosong</td>
                             </tr>
-                            <tr>
-                                <th class="no">1.</th>
-                                <td class="id_produk">P0001</td>
-                                <td class="nama_produk">Gambar 1</td>
-                                <td class="harga_produk">Lorem Ipsum </td>
-                                <td class="stok_produk">Lorem Ipsum</td>
-                                <td class="stok_produk">323312312</td>
-                                <td class="stok_produk">Taman Pinang</td>
-                                <td class="stok_produk">@ricky</td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
+
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

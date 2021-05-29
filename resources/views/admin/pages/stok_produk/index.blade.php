@@ -45,6 +45,7 @@
                                 <th scope="col" class="sort" data-sort="nama_produk">Nama Produk</th>
                                 <th scope="col" class="sort" data-sort="nama_produk">Size</th>
                                 <th scope="col" class="sort" data-sort="harga_produk">Stok</th>
+                                <th scope="col" class="sort" data-sort="harga_produk">Satuan</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
@@ -54,18 +55,9 @@
                             <tr>
                                 <td>{{$key->id}}</td>
                                 <td>{{$key->product->name}}</td>
-                                @if($key->size == 'S')
-                                <td>1</td>
-                                @elseif($key->product->size == 'M')
-                                <td>2</td>
-                                @elseif($key->product->size == 'L')
-                                <td>3</td>
-                                @elseif($key->product->size == 'XL')
-                                <td>4</td>
-                                @elseif($key->product->size == 'XXL')
-                                <td>5</td>
-                                @endif
-                                <td>{{$key->stok}}</td>
+                                <td>{{$key->size}}</td>
+                                <td>{{$key->qty}}</td>
+                                <td>{{$key->satuan}}</td>
                                 <td class="aksi">
                                     <a href="{{route('stok_produk.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update

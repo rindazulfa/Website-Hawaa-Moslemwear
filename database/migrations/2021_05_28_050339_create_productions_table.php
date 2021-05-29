@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePuchasesTable extends Migration
+class CreateProductionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,14 @@ class CreatePuchasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('puchases', function (Blueprint $table) {
+        Schema::create('productions', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->unsignedBigInteger('materials_id');
             $table->foreign('materials_id')->references('id')->on('materials')->onDelete('cascade');
-            $table->unsignedBigInteger('suppliers_id');
-            $table->foreign('suppliers_id')->references('id')->on('suppliers')->onDelete('cascade');
-            $table->date("date");
-            $table->string("keterangan");
-            $table->integer("total");
-            $table->string("status");
+            $table->unsignedBigInteger('recipes_id');
+            $table->foreign('recipes_id')->references('id')->on('recipes')->onDelete('cascade');
             $table->integer("qty");
-            $table->string("satuan");
+            $table->date("date");
             $table->timestamps();
             $table->softDeletes();
         });
@@ -37,6 +33,6 @@ class CreatePuchasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('puchases');
+        Schema::dropIfExists('productions');
     }
 }

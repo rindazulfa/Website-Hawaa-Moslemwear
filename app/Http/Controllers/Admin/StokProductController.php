@@ -44,6 +44,7 @@ class StokProductController extends Controller
      */
     public function store(Request $request)
     {
+    
         $data = $request->all();
         if ($request->get('size') == 'S') {
             $size = 'S';
@@ -76,7 +77,7 @@ class StokProductController extends Controller
                 stock::create($data);
             }
         }
-        return redirect()->route('stok.index');
+        return redirect()->route('stok_produk.index');
     }
 
     /**
@@ -100,9 +101,11 @@ class StokProductController extends Controller
     {
         $edit = stock::findOrFail($id);
         $product = Product::find($edit->products_id);
+        $stok = stock::find($edit->products_id);
         return view('admin.pages.stok_produk.edit', [
             'edit' => $edit,
-            'product' => $product
+            'product' => $product,
+            'stok' =>$stok
         ]);
     }
 

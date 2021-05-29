@@ -46,7 +46,13 @@
                         </div>
                         <div class="col-lg-6">
                             <label for="">Size</label>
-                            <h4 class="card-text">{{$detail->size}}</h4>
+                            @forelse ($detail->stok as $key)
+                            <h4 class="card-title">{{ $key->size }} </h4>
+                            <!-- <span class="btn btn-sm btn-text btn-light-danger text-uppercase font-weight-bold">{{ $key->size }} </span> -->
+                                        
+                            @empty
+                            <h4 class="card-title">Tidak Tersedia</h4>
+                            @endforelse
                         </div>
                     </div>
                     <div class="form-group row">

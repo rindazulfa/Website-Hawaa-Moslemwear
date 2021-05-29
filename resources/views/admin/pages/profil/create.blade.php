@@ -27,14 +27,24 @@
                 <div class="card-header border-0">
                     <h3 class="mb-0">Form Profil UMKM</h3>
                 </div>
-                <form class="form" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
+                <form class="form" method="post" action="{{route('profilumkm.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <div class="form-group row">
-                            <!-- Pict 3 -->
+                            <!-- Pict 1 -->
                             <div class="col-lg-6">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFileLang" lang="en">
+                            <div class="custom-file">
+                                    <input type="file" name="picture" accept=".png, .jpg, .jpeg" class="custom-file-input" id="customFileLang" lang="en">
+                                    <input type="hidden" name="id" value="{{ old('picture') }}" />
                                     <label class="custom-file-label" for="customFileLang">Select file</label>
                                 </div>
                             </div>
@@ -42,31 +52,31 @@
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">Instagram</label>
-                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" />
+                                <input type="text" class="form-control" value="{{ old('ig') }}" name="ig" />
                             </div>
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">Email</label>
-                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" />
+                                <input type="text" class="form-control" value="{{ old('email') }}" name="email" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">No Telepon</label>
-                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" />                            </div>
+                                <input type="text" class="form-control" value="{{ old('telepon') }}" name="telepon" />                            </div>
                                 <div class="col-lg-6">
-                                <label for="exampleTextarea">Alamat 1</label>
-                                <textarea class="form-control" rows="3" name="desc" >{{ old('desc') }}</textarea>
+                                <label for="exampleTextarea">Alamat</label>
+                                <textarea class="form-control" rows="3" name="address" >{{ old('address') }}</textarea>
                             </div>    
                             
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">Deskripsi 1</label>
-                                <textarea class="form-control" rows="3" name="desc" >{{ old('desc') }}</textarea>
+                                <textarea class="form-control" rows="3" name="desc_1" >{{ old('desc_1') }}</textarea>
                             </div>    
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">Deskripsi 2</label>
-                                <textarea class="form-control" rows="3" name="desc" >{{ old('desc') }}</textarea>
+                                <textarea class="form-control" rows="3" name="desc_2" >{{ old('desc_2') }}</textarea>
                             </div>                            
                         </div>
                     </div>
@@ -75,7 +85,7 @@
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button type="button" class="btn btn-secondary"><a href="{{route('bahan_baku.index')}}">Cancel</a></button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('profilumkm.index')}}">Cancel</a></button>
                             </div>
                         </div>
                     </div>

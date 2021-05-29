@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class stock extends Model
+class Recipe extends Model
 {
     // use HasFactory;
     use SoftDeletes;
-    protected $table = "stocks";  
+    protected $table = "recipes";  
     protected $fillable = [
-        'products_id','qty','satuan','size'
+        'products_id','qty','satuan'
     ];
 
     protected $hidden =[

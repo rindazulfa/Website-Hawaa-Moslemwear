@@ -20,7 +20,6 @@ class CreateProductsTable extends Migration
             $table->string("name");
             $table->integer("price");
             $table->string("desc");
-            $table->string("size");
             $table->string("category");
             $table->string("pict_1");
             $table->string("pict_2");

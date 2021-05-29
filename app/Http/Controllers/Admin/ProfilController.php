@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Banner;
-use Illuminate\Http\Request;
+use App\Models\profile;
 use Illuminate\Support\Facades\File;
+use Illuminate\Http\Request;
 
-class BannerController extends Controller
+
+class ProfilController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,8 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $page = Banner::all();
-        // return view('admin.pages.banner.create');
-        return view('admin/pages/banner/index',['page' => $page]);
+        $page = profile::all();
+        return view('admin/pages/profil/index',['page' => $page]);
     }
 
     /**
@@ -28,7 +28,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('admin/pages/banner/create');
+        return view('admin/pages/profil/create');
     }
 
     /**
@@ -39,27 +39,29 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
+        $page = new profile();
+        if ($request->hasFile("picture")) {
+            try {
 
-        $page = new Banner();
-            $page->title = $request->get("title");
-            $page->subtitle = $request->get("sub_title");
-            if ($request->hasFile("picture")) {
-                try {
-
-                    $file1 = $request->file('picture');
-                    $namaFile1 = time() . '.' . $file1->getClientOriginalExtension();
-                    $file1->move('uploads/banner', $namaFile1);
-                } catch (\Throwable $th) {
-                    dd($th);
-                }
-
-                $page->picture = $namaFile1;
+                $file1 = $request->file('picture');
+                $namaFile1 = time() . '.' . $file1->getClientOriginalExtension();
+                $file1->move('uploads/banner', $namaFile1);
+            } catch (\Throwable $th) {
+                dd($th);
             }
-            $page->save();
 
-            return redirect()->route("banner.index")->with("info", "Banner has been created");
+            $page->picture = $namaFile1;
+        }
+       
+        $page->desc_1= $request->get("desc_1");
+        $page->desc_2 = $request->get("desc_2");
+        $page->telepon= $request->get("telepon");
+        $page->ig = $request->get("ig");
+        $page->email= $request->get("email");
+        $page->address = $request->get("address");
+        $page->save();
 
-
+        return redirect()->route("profilumkm.index")->with("info", "Profile UMKM has been created");
     }
 
     /**
@@ -81,9 +83,8 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        $page = Banner::findOrFail($id);
-        return view('admin.pages.banner.edit', ['page' => $page]);
-    
+        $page = profile::findOrFail($id);
+        return view('admin.pages.profil.edit', ['page' => $page]);
     }
 
     /**
@@ -95,9 +96,7 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $page = Banner::findOrFail($id);
-        $page->title = $request->get("title");
-        $page->subtitle = $request->get("sub_title");
+        $page = profile::findOrFail($id);
         if ($request->hasFile("picture")) {
             try {
 
@@ -110,10 +109,16 @@ class BannerController extends Controller
 
             $page->picture = $namaFile1;
         }
+       
+        $page->desc_1= $request->get("desc_1");
+        $page->desc_2 = $request->get("desc_2");
+        $page->telepon= $request->get("telepon");
+        $page->ig = $request->get("ig");
+        $page->email= $request->get("email");
+        $page->address = $request->get("address");
         $page->save();
 
-        return redirect()->route("banner.index")->with("info", "Banner has been updated");
-   
+        return redirect()->route("profilumkm.index")->with("info", "Profile UMKM has been updated");
     }
 
     /**
@@ -125,11 +130,10 @@ class BannerController extends Controller
     public function destroy(Request $request,$id)
     {
         if($request->ajax()){
-            $page = Banner::findOrFail($id);
-            $namaFileLama1 = "uploads/banner/" . $page->picture;
+            $page = profile::findOrFail($id);
+            $namaFileLama1 = "uploads/profil/" . $page->picture;
             File::delete($namaFileLama1);
             $page->delete();
-    
             return response()->json([
                 'message'=>'success'
             ]);

@@ -27,65 +27,36 @@
                 <div class="card-header border-0">
                     <h3 class="mb-0">Form Stok Produk</h3>
                 </div>
-                <form class="form" method="post" action="{{route('stok_produk.store')}}" enctype="multipart/form-data">
+                <form class="form" method="post" action="{{route('stok_produk.update', [$edit->id])}}">
+                    @method('PUT')
                     @csrf
                     <div class="card-body">
-                    @if($errors->any())
+                        <!--end: Code-->
+                        @if($errors->any())
                         <div class="alert alert-danger" role="alert">
                             {{$errors->first()}}
                         </div>
                         @endif
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Nama Produk</label>
-                                <select class="form-control" required name="products_id">
-                                    @foreach($items as $key)
-                                    <option value="{{ $key->id }}">{{ $key->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label class="col-form-label">Nama Produk</label>
+                                <input type="text" name="name" readonly class="form-control" value="{{$product->name}}" />
                             </div>
                             <div class="col-lg-6">
-                                <label>Size</label>
-                                <!-- <span class="form-text text-muted">Pilih Ukuran</span> -->
-                                <div class="radio-inline">
-                                    <label class="radio radio-solid">
-                                        <input type="radio" name="size" checked="checked" value="S" />
-                                        <span></span>
-                                        S
-                                    </label>
-                                    <label class="radio radio-solid">
-                                        <input type="radio" name="size" value="M" />
-                                        <span></span>
-                                        M
-                                    </label>
-                                    <label class="radio radio-solid">
-                                        <input type="radio" name="size" value="L" />
-                                        <span></span>
-                                        L
-                                    </label>
-                                    <label class="radio radio-solid">
-                                        <input type="radio" name="size" value="XL" />
-                                        <span></span>
-                                        XL
-                                    </label>
-                                    <label class="radio radio-solid">
-                                        <input type="radio" name="size" value="XXL" />
-                                        <span></span>
-                                        XXL
-                                    </label>
-                                </div>
-                        
+                                <label class="col-form-label">Size Produk</label>
+                                <input type="text" name="size" readonly class="form-control" value="{{$stok->size}}" />
                             </div>
+       
 
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>QTY</label>
-                                <input type="number" class="form-control" value="{{ old('qty') }}" name="qty" />
+                                <input type="number" class="form-control" value="{{$edit->qty}}" name="qty" />
                             </div>
                             <div class="col-lg-6">
                                 <label>Satuan</label>
-                                <input type="text" class="form-control" value="{{ old('satuan') }}" name="satuan" />
+                                <input type="text" class="form-control" value="{{$edit->satuan}}" name="satuan" />
                             </div>
                         </div>
                     </div>

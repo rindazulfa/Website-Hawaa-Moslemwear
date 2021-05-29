@@ -80,22 +80,11 @@ class ProductController extends Controller
             } catch (\Throwable $th) {
                 dd($th);
             }
-            if ($request->get('size') == 'S') {
-                $size = 'S';
-            } elseif ($request->get('size') == 'M') {
-                $size = 'M';
-            } elseif ($request->get('size') == 'L') {
-                $size = 'L';
-            } elseif ($request->get('size') == 'XL') {
-                $size = 'XL';
-            } elseif ($request->get('size') == 'XXL') {
-                $size = 'XXL';
-            }
+            
             $product = new Product();
             $product->name = $request->get('name');
             $product->price = $request->get('price');
             $product->desc = $request->get('desc');
-            $product->size = $size;
             $product->category = $request->get('category');
             $product->pict_1 = $namaFile1;
             $product->pict_2 = $namaFile2;
@@ -116,10 +105,12 @@ class ProductController extends Controller
     public function show($id)
     {
         $detail = product::findOrFail($id);
-        // dd($detail);
-
+        $stok = stock::where('products_id',$detail->id)->first();
+        // dd($stok);
+        // $stok = stock::find($detail->products_id);
         return view('admin.pages.produk.detail', [
-            'detail' => $detail
+            'detail' => $detail,
+            'stok' =>$stok
         ]);
     }
 
@@ -132,6 +123,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $edit = product::findOrFail($id);
+        
         return view('admin.pages.produk.edit', [
             'edit' => $edit
         ]);
@@ -146,23 +138,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($request->get('size') == 'S') {
-            $size = 'S';
-        } elseif ($request->get('size') == 'M') {
-            $size = 'M';
-        } elseif ($request->get('size') == 'L') {
-            $size = 'L';
-        } elseif ($request->get('size') == 'XL') {
-            $size = 'XL';
-        } elseif ($request->get('size') == 'XXL') {
-            $size = 'XXL';
-        }
+        
         $product = product::findOrFail($id);
         $product->name = $request->get('name');
         $product->price = $request->get('price');
         $product->desc = $request->get('desc');
         $product->category = $request->get('category');
-        $product->size = $size;
         $product->save();
         if ($request->hasFile('pict_1') || $request->hasFile('pict_2') || $request->hasFile('pict_3')) {
             $request->validate([
