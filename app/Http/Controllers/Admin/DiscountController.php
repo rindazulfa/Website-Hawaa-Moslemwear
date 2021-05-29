@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Customer;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\discount;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class DiscountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $items = User::where('id','!=',1)->get();
-
-        return view('admin.pages.customer.index', [
+        $items = discount::all();
+        return view('admin.pages.discount.index', [
             'items' => $items
         ]);
     }
@@ -30,7 +28,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('admin/pages/customer/create');
+        return view('admin.pages.discount.create');
     }
 
     /**
@@ -41,7 +39,9 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data= $request->all();
+        discount::create($data);
+        return redirect()->route('discount.index');
     }
 
     /**
@@ -63,8 +63,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $item = Customer::findOrFail($id);
-        return view('admin.pages.customer.edit', [
+        $item = discount::findOrFail($id);
+        return view('admin.pages.discount.edit', [
             'items' => $item
         ]);
     }
@@ -79,9 +79,9 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        $customer = Customer::findOrFail($id);
-        $customer->update($data);
-        return redirect()->route('customer.index');
+        $discount = discount::findOrFail($id);
+        $discount->update($data);
+        return redirect()->route('discount.index');
     }
 
     /**
@@ -92,20 +92,20 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Customer::findOrFail($id);
+        $delete = discount::findOrFail($id);
         $delete->delete();
-        return redirect()->route('customer.index');
+        return redirect()->route('discount.index');
     }
 
     // public function export_excel()
 	// {
-	// 	return Excel::download(new CustomerExport(), 'customer.xlsx');
+	// 	return Excel::download(new DiscountExport(), 'discount.xlsx');
     // }
 
     // public function cetak_pdf()
     // {
-    //     $items = User::where('id','!=',1)->get();
-    // 	$pdf = PDF::loadview('admin.pages.customer.pdf',['items'=>$items]);
-    // 	return $pdf->download('laporan-customer-pdf');
+    // 	$discount = Discount::all();
+    // 	$pdf = PDF::loadview('admin.pages.discount.pdf',['items'=>$discount]);
+    // 	return $pdf->download('laporan-discount-pdf');
     // }
 }

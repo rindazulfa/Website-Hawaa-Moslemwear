@@ -27,17 +27,39 @@
                 <div class="card-header border-0">
                     <h3 class="mb-0">Form Customer</h3>
                 </div>
-                <form class="form" method="post" action="#" enctype="multipart/form-data">
+                @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                <form class="form" method="post" action="{{route('customer.update', [$items->id])}}">
+
+                    @method('PUT')
                     @csrf
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Nama</label>
-                                <input type="text" class="form-control" name="name" />
+                                <label>Nama Depan</label>
+                                <input type="text" class="form-control" name="first_name" />
                             </div>
                             <div class="col-lg-6">
+                                <label>Nama Belakang</label>
+                                <input type="number" class="form-control" name="last_name" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                           
+                            <div class="col-lg-6">
                                 <label>Email</label>
-                                <input type="number" class="form-control" name="price" />
+                                <input type="number" class="form-control" name="email" />
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Alamat</label>
+                                <input type="text" class="form-control" name="address" placeholder="Masukkan Address" value="{{$items->address}}" />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -53,18 +75,12 @@
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">No Telepon</label>
-                                <input type="number" class="form-control" name="price" />                            </div>
+                                <input type="number" class="form-control" name="price" /> </div>
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">Kode POS</label>
                                 <input type="number" class="form-control" name="price" />
                             </div>
-                            
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-lg-6">
-                                <label for="exampleTextarea">Alamat</label>
-                                <textarea class="form-control" rows="3" name="desc" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum, autem sunt necessitatibus recusandae architecto odio?</textarea>
-                            </div>                            
+
                         </div>
                     </div>
                     <div class="card-footer">
@@ -72,7 +88,7 @@
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
                                 <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                                <button type="button" class="btn btn-secondary"><a href="#">Cancel</a></button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('customer.index')}}">Cancel</a></button>
                             </div>
                         </div>
                     </div>

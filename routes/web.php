@@ -27,7 +27,7 @@ Route::group([
     'namespace' => 'Admin'
 ], function () {
     // Route::resource('admin','DashboardController');
-    // Route::resource('datapromo','PromoController');
+    Route::resource('discount','DiscountController');
     // Route::resource('customer','CustomerController');
     // Route::resource('supplier','SupplierController');
     // Route::resource('bahan_baku','MaterialController');
@@ -58,21 +58,21 @@ Route::get('/admin', [DashboardController::class, 'index']);
 // Route::get('/admin/datapromo/formpromo', [PromoController::class, 'create']);
 
 // Data Customer
-Route::get('/admin/datacustomer', [CustomerController::class, 'index']);
+// Route::get('/admin/datacustomer', [CustomerController::class, 'index']);
 // Route::get('/admin/datacustomer/formcustomer', [CustomerController::class, 'create']);
 
 // Data Supplier
-Route::get('/admin/datasupplier', [SupplierController::class, 'index']);
-Route::get('/admin/datasupplier/formsupplier', [SupplierController::class, 'create']);
+// Route::get('/admin/datasupplier', [SupplierController::class, 'index']);
+// Route::get('/admin/datasupplier/formsupplier', [SupplierController::class, 'create']);
 
 // Data Bahan Baku
-Route::get('/admin/datamaterial', [MaterialController::class, 'index']);
-Route::get('/admin/datamaterial/formmaterial', [MaterialController::class, 'create']);
-Route::get('/admin/datamaterial/updatematerial', [MaterialController::class, 'edit']);
+// Route::get('/admin/datamaterial', [MaterialController::class, 'index']);
+// Route::get('/admin/datamaterial/formmaterial', [MaterialController::class, 'create']);
+// Route::get('/admin/datamaterial/updatematerial', [MaterialController::class, 'edit']);
 
 // Data User
-Route::get('/admin/datauser', [UserController::class, 'index']);
-Route::get('/admin/datauser/formuser', [UserController::class, 'create']);
+// Route::get('/admin/datauser', [UserController::class, 'index']);
+// Route::get('/admin/datauser/formuser', [UserController::class, 'create']);
 
 // Data Stock Produk
 

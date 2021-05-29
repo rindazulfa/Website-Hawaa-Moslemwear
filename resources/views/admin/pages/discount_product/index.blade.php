@@ -10,7 +10,7 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Daftar Customer</li>
+                            <li class="breadcrumb-item active" aria-current="page">Daftar Discount</li>
                         </ol>
                     </nav>
                 </div>
@@ -28,47 +28,69 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Daftar Customer</h3>
+                    <h3 class="mb-0">Daftar Discount</h3>
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="id_produk">Id</th>
-                                <th scope="col" class="sort" data-sort="nama_produk">Nama Lengkap</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Email</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Kota</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Provinsi</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Alamat</th>
-                                <th scope="col" class="sort" data-sort="stok_produk">No Telepon</th>
-                                <th scope="col" class="sort" data-sort="aksi">Aksi</th>
-                                <th scope="col"></th>
+                                <th>ID</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Discount Name</th>
+                                <th>Amount of discount</th>
+                                <th>Percentage Discount</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="list">
-                        @forelse($items as $key)
-                            @foreach ($key->customer as $item)
-                            @if ($item->status==1)
+                            @forelse($data as $key)
                             <tr>
-                                <th class="no">1.</th>
-                                <td class="id_produk">{{$key->id}}</td>
-                                <td class="nama_produk">{{$key->first_name}} {{$key->last_name}}</td>
-                                <td class="harga_produk">{{$key->email}}</td>
-                                <td class="stok_produk">{{$item->city}}</td>
-                                <td class="stok_produk">{{$item->province}}</td>
-                                <td class="stok_produk">{{$item->address}}</td>
-                                <td class="stok_produk">{{$item->phone}}</td>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$key->name}}</td>
+                                <td>{{$key->price}}</td>
+                                <td>{{$key->name_disc}}</td>
+                                @if ($key->status == "presentase")
+                                <td>{{($key->discount/100)*$key->price}}</td>
+                                <td>{{$key->discount}} %</td>
+                                @else
+                                <td>{{$key->discount}}</td>
+                                <td>{{($key->discount*100)/ $key->price}} %</td>
+                                @endif
                                 <td>
-                                    <a href="{{route('customer.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
+                                    <a href="{{route('discount.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
                                     </a>
                                     <!-- <button type="button" class="btn btn-outline-primary">Update</button> -->
-                                    <button class="btn btn-outline-danger delete" data-id="{{$item->id}}">Delete</button>
+                                    <button class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" title="Delete">Delete</button>
                                 </td>
                             </tr>
-                            @endif
-                            @endforeach
+                            <div class="modal fade" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <form action="{{route('discount_product.destroy', [$key -> id])}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <div class="modal-content">
+                                            <div class="modal-header py-5">
+                                                <h5 class="modal-title" id="exampleModalLabel"> Hapus Customer</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <i aria-hidden="true" class="ki ki-close"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>
+                                                    Yakin menghapus data {{ $key -> name_disc}}
+                                                </h6>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-danger font-weight-bold text-uppercase">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                             @empty
                             <tr>
                                 <td colspan="7" class="text-center">Data Kosong</td>

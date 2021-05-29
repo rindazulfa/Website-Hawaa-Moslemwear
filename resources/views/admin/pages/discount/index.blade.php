@@ -10,13 +10,13 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Daftar Profil UMKM</li>
+                            <li class="breadcrumb-item active" aria-current="page">Daftar Discount</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="{{route('profilumkm.create')}}" class="btn btn-sm btn-neutral">Tambah Profil UMKM</a>
-                </div>M
+                    <!-- <a href="/admin/datacustomer/formcustomer" class="btn btn-sm btn-neutral">Tambah Customer</a> -->
+                </div>
             </div>
         </div>
     </div>
@@ -28,53 +28,64 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Daftar Profil UMKM</h3>
+                    <h3 class="mb-0">Daftar Discount</h3>
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="id_produk">Id</th>
-                                <th scope="col" class="sort" data-sort="nama_produk">Gambar</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Telepon</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Alamat</th>
-                                <th scope="col" class="sort" data-sort="stok_produk">Instagram</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Deskripsi 1</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Deskripsi 2</th>
-                                <th scope="col" class="sort" data-sort="aksi">Aksi</th>
-                                <th scope="col"></th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Discount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="list">
-                            @forelse ($page as $item)
+                            @forelse($items as $key)
                             <tr>
-                                <td class="id_produk">{{$item->id}}</td>
+                                <td>{{$key->id}}</td>
+                                <td>{{$key->name_disc}}</td>
+                                <td>{{$key->discount}} {{($key->status=="presentase") ? "%" : null}}</td>
+                                <td>{{$key->status}}</td>
                                 <td>
-                                    <div class="avatar rounded-circle mr-3">
-                                        <img src="{{asset('/uploads/profil/'.$item->picture)}}" alt="photo">
-                                    </div>
-                                </td>
-                                <td >{{$item->subtitle}}</td>
-                                <td >{{$item->telepon}}</td>
-                                <td >{{$item->address}}</td>
-                                <td >@ {{$item->ig}}</td>
-                                <td >{{$item->desc_1}}</td>
-                                <td >{{$item->desc_2}}</td>
-                                <td>
-                                    <a href="{{route('banner.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
+                                    <a href="{{route('discount.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
                                     </a>
                                     <!-- <button type="button" class="btn btn-outline-primary">Update</button> -->
-                                    <button class="btn btn-outline-danger delete" data-id="{{$item->id}}">Delete</button>
+                                    <button class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" title="Delete">Delete</button>
                                 </td>
                             </tr>
+                            <div class="modal fade" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <form action="{{route('discount.destroy', [$key -> id])}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <div class="modal-content">
+                                            <div class="modal-header py-5">
+                                                <h5 class="modal-title" id="exampleModalLabel"> Hapus Customer</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <i aria-hidden="true" class="ki ki-close"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>
+                                                    Yakin menghapus data {{ $key -> name_disc}}
+                                                </h6>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-danger font-weight-bold text-uppercase">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                             @empty
-
                             <tr>
                                 <td colspan="7" class="text-center">Data Kosong</td>
                             </tr>
-
                             @endforelse
                         </tbody>
                     </table>
