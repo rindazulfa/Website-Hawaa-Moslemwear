@@ -28,18 +28,11 @@ Route::group([
 ], function () {
     Route::resource('admin','DashboardController');
     Route::resource('discount','DiscountController');
-
-    // Route::resource('customer','CustomerController');
-    Route::resource('supplier','SupplierController');
-    // Route::resource('bahan_baku','MaterialController');
-    // Route::resource('user','UserController');
-
     Route::resource('customer','CustomerController');
     Route::resource('supplier','SupplierController');
     Route::resource('bahan_baku','MaterialController');
     Route::resource('resep','RecipeController');
     Route::resource('user','UserController');
-
     Route::resource('stok_produk','StokProductController');
     Route::resource('banner','BannerController');
     Route::resource('profilumkm','ProfilController');

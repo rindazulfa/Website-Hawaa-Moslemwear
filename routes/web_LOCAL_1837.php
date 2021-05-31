@@ -26,20 +26,12 @@ use Illuminate\Support\Facades\Route;
 Route::group([  
     'namespace' => 'Admin'
 ], function () {
-    Route::resource('admin','DashboardController');
+    // Route::resource('admin','DashboardController');
     Route::resource('discount','DiscountController');
-
     // Route::resource('customer','CustomerController');
     Route::resource('supplier','SupplierController');
     // Route::resource('bahan_baku','MaterialController');
     // Route::resource('user','UserController');
-
-    Route::resource('customer','CustomerController');
-    Route::resource('supplier','SupplierController');
-    Route::resource('bahan_baku','MaterialController');
-    Route::resource('resep','RecipeController');
-    Route::resource('user','UserController');
-
     Route::resource('stok_produk','StokProductController');
     Route::resource('banner','BannerController');
     Route::resource('profilumkm','ProfilController');
@@ -47,20 +39,19 @@ Route::group([
     Route::resource('produk','ProductController');
 
     // Transaksi Pembelian
-    Route::resource('pembelian','PurchaseController');
-    Route::resource('produksi','ProductionController');
+    Route::resource('datatranspembelian','Transaksi_PembelianController');
 
     // Transaksi Penjualan
-    Route::resource('penjualan','OrderController');
+    Route::resource('datatranspenjualan','Transaksi_PenjualanController');
 
     // Transaksi Penjualan Custom
-    Route::resource('penjualancustom','Order_CustomController');
+    Route::resource('datatranspenjualancustom','Transaksi_PenjualanCustomController');
 });
 
 
 
 // ADMIN
-// Route::get('/admin', [DashboardController::class, 'index']);
+Route::get('/admin', [DashboardController::class, 'index']);
 
 // Data Promo
 // Route::get('/admin/datapromo', [PromoController::class, 'index']);
