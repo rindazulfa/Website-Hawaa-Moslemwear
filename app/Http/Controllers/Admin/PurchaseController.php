@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 
-class Transaksi_PenjualanController extends Controller
+class PurchaseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class Transaksi_PenjualanController extends Controller
      */
     public function index()
     {
-        return view ('admin/pages/transaksi_penjualan/index');
+        //
     }
 
     /**
@@ -25,7 +24,7 @@ class Transaksi_PenjualanController extends Controller
      */
     public function create()
     {
-        return view('admin/pages/transaksi_penjualan/create');
+        //
     }
 
     /**

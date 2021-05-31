@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\profile;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AboutController extends Controller
+class Order_CustomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $profile = profile::all()->first();
-        return view('package/about_us', ['profile' => $profile]);
+        //
     }
 
     /**

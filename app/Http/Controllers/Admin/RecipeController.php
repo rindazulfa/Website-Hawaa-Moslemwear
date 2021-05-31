@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\profile;
+use App\Http\Controllers\Controller;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class AboutController extends Controller
+class RecipeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,8 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $profile = profile::all()->first();
-        return view('package/about_us', ['profile' => $profile]);
+        $page = Recipe::all();
+        return view('admin.pages.resep.index', ['page' => $page]);
     }
 
     /**
@@ -25,7 +27,7 @@ class AboutController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.resep.create');
     }
 
     /**
@@ -36,7 +38,24 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $cekproduk = Product::where('id',$data['products_id'])->count();
+        // $ceksize = stock::where('products_id',$data['products_id'])
+        // ->where('size',$data['size'])->count();
+
+        // if ($cekproduk > 0) {
+        //     if ($ceksize >0) {
+        //         $update = stock::where('products_id',$data['products_id'])
+        //         ->where('size',$data['size'])->first();
+        //         $stokk =  $request->get('stok');
+        //         $update->stok = $update->stok + $stokk;
+        //         $update->save();
+        //     }
+        //     else {
+        //         $data['size'] = $size;
+        //         stock::create($data);
+        //     }
+        // }
+        // return redirect()->route('stok_produk.index');
     }
 
     /**

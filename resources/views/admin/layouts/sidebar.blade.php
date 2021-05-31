@@ -26,7 +26,7 @@
         </h6>
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
-        <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="/banner">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Banner</span>
@@ -39,11 +39,18 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin/datamaterial">
+            <a class="nav-link" href="resep">
+              <i class="ni ni-app"></i>
+              <span class="nav-link-text">Resep</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="bahan_baku">
               <i class="ni ni-app"></i>
               <span class="nav-link-text">Bahan Baku</span>
             </a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="/produk">
               <i class="ni ni-spaceship"></i>
@@ -57,7 +64,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/datapromo">
+            <a class="nav-link" href="/discount">
               <i class="ni ni-tag"></i>
               <span class="nav-link-text">Promo</span>
             </a>
@@ -69,13 +76,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/datacustomer">
+            <a class="nav-link" href="/customer">
               <i class="ni ni-single-02"></i>
               <span class="nav-link-text">Customer</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/datauser">
+            <a class="nav-link" href="/user">
               <i class="ni ni-circle-08"></i>
               <span class="nav-link-text">User</span>
             </a>
@@ -89,25 +96,33 @@
           <span class="docs-normal">Transaksi</span>
         </h6>
         <!-- Navigation -->
+        
         <ul class="navbar-nav mb-md-3">
+        <li class="nav-item">
+          <a class="nav-link" href="/produksi">
+            <i class="ni ni-spaceship"></i>
+            <span class="nav-link-text">Produksi</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pembelian">
+            <i class="ni ni-spaceship"></i>
+            <span class="nav-link-text">Pembelian</span>
+          </a>
+        </li>
           <li class="nav-item">
-            <a class="nav-link" href="/datatranspenjualan">
+            <a class="nav-link" href="/penjualan">
               <i class="ni ni-cart"></i>
               <span class="nav-link-text">Penjualan</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/datatranspenjualancustom">
+            <a class="nav-link" href="/penjualancustom">
               <i class="ni ni-palette"></i>
               <span class="nav-link-text">Penjualan Custom</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/datatranspembelian">
-              <i class="ni ni-spaceship"></i>
-              <span class="nav-link-text">Pembelian</span>
-            </a>
-          </li>
+
         </ul>
 
         <!-- Divider -->
