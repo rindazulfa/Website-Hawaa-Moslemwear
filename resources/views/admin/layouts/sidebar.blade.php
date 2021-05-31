@@ -63,7 +63,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/datasupplier">
+            <a class="nav-link" href="/supplier">
               <i class="ni ni-single-02"></i>
               <span class="nav-link-text">Supplier</span>
             </a>

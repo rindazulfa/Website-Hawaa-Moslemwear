@@ -9,8 +9,8 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#">Data Supplier</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Form Data Supplier</li>
+                            <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Tables</li>
                         </ol>
                     </nav>
                 </div>
@@ -25,12 +25,13 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Form Supplier</h3>
+                    <h3 class="mb-0">Form Edit Supplier</h3>
                 </div>
-                <form class="form" method="post" action="{{route('supplier.store')}}" enctype="multipart/form-data">
+                <form class="form" method="post" action="{{route('supplier.update',[$page->id])}}" enctype="multipart/form-data">
                     @csrf
+                    {{method_field("PUT")}}
                     <div class="card-body">
-                    @if($errors->any())
+                        @if($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach($errors->all() as $error)
@@ -43,22 +44,22 @@
                         <div class="form-group row">
                             <div class="col-lg-6 mt-4">
                                 <label>Nama</label>
-                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Masukkan Nama" />
+                                <input type="text" class="form-control" value="{{ $page->name }}" name="name" placeholder="Masukkan Nama" />
                             </div>
                             <div class="col-lg-6 mt-4">
                                 <label>Alamat</label>
-                                <textarea class="form-control" rows="3" name="address" placeholder="Masukkan Alamat">{{ old('address') }}</textarea>
+                                <textarea class="form-control" rows="3" name="address" placeholder="Masukkan Alamat">{{ $page->address }}</textarea>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-lg-6 mt-4">
                                 <label>Email</label>
-                                <input type="text" class="form-control" value="{{ old('email') }}" name="email" placeholder="Masukkan Email" />
+                                <input type="text" class="form-control" value="{{ $page->email }}" name="email" placeholder="Masukkan Email" />
                             </div>
                             <div class="col-lg-6 mt-4">
                                 <label>Telepon</label>
-                                <input type="text" class="form-control" value="{{ old('phone') }}" name="phone" placeholder="Masukkan Telepon" />
+                                <input type="text" class="form-control" value="{{ $page->phone }}" name="phone" placeholder="Masukkan Telepon" />
                             </div>
                         </div>
 
@@ -67,7 +68,7 @@
                         <div class="row">
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
-                                <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                                <button type="submit" class="btn btn-primary mr-2">Update</button>
                                 <button type="button" class="btn btn-secondary"><a href="{{route('supplier.index')}}">Cancel</a></button>
                             </div>
                         </div>

@@ -29,7 +29,7 @@ Route::group([
     // Route::resource('admin','DashboardController');
     Route::resource('discount','DiscountController');
     // Route::resource('customer','CustomerController');
-    // Route::resource('supplier','SupplierController');
+    Route::resource('supplier','SupplierController');
     // Route::resource('bahan_baku','MaterialController');
     // Route::resource('user','UserController');
     Route::resource('stok_produk','StokProductController');
