@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\profile;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -13,7 +14,8 @@ class AboutController extends Controller
      */
     public function index()
     {
-        return view('package/about_us');
+        $profile = profile::all()->first();
+        return view('package/about_us', ['profile' => $profile]);
     }
 
     /**
