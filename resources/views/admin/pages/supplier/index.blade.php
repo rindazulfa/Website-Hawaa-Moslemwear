@@ -15,7 +15,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="/admin/datasupplier/formsupplier" class="btn btn-sm btn-neutral">Tambah Supplier</a>
+                    <a href="{{route('supplier.create')}}" class="btn btn-sm btn-neutral">Tambah Supplier</a>
                 </div>
             </div>
         </div>
@@ -35,53 +35,40 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="no">No. </th>
-                                <th scope="col" class="sort" data-sort="id_produk">Id Supplier</th>
-                                <th scope="col" class="sort" data-sort="nama_produk">Nama Lengkap</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Email</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Alamat</th>
-                                <th scope="col" class="sort" data-sort="stok_produk">No Telepon</th>
+                                <th scope="col" class="sort" data-sort="id">Id</th>
+                                <th scope="col" class="sort" data-sort="name">Nama</th>
+                                <th scope="col" class="sort" data-sort="address">Alamat</th>
+                                <th scope="col" class="sort" data-sort="email">Email</th>
+                                <th scope="col" class="sort" data-sort="phone">Telepon</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody class="list">
+                        @forelse ($page as $item)
                             <tr>
-                                <th class="no">1.</th>
-                                <td class="id_produk">P0001</td>
-                                <td class="nama_produk">Ricky Rikado</td>
-                                <td class="harga_produk">ricky@gmail.com</td>
-                                <td class="stok_produk">Taman Pinang</td>
-                                <td class="stok_produk">23298438403</td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                <td >{{$item->id}}</td>
+                                <td >{{$item->name}}</td>
+                                <td >{{$item->address}}</td>
+                                <td >{{$item->email}}</td>
+                                <td >{{$item->phone}}</td>
+                                <td>
+                                    <a href="{{route('supplier.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
+                                        Update
+                                    </a>
+                                    
+                                    <button class="btn btn-outline-danger delete" data-id="{{$item->id}}">
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
+                            @empty
+
                             <tr>
-                                <th class="no">1.</th>
-                                <td class="id_produk">P0001</td>
-                                <td class="nama_produk">Ricky Rikado</td>
-                                <td class="harga_produk">ricky@gmail.com</td>
-                                <td class="stok_produk">Taman Pinang</td>
-                                <td class="stok_produk">23298438403</td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
+                                <td colspan="7" class="text-center">Data Kosong</td>
                             </tr>
-                            <tr>
-                                <th class="no">1.</th>
-                                <td class="id_produk">P0001</td>
-                                <td class="nama_produk">Ricky Rikado</td>
-                                <td class="harga_produk">ricky@gmail.com</td>
-                                <td class="stok_produk">Taman Pinang</td>
-                                <td class="stok_produk">23298438403</td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-primary">Update</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
+
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
