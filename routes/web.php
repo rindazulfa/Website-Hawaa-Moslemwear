@@ -24,7 +24,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::group([  
-    'namespace' => 'Admin'
+    'namespace' => 'Admin',
+    'middleware' => ['auth', 'checkrole:admin']
 ], function () {
     Route::resource('admin','DashboardController');
     Route::resource('discount','DiscountController');
@@ -102,7 +103,7 @@ Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::get('/register', function () {
     return view('package/register');
 });
-Route::post('/register', 'Auth\RegisterController@login')->name('register');
+Route::post('/register', 'Auth\RegisterController@register')->name('register');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 

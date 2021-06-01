@@ -7,7 +7,7 @@
                     <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                         {{-- <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                         <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li> --}}
-                        {{-- <li class="ftco-animate"><a href="{{$profile->ig}}"><span class="icon-instagram"></span></a></li> --}}
+                        <li class="ftco-animate"><a href="{{$profile->ig}}"><span class="icon-instagram"></span></a></li>
                     </ul>
                 </div>
             </div>
@@ -40,10 +40,10 @@
                     <h2 class="ftco-heading-2">Have a Questions?</h2>
                     <div class="block-23 mb-3">
                         <ul>
-                            {{-- <li><span class="icon icon-map-marker"></span><span class="text">{{$profile->address}}</span></li>
+                            <li><span class="icon icon-map-marker"></span><span class="text">{{$profile->address}}</span></li>
                             <li><span class="icon icon-phone"></span><span class="text">{{$profile->telepon}}</span></li>
                             <li><span class="icon icon-envelope"></span><span class="text">{{$profile->email}}</span></li> --}}
-                            {{-- <li><a href="#"><span class="icon icon-envelope"></span><span class="text">{{$profile->email}}</span></a></li> --}}
+                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">{{$profile->email}}</span></a></li>
                         </ul>
                     </div>
                 </div>

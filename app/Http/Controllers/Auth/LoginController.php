@@ -20,6 +20,8 @@ class LoginController extends Controller
         
             if(Auth::user()->role == 'user'){
                 return redirect('dashboard');
+            }else if(Auth::user()->role == 'admin'){
+                return redirect('admin');
             }
             // else{
             //     return redirect('dashboard');
@@ -32,6 +34,6 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect('/login');
     }
 }
