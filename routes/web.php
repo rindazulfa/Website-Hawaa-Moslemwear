@@ -85,22 +85,31 @@ Route::group([
 
 // Data Stock Produk
 
-// 
+// User
+Route::group([  
+    'namespace' => 'User',
+    'middleware' => ['auth', 'checkrole:user']
+], function () {
+    Route::resource('dashboard','DashboardController'); 
+});
 
-
-
-
-// FRONT END
-
-Route::resource('/','HomepageController');
-
+// Auth 
 Route::get('/login', function () {
     return view('package/login');
 });
+Route::post('/login', 'Auth\LoginController@login')->name('login');
 
 Route::get('/register', function () {
     return view('package/register');
 });
+Route::post('/register', 'Auth\RegisterController@login')->name('register');
+
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+
+
+
+// FRONT END
+Route::resource('/','HomepageController');
 
 Route::resource('/about','AboutController');
 
