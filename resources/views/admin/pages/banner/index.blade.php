@@ -106,7 +106,6 @@
 
 
 @push('custom-script')
-
 <script>
     $(document).ready(function() {
         function ajax() {

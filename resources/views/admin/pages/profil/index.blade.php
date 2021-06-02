@@ -63,7 +63,7 @@
                                 <td >{{$item->desc_1}}</td>
                                 <td >{{$item->desc_2}}</td>
                                 <td>
-                                    <a href="{{route('banner.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
+                                    <a href="{{route('profilumkm.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
                                     </a>
                                     <!-- <button type="button" class="btn btn-outline-primary">Update</button> -->
@@ -112,3 +112,49 @@
     @include('admin.layouts.footer')
 </div>
 @endsection
+
+@push('custom-script')
+<script>
+    $(document).ready(function() {
+        function ajax() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        }
+        $('.delete').on('click', function() {
+            var id = $(this).data('id');
+            Swal.fire({
+                text: "Are you sure to delete this data.",
+                icon: "info",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Yes, delete!",
+                cancelButtonText: "No",
+                customClass: {
+                    confirmButton: "btn font-weight-bold btn-primary",
+                    cancelButton: "btn font-weight-bold btn-default"
+                }
+            }).then(function(result) {
+                if (result.value) {
+                    ajax();
+                    $.ajax({
+                        url: "{{url('/profilumkm/')}}/" + id,
+                        method: "DELETE",
+                        success: function(data) {
+                            Swal.fire({
+                                icon: 'success',
+                                text: 'data has been deleted!'
+                            })
+                            setTimeout(function() {
+                                window.location.href = "{{route('profilumkm.index')}}"
+                            }, 1500);
+                        }
+                    });
+                }
+            });
+        })
+    })
+</script>
+@endpush
