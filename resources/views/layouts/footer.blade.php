@@ -42,8 +42,8 @@
                         <ul>
                             <li><span class="icon icon-map-marker"></span><span class="text">{{$profile->address}}</span></li>
                             <li><span class="icon icon-phone"></span><span class="text">{{$profile->telepon}}</span></li>
-                            <li><span class="icon icon-envelope"></span><span class="text">{{$profile->email}}</span></li> --}}
-                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">{{$profile->email}}</span></a></li>
+                            <li><span class="icon icon-envelope"></span><span class="text">{{$profile->email}}</span></li>
+                            {{-- <li><a href="#"><span class="icon icon-envelope"></span><span class="text">{{$profile->email}}</span></a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     Copyright &copy;
                     <script>
                         document.write(new Date().getFullYear());
-                    </script> All rights reserved | Team Bluzz
+                    </script> All rights reserved | Team Bluzz x Kelompok7 Team
                 </p>
             </div>
         </div>

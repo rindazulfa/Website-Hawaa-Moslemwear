@@ -14,7 +14,7 @@
 <section class="ftco-section ftco-no-pb ftco-no-pt bg-light">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url({{$profile->picture}});">
+			<div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url({{'uploads/profil/'.$profile->picture}});">
 			</div>
 			<div class="col-md-7 py-5 wrap-about pb-md-5 ftco-animate">
 				<div class="heading-section-bold mb-5 mt-md-5">

@@ -8,10 +8,10 @@
           <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="{{asset('img_admin/theme/team-5.jpg')}}">
+                <img alt="Image placeholder" src="{{asset('img_admin/theme/team-2.jpg')}}">
               </span>
               <div class="media-body  ml-2  d-none d-lg-block">
-                <span class="mb-0 text-sm  font-weight-bold">Ricky Rikado</span>
+                <span class="mb-0 text-sm  font-weight-bold">Admin Hawaa</span>
               </div>
             </div>
           </a>

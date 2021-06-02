@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\profile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 
 class ProfilController extends Controller
@@ -39,29 +40,43 @@ class ProfilController extends Controller
      */
     public function store(Request $request)
     {
-        $page = new profile();
-        if ($request->hasFile("picture")) {
-            try {
+        $validator = Validator::make(request()->all(), [
+            'picture' => 'required',
+            'ig' => 'required',
+            'email' => 'required',
+            'telepon' => 'required',
+            'address' => 'required',
+            'desc_1' => 'required',
+            'desc_2' => 'required',
+        ]);
 
-                $file1 = $request->file('picture');
-                $namaFile1 = time() . '.' . $file1->getClientOriginalExtension();
-                $file1->move('uploads/banner', $namaFile1);
-            } catch (\Throwable $th) {
-                dd($th);
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors());
+        } else {
+            $page = new profile();
+            if ($request->hasFile("picture")) {
+                try {
+
+                    $file1 = $request->file('picture');
+                    $namaFile1 = time() . '.' . $file1->getClientOriginalExtension();
+                    $file1->move('uploads/profil', $namaFile1);
+                } catch (\Throwable $th) {
+                    dd($th);
+                }
+
+                $page->picture = $namaFile1;
             }
+        
+            $page->desc_1= $request->get("desc_1");
+            $page->desc_2 = $request->get("desc_2");
+            $page->telepon= $request->get("telepon");
+            $page->ig = $request->get("ig");
+            $page->email= $request->get("email");
+            $page->address = $request->get("address");
+            $page->save();
 
-            $page->picture = $namaFile1;
+            return redirect()->route("profilumkm.index")->with("info", "Profile UMKM has been created");
         }
-       
-        $page->desc_1= $request->get("desc_1");
-        $page->desc_2 = $request->get("desc_2");
-        $page->telepon= $request->get("telepon");
-        $page->ig = $request->get("ig");
-        $page->email= $request->get("email");
-        $page->address = $request->get("address");
-        $page->save();
-
-        return redirect()->route("profilumkm.index")->with("info", "Profile UMKM has been created");
     }
 
     /**
@@ -102,7 +117,7 @@ class ProfilController extends Controller
 
                 $file1 = $request->file('picture');
                 $namaFile1 = time() . '.' . $file1->getClientOriginalExtension();
-                $file1->move('uploads/banner', $namaFile1);
+                $file1->move('uploads/profil', $namaFile1);
             } catch (\Throwable $th) {
                 dd($th);
             }
@@ -137,6 +152,6 @@ class ProfilController extends Controller
             return response()->json([
                 'message'=>'success'
             ]);
-           }
+        }
     }
 }
