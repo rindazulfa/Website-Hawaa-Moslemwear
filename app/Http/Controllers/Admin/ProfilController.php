@@ -152,6 +152,6 @@ class ProfilController extends Controller
             return response()->json([
                 'message'=>'success'
             ]);
-           }
+        }
     }
 }

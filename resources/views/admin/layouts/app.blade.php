@@ -47,6 +47,8 @@
     <script src="{{asset('vendor/chart.js/dist/Chart.extension.js')}}"></script>
     <!-- Argon JS -->
     <script src="{{asset('js/argon.js?v=1.2.0')}}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @stack('custom-script')
 </body>
 

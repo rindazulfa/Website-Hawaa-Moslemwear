@@ -133,6 +133,6 @@ class BannerController extends Controller
             return response()->json([
                 'message'=>'success'
             ]);
-           }
+        }
     }
 }
