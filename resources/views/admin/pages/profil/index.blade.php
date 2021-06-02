@@ -29,6 +29,7 @@
                 <!-- Card header -->
                 <div class="card-header border-0">
                     <h3 class="mb-0">Daftar Profil UMKM</h3>
+                    <p class="mb-0">Note : Profile UMKM yang ditampilkan pada website hanya yang paling atas </p>
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">
@@ -55,10 +56,10 @@
                                         <img src="{{asset('/uploads/profil/'.$item->picture)}}" alt="photo">
                                     </div>
                                 </td>
-                                <td >{{$item->subtitle}}</td>
+                                {{-- <td >{{$item->subtitle}}</td> --}}
                                 <td >{{$item->telepon}}</td>
                                 <td >{{$item->address}}</td>
-                                <td >@ {{$item->ig}}</td>
+                                <td >{{$item->ig}}</td>
                                 <td >{{$item->desc_1}}</td>
                                 <td >{{$item->desc_2}}</td>
                                 <td>

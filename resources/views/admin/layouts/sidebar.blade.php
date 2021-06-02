@@ -12,7 +12,7 @@
         <!-- Nav items -->
         <ul class="navbar-nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="/admin">
+            <a class="nav-link {{ (request()->segment(1) == 'admin') ? 'active' : '' }}" href="/admin">
               <i class="ni ni-tv-2 text-primary"></i>
               <span class="nav-link-text">Dashboard</span>
             </a>
@@ -27,62 +27,62 @@
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="/banner">
+            <a class="nav-link {{ (request()->segment(1) == 'banner') ? 'active' : '' }}" href="/banner">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Banner</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/profilumkm">
+            <a class="nav-link {{ (request()->segment(1) == 'profilumkm') ? 'active' : '' }}" href="/profilumkm">
               <i class="ni ni-app"></i>
               <span class="nav-link-text">Profil UMKM</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="resep">
+            <a class="nav-link {{ (request()->segment(1) == 'resep') ? 'active' : '' }}" href="resep">
               <i class="ni ni-app"></i>
               <span class="nav-link-text">Resep</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="bahan_baku">
+            <a class="nav-link {{ (request()->segment(1) == 'bahan_baku') ? 'active' : '' }}" href="bahan_baku">
               <i class="ni ni-app"></i>
               <span class="nav-link-text">Bahan Baku</span>
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/produk">
+            <a class="nav-link {{ (request()->segment(1) == 'produk') ? 'active' : '' }}" href="/produk">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Produk</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/stok_produk">
+            <a class="nav-link {{ (request()->segment(1) == 'stok_produk') ? 'active' : '' }}" href="/stok_produk">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Stok Produk</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/discount">
+            <a class="nav-link {{ (request()->segment(1) == 'discount') ? 'active' : '' }}" href="/discount">
               <i class="ni ni-tag"></i>
               <span class="nav-link-text">Promo</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/supplier">
+            <a class="nav-link {{ (request()->segment(1) == 'supplier') ? 'active' : '' }}" href="/supplier">
               <i class="ni ni-single-02"></i>
               <span class="nav-link-text">Supplier</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/customer">
+            <a class="nav-link {{ (request()->segment(1) == 'customer') ? 'active' : '' }}" href="/customer">
               <i class="ni ni-single-02"></i>
               <span class="nav-link-text">Customer</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/user">
+            <a class="nav-link {{ (request()->segment(1) == 'user') ? 'active' : '' }}" href="/user">
               <i class="ni ni-circle-08"></i>
               <span class="nav-link-text">User</span>
             </a>
