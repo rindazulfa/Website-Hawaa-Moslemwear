@@ -59,33 +59,6 @@ Route::group([
 });
 
 
-
-// ADMIN
-// Route::get('/admin', [DashboardController::class, 'index']);
-
-// Data Promo
-// Route::get('/admin/datapromo', [PromoController::class, 'index']);
-// Route::get('/admin/datapromo/formpromo', [PromoController::class, 'create']);
-
-// Data Customer
-// Route::get('/admin/datacustomer', [CustomerController::class, 'index']);
-// Route::get('/admin/datacustomer/formcustomer', [CustomerController::class, 'create']);
-
-// Data Supplier
-// Route::get('/admin/datasupplier', [SupplierController::class, 'index']);
-// Route::get('/admin/datasupplier/formsupplier', [SupplierController::class, 'create']);
-
-// Data Bahan Baku
-// Route::get('/admin/datamaterial', [MaterialController::class, 'index']);
-// Route::get('/admin/datamaterial/formmaterial', [MaterialController::class, 'create']);
-// Route::get('/admin/datamaterial/updatematerial', [MaterialController::class, 'edit']);
-
-// Data User
-// Route::get('/admin/datauser', [UserController::class, 'index']);
-// Route::get('/admin/datauser/formuser', [UserController::class, 'create']);
-
-// Data Stock Produk
-
 // User
 Route::group([  
     'namespace' => 'User',
@@ -113,11 +86,9 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::resource('/','HomepageController');
 
 Route::resource('/about','AboutController');
-
-Route::resource('/detailproduct','DetailProductController');
-Route::resource('/promo','PromoController');
-Route::resource('/profil','ProfileController');
-Route::resource('/confirmpayment','Confirm_PaymentController');
-Route::resource('/cart','CartController');
-Route::resource('/custom','CustomProductController');
-Route::resource('/checkout','CheckoutController');
+Route::resource('/shop','ShopController');
+// Route::resource('/detailproduct','DetailProductController');
+// Route::resource('/confirmpayment','Confirm_PaymentController');
+// Route::resource('/cart','CartController');
+// Route::resource('/custom','CustomProductController');
+// Route::resource('/checkout','CheckoutController');

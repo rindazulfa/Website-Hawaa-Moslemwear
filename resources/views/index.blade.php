@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
-<div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1Coba.jpg');">
+<div class="hero-wrap js-fullheight" style="background-image: url({{'uploads/banner/'.$banner->picture}});">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
             <h3 class="v">Hawaa Moslemwear - Better Moslem wear</h3>
             <h3 class="vr">Since - 2019</h3>
             <div class="col-md-11 ftco-animate text-center">
-                <h1>Islamic Style</h1>
-                <h2><span>Better Moslem wear</span></h2>
+                <h1>{{$banner->title}}</h1>
+                <h2><span>{{$banner->subtitle}}</span></h2>
             </div>
             <div class="mouse">
                 <a href="/detailproduct" class="mouse-icon">

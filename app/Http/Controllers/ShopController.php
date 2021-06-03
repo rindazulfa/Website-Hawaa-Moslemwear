@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\stock;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -13,7 +15,16 @@ class ShopController extends Controller
      */
     public function index()
     {
-        //
+        // $product = Product::all()->first();
+        // // dd($product);
+        // return view('package.product', ['shop' => $product]);
+        $product = Product::with([
+            'stok'
+        ])
+       ->get();
+        return view('package.product', [
+            'shop' => $product
+        ]);
         
     }
 
@@ -46,7 +57,13 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        //
+        //detail produk
+        $detail = product::findOrFail($id);
+        $stok = stock::where('products_id',$detail->id)->first();
+        return view('package.detail_product', [
+            'detail' => $detail,
+            'stok' =>$stok
+        ]);
     }
 
     /**
