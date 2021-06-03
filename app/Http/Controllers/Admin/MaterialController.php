@@ -35,7 +35,23 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(request()->all(), [
+            'name' => 'required',
+            'price' => 'required',
+            'stok' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors());
+        } else {
+            $page = new profile();
+            $page->name= $request->get("desc_1");
+            $page->price = $request->get("desc_2");
+            $page->stok= $request->get("telepon");
+            $page->save();
+
+            return redirect()->route("profilumkm.index")->with("info", "Profile UMKM has been created");
+        }
     }
 
     /**
@@ -63,7 +79,7 @@ class MaterialController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Reque   st  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
