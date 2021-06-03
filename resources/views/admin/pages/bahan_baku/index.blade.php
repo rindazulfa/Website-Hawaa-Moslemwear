@@ -15,7 +15,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="/admin/databahan_baku/formmaterial" class="btn btn-sm btn-neutral">Tambah Bahan Baku</a>
+                    <a href="{{route('bahan_baku.create')}}" class="btn btn-sm btn-neutral">Tambah Bahan Baku</a>
                 </div>
             </div>
         </div>

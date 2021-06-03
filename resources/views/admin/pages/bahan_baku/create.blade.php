@@ -31,7 +31,7 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group row">
-                            <div class="col-lg-6 mt-4">
+                            <div class="col-lg-6">
                                 <label>Nama Bahan</label>
                                 <input type="text" class="form-control" name="name" placeholder="Masukkan Nama Produk" />
                             </div>
