@@ -38,7 +38,7 @@
                                 <th>Pict</th>
                                 <th>Price</th>
                                 <th>Category</th>
-                                <th>Desc</th>
+                                <!-- <th>Desc</th> -->
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -57,7 +57,7 @@
                                 </th>
                                 <td> Rp {{number_format($key->price,2,',','.')}}</td>
                                 <td>{{$key->category}}</td>
-                                <td>{{$key->desc}}</td>
+                                <!-- <td>{{$key->desc}}</td> -->
                                 <td>
                                     <a href="{{route('produk.show',[$key->id])}}" class="btn btn-outline-primary" title="Detail">
                                         Detail
@@ -75,15 +75,15 @@
                                         @method('delete')
                                         <div class="modal-content">
                                             <div class="modal-header py-5">
-                                                <h5 class="modal-title" id="exampleModalLabel"> Hapus Product</h5>
+                                                <h2 class="modal-title" id="exampleModalLabel"> Hapus Product</h2>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <i aria-hidden="true" class="ki ki-close"></i>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <h6>
+                                                <h3>
                                                     Yakin menghapus data {{ $key->name}} ?
-                                                </h6>
+                                                </h3>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Close</button>

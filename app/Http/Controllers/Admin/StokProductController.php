@@ -101,12 +101,14 @@ class StokProductController extends Controller
     {
         $edit = stock::findOrFail($id);
         $product = Product::find($edit->products_id);
-        $stok = stock::find($edit->products_id);
+        // $stok = stock::find($edit->products_id);
         return view('admin.pages.stok_produk.edit', [
             'edit' => $edit,
             'product' => $product,
-            'stok' =>$stok
+            // 'stok' =>$stok
         ]);
+
+    
     }
 
     /**
@@ -119,17 +121,17 @@ class StokProductController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(),[
-            'stok' => 'required|integer'
+            'qty' => 'required|integer'
         ]);
 
         if($validator->fails()){
             return redirect()->back()->withErrors($validator->errors());
         }else{
             $stok = stock::find($id);
-            $stok->stok = $request->get("stok");
+            $stok->qty = $request->get("qty");
             $stok->save();
 
-            return redirect()->route("stok.index")->with('info','Stok has been updated');
+            return redirect()->route("stok_produk.index")->with('info','Stok has been updated');
         }
     }
 
@@ -143,6 +145,6 @@ class StokProductController extends Controller
     {
         $delete = stock::findOrFail($id);
         $delete->delete();
-        return redirect()->route('stok.index');
+        return redirect()->route('stok_produk.index');
     }
 }

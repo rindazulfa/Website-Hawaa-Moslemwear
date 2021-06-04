@@ -19,7 +19,15 @@ class DatabaseSeeder extends Seeder
             ProfileSeeder::class,
             UserSeeder::class,
             BannerSeeder::class,
-            ProductSeeder::class
+            ProductSeeder::class,
+            CustomerSeeder::class,
+            MaterialSeeder::class,
+            RecipeSeeder::class,
+            StokProductSeeder::class,
+            SupplierSeeder::class,
+            DiscountSeeder::class,
+            OrderSeeder::class,
+            Detail_OrderSeeder::class
         ]);
     }
 }

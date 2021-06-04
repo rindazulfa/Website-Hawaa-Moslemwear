@@ -93,7 +93,7 @@ class ProductController extends Controller
 
         }
 
-        return redirect()->route("produk.index")->with("info", "Product has been created");
+        return redirect()->route("stok_produk.create")->with("info", "Product has been created");
     }
 
     /**
@@ -221,13 +221,13 @@ class ProductController extends Controller
         $cekDcProduct = Discount_Product::where('products_id', $id)->first();
         $cekDtOrder = detail_order::where('products_id', $id)->first();
         if($cekStok){
-            return redirect()->route('product.index')->with("info","Sorry, cant delete this product");
+            return redirect()->route('produk.index')->with("info","Sorry, cant delete this product");
         }
         if($cekDcProduct){
-            return redirect()->route('product.index')->with("info","Sorry, cant delete this product");
+            return redirect()->route('produk.index')->with("info","Sorry, cant delete this product");
         }
         if($cekDtOrder){
-            return redirect()->route('product.index')->with("info","Sorry, cant delete this product");
+            return redirect()->route('produk.index')->with("info","Sorry, cant delete this product");
         }
 
         if(!$cekStok && !$cekDcProduct && !$cekDtOrder ){

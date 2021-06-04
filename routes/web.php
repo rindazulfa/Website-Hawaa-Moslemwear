@@ -28,24 +28,25 @@ Route::group([
     'middleware' => ['auth', 'checkrole:admin']
 ], function () {
     Route::resource('admin','DashboardController');
-    Route::resource('discount','DiscountController');
-
-    // Route::resource('customer','CustomerController');
-    Route::resource('supplier','SupplierController');
-    // Route::resource('bahan_baku','MaterialController');
-    // Route::resource('user','UserController');
-
+    
+    Route::resource('banner','BannerController');
+    Route::resource('profilumkm','ProfilController');
+ 
+    Route::resource('user','UserController');
     Route::resource('customer','CustomerController');
+
+    Route::resource('produk','ProductController');
+    Route::resource('stok_produk','StokProductController');
+
     Route::resource('supplier','SupplierController');
     Route::resource('bahan_baku','MaterialController');
     Route::resource('resep','RecipeController');
-    Route::resource('user','UserController');
 
-    Route::resource('stok_produk','StokProductController');
-    Route::resource('banner','BannerController');
-    Route::resource('profilumkm','ProfilController');
-    // Produk
-    Route::resource('produk','ProductController');
+    Route::resource('discount','DiscountController');
+    Route::resource('discount_product', 'DiscountProductController');
+    
+  
+    
 
     // Transaksi Pembelian
     Route::resource('pembelian','PurchaseController');
@@ -84,9 +85,11 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 // FRONT END
 Route::resource('/','HomepageController');
-
 Route::resource('/about','AboutController');
 Route::resource('/shop','ShopController');
+Route::get('/shop/stok', 'ShopController@checkStokBySize')->name("shop_cek");
+Route::post('/shop/detail/{id}', 'ShopController@process')->name('shop_detail');
+
 // Route::resource('/detailproduct','DetailProductController');
 // Route::resource('/confirmpayment','Confirm_PaymentController');
 // Route::resource('/cart','CartController');

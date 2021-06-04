@@ -73,16 +73,16 @@
                                         @method('delete')
                                         <div class="modal-content">
                                             <div class="modal-header py-5">
-                                                <h5 class="modal-title" id="exampleModalLabel"> Hapus Stok</h5>
+                                                <h2 class="modal-title" id="exampleModalLabel"> Hapus Stok</h2>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <i aria-hidden="true" class="ki ki-close"></i>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <h6>
+                                                <h3>
                                                     Yakin menghapus data {{ $key->product->name }} ukuran
-                                                    {{ $key->product->size }} ?
-                                                </h6>
+                                                    {{ $key->size }} ?
+                                                </h3>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Close</button>

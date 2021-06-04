@@ -77,10 +77,10 @@
                                 <input type="number" class="form-control" value="{{$edit->price}}" name="price" placeholder="Masukkan Harga" />
                             </div>
 
-                            <div class="col-lg-3">
+                            <!-- <div class="col-lg-3">
                                 <label>Size</label>
                                 <input type="text" class="form-control" value="{{$edit->size}}" name="size" placeholder="Masukkan Size" />
-                            </div>
+                            </div> -->
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-3">
