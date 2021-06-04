@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\material;
 use App\Models\supplier;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,10 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $page = supplier::all();
-        return view('admin/pages/supplier/index',['page' => $page]);
+        $page = supplier::with(['materials'])->get();
+        return view('admin.pages.supplier.index', [
+            'page' => $page
+        ]);
     }
 
     /**
@@ -26,7 +29,10 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('admin/pages/supplier/create');
+        $items = material::all();
+        return view('admin.pages.supplier.create', [
+            'items' => $items
+        ]);
     }
 
     /**

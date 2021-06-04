@@ -15,8 +15,8 @@ class CreateMaterialsTable extends Migration
     {
         Schema::create('materials', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('suppliers_id');
-            $table->foreign('suppliers_id')->references('id')->on('suppliers')->onDelete('cascade');
+            // $table->unsignedBigInteger('suppliers_id');
+            // $table->foreign('suppliers_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->string("name");
             $table->integer("price");
             $table->integer("qty");

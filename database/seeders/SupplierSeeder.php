@@ -14,18 +14,18 @@ class SupplierSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('suppliers')->insert([
-            'name' => 'Dimaz',
-            'address' => 'Mayjend Sukono',
-            'email' => 'sup1@gmail.com',
-            'phone' => '0812313132423'
-        ]);
+        // DB::table('suppliers')->insert([
+        //     'name' => 'Dimaz',
+        //     'address' => 'Mayjend Sukono',
+        //     'email' => 'sup1@gmail.com',
+        //     'phone' => '0812313132423'
+        // ]);
 
-        DB::table('suppliers')->insert([
-            'name' => 'Amalia',
-            'address' => 'Wiyung',
-            'email' => 'sup2@gmail.com',
-            'phone' => '083222427777'
-        ]);
+        // DB::table('suppliers')->insert([
+        //     'name' => 'Amalia',
+        //     'address' => 'Wiyung',
+        //     'email' => 'sup2@gmail.com',
+        //     'phone' => '083222427777'
+        // ]);
     }
 }

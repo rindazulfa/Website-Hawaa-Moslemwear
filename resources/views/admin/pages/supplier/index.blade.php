@@ -52,6 +52,7 @@
                                 <td >{{$item->address}}</td>
                                 <td >{{$item->email}}</td>
                                 <td >{{$item->phone}}</td>
+                                <td >{{$item->materials->name}}</td>
                                 <td>
                                     <a href="{{route('supplier.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
