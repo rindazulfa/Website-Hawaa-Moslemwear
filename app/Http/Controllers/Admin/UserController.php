@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\User as AppUser;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin/pages/user/index');
+        $page = User::all();
+        return view('admin/pages/user/index',['page' => $page]);
     }
 
     /**
@@ -35,7 +38,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $credentials = $request->validate([
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required','string', 'min:8', 'confirmed'],
+        ]);
+        
+        $user = new User;
+        $user->first_name = $request->get('first_name');
+        $user->last_name = $request->get('last_name');
+        $user->email = $request->get('email');
+        $user->password = bcrypt($request->get('password'));
+        $user->role = $request->get('role');
+        $user->save();
+
+        return redirect()->route("user.index")->with("info", "User has been created");
     }
 
     /**
@@ -57,7 +75,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page = User::findOrFail($id);
+
+        return view('admin.pages.user.edit', ['page' => $page]);
     }
 
     /**
@@ -69,7 +89,22 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $credentials = $request->validate([
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required','string', 'min:8', 'confirmed'],
+        ]);
+        
+        $user = new User;
+        $user->first_name = $request->get('first_name');
+        $user->last_name = $request->get('last_name');
+        $user->email = $request->get('email');
+        $user->password = bcrypt($request->get('password'));
+        $user->role = $request->get('role');
+        $user->save();
+
+        return redirect()->route("user.index")->with("info", "User has been updated");
     }
 
     /**
@@ -80,6 +115,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = User::findOrFail($id);
+        $delete->delete();
+        return redirect()->route('user.index');
     }
 }

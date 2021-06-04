@@ -100,6 +100,8 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = supplier::findOrFail($id);
+        $delete->delete();
+        return redirect()->route('supplier.index');
     }
 }

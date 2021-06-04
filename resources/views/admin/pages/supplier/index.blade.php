@@ -57,11 +57,35 @@
                                         Update
                                     </a>
                                     
-                                    <button class="btn btn-outline-danger delete" data-id="{{$item->id}}">
-                                        Delete
-                                    </button>
+                                    <button class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" title="Delete">Delete</button>
+                               
                                 </td>
                             </tr>
+                            <div class="modal fade" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <form action="{{route('supplier.destroy', [$item -> id])}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <div class="modal-content">
+                                            <div class="modal-header py-5">
+                                                <h3 class="modal-title" id="exampleModalLabel"> Hapus Supplier</h3>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <i aria-hidden="true" class="ki ki-close"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h4>
+                                                    Yakin menghapus data {{ $item -> name}} ?
+                                                </h4>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-danger font-weight-bold text-uppercase">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                             @empty
 
                             <tr>
