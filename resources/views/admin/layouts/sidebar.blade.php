@@ -39,13 +39,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ (request()->segment(1) == 'resep') ? 'active' : '' }}" href="resep">
+            <a class="nav-link {{ (request()->segment(1) == 'resep') ? 'active' : '' }}" href="/resep">
               <i class="ni ni-app"></i>
               <span class="nav-link-text">Resep</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ (request()->segment(1) == 'bahan_baku') ? 'active' : '' }}" href="bahan_baku">
+            <a class="nav-link {{ (request()->segment(1) == 'bahan_baku') ? 'active' : '' }}" href="/bahan_baku">
               <i class="ni ni-app"></i>
               <span class="nav-link-text">Bahan Baku</span>
             </a>
