@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
@@ -13,7 +14,9 @@ class HomepageController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $banner = Banner::all()->first();
+        return view('index', ['banner' => $banner]);
+       
     }
 
     /**

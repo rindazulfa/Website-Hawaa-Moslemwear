@@ -27,40 +27,48 @@
                 <div class="card-header border-0">
                     <h3 class="mb-0">Form Supplier</h3>
                 </div>
-                <form class="form" method="post" action="" enctype="multipart/form-data">
+                <form class="form" method="post" action="{{route('supplier.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
                         <div class="form-group row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 mt-4">
                                 <label>Nama</label>
-                                <input type="text" class="form-control" name="name" />
+                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Masukkan Nama" />
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 mt-4">
+                                <label>Alamat</label>
+                                <textarea class="form-control" rows="3" name="address" placeholder="Masukkan Alamat">{{ old('address') }}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-lg-6 mt-4">
                                 <label>Email</label>
-                                <input type="number" class="form-control" name="price" />
+                                <input type="text" class="form-control" value="{{ old('email') }}" name="email" placeholder="Masukkan Email" />
+                            </div>
+                            <div class="col-lg-6 mt-4">
+                                <label>Telepon</label>
+                                <input type="text" class="form-control" value="{{ old('phone') }}" name="phone" placeholder="Masukkan Telepon" />
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-lg-6">
-                                <label for="exampleTextarea">No Telepon</label>
-                                <input type="number" class="form-control" name="price" data-rule="maxlen:13"/> 
-                            </div>
 
-
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-lg-6">
-                                <label for="exampleTextarea">Alamat</label>
-                                <textarea class="form-control" rows="3" name="desc"></textarea>
-                            </div>
-                        </div>
                     </div>
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
                                 <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                                <button type="button" class="btn btn-secondary"><a href="#">Cancel</a></button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('supplier.index')}}">Cancel</a></button>
                             </div>
                         </div>
                     </div>

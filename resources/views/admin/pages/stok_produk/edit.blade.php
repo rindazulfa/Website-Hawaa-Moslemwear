@@ -44,7 +44,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <label class="col-form-label">Size Produk</label>
-                                <input type="text" name="size" readonly class="form-control" value="{{$stok->size}}" />
+                                <input type="text" name="size" readonly class="form-control" value="{{$edit->size}}" />
                             </div>
        
 

@@ -15,7 +15,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <!-- <a href="/admin/datacustomer/formcustomer" class="btn btn-sm btn-neutral">Tambah Customer</a> -->
+                    <a href="{{route('discount.create')}}" class="btn btn-sm btn-neutral">Tambah Promo</a>
                 </div>
             </div>
         </div>
@@ -64,15 +64,15 @@
                                         @method('delete')
                                         <div class="modal-content">
                                             <div class="modal-header py-5">
-                                                <h5 class="modal-title" id="exampleModalLabel"> Hapus Customer</h5>
+                                                <h3 class="modal-title" id="exampleModalLabel"> Hapus Promo</h3>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <i aria-hidden="true" class="ki ki-close"></i>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <h6>
-                                                    Yakin menghapus data {{ $key -> name_disc}}
-                                                </h6>
+                                                <h4>
+                                                    Yakin menghapus data {{ $key -> name_disc}} ?
+                                                </h4>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Close</button>

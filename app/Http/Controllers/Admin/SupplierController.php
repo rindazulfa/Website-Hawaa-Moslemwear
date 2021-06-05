@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\supplier;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -14,7 +15,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return view('admin/pages/supplier/index');
+        $page = supplier::all();
+        return view('admin/pages/supplier/index',['page' => $page]);
     }
 
     /**
@@ -35,7 +37,15 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $page = new supplier();
+
+        $page->name = $request->get("name");
+        $page->address = $request->get("address");
+        $page->email = $request->get("email");
+        $page->phone = $request->get("phone");
+        $page->save();
+
+        return redirect()->route("supplier.index")->with("info", "Supplier has been created");
     }
 
     /**
@@ -57,7 +67,9 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page = supplier::findOrFail($id);
+
+        return view('admin.pages.supplier.edit', ['page' => $page]);
     }
 
     /**
@@ -69,7 +81,15 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $page = supplier::findOrFail($id);
+
+        $page->name = $request->get("name");
+        $page->address = $request->get("address");
+        $page->email = $request->get("email");
+        $page->phone = $request->get("phone");
+        $page->save();
+
+        return redirect()->route("supplier.index")->with("info", "Supplier has been updated");
     }
 
     /**
@@ -80,6 +100,8 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = supplier::findOrFail($id);
+        $delete->delete();
+        return redirect()->route('supplier.index');
     }
 }
