@@ -10,12 +10,12 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Daftar Bahan Baku</li>
+                            <li class="breadcrumb-item active" aria-current="page">Daftar Resep</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="{{route('bahan_baku.create')}}" class="btn btn-sm btn-neutral">Tambah Bahan Baku</a>
+                    <a href="{{route('resep.create')}}" class="btn btn-sm btn-neutral">Tambah Resep</a>
                 </div>
             </div>
         </div>
@@ -28,17 +28,17 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Daftar Bahan Baku</h3>
+                    <h3 class="mb-0">Daftar Resep</h3>
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="no">ID </th>
-                                <th scope="col" class="sort" data-sort="nama_produk">Nama Bahan</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Harga</th>
-                                <th scope="col" class="sort" data-sort="stok_produk">Stok</th>
+                                <th scope="col" class="sort" data-sort="no">ID</th>
+                                <th>Nama Produk</th>
+                                <th>Nama Bahan</th>
+                                <th>QTY</th>
                                 <th>Satuan</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col"></th>
@@ -48,12 +48,12 @@
                             @forelse($items as $key)
                             <tr>
                                 <td>{{$key->id}}</td>
-                                <td>{{$key->name}}</td>
-                                <td> Rp {{number_format($key->price,2,',','.')}}</td>
+                                <td>{{$key->product->name}}</td>
+                                <td>{{$key->material->name}}</td>
                                 <td>{{$key->qty}}</td>
                                 <td>{{$key->satuan}}</td>
                                 <td>
-                                    <a href="{{route('bahan_baku.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
+                                    <a href="{{route('resep.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
                                     </a>
                                     <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button>
@@ -61,12 +61,12 @@
                             </tr>
                             <div class="modal fade" id="exampleModal-{{$key->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
-                                    <form action="{{route('bahan_baku.destroy', [$key->id])}}" method="post">
+                                    <form action="{{route('resep.destroy', [$key->id])}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <div class="modal-content">
                                             <div class="modal-header py-5">
-                                                <h2 class="modal-title" id="exampleModalLabel"> Hapus Bahan Baku</h2>
+                                                <h2 class="modal-title" id="exampleModalLabel"> Hapus Resep</h2>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <i aria-hidden="true" class="ki ki-close"></i>
                                                 </button>

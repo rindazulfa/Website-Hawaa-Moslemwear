@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\material;
+use App\Models\Product;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
+use function GuzzleHttp\Promise\all;
 
 class RecipeController extends Controller
 {
@@ -16,8 +20,10 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $page = Recipe::all();
-        return view('admin.pages.resep.index', ['page' => $page]);
+        $items = Recipe::with(['product', 'material'])->get();
+        return view('admin.pages.resep.index', [
+            'items' => $items
+        ]);
     }
 
     /**
@@ -27,7 +33,12 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.resep.create');
+        $items = Product::all();
+        $bahan = material::all();
+        return view('admin.pages.resep.create', [
+            'items' => $items,
+            'bahan' => $bahan
+        ]);
     }
 
     /**
@@ -38,24 +49,44 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        // $cekproduk = Product::where('id',$data['products_id'])->count();
-        // $ceksize = stock::where('products_id',$data['products_id'])
-        // ->where('size',$data['size'])->count();
+        $data = $request->all();
+        // dd($data);
+        
+        $bahan = $data['materials_id'];
+        $arr_qty = $data['qty'];
+        $arr_satuan = $data['satuan'];
 
-        // if ($cekproduk > 0) {
-        //     if ($ceksize >0) {
-        //         $update = stock::where('products_id',$data['products_id'])
-        //         ->where('size',$data['size'])->first();
-        //         $stokk =  $request->get('stok');
-        //         $update->stok = $update->stok + $stokk;
-        //         $update->save();
-        //     }
-        //     else {
-        //         $data['size'] = $size;
-        //         stock::create($data);
-        //     }
-        // }
-        // return redirect()->route('stok_produk.index');
+        $cekproduk = Product::where('id', $data['products_id'])->count();
+
+
+
+        if ($cekproduk > 0) {
+            for ($i = 0; $i < count($bahan); $i++) {
+                $cekbahan = material::where('id', $bahan[$i])->count();
+
+                if ($cekbahan > 0) {
+                    $tambah = Recipe::where('products_id', $data['products_id'])
+                        ->where('materials_id', $bahan[$i])->first();
+                    if ($tambah) {
+                        $tambah->qty =  $arr_qty[$i];
+                        $tambah->satuan =  $arr_satuan[$i];
+                        $tambah->save();
+                        
+                    }
+                    else {
+                        $resep = new Recipe();
+                        $resep->materials_id = $bahan[$i];
+                        $resep->products_id = $data['products_id'];
+                        $resep->qty = $arr_qty[$i];
+                        $resep->satuan = $arr_satuan[$i];
+                        $resep->save();
+                    }
+
+                    // dd($tambah);
+                }
+            }
+        }
+        return redirect()->route('resep.index');
     }
 
     /**

@@ -39,24 +39,25 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ (request()->segment(1) == 'resep') ? 'active' : '' }}" href="/resep">
-              <i class="ni ni-app"></i>
-              <span class="nav-link-text">Resep</span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link {{ (request()->segment(1) == 'bahan_baku') ? 'active' : '' }}" href="/bahan_baku">
               <i class="ni ni-app"></i>
               <span class="nav-link-text">Bahan Baku</span>
             </a>
           </li>
-
           <li class="nav-item">
             <a class="nav-link {{ (request()->segment(1) == 'produk') ? 'active' : '' }}" href="/produk">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Produk</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link {{ (request()->segment(1) == 'resep') ? 'active' : '' }}" href="/resep">
+              <i class="ni ni-app"></i>
+              <span class="nav-link-text">Resep</span>
+            </a>
+          </li>
+    
+       
           <li class="nav-item">
             <a class="nav-link {{ (request()->segment(1) == 'stok_produk') ? 'active' : '' }}" href="/stok_produk">
               <i class="ni ni-spaceship"></i>

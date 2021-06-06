@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\material;
+use App\Models\Recipe;
+use App\Models\supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MaterialController extends Controller
 {
@@ -14,7 +18,13 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        return view ('admin/pages/bahan_baku/index');
+        $bahan = material::with([
+            'supplier'
+        ])
+       ->get();
+        return view('admin/pages/bahan_baku/index', [
+            'items' => $bahan
+        ]);
     }
 
     /**
@@ -38,19 +48,21 @@ class MaterialController extends Controller
         $validator = Validator::make(request()->all(), [
             'name' => 'required',
             'price' => 'required',
-            'stok' => 'required',
+            'qty' => 'required',
+            'satuan' => 'required'
         ]);
 
         if ($validator->fails()) {
             return back()->withErrors($validator->errors());
         } else {
-            $page = new profile();
-            $page->name= $request->get("desc_1");
-            $page->price = $request->get("desc_2");
-            $page->stok= $request->get("telepon");
+            $page = new material();
+            $page->name= $request->get("name");
+            $page->price = $request->get("price");
+            $page->qty= $request->get("qty");
+            $page->satuan= $request->get("satuan");
             $page->save();
 
-            return redirect()->route("profilumkm.index")->with("info", "Profile UMKM has been created");
+            return redirect()->route("bahan_baku.index")->with("info", "Materials has been created");
         }
     }
 
@@ -73,7 +85,11 @@ class MaterialController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit = material::findOrFail($id);
+        
+        return view('admin.pages.bahan_baku.edit', [
+            'edit' => $edit
+        ]);
     }
 
     /**
@@ -85,7 +101,14 @@ class MaterialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $page = material::findOrFail($id);
+            $page->name= $request->get("name");
+            $page->price = $request->get("price");
+            $page->qty= $request->get("qty");
+            $page->satuan= $request->get("satuan");
+            $page->save();
+
+            return redirect()->route("bahan_baku.index")->with("info", "Materials has been created");
     }
 
     /**
@@ -96,6 +119,21 @@ class MaterialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ceksupplier = supplier::where('materials_id',$id)->first();
+        $cekresep= Recipe::where('materials_id', $id)->first();
+        if($ceksupplier){
+            return redirect()->route('bahan_baku.index')->with("info","Sorry, cant delete this material");
+        }
+        if($cekresep){
+            return redirect()->route('bahan_baku.index')->with("info","Sorry, cant delete this material");
+        }
+
+        if(!$ceksupplier && !$cekresep ){
+
+            $delete = material::findOrFail($id);
+        
+            $delete->delete();
+            return redirect()->route('bahan_baku.index')->with("info","Materials has been deleted");;
+        }
     }
 }

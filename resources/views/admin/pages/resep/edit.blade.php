@@ -42,12 +42,20 @@
                         @endif
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Nama Bahan</label>
-                                <input type="text" class="form-control" name="name" value="{{$edit->name}}" placeholder="Masukkan Nama Bahan Baku" />
+                                <label>Pilih Produk</label>
+                                <select class="form-control" required name="products_id">
+                                    @foreach($items as $key)
+                                    <option value="{{ $key->id }}">{{ $key->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-lg-6">
-                                <label>Harga</label>
-                                <input type="number" class="form-control" name="price" value="{{$edit->price}}" placeholder="Masukkan Harga" />
+                                <label>Pilih Bahan Baku</label>
+                                <select class="form-control" required name="materials_id">
+                                    @foreach($items as $key)
+                                    <option value="{{ $key->id }}">{{ $key->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">

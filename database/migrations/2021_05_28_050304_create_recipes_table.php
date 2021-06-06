@@ -15,6 +15,10 @@ class CreateRecipesTable extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->bigIncrements("id");
+            $table->unsignedBigInteger('products_id');
+            $table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
+            $table->unsignedBigInteger('materials_id');
+            $table->foreign('materials_id')->references('id')->on('materials')->onDelete('cascade');
             $table->integer("qty");
             $table->string("satuan");
             $table->timestamps();

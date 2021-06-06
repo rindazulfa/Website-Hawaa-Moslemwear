@@ -37,7 +37,7 @@
                         @endif
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Nama Produk</label>
+                                <label>Pilih Produk</label>
                                 <select class="form-control" required name="products_id">
                                     @foreach($items as $key)
                                     <option value="{{ $key->id }}">{{ $key->name }}</option>

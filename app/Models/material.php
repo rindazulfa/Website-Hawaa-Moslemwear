@@ -22,4 +22,9 @@ class material extends Model
     {
         return $this->hasMany(supplier::class, 'materials_id', 'id');
     }
+
+    public function resep()
+    {
+        return $this->hasMany(Recipe::class, 'materials_id', 'id');
+    }
 }

@@ -15,8 +15,6 @@ class CreateProductionsTable extends Migration
     {
         Schema::create('productions', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->unsignedBigInteger('materials_id');
-            $table->foreign('materials_id')->references('id')->on('materials')->onDelete('cascade');
             $table->unsignedBigInteger('recipes_id');
             $table->foreign('recipes_id')->references('id')->on('recipes')->onDelete('cascade');
             $table->integer("qty");

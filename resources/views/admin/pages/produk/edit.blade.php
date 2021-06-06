@@ -91,7 +91,6 @@
                                 <label for="exampleTextarea">Deskripsi</label>
                                 <textarea class="form-control" rows="3" name="desc" placeholder="Masukkan Deskripsi">{{$edit->desc}}</textarea>
                             </div>
-
                         </div>
                     </div>
                     <div class="card-footer">
