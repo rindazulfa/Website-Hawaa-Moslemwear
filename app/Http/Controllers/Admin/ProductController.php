@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\detail_order;
 use App\Models\Discount_Product;
 use App\Models\Product;
+use App\Models\Recipe;
 use App\Models\stock;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
@@ -106,11 +107,15 @@ class ProductController extends Controller
     {
         $detail = product::findOrFail($id);
         $stok = stock::where('products_id',$detail->id)->first();
-        // dd($stok);
+        $resep = Recipe::with(['product', 'material'])
+        ->where('products_id',$detail->id)->get();
+
+        // dd($detail);
         // $stok = stock::find($detail->products_id);
         return view('admin.pages.produk.detail', [
             'detail' => $detail,
-            'stok' =>$stok
+            'stok' =>$stok,
+            'resep'=>$resep
         ]);
     }
 

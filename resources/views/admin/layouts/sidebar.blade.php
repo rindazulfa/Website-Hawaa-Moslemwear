@@ -50,12 +50,12 @@
               <span class="nav-link-text">Produk</span>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link {{ (request()->segment(1) == 'resep') ? 'active' : '' }}" href="/resep">
               <i class="ni ni-app"></i>
               <span class="nav-link-text">Resep</span>
             </a>
-          </li>
+          </li> -->
     
        
           <li class="nav-item">

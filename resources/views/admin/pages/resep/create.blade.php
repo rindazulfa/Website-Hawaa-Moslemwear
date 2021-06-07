@@ -27,7 +27,7 @@
                 <div class="card-header border-0">
                     <h3 class="mb-0">Form Resep Produk</h3>
                 </div>
-                <form class="form" method="post" action="{{route('resep.store')}}" enctype="multipart/form-data">
+                <form class="form" method="post" action="{{route('tambah_bahan',[$detail->id])}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         @if($errors->any())
@@ -39,17 +39,6 @@
                             </ul>
                         </div>
                         @endif
-                        <div class="form-group row">
-                            <div class="col-lg-6">
-                                <label>Pilih Produk</label>
-                                <select class="form-control" required name="products_id">
-                                    @foreach($items as $key)
-                                    <option value="{{ $key->id }}">{{ $key->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                        </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
@@ -80,7 +69,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer">a
                         <div class="row">
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
