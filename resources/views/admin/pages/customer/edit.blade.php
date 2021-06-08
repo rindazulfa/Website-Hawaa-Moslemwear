@@ -36,49 +36,48 @@
                     </ul>
                 </div>
                 @endif
-                <form class="form" method="post" action="{{route('customer.update', [$items->id])}}">
-
-                    @method('PUT')
+                <form class="form" method="POST" action="{{route('custupdate', [$items->id])}}">
+                    {{-- @method('PUT') --}}
                     @csrf
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>Nama Depan</label>
-                                <input type="text" class="form-control" name="first_name" />
+                                <input type="text" class="form-control" name="first_name" value="{{$items->first_name}}" disabled/>
                             </div>
                             <div class="col-lg-6">
                                 <label>Nama Belakang</label>
-                                <input type="number" class="form-control" name="last_name" />
+                                <input type="text" class="form-control" name="last_name" value="{{$items->last_name}}" disabled/>
                             </div>
                         </div>
                         <div class="form-group row">
                            
                             <div class="col-lg-6">
                                 <label>Email</label>
-                                <input type="number" class="form-control" name="email" />
+                                <input type="email" class="form-control" name="email" value="{{$items->email}}" disabled/>
                             </div>
                             <div class="col-lg-6">
                                 <label>Alamat</label>
-                                <input type="text" class="form-control" name="address" placeholder="Masukkan Address" value="{{$items->address}}" />
+                                <input type="text" class="form-control" name="address" placeholder="Masukkan Address" value="{{$items->address}}"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">Kota</label>
-                                <input type="number" class="form-control" name="price" />
+                                <input type="text" class="form-control" name="city" value="{{$items->city}}"/>
                             </div>
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">Provinsi</label>
-                                <input type="number" class="form-control" name="price" />
+                                <input type="text" class="form-control" name="province" value="{{$items->province}}"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">No Telepon</label>
-                                <input type="number" class="form-control" name="price" /> </div>
+                                <input type="text" class="form-control" name="phone" value="{{$items->phone}}" /> </div>
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">Kode POS</label>
-                                <input type="number" class="form-control" name="price" />
+                                <input type="text" class="form-control" name="postal_code" value="{{$items->postal_code}}"/>
                             </div>
 
                         </div>

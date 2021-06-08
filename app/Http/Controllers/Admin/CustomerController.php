@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Customer;
+use App\Models\customer;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -16,9 +17,13 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $items = User::where('id','!=',1)->get();
+        // $items = User::where('id','!=',1)->get();
+        $items = DB::table('users')
+        ->join('customers', 'users.id', '=', 'customers.users_id')
+        ->select('users.*', 'customers.*')
+        ->get();
 
-        return view('admin.pages.customer.index', [
+        return view('admin/pages/customer/index', [
             'items' => $items
         ]);
     }
@@ -63,9 +68,16 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $item = Customer::findOrFail($id);
+        $item = DB::table('users')
+        ->join('customers', 'users.id', '=', 'customers.users_id')
+        ->select('users.*', 'customers.*')
+        ->where('customers.id', '=', $id)
+        ->first();
+
+        // dd($item);
+
         return view('admin.pages.customer.edit', [
-            'items' => $item
+            'items' => $item, 
         ]);
     }
 
@@ -78,9 +90,18 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-        $customer = Customer::findOrFail($id);
-        $customer->update($data);
+        // $data = $request->all()->except(['_token']);
+        // dd($data);
+        $customer = customer::findOrFail($id);
+        dd($customer);
+        $customer->address= $request->get("address");
+        $customer->city = $request->get("city");
+        $customer->province= $request->get("province");
+        $customer->phone = $request->get("phone");
+        $customer->postal_code = $request->get("postal_code");
+
+        $customer->save();
+        dd($customer);
         return redirect()->route('customer.index');
     }
 
@@ -92,8 +113,26 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Customer::findOrFail($id);
+        $delete = customer::find($id);
         $delete->delete();
+        return redirect()->route('customer.index');
+    }
+
+    public function updateData(Request $request, $id)
+    {
+        $data = $request->all();
+        // dd($data);
+        $customer = customer::find($id);
+        // $customer = customer::where('id', $id)->first();
+
+        // dd($id);
+        $customer->address= $request->get("address");
+        $customer->city = $request->get("city");
+        $customer->province= $request->get("province");
+        $customer->phone = $request->get("phone");
+        $customer->postal_code = $request->get("postal_code");
+
+        $customer->save();
         return redirect()->route('customer.index');
     }
 

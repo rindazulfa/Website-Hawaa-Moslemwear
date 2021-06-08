@@ -27,6 +27,15 @@ Route::group([
     'namespace' => 'Admin',
     'middleware' => ['auth', 'checkrole:admin']
 ], function () {
+    Route::resource('admin','DashboardController');
+    
+    Route::resource('banner','BannerController');
+    Route::resource('profilumkm','ProfilController');
+ 
+    Route::resource('user','UserController');
+    Route::resource('customer','CustomerController');
+    Route::post('custupdate/{id}', 'CustomerController@updateData')->name('custupdate');
+    Route::get('custdelete/{id}', 'CustomerController@deleteData')->name('custdelete');
 
     Route::resource('admin', 'DashboardController');
 
