@@ -45,11 +45,10 @@
                             </tr>
                         </thead>
                         <tbody class="list">
-                            @forelse($items as $key)
+                            @forelse($produk as $key)
                             <tr>
                                 <td>{{$key->id}}</td>
-                                <td>{{$key->product->name}}</td>
-                                <td>{{$key->material->name}}</td>
+                                <td>{{$key->name}}</td>
                                 <td>{{$key->qty}}</td>
                                 <td>{{$key->satuan}}</td>
                                 <td>

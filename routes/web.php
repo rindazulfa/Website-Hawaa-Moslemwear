@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::group([  
+Route::group([
     'namespace' => 'Admin',
     'middleware' => ['auth', 'checkrole:admin']
 ], function () {
@@ -37,37 +37,49 @@ Route::group([
     Route::post('custupdate/{id}', 'CustomerController@updateData')->name('custupdate');
     Route::get('custdelete/{id}', 'CustomerController@deleteData')->name('custdelete');
 
-    Route::resource('produk','ProductController');
-    Route::resource('stok_produk','StokProductController');
+    Route::resource('admin', 'DashboardController');
 
-    Route::resource('supplier','SupplierController');
-    Route::resource('bahan_baku','MaterialController');
-    Route::resource('resep','RecipeController');
+    Route::resource('banner', 'BannerController');
+    Route::resource('profilumkm', 'ProfilController');
 
-    Route::resource('discount','DiscountController');
+    Route::resource('user', 'UserController');
+    Route::resource('customer', 'CustomerController');
+
+    Route::resource('produk', 'ProductController');
+    Route::resource('stok_produk', 'StokProductController');
+
+    Route::resource('supplier', 'SupplierController');
+    Route::resource('bahan_baku', 'MaterialController');
+    
+
+    Route::resource('discount', 'DiscountController');
     Route::resource('discount_product', 'DiscountProductController');
-    
-  
-    
+
+    //Resep
+    Route::get('/form_resep/{id}', 'RecipeController@form')->name('form_resep');
+    Route::post('/tambah_bahan/{id}', 'RecipeController@tambah')->name('tambah_bahan');
+    Route::resource('resep', 'RecipeController');
+   
+
 
     // Transaksi Pembelian
-    Route::resource('pembelian','PurchaseController');
-    Route::resource('produksi','ProductionController');
+    Route::resource('pembelian', 'PurchaseController');
+    Route::resource('produksi', 'ProductionController');
 
     // Transaksi Penjualan
-    Route::resource('penjualan','OrderController');
+    Route::resource('penjualan', 'OrderController');
 
     // Transaksi Penjualan Custom
-    Route::resource('penjualancustom','Order_CustomController');
+    Route::resource('penjualancustom', 'Order_CustomController');
 });
 
 
 // User
-Route::group([  
+Route::group([
     'namespace' => 'User',
     'middleware' => ['auth', 'checkrole:user']
 ], function () {
-    Route::resource('dashboard','DashboardController'); 
+    Route::resource('dashboard', 'DashboardController');
 });
 
 // Auth 
@@ -86,9 +98,9 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 
 // FRONT END
-Route::resource('/','HomepageController');
-Route::resource('/about','AboutController');
-Route::resource('/shop','ShopController');
+Route::resource('/', 'HomepageController');
+Route::resource('/about', 'AboutController');
+Route::resource('/shop', 'ShopController');
 Route::get('/shop/stok', 'ShopController@checkStokBySize')->name("shop_cek");
 Route::post('/shop/detail/{id}', 'ShopController@process')->name('shop_detail');
 

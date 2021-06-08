@@ -20,8 +20,10 @@ class RecipeController extends Controller
      */
     public function index()
     {
+        $produk = Product::all();
         $items = Recipe::with(['product', 'material'])->get();
         return view('admin.pages.resep.index', [
+            'produk' => $produk,
             'items' => $items
         ]);
     }
@@ -33,12 +35,71 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        $items = Product::all();
+        // $items = Product::all();
+        // $detail = product::findOrFail($id);
+        // $resep = Recipe::where('products_id',$detail->id)->first();
         $bahan = material::all();
         return view('admin.pages.resep.create', [
-            'items' => $items,
+            // 'items' => $items,
             'bahan' => $bahan
         ]);
+    }
+
+    public function form(Request $request, $id)
+    {
+
+        $detail = product::findOrFail($id);
+        $resep = Recipe::where('products_id', $detail->id)->first();
+        $bahan = material::all();
+        return view('admin.pages.resep.create', [
+            // 'items' => $items,
+            'bahan' => $bahan,
+            'detail' => $detail
+        ]);
+    }
+
+
+    public function tambah(Request $request, $id)
+    {
+
+        $idproduk = Product::findOrFail($id);
+        $arr_produk = $idproduk['products_id'];
+
+        $data = $request->all();
+        // dd($data);
+
+        $arr_bahan = $data['materials_id'];
+        $arr_qty = $data['qty'];
+        $arr_satuan = $data['satuan'];
+
+        // $cekproduk = Product::where('id', $data['products_id'])->count();
+
+        for ($i = 0; $i < count($arr_bahan); $i++) {
+            $cekbahan = material::where('id', $arr_bahan[$i])->count();
+
+            if ($cekbahan > 0) {
+                $tambah = Recipe::where('products_id', $id)
+                    ->where('materials_id', $arr_bahan[$i])->first();
+                // dd($tambah);
+                if ($tambah) {
+                    // $tambah->products_id = $arr_produk[$i];
+                    $tambah->qty =  $arr_qty[$i] + $tambah->qty;
+                    $tambah->satuan =  $arr_satuan[$i];
+                    $tambah->save();
+                } else {
+                    $resep = new Recipe();
+                    $resep->materials_id = $arr_bahan[$i];
+                    $resep->products_id = $id;
+                    $resep->qty = $arr_qty[$i];
+                    $resep->satuan = $arr_satuan[$i];
+                    $resep->save();
+                }
+
+                // dd($tambah);
+            }
+        }
+
+        return redirect()->route('produk.index');
     }
 
     /**
@@ -49,44 +110,45 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
+
+        // $idproduk = Product::findOrFail($id);
+        // $arr_produk = $idproduk['products_id'];
+
         $data = $request->all();
         // dd($data);
-        
-        $bahan = $data['materials_id'];
+
+        $arr_bahan = $data['materials_id'];
         $arr_qty = $data['qty'];
         $arr_satuan = $data['satuan'];
 
-        $cekproduk = Product::where('id', $data['products_id'])->count();
+        // $cekproduk = Product::where('id', $data['products_id'])->count();
 
+        for ($i = 0; $i < count($arr_bahan); $i++) {
+            $cekbahan = material::where('id', $arr_bahan[$i])->count();
 
-
-        if ($cekproduk > 0) {
-            for ($i = 0; $i < count($bahan); $i++) {
-                $cekbahan = material::where('id', $bahan[$i])->count();
-
-                if ($cekbahan > 0) {
-                    $tambah = Recipe::where('products_id', $data['products_id'])
-                        ->where('materials_id', $bahan[$i])->first();
-                    if ($tambah) {
-                        $tambah->qty =  $arr_qty[$i];
-                        $tambah->satuan =  $arr_satuan[$i];
-                        $tambah->save();
-                        
-                    }
-                    else {
-                        $resep = new Recipe();
-                        $resep->materials_id = $bahan[$i];
-                        $resep->products_id = $data['products_id'];
-                        $resep->qty = $arr_qty[$i];
-                        $resep->satuan = $arr_satuan[$i];
-                        $resep->save();
-                    }
-
-                    // dd($tambah);
+            if ($cekbahan > 0) {
+                $tambah = Recipe::where('products_id', $data['products_id'])
+                    ->where('materials_id', $arr_bahan[$i])->first();
+                dd($tambah);
+                if ($tambah) {
+                    // $tambah->id = $arr_produk[$i];
+                    $tambah->qty =  $arr_qty[$i];
+                    $tambah->satuan =  $arr_satuan[$i];
+                    $tambah->save();
+                } else {
+                    $resep = new Recipe();
+                    $resep->materials_id = $arr_bahan[$i];
+                    $resep->products_id = $data['products_id'];
+                    $resep->qty = $arr_qty[$i];
+                    $resep->satuan = $arr_satuan[$i];
+                    $resep->save();
                 }
+
+                // dd($tambah);
             }
         }
-        return redirect()->route('resep.index');
+
+        return redirect()->route('produk.index');
     }
 
     /**
@@ -108,7 +170,14 @@ class RecipeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $detail = product::findOrFail($id);
+        $resep = Recipe::where('products_id', $detail->id)->first();
+        $bahan = material::all();
+        return view('admin.pages.resep.edit', [
+            // 'items' => $items,
+            'bahan' => $bahan,
+            'detail' => $detail
+        ]);
     }
 
     /**
@@ -120,7 +189,44 @@ class RecipeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $idproduk = Product::findOrFail($id);
+        $arr_produk = $idproduk['products_id'];
+
+        $data = $request->all();
+        // dd($data);
+
+        $arr_bahan = $data['materials_id'];
+        $arr_qty = $data['qty'];
+        $arr_satuan = $data['satuan'];
+
+        // $cekproduk = Product::where('id', $data['products_id'])->count();
+
+        for ($i = 0; $i < count($arr_bahan); $i++) {
+            $cekbahan = material::where('id', $arr_bahan[$i])->count();
+
+            if ($cekbahan > 0) {
+                $tambah = Recipe::where('products_id', $id)
+                    ->where('materials_id', $arr_bahan[$i])->first();
+                // dd($tambah);
+                if ($tambah) {
+                    // $tambah->products_id = $arr_produk[$i];
+                    $tambah->qty =  $arr_qty[$i];
+                    $tambah->satuan =  $arr_satuan[$i];
+                    $tambah->save();
+                } else {
+                    $resep = new Recipe();
+                    $resep->materials_id = $arr_bahan[$i];
+                    $resep->products_id = $id;
+                    $resep->qty = $arr_qty[$i];
+                    $resep->satuan = $arr_satuan[$i];
+                    $resep->save();
+                }
+
+                // dd($tambah);
+            }
+        }
+
+        return redirect()->route("produk.index")->with("info", "Recipe has been updated");
     }
 
     /**
@@ -131,6 +237,8 @@ class RecipeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Recipe::findOrFail($id);
+        $delete->delete();
+        return redirect()->route('produk.index')->with("info", "Recipe has been deleted");;
     }
 }

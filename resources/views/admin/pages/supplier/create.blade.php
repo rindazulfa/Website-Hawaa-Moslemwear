@@ -30,7 +30,7 @@
                 <form class="form" method="post" action="{{route('supplier.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
-                    @if($errors->any())
+                        @if($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach($errors->all() as $error)
@@ -57,13 +57,6 @@
                                 <input type="text" class="form-control" value="{{ old('email') }}" name="email" placeholder="Masukkan Email" />
                             </div>
                             <div class="col-lg-6 mt-4">
-                                <label>Alamat</label>
-                                <textarea class="form-control" rows="3" name="address" placeholder="Masukkan Alamat">{{ old('address') }}</textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-lg-6 mt-4">
                                 <label>Nama Bahan Baku</label>
                                 <select class="form-control" required name="materials_id">
                                     @foreach($items as $key)
@@ -71,6 +64,14 @@
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-lg-6 mt-4">
+                                <label>Alamat</label>
+                                <textarea class="form-control" rows="3" name="address" placeholder="Masukkan Alamat">{{ old('address') }}</textarea>
+                            </div>
+
                         </div>
 
                     </div>

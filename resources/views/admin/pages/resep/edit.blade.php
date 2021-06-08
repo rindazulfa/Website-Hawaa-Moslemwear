@@ -9,8 +9,8 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/bahan_baku">Data Bahan Baku</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Form Edit Bahan Baku</li>
+                            <li class="breadcrumb-item"><a href="/bahan_baku">Data Resep</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Form Resep</li>
                         </ol>
                     </nav>
                 </div>
@@ -25,11 +25,11 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Form Edit Bahan Baku</h3>
+                    <h3 class="mb-0">Form Resep Produk</h3>
                 </div>
-                <form class="form" method="post" action="{{route('bahan_baku.update', [$edit->id])}}" enctype="multipart/form-data">
-                    @method('PUT')
-                    @csrf
+                <form class="form" method="post" action="{{route('resep.update',[$detail->id])}}">
+                @method('PUT')    
+                @csrf
                     <div class="card-body">
                         @if($errors->any())
                         <div class="alert alert-danger">
@@ -40,41 +40,42 @@
                             </ul>
                         </div>
                         @endif
-                        <div class="form-group row">
-                            <div class="col-lg-6">
-                                <label>Pilih Produk</label>
-                                <select class="form-control" required name="products_id">
-                                    @foreach($items as $key)
-                                    <option value="{{ $key->id }}">{{ $key->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-lg-6">
-                                <label>Pilih Bahan Baku</label>
-                                <select class="form-control" required name="materials_id">
-                                    @foreach($items as $key)
-                                    <option value="{{ $key->id }}">{{ $key->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-lg-6">
-                                <label for="exampleTextarea">Stok</label>
-                                <input type="number" class="form-control" name="qty" value="{{$edit->qty}}" placeholder="Masukkan Jumlah Stok Bahan">
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="exampleTextarea">Satuan</label>
-                                <input type="text" class="form-control" name="satuan" value="{{$edit->satuan}}" placeholder="Masukkan Satuan">
-                            </div>
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col" class="sort" data-sort="no">ID</th>
+                                        <th>Nama Bahan</th>
+                                        <th>QTY</th>
+                                        <th>Satuan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="list">
+                                    @forelse($bahan as $key)
+                                    <tr>
+                                        <td><input type="checkbox" name="materials_id[]" value="{{$key->id}}"></td>
+                                        <td>{{$key->name}}</td>
+                                        <td><input type="number" class="form-control" name="qty[]"></td>
+                                        <td><input type="text" class="form-control" name="satuan[]"></td>
+                                    </tr>
+
+                                    @empty
+
+                                    <tr>
+                                        <td colspan="7" class="text-center">Data Kosong</td>
+                                    </tr>
+
+                                    @endforelse
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer">a
                         <div class="row">
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
-                                <button type="submit" class="btn btn-primary mr-2">Update</button>
-                                <button type="button" class="btn btn-secondary"><a href="{{route('bahan_baku.index')}}">Cancel</a></button>
+                                <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('resep.index')}}">Cancel</a></button>
                             </div>
                         </div>
                     </div>
