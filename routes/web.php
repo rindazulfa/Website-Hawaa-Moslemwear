@@ -34,6 +34,8 @@ Route::group([
  
     Route::resource('user','UserController');
     Route::resource('customer','CustomerController');
+    Route::post('custupdate/{id}', 'CustomerController@updateData')->name('custupdate');
+    Route::get('custdelete/{id}', 'CustomerController@deleteData')->name('custdelete');
 
     Route::resource('produk','ProductController');
     Route::resource('stok_produk','StokProductController');

@@ -41,6 +41,7 @@
                                 <th scope="col" class="sort" data-sort="harga_produk">Kota</th>
                                 <th scope="col" class="sort" data-sort="harga_produk">Provinsi</th>
                                 <th scope="col" class="sort" data-sort="harga_produk">Alamat</th>
+                                <th scope="col" class="sort" data-sort="stok_produk">Kode POS</th>
                                 <th scope="col" class="sort" data-sort="stok_produk">No Telepon</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col"></th>
@@ -48,27 +49,28 @@
                         </thead>
                         <tbody class="list">
                         @forelse($items as $key)
-                            @foreach ($key->customer as $item)
-                            @if ($item->status==1)
+                            {{-- @foreach ($key->customer as $item) --}}
+                            {{-- @if ($item->status==1) --}}
                             <tr>
-                                <th class="no">1.</th>
+                                {{-- <th class="no">1.</th> --}}
                                 <td class="id_produk">{{$key->id}}</td>
                                 <td class="nama_produk">{{$key->first_name}} {{$key->last_name}}</td>
                                 <td class="harga_produk">{{$key->email}}</td>
-                                <td class="stok_produk">{{$item->city}}</td>
-                                <td class="stok_produk">{{$item->province}}</td>
-                                <td class="stok_produk">{{$item->address}}</td>
-                                <td class="stok_produk">{{$item->phone}}</td>
+                                <td class="stok_produk">{{$key->city}}</td>
+                                <td class="stok_produk">{{$key->province}}</td>
+                                <td class="stok_produk">{{$key->address}}</td>
+                                <td class="stok_produk">{{$key->postal_code}}</td>
+                                <td class="stok_produk">{{$key->phone}}</td>
                                 <td>
                                     <a href="{{route('customer.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
                                     </a>
                                     <!-- <button type="button" class="btn btn-outline-primary">Update</button> -->
-                                    <button class="btn btn-outline-danger delete" data-id="{{$item->id}}">Delete</button>
+                                    {{-- <button class="btn btn-outline-danger delete" data-id="{{$key->id}}">Delete</button> --}}
                                 </td>
                             </tr>
-                            @endif
-                            @endforeach
+                            {{-- @endif --}}
+                            {{-- @endforeach --}}
                             @empty
                             <tr>
                                 <td colspan="7" class="text-center">Data Kosong</td>
@@ -109,3 +111,49 @@
     @include('admin.layouts.footer')
 </div>
 @endsection
+
+@push('custom-script')
+<script>
+    $(document).ready(function() {
+        function ajax() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        }
+        $('.delete').on('click', function() {
+            var id = $(this).data('id');
+            Swal.fire({
+                text: "Are you sure to delete this data.",
+                icon: "info",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Yes, delete!",
+                cancelButtonText: "No",
+                customClass: {
+                    confirmButton: "btn font-weight-bold btn-primary",
+                    cancelButton: "btn font-weight-bold btn-default"
+                }
+            }).then(function(result) {
+                if (result.value) {
+                    ajax();
+                    $.ajax({
+                        url: "{{url('/custdelete/')}}/" + id,
+                        method: "GET",
+                        success: function(data) {
+                            Swal.fire({
+                                icon: 'success',
+                                text: 'data has been deleted!'
+                            })
+                            setTimeout(function() {
+                                window.location.href = "{{route('customer.index')}}"
+                            }, 1500);
+                        }
+                    });
+                }
+            });
+        })
+    })
+</script>
+@endpush
