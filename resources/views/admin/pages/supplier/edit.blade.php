@@ -47,8 +47,8 @@
                                 <input type="text" class="form-control" value="{{ $page->name }}" name="name" placeholder="Masukkan Nama" />
                             </div>
                             <div class="col-lg-6 mt-4">
-                                <label>Alamat</label>
-                                <textarea class="form-control" rows="3" name="address" placeholder="Masukkan Alamat">{{ $page->address }}</textarea>
+                                <label>Telepon</label>
+                                <input type="text" class="form-control" value="{{ $page->phone }}" name="phone" placeholder="Masukkan Telepon" />
                             </div>
                         </div>
 
@@ -58,9 +58,21 @@
                                 <input type="text" class="form-control" value="{{ $page->email }}" name="email" placeholder="Masukkan Email" />
                             </div>
                             <div class="col-lg-6 mt-4">
-                                <label>Telepon</label>
-                                <input type="text" class="form-control" value="{{ $page->phone }}" name="phone" placeholder="Masukkan Telepon" />
+                                <label>Nama Bahan Baku</label>
+                                <select class="form-control" required name="materials_id">
+                                    @foreach($items as $key)
+                                    <option @if($page->materials_id==$key->id) selected @endif value="{{ $key->id }}">{{ $key->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-lg-6 mt-4">
+                                <label>Alamat</label>
+                                <textarea class="form-control" rows="3" name="address" placeholder="Masukkan Alamat">{{ $page->address }}</textarea>
+                            </div>
+
                         </div>
 
                     </div>
