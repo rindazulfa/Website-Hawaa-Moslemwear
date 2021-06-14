@@ -90,9 +90,10 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
+        $items = material::all();
         $page = supplier::findOrFail($id);
 
-        return view('admin.pages.supplier.edit', ['page' => $page]);
+        return view('admin.pages.supplier.edit', ['page' => $page, 'items' => $items]);
     }
 
     /**
@@ -107,6 +108,7 @@ class SupplierController extends Controller
         $page = supplier::findOrFail($id);
 
         $page->name = $request->get("name");
+        $page->materials_id = $request->get("materials_id");
         $page->address = $request->get("address");
         $page->email = $request->get("email");
         $page->phone = $request->get("phone");
