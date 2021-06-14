@@ -57,6 +57,7 @@ class SupplierController extends Controller
             }
             else {
                 $page = new supplier();
+                $page->materials_id = $request->get("materials_id");
                 $page->name = $request->get("name");
                 $page->address = $request->get("address");
                 $page->email = $request->get("email");
