@@ -17,7 +17,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $page = supplier::with(['materials'])->get();
+        $page = supplier::with(['material'])->get();
         return view('admin.pages.supplier.index', [
             'page' => $page
         ]);
@@ -56,7 +56,8 @@ class SupplierController extends Controller
                  
             }
             else {
-                $page = new Recipe();
+                $page = new supplier();
+                $page->materials_id = $request->get("materials_id");
                 $page->name = $request->get("name");
                 $page->address = $request->get("address");
                 $page->email = $request->get("email");
