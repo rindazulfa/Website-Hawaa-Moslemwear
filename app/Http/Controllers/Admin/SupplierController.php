@@ -56,7 +56,7 @@ class SupplierController extends Controller
                  
             }
             else {
-                $page = new Recipe();
+                $page = new supplier();
                 $page->name = $request->get("name");
                 $page->address = $request->get("address");
                 $page->email = $request->get("email");
