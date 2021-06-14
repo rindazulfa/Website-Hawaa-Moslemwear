@@ -15,12 +15,16 @@ class CreateProductionsTable extends Migration
     {
         Schema::create('productions', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->unsignedBigInteger('recipes_id');
-            $table->foreign('recipes_id')->references('id')->on('recipes')->onDelete('cascade');
+            $table->unsignedBigInteger('recipes_id')->nullable();
+            // $table->foreign('recipes_id')->references('id')->on('recipes')->onDelete('cascade');
             $table->integer("qty");
             $table->date("date");
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        Schema::table('productions', function (Blueprint $table) {
+            $table->foreign('recipes_id')->references('id')->on('recipes')->onDelete('cascade');
         });
     }
 
@@ -32,5 +36,9 @@ class CreateProductionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('productions');
+
+        Schema::table('productions', function (Blueprint $table) {
+            $table->dropForeign('productions_recipes_id_foreign');;
+        });
     }
 }
