@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Production;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 
 class ProductionController extends Controller
@@ -14,7 +16,8 @@ class ProductionController extends Controller
      */
     public function index()
     {
-        //
+        $page = Production::all();
+        return view('admin/pages/produksi/index',['page' => $page]);
     }
 
     /**
@@ -24,7 +27,11 @@ class ProductionController extends Controller
      */
     public function create()
     {
-        //
+        $items = Recipe::all();
+        return view('admin/pages/produksi/create', [
+            'items' => $items
+        ]);
+        // return view('admin/pages/produksi/create');
     }
 
     /**
