@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\supplier;
+use App\Models\material;
 use Illuminate\Http\Request;
+use DB;
 
 class PurchaseController extends Controller
 {
@@ -14,7 +17,17 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        //
+        // $pembelian = purchase::all();
+        $pembelian = DB::table('puchases')
+        ->join('materials', 'puchases.materials_id', '=', 'materials.id')
+        ->join('suppliers', 'puchases.suppliers_id', '=', 'suppliers.id')
+        ->select('puchases.*', 'materials.price', 'suppliers.name')
+        ->get();
+        // dd($pembelian);
+
+        return view('admin/pages/pembelian/index',[
+            'pembelian' => $pembelian
+        ]);
     }
 
     /**
@@ -24,7 +37,13 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        //
+        $data_supplier = supplier::select('name')->distinct()->get();
+        $data_materials = material::all();
+        // dd($data_bahan);
+        return view('admin.pages.pembelian.create',[
+            'data_supplier' => $data_supplier,
+            'data_materials' => $data_materials
+        ]);
     }
 
     /**

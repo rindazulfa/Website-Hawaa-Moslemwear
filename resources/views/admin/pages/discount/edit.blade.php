@@ -8,9 +8,9 @@
                     <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#">Data Customer</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Form Data Customer</li>
+                            <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="/diskon">Data Diskon</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Form Edit Data Diskon</li>
                         </ol>
                     </nav>
                 </div>
@@ -25,7 +25,7 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Form Customer</h3>
+                    <h3 class="mb-0">Form Edit Data Diskon</h3>
                 </div>
                 @if($errors->any())
                 <div class="alert alert-danger">
