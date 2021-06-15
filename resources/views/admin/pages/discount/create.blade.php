@@ -25,7 +25,7 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Form Banner</h3>
+                    <h3 class="mb-0">Form Promo</h3>
                 </div>
                 <form class="form" method="post" id="formDiskon"  action="{{route('discount.store')}}" enctype="multipart/form-data">
                     @csrf

@@ -15,8 +15,8 @@ class CreateRecipesTable extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->unsignedBigInteger('products_id');
-            $table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
+            $table->unsignedBigInteger('stocks_id');
+            $table->foreign('stocks_id')->references('id')->on('stocks')->onDelete('cascade');
             $table->unsignedBigInteger('materials_id');
             $table->foreign('materials_id')->references('id')->on('materials')->onDelete('cascade');
             $table->integer("qty");

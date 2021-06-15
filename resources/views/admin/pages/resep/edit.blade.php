@@ -75,7 +75,7 @@
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
                                 <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                                <button type="button" class="btn btn-secondary"><a href="{{route('resep.index')}}">Cancel</a></button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('produk.index')}}">Cancel</a></button>
                             </div>
                         </div>
                     </div>

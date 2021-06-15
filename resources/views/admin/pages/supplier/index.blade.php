@@ -52,14 +52,14 @@
                                 <td >{{$item->address}}</td>
                                 <td >{{$item->email}}</td>
                                 <td >{{$item->phone}}</td>
-                                <td >{{$item->materials->name}}</td>
+                                <td >{{$item->material->name}}</td>
                                 <td>
                                     <a href="{{route('supplier.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
                                     </a>
                                     
-                                    <button class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" title="Delete">Delete</button>
-                               
+                                    <!-- <button class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" title="Delete">Delete</button>
+                                -->
                                 </td>
                             </tr>
                             <div class="modal fade" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">

@@ -55,8 +55,8 @@
                                 <td>
                                     <a href="{{route('bahan_baku.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
-                                    </a>
-                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button>
+                                    <!-- </a>
+                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button> -->
                                 </td>
                             </tr>
                             <div class="modal fade" id="exampleModal-{{$key->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
