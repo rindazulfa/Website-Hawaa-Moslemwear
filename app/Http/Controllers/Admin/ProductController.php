@@ -22,13 +22,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //     $product = Product::with([
-        //         'stok'
-        //     ])
-        //    ->get();
-        $items = stock::with(['product'])->get();
+            $product = Product::with([
+                'stok'
+            ])
+           ->get();
+        // $items = stock::with(['product'])->get();
         return view('admin/pages/produk/index', [
-            'stoks' => $items
+            'produk' => $product
         ]);
     }
 
@@ -106,7 +106,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $detail = stock::findOrFail($id); // id stok
+        $detail = Product::findOrFail($id); // id stok
         // seluruh produk, size -> id stok
         $produk = Product::where('id', $detail->id);
         $resep = Recipe::with(['stok', 'material'])

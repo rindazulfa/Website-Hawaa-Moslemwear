@@ -17,7 +17,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $page = supplier::with(['material'])->get();
+        $page = supplier::all();
         return view('admin.pages.supplier.index', [
             'page' => $page
         ]);

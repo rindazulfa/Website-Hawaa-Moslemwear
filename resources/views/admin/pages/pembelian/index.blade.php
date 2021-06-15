@@ -35,7 +35,6 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="no">No. </th>
                                 <th scope="col" class="sort" data-sort="id_transaksi_pembelian">Id Transaksi Pembelian</th>
                                 <th scope="col" class="sort" data-sort="nama_bahan_baku">Nama Bahan Baku</th>
                                 <th scope="col" class="sort" data-sort="jumlah_beli">Jumlah Beli</th>
@@ -43,7 +42,6 @@
                                 <th scope="col" class="sort" data-sort="total_harga">Total Harga</th>
                                 <th scope="col" class="sort" data-sort="total_harga">Satuan</th>
                                 <th scope="col" class="sort" data-sort="total_harga">Tanggal Transaksi</th>
-                                <th scope="col" class="sort" data-sort="status">Status Transaksi</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
@@ -52,21 +50,20 @@
                             @forelse($pembelian as $key)
                             <tr>
                                 <td>{{$key->id}}</td>
-                                <td>{{$key->material_id}}</td>
+                                <td>{{$key->materials_id}}</td>
                                 <td>{{$key->qty}}</td>
                                 <td>{{$key->harga}}</td>
                                 <td>{{$key->total}}</td>
                                 <td>{{$key->satuan}}</td>
                                 <td>{{$key->date}}</td>
-                                <td>{{$key->status}}</td>
                                 <td>
                                     <a href="{{route('pembelian.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
                                     </a>
-                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button>
+                                    <!-- <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button> -->
                                 </td>
                             </tr>
-                            <div class="modal fade" id="exampleModal-{{$key->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                            <!-- <div class="modal fade" id="exampleModal-{{$key->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <form action="{{route('pembelian.destroy', [$key->id])}}" method="post">
                                         @csrf
@@ -90,7 +87,7 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div> -->
                             @empty
 
                             <tr>

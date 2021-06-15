@@ -43,27 +43,27 @@
                             </tr>
                         </thead>
                         <tbody class="list">
-                            @forelse($stoks as $key)
+                            @forelse($produk as $key)
                             <tr>
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <div class="avatar rounded-circle mr-3">
-                                            <img src="{{asset('/uploads/products/'.$key->product->pict_1)}}" alt="photo">
+                                            <img src="{{asset('/uploads/products/'.$key->pict_1)}}" alt="photo">
                                         </div>
                                         <div class="media-body">
-                                            <span class="name mb-0 text-sm">{{$key->product->name}}</span>
+                                            <span class="name mb-0 text-sm">{{$key->name}}</span>
                                         </div>
                                     </div>
                                 </th>
-                                <td>{{$key->size}}</td>
-                                <td> Rp {{number_format($key->product->price,2,',','.')}}</td>
-                                <td>{{$key->product->category}}</td>
+                                <td>{{$key->stok->size}}</td>
+                                <td> Rp {{number_format($key->price,2,',','.')}}</td>
+                                <td>{{$key->category}}</td>
                                 <!-- <td>{{$key->desc}}</td> -->
                                 <td>
                                     <a href="{{route('produk.show',[$key->id])}}" class="btn btn-outline-primary" title="Detail">
                                         Detail
                                     </a>
-                                    <a href="{{route('produk.edit',[$key->product->id])}}" class="btn btn-outline-primary" title="Edit">
+                                    <a href="{{route('produk.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
                                     <!-- </a>
                                     <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button> -->

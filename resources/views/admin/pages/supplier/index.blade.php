@@ -40,7 +40,7 @@
                                 <th scope="col" class="sort" data-sort="address">Alamat</th>
                                 <th scope="col" class="sort" data-sort="email">Email</th>
                                 <th scope="col" class="sort" data-sort="phone">Telepon</th>
-                                <th scope="col" class="sort" data-sort="material_name">Material</th>
+                                <!-- <th scope="col" class="sort" data-sort="material_name">Material</th> -->
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
@@ -53,7 +53,7 @@
                                 <td >{{$item->address}}</td>
                                 <td >{{$item->email}}</td>
                                 <td >{{$item->phone}}</td>
-                                <td >{{$item->material->name ?? ''}}</td>
+                                <!-- <td >{{$item->material->name ?? ''}}</td> -->
                                 <td>
                                     <a href="{{route('supplier.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update

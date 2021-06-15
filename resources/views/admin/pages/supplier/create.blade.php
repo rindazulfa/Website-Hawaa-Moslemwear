@@ -56,14 +56,14 @@
                                 <label>Email</label>
                                 <input type="text" class="form-control" value="{{ old('email') }}" name="email" placeholder="Masukkan Email" />
                             </div>
-                            <div class="col-lg-6 mt-4">
+                            <!-- <div class="col-lg-6 mt-4">
                                 <label>Material</label>
                                 <select class="form-control" required name="materials_id">
                                     @foreach($items as $key)
                                     <option value="{{ $key->id }}">{{ $key->name }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="form-group row">

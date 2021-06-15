@@ -20,13 +20,14 @@ class CreatePuchasesTable extends Migration
             $table->unsignedBigInteger('suppliers_id');
             $table->foreign('suppliers_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->date("date");
-            $table->string("keterangan");
-            $table->integer("total");
-            $table->string("status");
-            $table->integer("qty");
+            $table->integer("harga");
+            $table->double("qty");
             $table->string("satuan");
+            $table->integer("total");
+            $table->string("keterangan");
             $table->timestamps();
             $table->softDeletes();
+
         });
     }
 
