@@ -59,6 +59,7 @@
     
     <script src="{{asset('js/google-map.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
+    
 </body>
 
 </html>

@@ -81,7 +81,7 @@
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
                                 <button type="submit" class="btn btn-primary mr-2">Update</button>
-                                <button type="button" class="btn btn-secondary"><a href="{{route('supplier.index')}}">Cancel</a></button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('produksi.index')}}">Cancel</a></button>
                             </div>
                         </div>
                     </div>
