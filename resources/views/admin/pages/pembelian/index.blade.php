@@ -36,12 +36,13 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col" class="sort" data-sort="id_transaksi_pembelian">Id Transaksi Pembelian</th>
+                                <th scope="col" class="sort" data-sort="nama_supplier">Nama Supplier</th>
                                 <th scope="col" class="sort" data-sort="nama_bahan_baku">Nama Bahan Baku</th>
                                 <th scope="col" class="sort" data-sort="jumlah_beli">Jumlah Beli</th>
                                 <th scope="col" class="sort" data-sort="harga_bahan">Harga Bahan</th>
                                 <th scope="col" class="sort" data-sort="total_harga">Total Harga</th>
-                                <th scope="col" class="sort" data-sort="total_harga">Satuan</th>
-                                <th scope="col" class="sort" data-sort="total_harga">Tanggal Transaksi</th>
+                                <th scope="col" class="sort" data-sort="satuan">Satuan</th>
+                                <th scope="col" class="sort" data-sort="tanggal_transaksi">Tanggal Transaksi</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
@@ -50,7 +51,8 @@
                             @forelse($pembelian as $key)
                             <tr>
                                 <td>{{$key->id}}</td>
-                                <td>{{$key->materials_id}}</td>
+                                <td>{{$key->nama_sup}}</td>
+                                <td>{{$key->nama_bahan}}</td>
                                 <td>{{$key->qty}}</td>
                                 <td>{{$key->harga}}</td>
                                 <td>{{$key->total}}</td>

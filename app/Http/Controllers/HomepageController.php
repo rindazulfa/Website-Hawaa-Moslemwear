@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\profile;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
@@ -16,7 +17,16 @@ class HomepageController extends Controller
     {
         $banner = Banner::all()->first();
         return view('index', ['banner' => $banner]);
-       
+    }
+
+    public function indexlogin()
+    {
+        $banner = Banner::all()->first();
+        $profile = profile::all()->first();
+        return view('indexlogin', [
+            'banner' => $banner,
+            'profile' => $profile
+        ]);
     }
 
     /**

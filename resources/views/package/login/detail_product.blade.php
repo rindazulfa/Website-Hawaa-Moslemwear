@@ -21,18 +21,61 @@
 				<h3>{{$detail->name}}</h3>
 				<p class="price"><span>Rp {{number_format($detail->price,2,',','.')}}</span></p>
 				<p>{{$detail->desc}}</p>
-				<!-- <div class="flex-w flex-r-m p-b-10" id="stok">
+				<div class="flex-w flex-r-m p-b-10" id="stok">
 					<div class="size-203 flex-c-m respon6">
 						Stok
 					</div>
 					<div class="size-204 respon6-next stok" data-stok="">
-						jumlah stok
+
 					</div>
-				</div> -->
+				</div>
+				<form action="{{route('shop_detail', [$detail->id])}}" method="post" id="formDetail">
+					@csrf
+					<input type="hidden" name="products_id" class="products_id" value="{{$detail->id}}">
+					<div class="row mt-4">
+
+						<div class="col-md-6">
+							<div class="form-group d-flex">
+								<div class="select-wrap">
+									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+									<select name="size" id="size" class="form-control">
+										<!-- <option value="S">Small</option>
+	                    <option value="M">Medium</option>
+	                    <option value="L">Large</option>
+						<option value="XL">Extra Large</option>
+						<option value="XXL">Double Large</option> -->
+										<option value="0">Pilih Ukuran</option>
+										@forelse($detail->stok as $key)
+										<option value="{{ $key->size }}" data-product="{{$key->products_id}}">
+											{{ ($key->qty) > 0 ? $key->size : ''}}
+										</option>
+										@empty
+										<option value="">Tidak Tersedia</option>
+										@endforelse
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="w-100"></div>
+						<div class="input-group col-md-6 d-flex mb-3">
+							<span class="input-group-btn mr-2">
+								<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+									<i class="ion-ios-remove"></i>
+								</button>
+							</span>
+							<input type="text" id="qty" name="qty" class="form-control input-number" value="1" min="1" max="100">
+							<span class="input-group-btn ml-2">
+								<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+									<i class="ion-ios-add"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+
 					<!-- <p><a href="cart.html" id="btnShopCart" class="btn btn-primary py-3 px-5">Add to Cart</a></p> -->
-					<!-- <button type="button" id="btnShopCart" class="btncart flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+					<button type="button" id="btnShopCart" class="btncart flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 						Add to cart
-					</button> -->
+					</button>
 				</form>
 			</div>
 		</div>

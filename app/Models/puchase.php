@@ -10,7 +10,7 @@ class puchase extends Model
 {
     // use HasFactory;
     use SoftDeletes;
-    protected $table = "purchases";  
+    protected $table = "puchases";  
     protected $fillable = [
         'materials_id','suppliers_id','date','keterangan', 'total','harga'
         ,'qty', 'satuan'

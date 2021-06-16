@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\detail_order;
 use App\Models\Product;
+use App\Models\profile;
 use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -26,6 +27,19 @@ class ShopController extends Controller
             ->get();
         return view('package.product', [
             'shop' => $product
+        ]);
+    }
+
+    public function indexlogin()
+    {
+        $product = Product::with([
+            'stok'
+        ])
+            ->get();
+        $profile = profile::all()->first();
+        return view('package.login.product', [
+            'shop' => $product,
+            'profile' => $profile
         ]);
     }
 
