@@ -18,10 +18,7 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $bahan = material::with([
-            'supplier'
-        ])
-       ->get();
+        $bahan = material::all();
         return view('admin/pages/bahan_baku/index', [
             'items' => $bahan
         ]);

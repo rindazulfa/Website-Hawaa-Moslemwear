@@ -8,8 +8,7 @@
                     <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                            <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Daftar Transaksi Penjualan</li>
                         </ol>
                     </nav>
@@ -50,114 +49,6 @@
                             </tr>
                         </thead>
                         <tbody class="list">
-                            <tr>
-                                <th class="no">1.</th>
-                                <td class="id_transaksi_penjualan">TJ001</td>
-                                <td class="tanggal_transaksi">Kain</td>
-                                <th class="nama_produk">Gamis</th>
-                                <td class="jumlah_jual">1 Set</td>
-                                <td class="size_jual">L</td>
-                                <td class="harga_produk">Rp. 200.000</td>
-                                <td class="shipping">JNE</td>
-                                <td class="ongkir">Rp. 50.000</td>
-                                <td class="keterangan">Rumah Cat Hijau</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
-                                <td class="status">
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-info"></i>
-                                        <span class="status">Menunggu Konfirmasi</span>
-                                    </span>
-                                </td>
-                                <td class="bukti_pembayaran">
-                                    <a href="#">Bukti_Transfer_TJ001.jpg</a>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="no">1.</th>
-                                <td class="id_transaksi_penjualan">TJ001</td>
-                                <td class="tanggal_transaksi">Kain</td>
-                                <th class="nama_produk">Gamis</th>
-                                <td class="jumlah_jual">1 Set</td>
-                                <td class="size_jual">L</td>
-                                <td class="harga_produk">Rp. 200.000</td>
-                                <td class="shipping">JNE</td>
-                                <td class="ongkir">Rp. 50.000</td>
-                                <td class="keterangan">Rumah Cat Hijau</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
-                                <td class="status">
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-info"></i>
-                                        <span class="status">Menunggu Konfirmasi</span>
-                                    </span>
-                                </td>
-                                <td class="bukti_pembayaran">
-                                    <a href="#">Bukti_Transfer_TJ001.jpg</a>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="no">1.</th>
-                                <td class="id_transaksi_penjualan">TJ001</td>
-                                <td class="tanggal_transaksi">Kain</td>
-                                <th class="nama_produk">Gamis</th>
-                                <td class="jumlah_jual">1 Set</td>
-                                <td class="size_jual">L</td>
-                                <td class="harga_produk">Rp. 200.000</td>
-                                <td class="shipping">JNE</td>
-                                <td class="ongkir">Rp. 50.000</td>
-                                <td class="keterangan">Rumah Cat Hijau</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
-                                <td class="status">
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-info"></i>
-                                        <span class="status">Menunggu Konfirmasi</span>
-                                    </span>
-                                </td>
-                                <td class="bukti_pembayaran">
-                                    <a href="#">Bukti_Transfer_TJ001.jpg</a>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="no">1.</th>
-                                <td class="id_transaksi_penjualan">TJ001</td>
-                                <td class="tanggal_transaksi">Kain</td>
-                                <th class="nama_produk">Gamis</th>
-                                <td class="jumlah_jual">1 Set</td>
-                                <td class="size_jual">L</td>
-                                <td class="harga_produk">Rp. 200.000</td>
-                                <td class="shipping">JNE</td>
-                                <td class="ongkir">Rp. 50.000</td>
-                                <td class="keterangan">Rumah Cat Hijau</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
-                                <td class="status">
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-info"></i>
-                                        <span class="status">Menunggu Konfirmasi</span>
-                                    </span>
-                                </td>
-                                <td class="bukti_pembayaran">
-                                    <a href="#">Bukti_Transfer_TJ001.jpg</a>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
                             <tr>
                                 <th class="no">1.</th>
                                 <td class="id_transaksi_penjualan">TJ001</td>

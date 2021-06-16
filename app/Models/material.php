@@ -18,10 +18,10 @@ class material extends Model
     protected $hidden = [];
 
 
-    public function supplier()
-    {
-        return $this->hasMany(supplier::class, 'materials_id', 'id');
-    }
+    // public function supplier()
+    // {
+    //     return $this->hasMany(supplier::class, 'materials_id', 'id');
+    // }
 
     public function resep()
     {

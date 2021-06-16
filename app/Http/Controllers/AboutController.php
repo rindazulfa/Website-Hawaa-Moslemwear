@@ -18,6 +18,12 @@ class AboutController extends Controller
         return view('package/about_us', ['profile' => $profile]);
     }
 
+    public function indexlogin()
+    {
+        $profile = profile::all()->first();
+        return view('package/login/about_us', ['profile' => $profile]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

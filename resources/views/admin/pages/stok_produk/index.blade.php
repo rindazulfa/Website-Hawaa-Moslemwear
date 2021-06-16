@@ -59,10 +59,13 @@
                                 <td>{{$key->qty}}</td>
                                 <td>{{$key->satuan}}</td>
                                 <td class="aksi">
+                                    <a href="{{route('stok_produk.show',[$key->id])}}" class="btn btn-outline-primary" title="Detail">
+                                        Detail
+                                    </a>
                                     <a href="{{route('stok_produk.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
-                                    </a>
-                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button>
+                                        <!-- </a>
+                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button> -->
 
                                 </td>
                             </tr>

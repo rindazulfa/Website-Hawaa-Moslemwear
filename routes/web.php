@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PromoController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,13 +30,13 @@ Route::group([
     'namespace' => 'Admin',
     'middleware' => ['auth', 'checkrole:admin']
 ], function () {
-    Route::resource('admin','DashboardController');
-    
-    Route::resource('banner','BannerController');
-    Route::resource('profilumkm','ProfilController');
- 
-    Route::resource('user','UserController');
-    Route::resource('customer','CustomerController');
+    Route::resource('admin', 'DashboardController');
+
+    Route::resource('banner', 'BannerController');
+    Route::resource('profilumkm', 'ProfilController');
+
+    Route::resource('user', 'UserController');
+    Route::resource('customer', 'CustomerController');
     Route::post('custupdate/{id}', 'CustomerController@updateData')->name('custupdate');
     Route::get('custdelete/{id}', 'CustomerController@deleteData')->name('custdelete');
 
@@ -50,7 +53,6 @@ Route::group([
 
     Route::resource('supplier', 'SupplierController');
     Route::resource('bahan_baku', 'MaterialController');
-    
 
     Route::resource('discount', 'DiscountController');
     Route::resource('discount_product', 'DiscountProductController');
@@ -59,8 +61,6 @@ Route::group([
     Route::get('/form_resep/{id}', 'RecipeController@form')->name('form_resep');
     Route::post('/tambah_bahan/{id}', 'RecipeController@tambah')->name('tambah_bahan');
     Route::resource('resep', 'RecipeController');
-   
-
 
     // Transaksi Pembelian
     Route::resource('pembelian', 'PurchaseController');
@@ -77,9 +77,12 @@ Route::group([
 // User
 Route::group([
     'namespace' => 'User',
-    'middleware' => ['auth', 'checkrole:user']
+    'middleware' => ['auth', 'checkrole:user,admin']
 ], function () {
     Route::resource('dashboard', 'DashboardController');
+    Route::get('/home', [HomepageController::class, 'indexlogin'])->name('home');
+    Route::get('/home/about', [AboutController::class, 'indexlogin'])->name('aboutlogin');
+    Route::get('/home/shop', [ShopController::class, 'indexlogin'])->name('shoplogin');
 });
 
 // Auth 
@@ -97,13 +100,13 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 
 
-// FRONT END
+// FRONT END (Belum Login)
 Route::resource('/', 'HomepageController');
 Route::resource('/about', 'AboutController');
 Route::resource('/shop', 'ShopController');
-Route::get('/shop/stok', 'ShopController@checkStokBySize')->name("shop_cek");
 Route::post('/shop/detail/{id}', 'ShopController@process')->name('shop_detail');
 
+// Route::get('/shop/stok', 'ShopController@checkStokBySize')->name("shop_cek");
 // Route::resource('/detailproduct','DetailProductController');
 // Route::resource('/confirmpayment','Confirm_PaymentController');
 // Route::resource('/cart','CartController');

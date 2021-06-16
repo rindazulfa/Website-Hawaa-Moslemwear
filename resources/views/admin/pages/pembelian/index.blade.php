@@ -15,7 +15,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="{{route('datatranspembelian.create')}}" class="btn btn-sm btn-neutral">Tambah Pembelian</a>
+                    <a href="{{route('pembelian.create')}}" class="btn btn-sm btn-neutral">Tambah Pembelian</a>
                 </div>
             </div>
         </div>
@@ -35,108 +35,68 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="no">No. </th>
                                 <th scope="col" class="sort" data-sort="id_transaksi_pembelian">Id Transaksi Pembelian</th>
+                                <th scope="col" class="sort" data-sort="nama_supplier">Nama Supplier</th>
                                 <th scope="col" class="sort" data-sort="nama_bahan_baku">Nama Bahan Baku</th>
                                 <th scope="col" class="sort" data-sort="jumlah_beli">Jumlah Beli</th>
                                 <th scope="col" class="sort" data-sort="harga_bahan">Harga Bahan</th>
                                 <th scope="col" class="sort" data-sort="total_harga">Total Harga</th>
-                                <th scope="col" class="sort" data-sort="status">status Transaksi</th>
+                                <th scope="col" class="sort" data-sort="satuan">Satuan</th>
+                                <th scope="col" class="sort" data-sort="tanggal_transaksi">Tanggal Transaksi</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody class="list">
+                            @forelse($pembelian as $key)
                             <tr>
-                                <th class="no">1.</th>
-                                <td class="id_transaksi_pembelian">TB001</td>
-                                <td class="nama_bahan_baku">Kain</td>
-                                <td class="jumlah_beli">10 Meter</td>
-                                <td class="harga_bahan">Rp. 100.000</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
+                                <td>{{$key->id}}</td>
+                                <td>{{$key->nama_sup}}</td>
+                                <td>{{$key->nama_bahan}}</td>
+                                <td>{{$key->qty}}</td>
+                                <td>{{$key->harga}}</td>
+                                <td>{{$key->total}}</td>
+                                <td>{{$key->satuan}}</td>
+                                <td>{{$key->date}}</td>
                                 <td>
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-success"></i>
-                                        <span class="status">success</span>
-                                    </span>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Cetak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                    <a href="{{route('pembelian.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
+                                        Update
+                                    </a>
+                                    <!-- <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button> -->
                                 </td>
                             </tr>
+                            <!-- <div class="modal fade" id="exampleModal-{{$key->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <form action="{{route('pembelian.destroy', [$key->id])}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <div class="modal-content">
+                                            <div class="modal-header py-5">
+                                                <h2 class="modal-title" id="exampleModalLabel"> Hapus Bahan Baku</h2>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <i aria-hidden="true" class="ki ki-close"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h3>
+                                                    Yakin menghapus data {{ $key->id}} ?
+                                                </h3>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-danger font-weight-bold text-uppercase">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div> -->
+                            @empty
+
                             <tr>
-                                <th class="no">2.</th>
-                                <td class="id_transaksi_pembelian">TB002</td>
-                                <td class="nama_bahan_baku">Benang</td>
-                                <td class="jumlah_beli">10 Meter</td>
-                                <td class="harga_bahan">Rp. 100.000</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
-                                <td>
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-warning"></i>
-                                        <span class="status">pending</span>
-                                    </span>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Cetak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
+                                <td colspan="7" class="text-center">Data Kosong</td>
                             </tr>
-                            <tr>
-                                <th class="no">3.</th>
-                                <td class="id_transaksi_pembelian">TB003</td>
-                                <td class="nama_bahan_baku">Pewarna</td>
-                                <td class="jumlah_beli">10 Liter</td>
-                                <td class="harga_bahan">Rp. 100.000</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
-                                <td>
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-warning"></i>
-                                        <span class="status">Cancel</span>
-                                    </span>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Cetak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="no">4.</th>
-                                <td class="id_transaksi_pembelian">TB004</td>
-                                <td class="nama_bahan_baku">Kain</td>
-                                <td class="jumlah_beli">10 Meter</td>
-                                <td class="harga_bahan">Rp. 100.000</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
-                                <td>
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-success"></i>
-                                        <span class="status">success</span>
-                                    </span>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Cetak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="no">5.</th>
-                                <td class="id_transaksi_pembelian">TB005</td>
-                                <td class="nama_bahan_baku">Kain</td>
-                                <td class="jumlah_beli">10 Meter</td>
-                                <td class="harga_bahan">Rp. 100.000</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
-                                <td>
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-success"></i>
-                                        <span class="status">success</span>
-                                    </span>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Cetak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
+
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

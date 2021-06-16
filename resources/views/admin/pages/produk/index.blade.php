@@ -36,14 +36,14 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>Pict</th>
+                                <th>Size</th>
                                 <th>Price</th>
                                 <th>Category</th>
-                                <!-- <th>Desc</th> -->
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="list">
-                            @forelse($products as $key)
+                            @forelse($produk as $key)
                             <tr>
                                 <th scope="row">
                                     <div class="media align-items-center">
@@ -55,6 +55,7 @@
                                         </div>
                                     </div>
                                 </th>
+                                <td>{{$key->stok->size}}</td>
                                 <td> Rp {{number_format($key->price,2,',','.')}}</td>
                                 <td>{{$key->category}}</td>
                                 <!-- <td>{{$key->desc}}</td> -->
@@ -64,13 +65,13 @@
                                     </a>
                                     <a href="{{route('produk.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
-                                    </a>
-                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button>
+                                    <!-- </a>
+                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button> -->
                                 </td>
                             </tr>
-                            <div class="modal fade" id="exampleModal-{{$key->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal-{{$key->product->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
-                                    <form action="{{route('produk.destroy', [$key->id])}}" method="post">
+                                    <form action="{{route('produk.destroy', [$key->product->id])}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <div class="modal-content">
@@ -82,7 +83,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <h3>
-                                                    Yakin menghapus data {{ $key->name}} ?
+                                                    Yakin menghapus data {{ $key->product->name}} ?
                                                 </h3>
                                             </div>
                                             <div class="modal-footer">

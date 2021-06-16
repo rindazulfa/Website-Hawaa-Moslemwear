@@ -12,18 +12,20 @@ class Recipe extends Model
     use SoftDeletes;
     protected $table = "recipes";  
     protected $fillable = [
-        'products_id','materials_id','qty','satuan'
+        'stocks_id','materials_id','qty','satuan'
     ];
 
     protected $hidden =[
 
     ];
 
-    public function product(){
-        return $this->belongsTo(Product::class, 'products_id', 'id');
+    public function stok(){
+        return $this->belongsTo(stock::class, 'stocks_id', 'id');
     }
 
     public function material(){
         return $this->belongsTo(material::class, 'materials_id', 'id');
     }
+    
+
 }

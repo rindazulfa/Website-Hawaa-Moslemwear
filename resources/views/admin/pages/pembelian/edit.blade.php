@@ -1,13 +1,5 @@
 @extends('admin.layouts.app')
 @section('content')
-<!-- <script type="text/javascript">
-    window.onload = function() {
-        $("#cbnamabahan").change(function() {
-            var ambilharga = $("#data_materials-" + this.value).data('harga');
-            $("#harga").val(ambilharga);
-        });
-    }
-</script> -->
 <div class="header bg-primary pb-6">
     <div class="container-fluid">
         <div class="header-body">
@@ -35,9 +27,20 @@
                 <div class="card-header border-0">
                     <h3 class="mb-0">Form Pembelian</h3>
                 </div>
-                <form class="form" method="post" action="{{route('pembelian.store')}}" enctype="multipart/form-data">
+                @foreach($data_pembelian as $DP)
+                <form class="form" method="post" action="{{route('pembelian.update', [$DP->id])}}" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                     <div class="card-body">
+                        @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>Tanggal</label>
@@ -45,10 +48,14 @@
                             </div>
                             <div class="col-lg-6">
                                 <label>Nama Bahan</label>
-                                <select class="form-control" name="cbnamabahan" id="cbnamabahan">
-                                    <option value="" selected>Pilih Bahan</option>
+                                <select class="form-control" name="cbnamabahan" id="cbnamabahan" readonly>
+                                    <option value="">Pilih Bahan</option>
                                     @foreach($data_materials as $DM)
+                                    @if($DM->id == $DP->materials_id)
+                                    <option value="{{ $DM->id }}" data-harga="{{ $DM->price }}" selected>{{ $DM->name }}</option>
+                                    @else
                                     <option value="{{ $DM->id }}" data-harga="{{ $DM->price }}">{{ $DM->name }}</option>
+                                    @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -56,36 +63,41 @@
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>Harga Bahan</label>
-                                <input type="number" class="form-control" name="harga" id="harga" onkeyup="totalharga();" />
+                                <input type="number" class="form-control" name="harga" id="harga" value="{{ $DP->harga }}" onkeyup="totalharga();" readonly />
                             </div>
                             <div class="col-lg-6">
                                 <label>QTY Beli</label>
-                                <input type="number" class="form-control" name="jumlah" id="jumlah" onkeyup="totalharga();" />
+                                <input type="number" class="form-control" name="jumlah" id="jumlah" value="{{ $DP->qty }}" onkeyup="totalharga();" readonly />
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>Total Beli</label>
-                                <input type="text" class="form-control" name="total" id="total" onkeyup="totalharga();" readonly />
+                                <input type="text" class="form-control" name="total" id="total" onkeyup="totalharga();" value="{{ $DP->total }}" readonly />
                             </div>
                             <div class="col-lg-6">
                                 <label>Nama Supplier</label>
-                                <select class="form-control" name="cbnamasup" id="cbnamasup">
-                                    <option value="" selected>Pilih Supplier</option>
-                                    @foreach($data_supplier as $DS)
-                                    <option value="{{ $DS->id }}">{{ $DS->name }}</option>
+                                <input type="text" class="form-control" name="namasup" id="namasup" value="{{ $data_suppliers[0]->name }}" readonly />
+                                <!-- <select class="form-control" name="cbnamasup" id="cbnamasup">
+                                    <option value="">Pilih Supplier</option>
+                                    @foreach($data_suppliers as $DS)
+                                    @if($DS->id == $DP->suppliers_id)
+                                    <option value="{{ $DP->id }}" selected>{{ $DS->name }}</option>
+                                    @else
+                                    <option value="{{ $DP->id }}">{{ $DS->name }}</option>
+                                    @endif
                                     @endforeach
-                                </select>
+                                </select> -->
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>Keterangan Beli</label>
-                                <input type="text" class="form-control" name="keterangan" />
+                                <input type="text" class="form-control" name="keterangan" value="{{ $DP->keterangan }}" />
                             </div>
                             <div class="col-lg-6">
                                 <label>Satuan Beli</label>
-                                <input type="text" class="form-control" name="satuan"/>
+                                <input type="text" class="form-control" name="satuan" value="{{ $DP->satuan }}" readonly />
                             </div>
                         </div>
                     </div>
@@ -93,12 +105,13 @@
                         <div class="row">
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-primary mr-2">Update</button>
                                 <button type="button" class="btn btn-secondary"><a href="{{route('pembelian.index')}}">Cancel</a></button>
                             </div>
                         </div>
                     </div>
                 </form>
+                @endforeach
             </div>
             <script>
                 function totalharga() {

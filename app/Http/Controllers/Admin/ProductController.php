@@ -8,6 +8,7 @@ use App\Models\Discount_Product;
 use App\Models\Product;
 use App\Models\Recipe;
 use App\Models\stock;
+use App\Stok;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
@@ -21,12 +22,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::with([
-            'stok'
-        ])
-       ->get();
+            $product = Product::with([
+                'stok'
+            ])
+           ->get();
+        // $items = stock::with(['product'])->get();
         return view('admin/pages/produk/index', [
-            'products' => $product
+            'produk' => $product
         ]);
     }
 
@@ -81,7 +83,7 @@ class ProductController extends Controller
             } catch (\Throwable $th) {
                 dd($th);
             }
-            
+
             $product = new Product();
             $product->name = $request->get('name');
             $product->price = $request->get('price');
@@ -91,7 +93,6 @@ class ProductController extends Controller
             $product->pict_2 = $namaFile2;
             $product->pict_3 = $namaFile3;
             $product->save();
-
         }
 
         return redirect()->route("stok_produk.create")->with("info", "Product has been created");
@@ -105,17 +106,18 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $detail = product::findOrFail($id);
-        $stok = stock::where('products_id',$detail->id)->first();
-        $resep = Recipe::with(['product', 'material'])
-        ->where('products_id',$detail->id)->get();
-
+        $detail = Product::findOrFail($id); // id stok
+        // seluruh produk, size -> id stok
+        $produk = Product::where('id', $detail->id);
+        $resep = Recipe::with(['stok', 'material'])
+            ->where('stocks_id', $detail->id)->get();
+// dd($resep);
         // dd($detail);
         // $stok = stock::find($detail->products_id);
         return view('admin.pages.produk.detail', [
             'detail' => $detail,
-            'stok' =>$stok,
-            'resep'=>$resep
+            'produk' => $produk,
+            'resep' => $resep
         ]);
     }
 
@@ -128,7 +130,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $edit = product::findOrFail($id);
-        
+
         return view('admin.pages.produk.edit', [
             'edit' => $edit
         ]);
@@ -143,7 +145,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $product = product::findOrFail($id);
         $product->name = $request->get('name');
         $product->price = $request->get('price');
@@ -210,7 +212,7 @@ class ProductController extends Controller
         }
 
 
-        return redirect()->route("produk.index")->with("info","Product has been updated");
+        return redirect()->route("produk.index")->with("info", "Product has been updated");
     }
 
     /**
@@ -222,20 +224,20 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //cek relasi
-        $cekStok = stock::where('products_id',$id)->first();
+        $cekStok = stock::where('products_id', $id)->first();
         $cekDcProduct = Discount_Product::where('products_id', $id)->first();
         $cekDtOrder = detail_order::where('products_id', $id)->first();
-        if($cekStok){
-            return redirect()->route('produk.index')->with("info","Sorry, cant delete this product");
+        if ($cekStok) {
+            return redirect()->route('produk.index')->with("info", "Sorry, cant delete this product");
         }
-        if($cekDcProduct){
-            return redirect()->route('produk.index')->with("info","Sorry, cant delete this product");
+        if ($cekDcProduct) {
+            return redirect()->route('produk.index')->with("info", "Sorry, cant delete this product");
         }
-        if($cekDtOrder){
-            return redirect()->route('produk.index')->with("info","Sorry, cant delete this product");
+        if ($cekDtOrder) {
+            return redirect()->route('produk.index')->with("info", "Sorry, cant delete this product");
         }
 
-        if(!$cekStok && !$cekDcProduct && !$cekDtOrder ){
+        if (!$cekStok && !$cekDcProduct && !$cekDtOrder) {
 
             $delete = Product::findOrFail($id);
             $namaFileLama1 = "uploads/products/" . $delete->pict_1;
@@ -245,14 +247,13 @@ class ProductController extends Controller
             $namaFileLama3 = "uploads/products/" . $delete->pict_3;
             File::delete($namaFileLama3);
             $delete->delete();
-            return redirect()->route('produk.index')->with("info","Product has been deleted");;
+            return redirect()->route('produk.index')->with("info", "Product has been deleted");;
         }
-
     }
 
     // public function export_excel()
-	// {
-	// 	return Excel::download(new ProductExport(), 'product.xlsx');
+    // {
+    // 	return Excel::download(new ProductExport(), 'product.xlsx');
     // }
 
     // public function cetak_pdf()
