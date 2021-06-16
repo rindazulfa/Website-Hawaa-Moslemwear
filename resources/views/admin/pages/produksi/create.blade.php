@@ -45,14 +45,8 @@
                                 <input type="number" class="form-control" name="qty" value="{{ old('qty') }}" placeholder="Masukkan Jumlah Produksi">
                             </div>
                             <div class="col-lg-6">
-                                <script>$('.datepicker').datepicker()</script>
                                 <label>Tanggal</label>
-                                <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" class="form-control datepicker">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-th"></span>
-                                    </div>
-                                </div>
+                                <input type="text" class="form-control datetimepicker" name="date">
                             </div>
                         </div>
 
