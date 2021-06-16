@@ -24,9 +24,10 @@
         <div class="col">
             <div class="card">
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Resep Produk</h3>
+                    <h3 class="mb-0">Resep Produk per Jenis</h3>
+                    
                     <div class="float-right">
-                        <a href="{{route('form_resep',[$produk->id])}}" class="btn btn-primary">Tambah Bahan</a>
+                        <a href="{{route('form_resep',[$id])}}" class="btn btn-primary">Tambah Bahan</a>
                         <a href="/produk" class="btn btn-neutral">Kembali</a>
                     </div>
                 </div>
@@ -37,6 +38,7 @@
                                 <tr>
                                     <th scope="col" class="sort" data-sort="no">ID</th>
                                     <th>Nama Produk</th>
+                                    <th>Size</th>
                                     <th>Nama Bahan</th>
                                     <th>QTY</th>
                                     <th>Satuan</th>
@@ -48,6 +50,8 @@
                                 @forelse($resep as $key)
                                 <tr>
                                     <td>{{$key->id}}</td>
+                                    <td>{{$key->stok->products_id}}</td>
+                                    <td>{{$key->stok->size}}</td>
                                     <td>{{$key->material->name}}</td>
                                     <td>{{$key->qty}}</td>
                                     <td>{{$key->satuan}}</td>

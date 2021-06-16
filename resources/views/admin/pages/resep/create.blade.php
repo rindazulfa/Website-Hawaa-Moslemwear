@@ -69,7 +69,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer">a
+                    <div class="card-footer">
                         <div class="row">
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">

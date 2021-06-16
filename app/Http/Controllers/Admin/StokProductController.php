@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Recipe;
 use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -86,9 +87,22 @@ class StokProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //data resep
     public function show($id)
     {
-        //
+        $detail = stock::findOrFail($id); //id stok
+    //    $product = Product::all()->where('products_id', $detail->products_id)->get();
+ 
+    $resep = Recipe::with(['stok', 'material'])
+            ->where('stocks_id', $detail->id)->get();
+// dd($resep); 
+        // $stok = stock::find($detail->products_id);
+        return view('admin.pages.stok_produk.detail', [
+            'resep' => $resep,
+            'stok' => $detail,
+            'id' => $id,
+            // 'produk', $product
+        ]);
     }
 
     /**

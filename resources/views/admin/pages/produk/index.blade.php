@@ -36,7 +36,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>Pict</th>
-                                <th>Size</th>
+                                <!-- <th>Size</th> -->
                                 <th>Price</th>
                                 <th>Category</th>
                                 <th>Actions</th>
@@ -55,7 +55,7 @@
                                         </div>
                                     </div>
                                 </th>
-                                <td>{{$key->stok->size}}</td>
+                              
                                 <td> Rp {{number_format($key->price,2,',','.')}}</td>
                                 <td>{{$key->category}}</td>
                                 <!-- <td>{{$key->desc}}</td> -->
@@ -69,9 +69,9 @@
                                     <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button> -->
                                 </td>
                             </tr>
-                            <div class="modal fade" id="exampleModal-{{$key->product->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal-{{$key->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
-                                    <form action="{{route('produk.destroy', [$key->product->id])}}" method="post">
+                                    <form action="{{route('produk.destroy', [$key->id])}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <div class="modal-content">
@@ -83,7 +83,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <h3>
-                                                    Yakin menghapus data {{ $key->product->name}} ?
+                                                    Yakin menghapus data {{ $key->name}} ?
                                                 </h3>
                                             </div>
                                             <div class="modal-footer">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\material;
 use App\Models\Product;
 use App\Models\Recipe;
+use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,9 +21,9 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $produk = Product::all();
-        $items = Recipe::with(['product', 'material'])->get();
-        return view('admin.pages.resep.index', [
+        $produk = stock::all();
+        $items = Recipe::with(['stok', 'material'])->get();
+        return view('admin.pages.stok_produk.detail', [
             'produk' => $produk,
             'items' => $items
         ]);
@@ -44,12 +45,12 @@ class RecipeController extends Controller
             'bahan' => $bahan
         ]);
     }
-
+//TAMBAH RESEP
     public function form(Request $request, $id)
     {
 
-        $detail = product::findOrFail($id);
-        $resep = Recipe::where('products_id', $detail->id)->first();
+        $detail = stock::findOrFail($id);
+        $resep = Recipe::where('stocks_id', $detail->id)->first();
         $bahan = material::all();
         return view('admin.pages.resep.create', [
             // 'items' => $items,
@@ -58,12 +59,12 @@ class RecipeController extends Controller
         ]);
     }
 
-
+//TAMBAH NK DB NE
     public function tambah(Request $request, $id)
     {
 
-        $idproduk = Product::findOrFail($id);
-        $arr_produk = $idproduk['products_id'];
+        $idproduk = stock::findOrFail($id);
+        $arr_produk = $idproduk['stocks_id'];
 
         $data = $request->all();
         // dd($data);
@@ -78,7 +79,7 @@ class RecipeController extends Controller
             $cekbahan = material::where('id', $arr_bahan[$i])->count();
 
             if ($cekbahan > 0) {
-                $tambah = Recipe::where('products_id', $id)
+                $tambah = Recipe::where('stocks_id', $id)
                     ->where('materials_id', $arr_bahan[$i])->first();
                 // dd($tambah);
                 if ($tambah) {
@@ -89,7 +90,7 @@ class RecipeController extends Controller
                 } else {
                     $resep = new Recipe();
                     $resep->materials_id = $arr_bahan[$i];
-                    $resep->products_id = $id;
+                    $resep->stocks_id = $id;
                     $resep->qty = $arr_qty[$i];
                     $resep->satuan = $arr_satuan[$i];
                     $resep->save();
@@ -99,7 +100,7 @@ class RecipeController extends Controller
             }
         }
 
-        return redirect()->route('produk.index');
+        return redirect()->route('.index');
     }
 
     /**

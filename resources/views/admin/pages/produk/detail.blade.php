@@ -30,33 +30,33 @@
                 <div class="card-body">
                     <div class="form-group row">
                         <div class="col-lg-3">
-                            <img src="{{asset('/uploads/products/'.$produk->pict_1)}}" width="50%" class="rounded float-left" alt="...">
+                            <img src="{{asset('/uploads/products/'.$detail->pict_1)}}" width="50%" class="rounded float-left" alt="...">
                         </div>
                         <div class="col-lg-3">
-                            <img src="{{asset('/uploads/products/'.$produk->pict_2)}}" width="50%" class="rounded float-left" alt="...">
+                            <img src="{{asset('/uploads/products/'.$detail->pict_2)}}" width="50%" class="rounded float-left" alt="...">
                         </div>
                         <div class="col-lg-3">
-                            <img src="{{asset('/uploads/products/'.$produk->pict_3)}}" width="50%" class="rounded float-left" alt="...">
+                            <img src="{{asset('/uploads/products/'.$detail->pict_3)}}" width="50%" class="rounded float-left" alt="...">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Nama Produk</label>
-                            <h4 class="card-title">{{$produk->name}}</h4>
+                            <h4 class="card-title">{{$detail->name}}</h4>
                         </div>
                         <div class="col-lg-6">
                             <label for="">Size</label>
-                            <h4 class="card-title">{{ $produk->size }} </h4>
+                            <h4 class="card-title">{{ $detail->size }} </h4>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Kategori</label>
-                            <h4 class="card-title">{{$produk->category}}</h4>
+                            <h4 class="card-title">{{$detail->category}}</h4>
                         </div>
                         <div class="col-lg-6">
                             <label for="">Deskripsi</label>
-                            <p class="card-text">{{$produk->desc}}</p>
+                            <p class="card-text">{{$detail->desc}}</p>
                         </div>
                     </div>
                     <!-- <a href="/produk" class="btn btn-primary">Kembali</a> -->

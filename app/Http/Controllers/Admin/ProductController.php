@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\detail_order;
 use App\Models\Discount_Product;
-use App\Models\Product;
+use App\Models\product;
 use App\Models\Recipe;
 use App\Models\stock;
 use App\Stok;
@@ -22,13 +22,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-            $product = Product::with([
-                'stok'
-            ])
-           ->get();
+        $items = product::with(['stok'])->get();
+        //    dd($product);
         // $items = stock::with(['product'])->get();
         return view('admin/pages/produk/index', [
-            'produk' => $product
+            'produk' => $items
         ]);
     }
 
@@ -106,17 +104,15 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $detail = Product::findOrFail($id); // id stok
-        // seluruh produk, size -> id stok
-        $produk = Product::where('id', $detail->id);
+        $detail = Product::findOrFail($id); 
+        // $produk = Product::where('id', $detail->id);
         $resep = Recipe::with(['stok', 'material'])
             ->where('stocks_id', $detail->id)->get();
-// dd($resep);
-        // dd($detail);
+
         // $stok = stock::find($detail->products_id);
         return view('admin.pages.produk.detail', [
             'detail' => $detail,
-            'produk' => $produk,
+            // 'produk' => $produk,
             'resep' => $resep
         ]);
     }
