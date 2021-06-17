@@ -27,4 +27,9 @@ class material extends Model
     {
         return $this->hasMany(Recipe::class, 'materials_id', 'id');
     }
+
+    public function produksi()
+    {
+        return $this->hasMany(Production::class, 'productions_id', 'id');
+    }
 }

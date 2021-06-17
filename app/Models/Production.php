@@ -12,8 +12,17 @@ class Production extends Model
     use SoftDeletes;
     protected $table = "productions";
     protected $fillable = [
-         'recipes_id','id_products', 'qty', 'date'
+         'recipes_id','stocks_id', 'qty', 'date'
     ];
 
     protected $hidden = [];
+    
+    public function resep(){
+        return $this->belongsTo(Recipe::class, 'recipes_id', 'id');
+    }
+
+    public function stok(){
+        return $this->belongsTo(stock::class, 'stocks_id', 'id');
+    }
+    
 }

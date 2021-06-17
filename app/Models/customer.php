@@ -28,4 +28,10 @@ class customer extends Model
     {
         return $this->belongsTo("App\User");
     }
+
+    public function ordercustom()
+    {
+        return $this->hasMany('App\order','customers_id');
+    }
+
 }

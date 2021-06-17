@@ -13,9 +13,15 @@ class CreateDetailOrderCustomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('detail__order__customs', function (Blueprint $table) {
+        Schema::create('detail_order_customs', function (Blueprint $table) {
             $table->bigIncrements("id");
-            
+            $table->unsignedBigInteger('order_customs_id');
+            $table->foreign('order_customs_id')->references('id')->on('order_customs')->onDelete('cascade');
+            $table->string("size");
+            $table->integer("qty");
+            $table->string("satuan");
+            $table->integer("subtotal");
+            $table->string("pict_desain");
             $table->timestamps();
         });
     }
@@ -27,6 +33,6 @@ class CreateDetailOrderCustomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail__order__customs');
+        Schema::dropIfExists('detail_order_customs');
     }
 }

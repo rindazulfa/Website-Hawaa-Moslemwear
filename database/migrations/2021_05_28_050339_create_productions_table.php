@@ -16,16 +16,18 @@ class CreateProductionsTable extends Migration
         Schema::create('productions', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->unsignedBigInteger('recipes_id')->nullable();
-            // $table->foreign('recipes_id')->references('id')->on('recipes')->onDelete('cascade');
+            $table->foreign('recipes_id')->references('id')->on('recipes')->onDelete('cascade');
+            $table->unsignedBigInteger('stocks_id')->nullable();
+            $table->foreign('stocks_id')->references('id')->on('stocks')->onDelete('cascade');
             $table->integer("qty");
             $table->date("date");
             $table->timestamps();
             $table->softDeletes();
         });
 
-        Schema::table('productions', function (Blueprint $table) {
-            $table->foreign('recipes_id')->references('id')->on('recipes')->onDelete('cascade');
-        });
+        // Schema::table('productions', function (Blueprint $table) {
+        //     $table->foreign('recipes_id')->references('id')->on('recipes')->onDelete('cascade');
+        // });
     }
 
     /**

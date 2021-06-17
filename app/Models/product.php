@@ -28,4 +28,10 @@ class Product extends Model
     {
         return $this->belongsToMany(discount::class,'discount_product','products_id','discounts_id');
     }
+
+    
+    public function ordercustom()
+    {
+        return $this->hasMany(Order_Custom::class, 'products_id', 'id');
+    }
 }
