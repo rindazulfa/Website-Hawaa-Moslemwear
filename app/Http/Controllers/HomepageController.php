@@ -25,14 +25,14 @@ class HomepageController extends Controller
         //     return view('package/login');
         // }
 
-        $banner = Banner::all()->first();
+        $banner = Banner::all()->last();
         return view('index', ['banner' => $banner]);
     }
 
     public function indexlogin()
     {
-        $banner = Banner::all()->first();
-        $profile = profile::all()->first();
+        $banner = Banner::all()->last();
+        $profile = profile::all()->last();
         return view('indexlogin', [
             'banner' => $banner,
             'profile' => $profile

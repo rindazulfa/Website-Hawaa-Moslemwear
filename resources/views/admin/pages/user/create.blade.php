@@ -39,33 +39,35 @@
                             </ul>
                         </div>
                         @endif
-
                         <div class="form-group row">
                             <div class="col-lg-6 mt-4">
                                 <label>Nama Depan</label>
-                                <input type="text" class="form-control"  name="first_name" placeholder="Masukkan Nama Depan" />
+                                <input type="text" class="form-control" name="first_name" placeholder="Masukkan Nama Depan" />
                             </div>
                             <div class="col-lg-6 mt-4">
                                 <label>Nama Belakang</label>
-                                <input type="text" class="form-control"  name="last_name" placeholder="Masukkan Nama Belakang" />
+                                <input type="text" class="form-control" name="last_name" placeholder="Masukkan Nama Belakang" />
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <div class="col-lg-6 mt-4">
                                 <label>Email</label>
-                                <input type="text" class="form-control"  name="email" placeholder="Masukkan Email" />
+                                <input type="text" class="form-control" name="email" placeholder="Masukkan Email" />
                             </div>
+                            <div class="col-lg-6 mt-4">
+                                <label>Roles</label>
+                                <input type="text" class="form-control" name="role" placeholder="Masukkan Role" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <div class="col-lg-6 mt-4">
                                 <label>Password</label>
                                 <input type="password" class="form-control" name="password" placeholder="Masukkan Password" />
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-lg-6 mt-4">
-                                <label>Roles</label>
-                                <input type="text" class="form-control"  name="role" placeholder="Masukkan Role" />
-                            </div>
+                            <!-- <div class="col-lg-6 mt-4">
+                                <label>Confirm Password</label>
+                                <input type="password" class="form-control" name="password_confirmation" placeholder="Masukkan Password" />
+                            </div> -->
                         </div>
 
                     </div>

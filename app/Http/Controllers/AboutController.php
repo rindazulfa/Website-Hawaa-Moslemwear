@@ -14,13 +14,13 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $profile = profile::all()->first();
+        $profile = profile::all()->last();
         return view('package/about_us', ['profile' => $profile]);
     }
 
     public function indexlogin()
     {
-        $profile = profile::all()->first();
+        $profile = profile::all()->last();
         return view('package/login/about_us', ['profile' => $profile]);
     }
 

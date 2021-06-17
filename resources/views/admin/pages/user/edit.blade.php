@@ -55,11 +55,11 @@
                         <div class="form-group row">
                             <div class="col-lg-6 mt-4">
                                 <label>Email</label>
-                                <input type="text" class="form-control" value="{{ $page->email }}" name="email" placeholder="Masukkan Email" />
+                                <input type="text" class="form-control" value="{{ $page->email }}" name="email" placeholder="Masukkan Email" readonly />
                             </div>
                             <div class="col-lg-6 mt-4">
                                 <label>Password</label>
-                                <input type="password" class="form-control" value="{{ $page->password }}" name="password" placeholder="Masukkan Password" />
+                                <input type="password" class="form-control" value="" name="password" placeholder="Masukkan Password" />
                             </div>
                         </div>
                         <div class="form-group row">

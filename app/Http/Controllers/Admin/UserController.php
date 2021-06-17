@@ -42,7 +42,8 @@ class UserController extends Controller
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required','string']
+            'password' => ['required','string'],
+            // 'password_confirmation' => ['required','string']
         ]);
         
         $user = new User;
@@ -50,6 +51,7 @@ class UserController extends Controller
         $user->last_name = $request->get('last_name');
         $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password'));
+        // $user->password_confirmation = bcrypt($request->get('password_confirmation'));
         $user->role = $request->get('role');
         $user->save();
 
@@ -89,17 +91,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $credentials = $request->validate([
-            'first_name' => ['required', 'string'],
-            'last_name' => ['required', 'string'],
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required','string', 'min:8', 'confirmed'],
-        ]);
+        $user = User::findOrFail($id);
+    //    $credentials = $request->validate([
+    //         'first_name' => ['required', 'string'],
+    //         'last_name' => ['required', 'string'],
+    //         'email' => ['required', 'email', 'unique:users'],
+    //         'password' => ['required','string', 'min:8', 'confirmed'],
+    //     ]);
         
-        $user = new User;
         $user->first_name = $request->get('first_name');
         $user->last_name = $request->get('last_name');
-        $user->email = $request->get('email');
+        // $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password'));
         $user->role = $request->get('role');
         $user->save();
@@ -116,6 +118,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $delete = User::findOrFail($id);
+        // dd($delete);
         $delete->delete();
         return redirect()->route('user.index');
     }
