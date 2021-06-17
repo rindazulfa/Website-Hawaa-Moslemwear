@@ -6,7 +6,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-8 ftco-animate">
                     <form action="#" class="billing-form bg-light p-3 p-md-5">
-                        <h3 class="mb-4 billing-heading">Billing Details</h3>
+                        <h3 class="mb-4 billing-heading">Confirm Payment</h3>
                         <div class="row align-items-end">
                             <div class="col-md-6">
                                 <div class="form-group">

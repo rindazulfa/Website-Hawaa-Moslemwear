@@ -26,11 +26,16 @@
 								<p class="price"><span class="price-sale">Rp {{number_format($key->price,2,',','.')}}</span></p>
 							</div>
 						</div>
+						
+						@guest
+						@else
 						<hr>
 						<p class="bottom-area d-flex">
 							<a href="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
 							<!-- <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a> -->
 						</p>
+						@endguest
+						
 					</div>
 				</div>
 			</div>
