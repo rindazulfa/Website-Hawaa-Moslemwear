@@ -9,7 +9,7 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                            <li class="breadcrumb-item"><a href="/produk">Tables</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Detail Produk</li>
                         </ol>
                     </nav>
@@ -50,9 +50,9 @@
                                 @forelse($resep as $key)
                                 <tr>
                                     <td>{{$key->id}}</td>
-                                    <td>{{$key->stok->products_id}}</td>
-                                    <td>{{$key->stok->size}}</td>
-                                    <td>{{$key->material->name}}</td>
+                                    <td>{{$key->nama_produk}}</td>
+                                    <td>{{$key->size}}</td>
+                                    <td>{{$key->name}}</td>
                                     <td>{{$key->qty}}</td>
                                     <td>{{$key->satuan}}</td>
                                     <td>
@@ -76,7 +76,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <h3>
-                                                        Yakin menghapus data {{ $key->material->name}} ?
+                                                        Yakin menghapus data {{ $key->name }} ?
                                                     </h3>
                                                 </div>
                                                 <div class="modal-footer">

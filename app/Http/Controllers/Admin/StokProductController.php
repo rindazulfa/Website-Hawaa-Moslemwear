@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Recipe;
 use App\Models\stock;
+Use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -45,7 +46,7 @@ class StokProductController extends Controller
      */
     public function store(Request $request)
     {
-    
+
         $data = $request->all();
         if ($request->get('size') == 'S') {
             $size = 'S';
@@ -61,19 +62,18 @@ class StokProductController extends Controller
 
         $item = Product::findOrFail($data['products_id']); //mencari id produk yg diinputkan
 
-        $cekproduk = Product::where('id',$data['products_id'])->count();
-        $ceksize = stock::where('products_id',$data['products_id'])
-        ->where('size',$data['size'])->count();
+        $cekproduk = Product::where('id', $data['products_id'])->count();
+        $ceksize = stock::where('products_id', $data['products_id'])
+            ->where('size', $data['size'])->count();
 
         if ($cekproduk > 0) {
-            if ($ceksize >0) {
-                $update = stock::where('products_id',$data['products_id'])
-                ->where('size',$data['size'])->first();
+            if ($ceksize > 0) {
+                $update = stock::where('products_id', $data['products_id'])
+                    ->where('size', $data['size'])->first();
                 $stokk =  $request->get('stok');
                 $update->stok = $update->stok + $stokk;
                 $update->save();
-            }
-            else {
+            } else {
                 $data['size'] = $size;
                 stock::create($data);
             }
@@ -91,11 +91,19 @@ class StokProductController extends Controller
     public function show($id)
     {
         $detail = stock::findOrFail($id); //id stok
-    //    $product = Product::all()->where('products_id', $detail->products_id)->get();
- 
-    $resep = Recipe::with(['stok', 'material'])
-            ->where('stocks_id', $detail->id)->get();
-// dd($resep); 
+        //    $product = Product::all()->where('products_id', $detail->products_id)->get();
+
+        // $resep = Recipe::with(['stok', 'material'])
+        //     ->where('stocks_id', $detail->id)->get();
+
+        $resep = DB::table('recipes')
+        ->join('stocks', 'recipes.stocks_id', '=', 'stocks.id')
+        ->join('products', 'stocks.products_id', '=', 'products.id')
+        ->join('materials', 'recipes.materials_id', '=', 'materials.id')
+        ->select('materials.name','stocks.*' ,'products.name as nama_produk', 'recipes.*')
+        ->where('products_id','=',$detail->id)
+        ->get();
+        // dd($resep); 
         // $stok = stock::find($detail->products_id);
         return view('admin.pages.stok_produk.detail', [
             'resep' => $resep,
@@ -121,8 +129,6 @@ class StokProductController extends Controller
             'product' => $product,
             // 'stok' =>$stok
         ]);
-
-    
     }
 
     /**
@@ -134,18 +140,18 @@ class StokProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'qty' => 'required|integer'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors());
-        }else{
+        } else {
             $stok = stock::find($id);
             $stok->qty = $request->get("qty");
             $stok->save();
 
-            return redirect()->route("stok_produk.index")->with('info','Stok has been updated');
+            return redirect()->route("stok_produk.index")->with('info', 'Stok has been updated');
         }
     }
 

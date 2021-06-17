@@ -5,12 +5,12 @@
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">Produksi</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Tables</li>
+                            <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="/produksi">Daftar Produksi</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Form Edit Produksi</li>
                         </ol>
                     </nav>
                 </div>
@@ -25,9 +25,9 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Form Edit Supplier</h3>
+                    <h3 class="mb-0">Form Edit Produksi</h3>
                 </div>
-                <form class="form" method="post" action="{{route('supplier.update',[$page->id])}}" enctype="multipart/form-data">
+                <form class="form" method="post" action="{{route('produksi.update',[$page->id])}}" enctype="multipart/form-data">
                     @csrf
                     {{method_field("PUT")}}
                     <div class="card-body">
@@ -43,38 +43,25 @@
 
                         <div class="form-group row">
                             <div class="col-lg-6 mt-4">
-                                <label>Nama</label>
-                                <input type="text" class="form-control" value="{{ $page->name }}" name="name" placeholder="Masukkan Nama" />
+                                <label>Nama Produk</label>
+                                <input type="text" class="form-control" value="{{$page->id_products}}" name="name" placeholder="Masukkan Nama" readonly/>
                             </div>
                             <div class="col-lg-6 mt-4">
-                                <label>Telepon</label>
-                                <input type="text" class="form-control" value="{{ $page->phone }}" name="phone" placeholder="Masukkan Telepon" />
+                                <label>Jumlah Produksi</label>
+                                <input type="number" class="form-control" value="{{$page->qty}}" name="jumlah" placeholder="Jumlah Produksi" readonly/>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-lg-6 mt-4">
-                                <label>Email</label>
-                                <input type="text" class="form-control" value="{{ $page->email }}" name="email" placeholder="Masukkan Email" />
+                                <label>Tanggal Produksi</label>
+                                <input type="text" class="form-control" value="{{$page->date}}" name="date_awal" placeholder="tanggal_produksi" readonly/>
                             </div>
-                            <div class="col-lg-6 mt-4">
-                                <label>Nama Bahan Baku</label>
-                                <select class="form-control" required name="materials_id">
-                                    @foreach($items as $key)
-                                    <option @if($page->materials_id==$key->id) selected @endif value="{{ $key->id }}">{{ $key->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            <!-- <div class="col-lg-6 mt-4">
+                                <label>Tanggal Jadi</label>
+                                <input type="date" class="form-control" value="" name="date_akhir" placeholder="tanggal_jadi" />
+                            </div> -->
                         </div>
-
-                        <div class="form-group row">
-                            <div class="col-lg-6 mt-4">
-                                <label>Alamat</label>
-                                <textarea class="form-control" rows="3" name="address" placeholder="Masukkan Alamat">{{ $page->address }}</textarea>
-                            </div>
-
-                        </div>
-
                     </div>
                     <div class="card-footer">
                         <div class="row">

@@ -42,13 +42,15 @@
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">Jumlah Produksi</label>
-                                <input type="number" class="form-control" name="qty" value="{{ old('qty') }}" placeholder="Masukkan Jumlah Produksi">
+                                <input type="number" class="form-control" name="qty" placeholder="Masukkan Jumlah Produksi">
                             </div>
                             <div class="col-lg-6">
-                                <script>$('.datepicker').datepicker()</script>
+                                <script>
+                                    $('.datepicker').datepicker()
+                                </script>
                                 <label>Tanggal</label>
                                 <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" class="form-control datepicker">
+                                    <input type="date" class="form-control datepicker" name="date">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-th"></span>
                                     </div>
@@ -58,15 +60,16 @@
 
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Id Resep</label>
-                                <select class="form-control" required name="recipes_id">
+                                <label>Id Resep Produk</label>
+                                <select class="form-control" required name="cbstocks_id">
+                                    <option value="">Pilih Produk</option>
                                     @foreach($items as $key)
-                                    <option value="{{ $key->id }}">{{ $key->name ?? '' }}</option>
+                                    <option value="{{ $key->stocks_id }}">{{ $key->stocks_id }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="card-footer">
                         <div class="row">

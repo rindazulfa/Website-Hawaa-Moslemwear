@@ -100,7 +100,7 @@ class RecipeController extends Controller
             }
         }
 
-        return redirect()->route('.index');
+        return redirect()->route('stok_produk.index');
     }
 
     /**
