@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\User\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -79,16 +80,19 @@ Route::group([
     'namespace' => 'User',
     'middleware' => ['auth', 'checkrole:user,admin']
 ], function () {
-    Route::resource('dashboard', 'DashboardController');
-    Route::get('/home', [HomepageController::class, 'indexlogin'])->name('home');
-    Route::get('/home/about', [AboutController::class, 'indexlogin'])->name('aboutlogin');
-    Route::get('/home/shop', [ShopController::class, 'indexlogin'])->name('shoplogin');
+    Route::resource('cart','CartController');
+    Route::resource('checkout','CheckoutController');
+    Route::resource('/confirmpayment','Confirm_PaymentController');
+    Route::resource('/custom','CustomProductController');
+    Route::resource('/profil','ProfileController');
+    // Route::resource('dashboard', 'DashboardController');
+    // Route::get('/home', [HomepageController::class, 'indexlogin'])->name('home');
+    // Route::get('/home/about', [AboutController::class, 'indexlogin'])->name('aboutlogin');
+    // Route::get('/home/shop', [ShopController::class, 'indexlogin'])->name('shoplogin');
 });
 
 // Auth 
-Route::get('/login', function () {
-    return view('package/login');
-});
+Route::get('/login', 'Auth\LoginController@getLogin');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 
 Route::get('/register', function () {
@@ -108,7 +112,3 @@ Route::post('/shop/detail/{id}', 'ShopController@process')->name('shop_detail');
 
 // Route::get('/shop/stok', 'ShopController@checkStokBySize')->name("shop_cek");
 // Route::resource('/detailproduct','DetailProductController');
-// Route::resource('/confirmpayment','Confirm_PaymentController');
-// Route::resource('/cart','CartController');
-// Route::resource('/custom','CustomProductController');
-// Route::resource('/checkout','CheckoutController');
