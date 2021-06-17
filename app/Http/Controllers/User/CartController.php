@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Models\Banner;
-use App\Models\profile;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class HomepageController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,28 +14,7 @@ class HomepageController extends Controller
      */
     public function index()
     {
-        // if(Auth::check()){ 
-        //     if(Auth::user()->role == 'user'){
-        //         return redirect('home');
-        //     }else if(Auth::user()->role == 'admin'){
-        //         return redirect('admin');
-        //     }
-        // }else{
-        //     return view('package/login');
-        // }
-
-        $banner = Banner::all()->first();
-        return view('index', ['banner' => $banner]);
-    }
-
-    public function indexlogin()
-    {
-        $banner = Banner::all()->first();
-        $profile = profile::all()->first();
-        return view('indexlogin', [
-            'banner' => $banner,
-            'profile' => $profile
-        ]);
+        return view('package.login.cart');
     }
 
     /**

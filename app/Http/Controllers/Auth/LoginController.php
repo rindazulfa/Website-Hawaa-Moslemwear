@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
+    public function getLogin(){
+        if(Auth::check()){ 
+            if(Auth::user()->role == 'user'){
+                return redirect('home');
+            }else if(Auth::user()->role == 'admin'){
+                return redirect('admin');
+            }
+        }else{
+            return view('package/login');
+        }
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -19,7 +31,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
         
             if(Auth::user()->role == 'user'){
-                return redirect('home');
+                return redirect('/');
             }else if(Auth::user()->role == 'admin'){
                 return redirect('admin');
             }
@@ -28,7 +40,6 @@ class LoginController extends Controller
             // }
             
         }
-        // return null;
     }
 
     public function logout()
