@@ -10,10 +10,10 @@
 		</div>
 	</div>
 </div>
-@forelse($shop as $key)
 <section class="ftco-section bg-light">
 	<div class="container-fluid">
 		<div class="row justify-content-center">
+			@forelse($shop as $key)
 			<div class="col-sm col-md-6 col-lg-3 ftco-animate">
 				<div class="product">
 					<a href="{{route('shop.show',[$key->id])}}" class="img-prod"><img class="img-fluid" src="{{'uploads/products/'.$key->pict_1}}" alt="Colorlib Template">
@@ -38,12 +38,12 @@
 					</div>
 				</div>
 			</div>
+			@empty
+			<tr>
+				<td colspan="7" class="text-center">Data Kosong</td>
+			</tr>
+			@endforelse
+			@endsection
 		</div>
 	</div>
 </section>
-@empty
-<tr>
-	<td colspan="7" class="text-center">Data Kosong</td>
-</tr>
-@endforelse
-@endsection

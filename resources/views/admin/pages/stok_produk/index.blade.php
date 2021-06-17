@@ -64,37 +64,14 @@
                                     </a>
                                     <a href="{{route('stok_produk.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
-                                        <!-- </a>
-                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button> -->
+                                    </a>
+                                    <a href="{{route('produksi.show',[$key->id])}}" class="btn btn-outline-primary" title="Produksi">
+                                        Produksi
+                                    </a>
+                                    <!-- <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button> -->
 
                                 </td>
                             </tr>
-                            <div class="modal fade" id="exampleModal-{{$key->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <form action="{{route('stok_produk.destroy', [$key->id])}}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <div class="modal-content">
-                                            <div class="modal-header py-5">
-                                                <h2 class="modal-title" id="exampleModalLabel"> Hapus Stok</h2>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <i aria-hidden="true" class="ki ki-close"></i>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h3>
-                                                    Yakin menghapus data {{ $key->product->name }} ukuran
-                                                    {{ $key->size }} ?
-                                                </h3>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-danger font-weight-bold text-uppercase">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
                             @empty
                             <tr>
                                 <td colspan="7" class="text-center">Data Kosong</td>

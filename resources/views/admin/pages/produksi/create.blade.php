@@ -9,7 +9,7 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/bahan_baku">Data Produksi</a></li>
+                            <li class="breadcrumb-item"><a href="/produksi">Data Produksi</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Form Data Produksi</li>
                         </ol>
                     </nav>
@@ -60,16 +60,10 @@
 
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Id Resep Produk</label>
-                                <select class="form-control" required name="cbstocks_id">
-                                    <option value="">Pilih Produk</option>
-                                    @foreach($items as $key)
-                                    <option value="{{ $key->stocks_id }}">{{ $key->stocks_id }}</option>
-                                    @endforeach
-                                </select>
+                                <label>Id Stok Produk</label>
+                                <input type="number" class="form-control datepicker" name="id_stock" value="{{ $id_stok }}" readonly>
                             </div>
                         </div>
-
                     </div>
                     <div class="card-footer">
                         <div class="row">

@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function index()
     {
         $items = product::with(['stok'])->get();
-           dd($items);
+        //    dd($items);
         // $items = stock::with(['product'])->get();
         return view('admin/pages/produk/index', [
             'produk' => $items

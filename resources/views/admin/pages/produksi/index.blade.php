@@ -36,26 +36,27 @@
                             <tr>
                                 <th scope="col" class="sort" data-sort="no">ID</th>
                                 <th>Nama Produk</th>
+                                <th>Ukuran Produk</th>
                                 <th>Tanggal Produksi</th>
                                 <th>Jumlah Produksi</th>
                                 <th>Tanggal Jadi</th>
-                                <th scope="col" class="sort" data-sort="aksi">Aksi</th>
-                                <th scope="col"></th>
+                                <!-- <th scope="col" class="sort" data-sort="aksi">Aksi</th> -->
                             </tr>
                         </thead>
                         <tbody class="list">
                             @forelse($page as $key)
                             <tr>
                                 <td>{{$key->id}}</td>
-                                <td>{{$key->id_products}}</td>
+                                <td>{{$key->name}}</td>
+                                <td>{{$key->recipes_id}}</td>
                                 <td>{{$key->date}}</td>
                                 <td>{{$key->qty}}</td>
                                 <td>{{$key->date}}</td>
-                                <td>
+                                <!-- <td>
                                     <a href="{{route('produksi.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
                                     </a>
-                                </td>
+                                </td> -->
                             </tr>
                             @empty
                             <tr>

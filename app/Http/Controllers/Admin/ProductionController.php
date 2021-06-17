@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Production;
 use App\Models\Recipe;
+use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,6 +19,12 @@ class ProductionController extends Controller
     public function index()
     {
         $page = Production::all();
+        $page = DB::table('productions')
+        ->join('recipes','productions.recipes_id','=','recipes.id')
+        ->join('stocks','recipes.stocks_id','=','stocks.id')
+        ->join('products','stocks.products_id','=','products.id')
+        ->select('productions.*','products.name','stocks.size')
+        ->get();
         return view('admin/pages/produksi/index', ['page' => $page]);
     }
 
@@ -28,7 +35,9 @@ class ProductionController extends Controller
      */
     public function create()
     {
-        $items = Recipe::select('stocks_id')->distinct()->get();
+        $items = Recipe::select('stocks_id')
+        ->distinct()->get();
+        // dd($id);
         return view('admin/pages/produksi/create', [
             'items' => $items
         ]);
@@ -45,7 +54,7 @@ class ProductionController extends Controller
     {
         // Ambil resep
         $ambilbahan = DB::table('recipes')
-            ->where('stocks_id', '=', $request->get('cbstocks_id'))
+            ->where('stocks_id', '=', $request->id_stock)
             ->select('materials_id', 'qty')
             ->get();
 
@@ -71,22 +80,31 @@ class ProductionController extends Controller
             // $stoksekarang[$i] = $ambilstockbahan[$i]->jumlah - $jumlahbahan[$i];
         }
 
+        $id_produk = stock::select('products_id')
+        ->where('id',$request->id_stock)
+        ->get();
+
+
+
         Production::create([
-            'id_products' => $request->cbstocks_id,
+            'recipes_id' => $request->id_stock,
+            'stocks_id' => $id_produk[0]->products_id,
             'qty' => $request->qty,
             'date' => $request->date
         ]);
 
-        dd(
-            $request->date,
-            $request->qty,
-            $ambilbahan,
-            sizeof($ambilbahan),
-            $databahan,
-            $jumlahbahan,
-            $ambilstockbahan,
-            $stoksekarang
-        );
+        // dd(
+        //     $request->date,
+        //     $request->qty,
+        //     $request->id_stock,
+        //     $ambilbahan,
+        //     sizeof($ambilbahan),
+        //     $databahan,
+        //     $jumlahbahan,
+        //     $ambilstockbahan,
+        //     $stoksekarang,
+        //     $id_produk[0]->products_id
+        // );
 
         return redirect()->route("produksi.index")->with("info", "Your Transaction has been saved");
     }
@@ -99,7 +117,20 @@ class ProductionController extends Controller
      */
     public function show($id)
     {
-        //
+        // $ambil = DB::table('stocks')
+        // ->where('id','=',$id)
+        // ->get();
+
+        $id_stok = $id;
+        // dd(
+        //     $id,
+        //     $id_produk,
+        //     $id_stok
+        // );
+
+        return view('admin/pages/produksi/create',[
+            'id_stok' => $id_stok,
+        ]);
     }
 
     /**

@@ -101,7 +101,7 @@ class StokProductController extends Controller
         ->join('products', 'stocks.products_id', '=', 'products.id')
         ->join('materials', 'recipes.materials_id', '=', 'materials.id')
         ->select('materials.name','stocks.*' ,'products.name as nama_produk', 'recipes.*')
-        ->where('products_id','=',$detail->id)
+        ->where('stocks_id','=',$detail->id)
         ->get();
         // dd($resep); 
         // $stok = stock::find($detail->products_id);

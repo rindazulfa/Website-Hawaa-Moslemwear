@@ -15,22 +15,11 @@ class Order_CustomController extends Controller
      */
     public function index()
     {
-        $page = DB::table('orders')
-        ->join('detail_orders', 'detail_orders.orders_id', '=', 'orders.id')
-        ->join('products', 'detail_orders.products_id', '=', 'products.id')
-        ->join('discount_customer', 'discount_customer.orders_id', '=', 'orders.id')
+        $page = DB::table('order_customs')
+        ->join('detail_order_custom', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
         ->select(
-            'orders.id',
-            'orders.date',
-            'products.name',
-            'detail_orders.qty',
-            'products.price',
-            'orders.shipping',
-            'orders.ongkir',
-            'orders.keterangan',
-            'orders.status',
-            'orders.total',
-            'orders.pict_payment'
+            'order_customs.*',
+            'detail_order_customs.*'
         )
         ->get();
         return view('admin/pages/penjualan_custom/index',[
