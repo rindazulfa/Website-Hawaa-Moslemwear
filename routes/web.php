@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PromoController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\MaterialController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ShopController;
@@ -81,10 +82,13 @@ Route::group([
     'middleware' => ['auth', 'checkrole:user,admin']
 ], function () {
     Route::resource('cart','CartController');
+    // Route::get('/add-cart/{id}','OrderController@addcart')->name('product.addcart');
+
     Route::resource('checkout','CheckoutController');
     Route::resource('/confirmpayment','Confirm_PaymentController');
     Route::resource('/custom','CustomProductController');
     Route::resource('/profil','ProfileController');
+
     // Route::resource('dashboard', 'DashboardController');
     // Route::get('/home', [HomepageController::class, 'indexlogin'])->name('home');
     // Route::get('/home/about', [AboutController::class, 'indexlogin'])->name('aboutlogin');

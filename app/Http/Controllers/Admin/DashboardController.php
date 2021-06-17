@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\puchase;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,8 +15,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
-        return view ('admin/pages/dashboard');
+        $pengeluaran = puchase::sum('total');
+        // dd($pengeluaran);
+        return view ('admin/pages/dashboard',[
+            'pengeluaran' => $pengeluaran
+        ]);
     }
 
     /**

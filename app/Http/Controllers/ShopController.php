@@ -30,18 +30,18 @@ class ShopController extends Controller
         ]);
     }
 
-    public function indexlogin()
-    {
-        $product = Product::with([
-            'stok'
-        ])
-            ->get();
-        $profile = profile::all()->first();
-        return view('package.login.product', [
-            'shop' => $product,
-            'profile' => $profile
-        ]);
-    }
+    // public function indexlogin()
+    // {
+    //     $product = Product::with([
+    //         'stok'
+    //     ])
+    //         ->get();
+    //     $profile = profile::all()->first();
+    //     return view('package.login.product', [
+    //         'shop' => $product,
+    //         'profile' => $profile
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.

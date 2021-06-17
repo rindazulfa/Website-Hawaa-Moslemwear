@@ -26,7 +26,6 @@
 								<p class="price"><span class="price-sale">Rp {{number_format($key->price,2,',','.')}}</span></p>
 							</div>
 						</div>
-						
 						@guest
 						@else
 						<hr>
@@ -35,7 +34,7 @@
 							<!-- <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a> -->
 						</p>
 						@endguest
-						
+
 					</div>
 				</div>
 			</div>
@@ -43,11 +42,8 @@
 	</div>
 </section>
 @empty
-
 <tr>
 	<td colspan="7" class="text-center">Data Kosong</td>
 </tr>
-
 @endforelse
-
 @endsection

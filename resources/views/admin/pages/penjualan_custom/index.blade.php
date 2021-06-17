@@ -5,11 +5,10 @@
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">Penjualan Custom</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#">Tables</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Daftar Transaksi Penjualan Custom</li>
                         </ol>
                     </nav>
@@ -32,7 +31,6 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="no">No. </th>
                                 <th scope="col" class="sort" data-sort="id_transaksi_penjualan">Id Transaksi Penjualan Custom</th>
                                 <th scope="col" class="sort" data-sort="tanggal_transaksi">Tanggal Transaksi</th>
                                 <th scope="col" class="sort" data-sort="gambar_desain">Gambar Desain</th>
@@ -52,139 +50,6 @@
                         </thead>
                         <tbody class="list">
                             <tr>
-                                <th class="no">1.</th>
-                                <td class="id_transaksi_penjualan">TC001</td>
-                                <td class="tanggal_transaksi">Kain</td>
-                                <th class="gambar_desain">
-                                    <a href="#">Gambar_Desain_TC001</a>
-                                </th>
-                                <td class="status_desain">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                </td>
-                                <td class="jumlah_jual">1 Set</td>
-                                <td class="size_jual">L</td>
-                                <td class="harga_produk">Rp. 200.000</td>
-                                <td class="shipping">JNE</td>
-                                <td class="ongkir">Rp. 50.000</td>
-                                <td class="keterangan">Rumah Cat Hijau</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
-                                <td class="status">
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-info"></i>
-                                        <span class="status">Menunggu Konfirmasi</span>
-                                    </span>
-                                </td>
-                                <td class="bukti_pembayaran">
-                                    <a href="#">Bukti_Transfer_TC001.jpg</a>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="no">1.</th>
-                                <td class="id_transaksi_penjualan">TC001</td>
-                                <td class="tanggal_transaksi">Kain</td>
-                                <th class="gambar_desain">
-                                    <a href="#">Gambar_Desain_TC001</a>
-                                </th>
-                                <td class="status_desain">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                </td>
-                                <td class="jumlah_jual">1 Set</td>
-                                <td class="size_jual">L</td>
-                                <td class="harga_produk">Rp. 200.000</td>
-                                <td class="shipping">JNE</td>
-                                <td class="ongkir">Rp. 50.000</td>
-                                <td class="keterangan">Rumah Cat Hijau</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
-                                <td class="status">
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-info"></i>
-                                        <span class="status">Menunggu Konfirmasi</span>
-                                    </span>
-                                </td>
-                                <td class="bukti_pembayaran">
-                                    <a href="#">Bukti_Transfer_TC001.jpg</a>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="no">1.</th>
-                                <td class="id_transaksi_penjualan">TC001</td>
-                                <td class="tanggal_transaksi">Kain</td>
-                                <th class="gambar_desain">
-                                    <a href="#">Gambar_Desain_TC001</a>
-                                </th>
-                                <td class="status_desain">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                </td>
-                                <td class="jumlah_jual">1 Set</td>
-                                <td class="size_jual">L</td>
-                                <td class="harga_produk">Rp. 200.000</td>
-                                <td class="shipping">JNE</td>
-                                <td class="ongkir">Rp. 50.000</td>
-                                <td class="keterangan">Rumah Cat Hijau</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
-                                <td class="status">
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-info"></i>
-                                        <span class="status">Menunggu Konfirmasi</span>
-                                    </span>
-                                </td>
-                                <td class="bukti_pembayaran">
-                                    <a href="#">Bukti_Transfer_TC001.jpg</a>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="no">1.</th>
-                                <td class="id_transaksi_penjualan">TC001</td>
-                                <td class="tanggal_transaksi">Kain</td>
-                                <th class="gambar_desain">
-                                    <a href="#">Gambar_Desain_TC001</a>
-                                </th>
-                                <td class="status_desain">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                </td>
-                                <td class="jumlah_jual">1 Set</td>
-                                <td class="size_jual">L</td>
-                                <td class="harga_produk">Rp. 200.000</td>
-                                <td class="shipping">JNE</td>
-                                <td class="ongkir">Rp. 50.000</td>
-                                <td class="keterangan">Rumah Cat Hijau</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
-                                <td class="status">
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-info"></i>
-                                        <span class="status">Menunggu Konfirmasi</span>
-                                    </span>
-                                </td>
-                                <td class="bukti_pembayaran">
-                                    <a href="#">Bukti_Transfer_TC001.jpg</a>
-                                </td>
-                                <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="no">1.</th>
                                 <td class="id_transaksi_penjualan">TC001</td>
                                 <td class="tanggal_transaksi">Kain</td>
                                 <th class="gambar_desain">

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class OrderController extends Controller
 {
@@ -14,8 +18,39 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('admin/pages/penjualan/index');
+        $tampil = DB::table('orders')
+            ->join('detail_orders', 'detail_orders.orders_id', '=', 'orders.id')
+            ->join('products', 'detail_orders.products_id', '=', 'products.id')
+            ->join('discount_customer', 'discount_customer.orders_id', '=', 'orders.id')
+            ->select(
+                'orders.id',
+                'orders.date',
+                'products.name',
+                'detail_orders.qty',
+                'products.price',
+                'orders.shipping',
+                'orders.ongkir',
+                'orders.keterangan',
+                'orders.status',
+                'orders.total',
+                'orders.pict_payment'
+            )
+            ->get();
+        return view('admin/pages/penjualan/index',[
+            'page'=> $tampil
+        ]);
     }
+
+    // public function addcart(Request $request, $id){
+    //     $product = Product::find($id);
+    //     $oldCart = Session::has('cart') ? Session::get('cart') : null;
+    //     $cart = new Cart($oldCart);
+    //     $cart->add($product, $product->id);
+
+    //     $request->session()->put('cart', $cart);
+    //     dd($request->session()->get('cart'));
+    //     return redirect()->route('shop.index');
+    // }
 
     /**
      * Show the form for creating a new resource.

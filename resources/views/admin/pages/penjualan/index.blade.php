@@ -31,7 +31,6 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="no">No. </th>
                                 <th scope="col" class="sort" data-sort="id_transaksi_penjualan">Id Transaksi Penjualan</th>
                                 <th scope="col" class="sort" data-sort="tanggal_transaksi">Tanggal Transaksi</th>
                                 <th scope="col" class="sort" data-sort="nama_produk">Nama Produk</th>
@@ -49,26 +48,28 @@
                             </tr>
                         </thead>
                         <tbody class="list">
+                            @forelse($page as $key)
                             <tr>
-                                <th class="no">1.</th>
-                                <td class="id_transaksi_penjualan">TJ001</td>
-                                <td class="tanggal_transaksi">Kain</td>
-                                <th class="nama_produk">Gamis</th>
-                                <td class="jumlah_jual">1 Set</td>
-                                <td class="size_jual">L</td>
-                                <td class="harga_produk">Rp. 200.000</td>
-                                <td class="shipping">JNE</td>
-                                <td class="ongkir">Rp. 50.000</td>
-                                <td class="keterangan">Rumah Cat Hijau</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
+                                <td class="id_transaksi_penjualan">{{$key->id}}</td>
+                                <td class="tanggal_transaksi">{{$key->date}}</td>
+                                <th class="nama_produk">{{$key->name}}</th>
+                                <td class="jumlah_jual">{{$key->qty}}</td>
+                                <td class="size_jual">{{$key->size}}</td>
+                                <td class="harga_produk">{{$key->price}}</td>
+                                <td class="shipping">{{$key->shipping}}</td>
+                                <td class="ongkir">{{$key->ongkir}}</td>
+                                <td class="keterangan">{{$key->keterangan}}</td>
+                                <td class="total_harga">{{$key->total}}</td>
                                 <td class="status">
                                     <span class="badge badge-dot mr-4">
                                         <i class="bg-info"></i>
-                                        <span class="status">Menunggu Konfirmasi</span>
+                                        <span class="status">{{$key->status}}</span>
                                     </span>
                                 </td>
                                 <td class="bukti_pembayaran">
-                                    <a href="#">Bukti_Transfer_TJ001.jpg</a>
+                                    <a href="#">
+                                        {{$key->pict_payment}}
+                                    </a>
                                 </td>
                                 <td class="aksi">
                                     <button type="button" class="btn btn-outline-success">Terima</button>
@@ -76,6 +77,11 @@
                                     <button type="button" class="btn btn-outline-danger">Delete</button>
                                 </td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td colspan="7" class="text-center">Data Kosong</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
