@@ -24,6 +24,7 @@ class CreateOrderCustomsTable extends Migration
             $table->date("date");
             $table->string("status_pengerjaan");
             $table->string("status_pembayaran");
+            $table->string("pict_payment")->nullable();
             $table->string("shipping");
             $table->string("ongkir");
             $table->string("keterangan");
