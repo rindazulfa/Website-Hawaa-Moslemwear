@@ -16,7 +16,7 @@ class Order_CustomController extends Controller
     public function index()
     {
         $page = DB::table('order_customs')
-        ->join('detail_order_custom', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
+        ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
         ->select(
             'order_customs.*',
             'detail_order_customs.*'
@@ -34,7 +34,7 @@ class Order_CustomController extends Controller
      */
     public function create()
     {
-        //
+        return view('package.login.customproduct');
     }
 
     /**
