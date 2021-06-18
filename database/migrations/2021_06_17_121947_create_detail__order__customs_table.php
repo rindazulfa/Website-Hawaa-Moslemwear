@@ -17,10 +17,10 @@ class CreateDetailOrderCustomsTable extends Migration
             $table->bigIncrements("id");
             $table->unsignedBigInteger('order_customs_id');
             $table->foreign('order_customs_id')->references('id')->on('order_customs')->onDelete('cascade');
-            $table->string("size");
-            $table->integer("qty");
-            $table->string("satuan");
-            $table->integer("subtotal");
+            $table->string("size")->nullable();
+            $table->integer("qty")->nullable();
+            $table->string("satuan")->nullable();
+            $table->integer("subtotal")->nullable();
             $table->string("pict_desain");
             $table->timestamps();
         });

@@ -15,12 +15,12 @@ class CustomerSeeder extends Seeder
     public function run()
     {
         DB::table('customers')->insert([
-            'users_id'=>'3',
+            'users_id'=>'2',
             'address' => 'Taman Pinang',
             'city' => 'Sidoarjo',
             'province' => 'Jawa Timur',
             'postal_code' => '21021',
-            'phone' => '08211331313',
+            'phone' => '082131313'
         ]);
 
         // DB::table('customers')->insert([

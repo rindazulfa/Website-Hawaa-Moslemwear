@@ -35,7 +35,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('admin/pages/customer/create');
+        // return view('package.login.customercustomproduct');
     }
 
     /**
@@ -46,7 +46,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

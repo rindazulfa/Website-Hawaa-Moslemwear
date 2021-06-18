@@ -7,8 +7,10 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\Order_CustomController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\HistoryCustomController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\User\CartController;
 use Illuminate\Support\Facades\Route;
@@ -72,8 +74,12 @@ Route::group([
     // Transaksi Penjualan
     Route::resource('penjualan', 'OrderController');
 
-    // Transaksi Penjualan Custom
+    // Transaksi Penjualan Custom (Masih 40%)
     Route::resource('penjualancustom', 'Order_CustomController');
+    Route::get('/penjualancustom/statusdesain/acc/{id}', [Order_CustomController::class, 'updsttsdesacc'])->name('acc.desain');
+    Route::get('/penjualancustom/statusdesain/den/{id}', [Order_CustomController::class, 'updsttsdesden'])->name('den.desain');
+    Route::get('/penjualancustom/update/{id}', [Order_CustomController::class, 'tampileditharga'])->name('edit.harga');
+
 });
 
 
@@ -87,7 +93,13 @@ Route::group([
 
     Route::resource('checkout','CheckoutController');
     Route::resource('/confirmpayment','Confirm_PaymentController');
+    
+    // Custom
     Route::resource('/custom','CustomProductController');
+
+    // History
+    Route::resource('/history','HistoryCustomController');
+
     Route::resource('/profil','ProfileController');
 
     // Route::resource('dashboard', 'DashboardController');

@@ -6,11 +6,11 @@ use App\ConfirmPayment;
 use App\Customer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order_Custom extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
     protected $table = "order_customs";  
     protected $fillable = [
         'customer_id','products_id','confirm_payments_id','date','status_pengerjaan',

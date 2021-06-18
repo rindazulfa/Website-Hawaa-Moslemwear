@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
-
+namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
-use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Session\Session;
 
-class OrderController extends Controller
+class HistoryCustomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,39 +14,22 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $tampil = DB::table('orders')
-            ->join('detail_orders', 'detail_orders.orders_id', '=', 'orders.id')
-            ->join('products', 'detail_orders.products_id', '=', 'products.id')
-            ->join('discount_customer', 'discount_customer.orders_id', '=', 'orders.id')
-            ->select(
-                'orders.id',
-                'orders.date',
-                'products.name',
-                'detail_orders.qty',
-                'products.price',
-                'orders.shipping',
-                'orders.ongkir',
-                'orders.keterangan',
-                'orders.status',
-                'orders.total',
-                'orders.pict_payment'
-            )
-            ->get();
-        return view('admin/pages/penjualan/index',[
-            'page'=> $tampil
+        $cust_id = DB::table('customers')
+        ->where('users_id','=', auth()->user()->id)
+        ->get();
+
+        $cek = DB::table('order_customs')
+        ->where('customers_id','=',$cust_id[0]->id)
+        ->get();
+
+        // dd(
+        //     $cek,
+        //     $cust_id[0]->id
+        // );
+        return view('package.login.historycustom',[
+            'cek' => $cek
         ]);
     }
-
-    // public function addcart(Request $request, $id){
-    //     $product = Product::find($id);
-    //     $oldCart = Session::has('cart') ? Session::get('cart') : null;
-    //     $cart = new Cart($oldCart);
-    //     $cart->add($product, $product->id);
-
-    //     $request->session()->put('cart', $cart);
-    //     dd($request->session()->get('cart'));
-    //     return redirect()->route('shop.index');
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -59,7 +38,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -70,7 +49,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**

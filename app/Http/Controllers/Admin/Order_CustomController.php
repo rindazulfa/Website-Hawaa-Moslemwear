@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order_Custom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -27,6 +28,26 @@ class Order_CustomController extends Controller
         ]);
     }
 
+    public function updsttsdesacc($id){
+        $accdes = DB::table('order_customs')
+        ->where('id','=',$id)->update([
+            'status_pengerjaan' => 'Menunggu Data Order'
+        ]);
+        return redirect('admin/pages/penjualan_custom/index');
+    }
+
+    public function updsttsdesden($id){
+        $dendes = DB::table('order_customs')
+        ->where('id','=',$id)->update([
+            'status_pengerjaan' => 'Ditolak'
+        ]);
+        return redirect('admin/pages/penjualan_custom/index');
+    }
+
+    public function tampileditharga($id){
+// mulai sini ya....
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +55,7 @@ class Order_CustomController extends Controller
      */
     public function create()
     {
-        return view('package.login.customproduct');
+        //
     }
 
     /**
@@ -45,7 +66,7 @@ class Order_CustomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

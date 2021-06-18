@@ -13,31 +13,31 @@
 <section class="ftco-section bg-light">
 	<div class="container-fluid">
 		<div class="row justify-content-center">
-			@forelse($shop as $key)
-			<div class="col-sm col-md-6 col-lg-3 ftco-animate">
-				<div class="product">
-					<a href="{{route('shop.show',[$key->id])}}" class="img-prod"><img class="img-fluid" src="{{'uploads/products/'.$key->pict_1}}" alt="Colorlib Template">
-						<!-- <span class="status">30%</span> -->
-					</a>
-					<div class="text py-3 px-3">
-						<h3><a href="#">{{$key->name}}</a></h3>
-						<div class="d-flex">
-							<div class="pricing">
-								<p class="price"><span class="price-sale">Rp {{number_format($key->price,2,',','.')}}</span></p>
+			<form action="" method="post">
+				@forelse($shop as $key)
+				<div class="col-sm col-md-6 col-lg-3 ftco-animate">
+					<div class="product">
+						<a href="{{route('shop.show',[$key->id])}}" class="img-prod"><img class="img-fluid" src="{{'uploads/products/'.$key->pict_1}}" alt="Colorlib Template">
+							<!-- <span class="status">30%</span> -->
+						</a>
+						<div class="text py-3 px-3">
+							<h3><a href="#">{{$key->name}}</a></h3>
+							<div class="d-flex">
+								<div class="pricing">
+									<p class="price"><span class="price-sale">Rp {{number_format($key->price,2,',','.')}}</span></p>
+								</div>
 							</div>
+							@guest
+							@else
+							<hr>
+							<p class="bottom-area d-flex">
+								<a href="#" class="add-to-cart" type="submit"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+							</p>
+							@endguest
 						</div>
-						@guest
-						@else
-						<hr>
-						<p class="bottom-area d-flex">
-							<a href="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-							<!-- <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a> -->
-						</p>
-						@endguest
-
 					</div>
 				</div>
-			</div>
+			</form>
 			@empty
 			<tr>
 				<td colspan="7" class="text-center">Data Kosong</td>

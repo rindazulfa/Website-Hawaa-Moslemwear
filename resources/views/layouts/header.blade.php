@@ -15,8 +15,9 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="/custom">Custom Product</a>
-                        <a class="dropdown-item" href="/checkout">Checkout</a>
-                        <a class="dropdown-item" href="/confirmpayment">Confirm Payment</a>
+                        <!-- <a class="dropdown-item" href="/checkout">Checkout</a>
+                        <a class="dropdown-item" href="/confirmpayment">Confirm Payment</a> -->
+                        <a class="dropdown-item" href="/history">History</a>
                     </div>
                 </li>
                 @endguest
@@ -29,7 +30,7 @@
                 @guest
                 @else
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Selamat Datang, {{ auth()->user()->first_name }}</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="/profil">Profile</a>
                         <a class="dropdown-item" href="/logout">Logout</a>

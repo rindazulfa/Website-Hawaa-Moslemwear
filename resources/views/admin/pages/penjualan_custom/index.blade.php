@@ -37,7 +37,6 @@
                                 <th scope="col" class="sort" data-sort="status_desain">Status Desain</th>
                                 <th scope="col" class="sort" data-sort="jumlah_jual">Jumlah Jual</th>
                                 <th scope="col" class="sort" data-sort="size_jual">Size Jual</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Harga Produk</th>
                                 <th scope="col" class="sort" data-sort="shipping">Shipping</th>
                                 <th scope="col" class="sort" data-sort="ongkir">Ongkir</th>
                                 <th scope="col" class="sort" data-sort="keterangan">Keterangan</th>
@@ -49,38 +48,75 @@
                             </tr>
                         </thead>
                         <tbody class="list">
+                            @forelse($page as $key)
                             <tr>
-                                <td class="id_transaksi_penjualan">TC001</td>
-                                <td class="tanggal_transaksi">Kain</td>
+                                <td class="id_transaksi_penjualan">{{ $key->id }}</td>
+                                <td class="tanggal_transaksi">{{ $key->date }}</td>
                                 <th class="gambar_desain">
-                                    <a href="#">Gambar_Desain_TC001</a>
+                                    <a href="#" target="_blank">{{ $key->pict_desain }}</a>
                                 </th>
                                 <td class="status_desain">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
+                                    <?php if ($key->status_pengerjaan == "Menunggu Persetujuan Desain") { ?>
+                                        <button type="button" class="btn btn-outline-success">
+                                            <a href="/penjualancustom/statusdesain/acc/{{ $key->id }}">Terima</a>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-warning">
+                                            <a href="/penjualancustom/statusdesain/den/{{ $key->id }}">Tolak</a>
+                                        </button>
+                                    <?php
+                                    } else if ($key->status_pengerjaan == "Menunggu Data Order") {
+                                        echo "Desain Diterima";
+                                    } else if ($key->status_pengerjaan == "Menunggu Proses Pembayaran") {
+                                        echo "Data Diterima";
+                                    } else if ($key->status_pengerjaan == "Selesai") {
+                                        echo "Terima Kasih";
+                                    } else {
+                                        echo "Pesanan Di tolak";
+                                    }
+                                    ?>
                                 </td>
-                                <td class="jumlah_jual">1 Set</td>
-                                <td class="size_jual">L</td>
-                                <td class="harga_produk">Rp. 200.000</td>
-                                <td class="shipping">JNE</td>
-                                <td class="ongkir">Rp. 50.000</td>
-                                <td class="keterangan">Rumah Cat Hijau</td>
-                                <td class="total_harga">Rp. 1.000.000</td>
+                                <td class="jumlah_jual">{{ $key->qty }}</td>
+                                <td class="size_jual">{{ $key->size }}</td>
+                                <td class="shipping">{{ $key->shipping }}</td>
+                                <td class="ongkir">{{ $key->ongkir }}</td>
+                                <td class="keterangan">{{ $key->keterangan }}</td>
+                                <td class="total_harga">{{ $key->total }}</td>
                                 <td class="status">
                                     <span class="badge badge-dot mr-4">
                                         <i class="bg-info"></i>
-                                        <span class="status">Menunggu Konfirmasi</span>
+                                        <span class="status">{{ $key->status_pengerjaan }}</span>
                                     </span>
                                 </td>
                                 <td class="bukti_pembayaran">
-                                    <a href="#">Bukti_Transfer_TC001.jpg</a>
+                                    <a href="#">{{ $key->pict_payment }}</a>
                                 </td>
                                 <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                    <?php if ($key->status_pengerjaan == "Menunggu Persetujuan Desain") {
+                                        echo "Menunggu Konfirmasi Desain";
+                                    } else if ($key->status_pengerjaan == "Menunggu Proses Pembayaran") { ?>
+                                        <button type="button" class="btn btn-outline-success">Terima</button>
+                                        <button type="button" class="btn btn-outline-warning">Tolak</button>
+                                        <button type="button" class="btn btn-outline-danger">Delete</button>
+                                    <?php
+                                    } else if ($key->status_pengerjaan == "Menunggu Data Order") {?>
+                                        <button type="button" class="btn btn-outline-success">
+                                            <a href="/penjualancustom/update/{{ $key->id }}">Terima</a>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger">Delete</button>
+                                    <?php
+                                    } else if ($key->status_pengerjaan == "Selesai") {
+                                        echo "Selesai";
+                                    } else {
+                                        echo "Pesanan Di tolak";
+                                    }
+                                    ?>
                                 </td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td colspan="7" class="text-center">Data Kosong</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
