@@ -17,8 +17,8 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('customers_id');
             $table->foreign('customers_id')->references('id')->on('customers')->onDelete('cascade');
-            // $table->unsignedBigInteger('confirm_payments_id');
-            // $table->foreign('confirm_payments_id')->references('id')->on('confirm_payments')->onDelete('cascade');
+            $table->unsignedBigInteger('confirm_payments_id');
+            $table->foreign('confirm_payments_id')->references('id')->on('confirm_payments')->onDelete('cascade');
             // $table->unsignedBigInteger('discounts_id');
             // $table->foreign('discounts_id')->references('id')->on('discounts')->onDelete('cascade');
             $table->date("date");
@@ -28,7 +28,7 @@ class CreateOrdersTable extends Migration
             $table->string("keterangan")->nullable();
             $table->string("shipping");
             $table->integer("ongkir");
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -15,13 +15,13 @@ class CreateConfirmPaymentsTable extends Migration
     {
         Schema::create('confirm_payments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('orders_id');
+            // $table->unsignedBigInteger('orders_id');
             $table->string("payment_purpose");
             $table->dateTime("transfer_date");
             $table->integer("Transfer_Amount");
             $table->string("proof_of_payment");
             $table->string("description")->nullable();
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }

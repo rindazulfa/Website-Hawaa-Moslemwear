@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\material;
-use App\Models\Recipe;
-use App\Models\supplier;
+use App\Models\payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class MaterialController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +16,8 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $bahan = material::all();
-        return view('admin/pages/bahan_baku/index', [
+        $bahan = payment::all();
+        return view('admin/pages/payment/index', [
             'items' => $bahan
         ]);
     }
@@ -31,7 +29,7 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        return view('admin/pages/bahan_baku/create');
+        return view('admin/pages/payment/create');
     }
 
     /**
@@ -43,23 +41,21 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make(request()->all(), [
-            'name' => 'required',
-            'price' => 'required',
-            'qty' => 'required',
-            'satuan' => 'required'
+            'bank' => 'required',
+            'no_rekening' => 'required',
+            'name' => 'required'
         ]);
 
         if ($validator->fails()) {
             return back()->withErrors($validator->errors());
         } else {
-            $page = new material();
+            $page = new payment();
+            $page->bank= $request->get("bank");
+            $page->no_rekening = $request->get("no_rekening");
             $page->name= $request->get("name");
-            $page->price = $request->get("price");
-            $page->qty= $request->get("qty");
-            $page->satuan= $request->get("satuan");
             $page->save();
 
-            return redirect()->route("bahan_baku.index")->with("info", "Materials has been created");
+            return redirect()->route("payment.index")->with("info", "Payments has been created");
         }
     }
 
@@ -82,9 +78,9 @@ class MaterialController extends Controller
      */
     public function edit($id)
     {
-        $edit = material::findOrFail($id);
+        $edit = payment::findOrFail($id);
         
-        return view('admin.pages.bahan_baku.edit', [
+        return view('admin.pages.payment.edit', [
             'edit' => $edit
         ]);
     }
@@ -92,20 +88,19 @@ class MaterialController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Reque   st  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $page = material::findOrFail($id);
+        $page = payment::findOrFail($id);
+            $page->bank= $request->get("bank");
+            $page->no_rekening = $request->get("no_rekening");
             $page->name= $request->get("name");
-            $page->price = $request->get("price");
-            $page->qty= $request->get("qty");
-            $page->satuan= $request->get("satuan");
             $page->save();
 
-            return redirect()->route("bahan_baku.index")->with("info", "Materials has been created");
+            return redirect()->route("payment.index")->with("info", "Payments has been created");
     }
 
     /**
@@ -116,13 +111,8 @@ class MaterialController extends Controller
      */
     public function destroy($id)
     {
-        $page = material::findOrFail($id);
-            $page->name= $request->get("name");
-            $page->price = $request->get("price");
-            $page->qty= $request->get("qty");
-            $page->satuan= $request->get("satuan");
-            $page->save();
-
-            return redirect()->route("bahan_baku.index")->with("info", "Materials has been created");
+        $delete = payment::findOrFail($id);
+        $delete->delete();
+        return redirect()->route('payment.index');
     }
 }

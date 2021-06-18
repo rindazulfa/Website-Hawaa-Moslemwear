@@ -65,9 +65,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ (request()->segment(1) == 'discount') ? 'active' : '' }}" href="/discount">
+            <a class="nav-link {{ (request()->segment(1) == 'payment') ? 'active' : '' }}" href="/payment">
               <i class="ni ni-tag"></i>
-              <span class="nav-link-text">Promo</span>
+              <span class="nav-link-text">Payment</span>
             </a>
           </li>
           <li class="nav-item">
