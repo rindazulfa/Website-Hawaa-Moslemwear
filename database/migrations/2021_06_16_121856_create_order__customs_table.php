@@ -17,8 +17,8 @@ class CreateOrderCustomsTable extends Migration
             $table->bigIncrements("id");
             $table->unsignedBigInteger('customers_id')->nullable();
             $table->foreign('customers_id')->references('id')->on('customers')->onDelete('cascade');
-            $table->unsignedBigInteger('products_id')->nullable();
-            $table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
+            // $table->unsignedBigInteger('products_id')->nullable();
+            // $table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
             $table->unsignedBigInteger('confirm_payments_id')->nullable();
             $table->foreign('confirm_payments_id')->references('id')->on('confirm_payments')->onDelete('cascade');
             $table->date("date")->nullable();

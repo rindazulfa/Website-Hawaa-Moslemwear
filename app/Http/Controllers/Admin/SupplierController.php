@@ -45,28 +45,17 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $cekbahan = material::where('id', $data['materials_id'])->count();
+        // $cekbahan = material::where('id', $data['materials_id'])->count();
         // $ceksize = stock::where('products_id',$data['products_id'])
         // ->where('size',$data['size'])->count();
-
-        if ($cekbahan > 0) {
-            $ceksup = supplier::where('materials_id', $data['materials_id'])->first();
-            
-            if ($ceksup>0) {
-                 
-            }
-            else {
-                $page = new supplier();
-                $page->materials_id = $request->get("materials_id");
-                $page->name = $request->get("name");
-                $page->address = $request->get("address");
-                $page->email = $request->get("email");
-                $page->phone = $request->get("phone");
-                $page->save();
-            }
-        
-           
-        }
+        $page = new supplier();
+        // $page->materials_id = $request->get("materials_id");
+        $page->name = $request->get("name");
+        $page->address = $request->get("address");
+        $page->email = $request->get("email");
+        $page->phone = $request->get("phone");
+        $page->save();
+    
 
         return redirect()->route("supplier.index")->with("info", "Supplier has been created");
     }

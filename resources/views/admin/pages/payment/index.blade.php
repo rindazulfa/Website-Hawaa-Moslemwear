@@ -47,7 +47,7 @@
                             @forelse($items as $key)
                             <tr>
                                 <td>{{$key->id}}</td>
-                                <td>{{$key->bank}}</td>\
+                                <td>{{$key->bank}}</td>
                                 <td>{{$key->no_rekening}}</td>
                                 <td>{{$key->name}}</td>
                                 <td>

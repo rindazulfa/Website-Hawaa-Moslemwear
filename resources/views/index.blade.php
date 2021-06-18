@@ -25,8 +25,8 @@
     <div class="container">
         <div class="row justify-content-center mb-3 pb-3">
             <div class="col-md-12 heading-section text-center ftco-animate">
-                <h1 class="big">PROMO</h1>
-                <h2 class="mb-4">PROMO</h2>
+                <h1 class="big">Product</h1>
+                <h2 class="mb-4">Product</h2>
             </div>
         </div>
         <div class="row">
@@ -138,128 +138,7 @@
     </div>
 </section>
 
-<section class="ftco-section bg-light">
-    <div class="container">
-        <div class="row justify-content-center mb-3 pb-3">
-            <div class="col-md-12 heading-section text-center ftco-animate">
-                <h1 class="big">New Arrival</h1>
-                <h2 class="mb-4">Our New Arrival</h2>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm col-md-6 col-lg ftco-animate">
-                <div class="product">
-                    <a href="/detailproduct" class="img-prod"><img class="img-fluid" src="images/product-1.png" alt="Colorlib Template"></a>
-                    <div class="text py-3 px-3">
-                        <h3><a href="/detailproduct">Young Woman Wearing Dress</a></h3>
-                        <div class="d-flex">
-                            <div class="pricing">
-                                <p class="price"><span>Rp 120.000</span></p>
-                            </div>
-                            <!-- <div class="rating">
-                                <p class="text-right">
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                </p>
-                            </div> -->
-                        </div>
-                        <hr>
-                        <p class="bottom-area d-flex">
-                            <a href="/detailproduct" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                            <!-- <a href="/detailproduct" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a> -->
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm col-md-6 col-lg ftco-animate">
-                <div class="product">
-                    <a href="/detailproduct" class="img-prod"><img class="img-fluid" src="images/product-2.png" alt="Colorlib Template"></a>
-                    <div class="text py-3 px-3">
-                        <h3><a href="/detailproduct">Young Woman Wearing Dress</a></h3>
-                        <div class="d-flex">
-                            <div class="pricing">
-                                <p class="price"><span>Rp120.00</span></p>
-                            </div>
-                            <!-- <div class="rating">
-                                <p class="text-right">
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                </p>
-                            </div> -->
-                        </div>
-                        <hr>
-                        <p class="bottom-area d-flex">
-                            <a href="/detailproduct" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                            <!-- <a href="/detailproduct" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a> -->
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm col-md-6 col-lg ftco-animate">
-                <div class="product">
-                    <a href="/detailproduct" class="img-prod"><img class="img-fluid" src="images/product-3.png" alt="Colorlib Template"></a>
-                    <div class="text py-3 px-3">
-                        <h3><a href="/detailproduct">Young Woman Wearing Dress</a></h3>
-                        <div class="d-flex">
-                            <div class="pricing">
-                                <p class="price"><span>Rp120.00</span></p>
-                            </div>
-                            <!-- <div class="rating">
-                                <p class="text-right">
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                </p>
-                            </div> -->
-                        </div>
-                        <hr>
-                        <p class="bottom-area d-flex">
-                            <a href="/detailproduct" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                            <!-- <a href="/detailproduct" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a> -->
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm col-md-6 col-lg ftco-animate">
-                <div class="product">
-                    <a href="/detailproduct" class="img-prod"><img class="img-fluid" src="images/product-6.png" alt="Colorlib Template"></a>
-                    <div class="text py-3 px-3">
-                        <h3><a href="/detailproduct">Young Woman Wearing Dress</a></h3>
-                        <div class="d-flex">
-                            <div class="pricing">
-                                <p class="price"><span>Rp120.00</span></p>
-                            </div>
-                            <!-- <div class="rating">
-                                <p class="text-right">
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                </p>
-                            </div> -->
-                        </div>
-                        <hr>
-                        <p class="bottom-area d-flex">
-                            <a href="/detailproduct" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                            <!-- <a href="/detailproduct" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a> -->
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
 
 <section class="ftco-section bg-light ftco-services">
     <div class="container">

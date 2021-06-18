@@ -59,7 +59,7 @@
                             <p class="card-text">{{$detail->desc}}</p>
                         </div>
                     </div>
-                    <!-- <a href="/produk" class="btn btn-primary">Kembali</a> -->
+                    <a href="/produk" class="btn btn-primary">Kembali</a>
                 </div>
             </div>
          

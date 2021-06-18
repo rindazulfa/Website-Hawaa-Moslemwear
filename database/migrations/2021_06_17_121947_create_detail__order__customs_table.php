@@ -19,6 +19,7 @@ class CreateDetailOrderCustomsTable extends Migration
             $table->foreign('order_customs_id')->references('id')->on('order_customs')->onDelete('cascade');
             $table->string("size")->nullable();
             $table->integer("qty")->nullable();
+            $table->integer("harga")->nullable();
             $table->string("satuan")->nullable();
             $table->integer("subtotal")->nullable();
             $table->string("pict_desain");

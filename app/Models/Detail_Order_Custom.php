@@ -11,7 +11,7 @@ class Detail_Order_Custom extends Model
     use SoftDeletes;
     protected $table = "detail_order_customs";  
     protected $fillable = [
-        'order_customs_id','qty','satuan','subtotal','qty','pict_desain'
+        'order_customs_id','qty','satuan','harga','subtotal','qty','pict_desain'
     ];
     protected $hidden =[
 

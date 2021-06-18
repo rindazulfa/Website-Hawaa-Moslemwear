@@ -13,7 +13,7 @@
 <section class="ftco-section bg-light">
 	<div class="container-fluid">
 		<div class="row justify-content-center">
-			<form action="" method="post">
+			<!-- <form action="" method="post"> -->
 				@forelse($shop as $key)
 				<div class="col-sm col-md-6 col-lg-3 ftco-animate">
 					<div class="product">
@@ -37,7 +37,7 @@
 						</div>
 					</div>
 				</div>
-			</form>
+			<!-- </form> -->
 			@empty
 			<tr>
 				<td colspan="7" class="text-center">Data Kosong</td>

@@ -18,9 +18,9 @@ class CreateCartTable extends Migration
             $table->string("id_stock_products");
             $table->string("name");
             $table->string("size");
-            $table->int("price");
-            $table->int("qty");
-            $table->int("subtotal");
+            $table->integer("price");
+            $table->integer("qty");
+            $table->integer("subtotal");
             // $table->integer("qty");
             $table->timestamps();
         });

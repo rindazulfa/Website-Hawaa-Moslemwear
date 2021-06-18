@@ -60,7 +60,7 @@
                                 <td>{{$key->satuan}}</td>
                                 <td class="aksi">
                                     <a href="{{route('stok_produk.show',[$key->id])}}" class="btn btn-outline-primary" title="Detail">
-                                        Input Resep
+                                        Resep
                                     </a>
                                     <a href="{{route('stok_produk.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
