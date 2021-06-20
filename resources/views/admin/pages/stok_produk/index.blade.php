@@ -60,11 +60,11 @@
                                 <td>{{$key->satuan}}</td>
                                 <td class="aksi">
                                     <a href="{{route('stok_produk.show',[$key->id])}}" class="btn btn-outline-primary" title="Detail">
-                                        Resep
+                                        BOM
                                     </a>
-                                    <a href="{{route('stok_produk.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
+                                    <!-- <a href="{{route('stok_produk.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
-                                    </a>
+                                    </a> -->
                                     <a href="{{route('produksi.show',[$key->id])}}" class="btn btn-outline-primary" title="Produksi">
                                         Produksi
                                     </a>

@@ -84,8 +84,6 @@ class ProductionController extends Controller
         ->where('id',$request->id_stock)
         ->get();
 
-
-
         Production::create([
             'recipes_id' => $request->id_stock,
             'stocks_id' => $id_produk[0]->products_id,

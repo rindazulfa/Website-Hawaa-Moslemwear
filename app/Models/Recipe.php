@@ -29,7 +29,7 @@ class Recipe extends Model
     
     public function produksi()
     {
-        return $this->hasMany(Production::class, 'productions_id', 'id');
+        return $this->hasMany(Production::class, 'recipes_id', 'id');
     }
 
 }

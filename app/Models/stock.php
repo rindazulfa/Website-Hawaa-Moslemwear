@@ -26,4 +26,8 @@ class stock extends Model
     {
         return $this->hasMany(Recipe::class, 'stocks_id', 'id');
     }
+    public function produksi()
+    {
+        return $this->hasMany(Production::class, 'stocks_id', 'id');
+    }
 }

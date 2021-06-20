@@ -24,7 +24,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Resep Produk per Jenis</h3>
+                    <h3 class="mb-0">BOM Produk per Jenis</h3>
                     
                     <div class="float-right">
                         <a href="{{route('form_resep',[$id])}}" class="btn btn-primary">Tambah Bahan</a>

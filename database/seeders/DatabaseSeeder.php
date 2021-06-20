@@ -22,8 +22,9 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             // CustomerSeeder::class,
             MaterialSeeder::class,
-            RecipeSeeder::class,
+            
             StokProductSeeder::class,
+            RecipeSeeder::class,
             SupplierSeeder::class,
             DiscountSeeder::class,
             PurchaseSeeder::class,
