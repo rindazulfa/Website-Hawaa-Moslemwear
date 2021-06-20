@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-8 ftco-animate">
-        <form action="{{route('custom.update', [$items->id])}}" method="post" class="billing-form bg-light p-3 p-md-5">
+        <form action="#" method="post" class="billing-form bg-light p-3 p-md-5">
           @if($errors->any())
           <div class="alert alert-danger">
             <ul>
@@ -16,7 +16,7 @@
           @endif
           @method('PUT')
           @csrf
-          <h3 class="mb-4 billing-heading">Form Custom Product <br>Data Order</h3>
+          <h3 class="mb-4 billing-heading">Form Custom Product <br>Data Pembayaran</h3>
           <div class="row align-items-end">
             <div class="w-100"></div>
             <div class="col-md-12">

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\User;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,20 +16,28 @@ class HistoryCustomController extends Controller
     public function index()
     {
         $cust_id = DB::table('customers')
-        ->where('users_id','=', auth()->user()->id)
-        ->get();
+            ->where('users_id', '=', auth()->user()->id)
+            ->get();
 
         $cek = DB::table('order_customs')
-        ->where('customers_id','=',$cust_id[0]->id)
-        ->get();
+            ->where('customers_id', '=', $cust_id[0]->id)
+            ->get();
 
         // dd(
         //     $cek,
         //     $cust_id[0]->id
         // );
-        return view('package.login.historycustom',[
-            'cek' => $cek
-        ]);
+        // return view('package.login.historycustom',[
+        //     'cek' => $cek
+        // ]);
+
+        if (empty($cek)) {
+            return redirect('/');
+        } else {
+            return view('package.login.historycustom', [
+                'cek' => $cek
+            ]);
+        }
     }
 
     /**

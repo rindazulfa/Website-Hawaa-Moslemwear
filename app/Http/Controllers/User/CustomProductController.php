@@ -85,7 +85,7 @@ class CustomProductController extends Controller
         } else {
             // do nothing
         }
-        return redirect()->route("/history")->with("info", "Your Request has been created");
+        return redirect("/history")->with("info", "Your Request has been created");
     }
 
     /**
@@ -127,6 +127,13 @@ class CustomProductController extends Controller
             'size' => $request->size,
             'qty' => $request->qty,
             'satuan' => $request->satuan
+        ]);
+
+        $data = DB::table('order_customs')
+        ->where('id','=',$id)->update([
+            'keterangan' => $request->keterangan,
+            'shipping' => $request->shipping,
+            'status_pengerjaan' => 'Menunggu Harga'
         ]);
 
         // $data = DB::table('order_customs')

@@ -68,6 +68,8 @@
                                         echo "Desain Diterima";
                                     } else if ($key->status_pengerjaan == "Menunggu Proses Pembayaran") {
                                         echo "Data Diterima";
+                                    } else if ($key->status_pengerjaan == "Menunggu Harga") {
+                                        echo "Data Diterima, Silahkan memasukkan jumlah harga";
                                     } else if ($key->status_pengerjaan == "Selesai") {
                                         echo "Terima Kasih";
                                     } else {
@@ -98,7 +100,7 @@
                                         <button type="button" class="btn btn-outline-warning">Tolak</button>
                                         <button type="button" class="btn btn-outline-danger">Delete</button>
                                     <?php
-                                    } else if ($key->status_pengerjaan == "Menunggu Data Order") {?>
+                                    } else if ($key->status_pengerjaan == "Menunggu Harga") {?>
                                         <button type="button" class="btn btn-outline-success">
                                             <a href="/penjualancustom/update/{{ $key->id }}">Terima</a>
                                         </button>

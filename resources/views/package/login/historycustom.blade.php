@@ -35,6 +35,8 @@
                                     echo "Masih Nunggu Acc Desain Sayang";
                                 } else if ($key->status_pengerjaan == "Menunggu Data Order") {
                                     echo "Desain Diterima, Silahkan Melanjutkan Transaksi";
+                                } else if ($key->status_pengerjaan == "Menunggu Harga") {
+                                    echo "Data Diterima, Silahkan Menunggu Total Harga";
                                 } else if ($key->status_pengerjaan == "Menunggu Proses Pembayaran") {
                                     echo "Data Diterima, Silahkan Melanjutkan Transaksi";
                                 } else if ($key->status_pengerjaan == "Selesai") {
@@ -45,7 +47,7 @@
                                 ?>
                             </td>
                             <td>{{ $key->total }}</td>
-                            <td>-</td>
+                            <td>{{ $key->status_pembayaran }}</td>
                             <td>
                                 <?php
                                 if ($key->status_pengerjaan == "Menunggu Persetujuan Desain") {
@@ -75,6 +77,10 @@
                                         Silahkan Hubungi Admin
                                     </a>
                                 <?php
+                                } else if ($key->status_pengerjaan == "Menunggu Harga") {
+                                    ?>
+                                    Silahkan Menunggu Harga
+                                <?php
                                 } else {
                                     echo "Pesanan Di tolak";
                                 }
@@ -91,6 +97,7 @@
                 </table>
             </div>
         </div>
+        @forelse($cek as $key)
         <div class="row d-flex mt-5 contact-info">
             <div class="w-100"></div>
             <div class="col-md-4 d-flex">
@@ -115,6 +122,32 @@
                 </div>
             </div>
         </div>
+        @empty
+        <div class="row d-flex mt-5 contact-info">
+            <div class="w-100"></div>
+            <div class="col-md-4 d-flex">
+                <div class="info bg-white p-4">
+                    <p><span><strong>Status Pengerjaan Desain :</strong></span></p>
+                    <br>
+                    <h3><strong>Data Tidak Tersedia</strong></h3>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex">
+                <div class="info bg-white p-4">
+                    <p><span><strong>Status Pembayaran :</strong></span></p>
+                    <br>
+                    <h3><strong>Data Tidak Tersedia</strong></h3>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex">
+                <div class="info bg-white p-4">
+                    <p><span><strong>Status Pesanan :</strong></span></p>
+                    <br>
+                    <h3><strong>Data Tidak Tersedia</strong></h3>
+                </div>
+            </div>
+        </div>
+        @endforelse
     </div>
 </section>
 @endsection

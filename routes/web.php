@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\Order_CustomController;
+use App\Http\Controllers\Admin\Detail_CheckoutController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\HistoryCustomController;
@@ -79,6 +80,7 @@ Route::group([
     Route::get('/penjualancustom/statusdesain/acc/{id}', [Order_CustomController::class, 'updsttsdesacc'])->name('acc.desain');
     Route::get('/penjualancustom/statusdesain/den/{id}', [Order_CustomController::class, 'updsttsdesden'])->name('den.desain');
     Route::get('/penjualancustom/update/{id}', [Order_CustomController::class, 'tampileditharga'])->name('edit.harga');
+    // Route::post('/penjualancustom/update/post/{id}', [Order_CustomController::class, 'simpanharga'])->name('harga.store');
 
 });
 
