@@ -59,6 +59,7 @@ class ShopController extends Controller
             'qty' => 'required',
 
         ]);
+        // dd($request->all());
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors());
         } else {
@@ -121,7 +122,7 @@ class ShopController extends Controller
             $request->session()->forget("cart_shop_data");
             $request->session()->put(["cart_shop_data" => $arr]);
             $request->session()->save();
-            return redirect("shop");
+            // return redirect("shop");
         }
     }
     /**

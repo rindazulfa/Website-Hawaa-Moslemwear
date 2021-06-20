@@ -57,7 +57,7 @@
                                         Update
                                     </a>
                                     
-                                    <button class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" title="Delete">Delete</button>
+                                    <!-- <button class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" title="Delete">Delete</button> -->
                                
                                 </td>
                             </tr>

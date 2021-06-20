@@ -41,7 +41,7 @@ class UserController extends Controller
         $credentials = $request->validate([
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
-            'email' => ['required', 'email', 'unique:users'],
+            'email' => ['required', 'email'],
             'password' => ['required','string'],
             // 'password_confirmation' => ['required','string']
         ]);
@@ -92,16 +92,17 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-    //    $credentials = $request->validate([
-    //         'first_name' => ['required', 'string'],
-    //         'last_name' => ['required', 'string'],
-    //         'email' => ['required', 'email', 'unique:users'],
-    //         'password' => ['required','string', 'min:8', 'confirmed'],
-    //     ]);
+        $credentials = $request->validate([
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'password' => ['required','string'],
+            // 'password_confirmation' => ['required','string']
+        ]);
         
         $user->first_name = $request->get('first_name');
         $user->last_name = $request->get('last_name');
-        // $user->email = $request->get('email');
+        $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password'));
         $user->role = $request->get('role');
         $user->save();

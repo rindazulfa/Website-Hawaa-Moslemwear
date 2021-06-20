@@ -30,10 +30,10 @@
                                 <input type="password" name='password' class="form-control" placeholder="Masukkan Password Anda">
                             </div>
 
-                            <!-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="kata_sandi">Confirm Password</label>
                                 <input type="password" name='password_confirmation' class="form-control" placeholder="Masukkan Password Anda">
-                            </div> -->
+                            </div>
 
                         </div>
 

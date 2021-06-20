@@ -25,7 +25,7 @@
 				@else
 				<div class="flex-w flex-r-m p-b-10" id="stok">
 					<div class="size-203 flex-c-m respon6">
-						Stok 
+						Stok
 					</div>
 					<div class="size-204 respon6-next stok" data-stok="">
 
@@ -54,14 +54,14 @@
 						</div>
 						<div class="w-100"></div>
 						<div class="input-group col-md-6 d-flex mb-3">
-							<span class="input-group-btn mr-2 btnmin">
-								<button type="button" class="quantity-left-minus btn ">
+							<span class="input-group-btn mr-2">
+								<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
 									<i class="ion-ios-remove"></i>
 								</button>
 							</span>
-							<input type="number" name="qty" class="form-control input-number qty" value="1" min="1">
-							<span class="input-group-btn ml-2 btnplus">
-								<button type="button" class="quantity-right-plus btn " >
+							<input type="text" id="quantity" name="qty" class="form-control input-number qty" value="1" min="1" max="100">
+							<span class="input-group-btn ml-2">
+								<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
 									<i class="ion-ios-add"></i>
 								</button>
 							</span>
@@ -82,6 +82,42 @@
 @endsection
 
 @push('script')
+<script>
+	$(document).ready(function() {
+
+		var quantitiy = 0;
+		$('.quantity-right-plus').click(function(e) {
+
+			// Stop acting like a button
+			e.preventDefault();
+			// Get the field name
+			var quantity = parseInt($('#quantity').val());
+
+			// If is not undefined
+
+			$('#quantity').val(quantity + 1);
+
+
+			// Increment
+
+		});
+
+		$('.quantity-left-minus').click(function(e) {
+			// Stop acting like a button
+			e.preventDefault();
+			// Get the field name
+			var quantity = parseInt($('#quantity').val());
+
+			// If is not undefined
+
+			// Increment
+			if (quantity > 0) {
+				$('#quantity').val(quantity - 1);
+			}
+		});
+
+	});
+</script>
 
 <script>
 	$(document).ready(function() {
@@ -92,7 +128,7 @@
 			var size = $(this).find(':selected').val();
 
 			if (size == 0) {
-				$('#stok').hide();
+				// $('#stok').hide();
 				return false;
 			}
 
@@ -104,11 +140,11 @@
 					'size': size
 				},
 				success: function(data) {
-					$('.stok').data('stok', data["stok"]);
-					$('.stok').text(data['stok']);
+					// $('.stok').data('stok', data["stok"]);
+					// $('.stok').text(data['stok']);
 				},
 				complete: function() {
-					$('#stok').show();
+					// $('#stok').show();
 				}
 			})
 		});
@@ -116,7 +152,7 @@
 		$(document).on("click", '#btnShopCart', function() {
 			var size = $('#size').find(':selected').val();
 			var qty = $('.qty').val();
-			var stok = $('.stok').data('stok');
+			// var stok = $('.stok').data('stok');
 
 			if (size == 0) {
 				//   alert("Please choose size");
@@ -160,7 +196,7 @@
 				return false;
 			}
 
-			$('#formDetail').submit();
+			// $('#formDetail').submit();
 		});
 	})
 </script>
