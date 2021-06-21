@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Detail_order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class Shoping_Cart extends Controller
+class Shoping_CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +18,12 @@ class Shoping_Cart extends Controller
         $detail_order = Detail_order::with([
             'products'
         ])->get();
-        $propinsi = $this->getProvince();
+        // $propinsi = $this->getProvince();
 
         // dd($propinsi);
         return view('pages.shoping_cart', [
-            'detail' => $detail_order, 'province' => $propinsi
+            'detail' => $detail_order
+            // , 'province' => $propinsi
         ]);
     }
 
@@ -45,43 +47,6 @@ class Shoping_Cart extends Controller
     {
         //
     }
-    public function changeQty(Request $request)
-    {
-        if ($request->ajax()) {
-            $validator = Validator::make($request->all(), [
-                'qty' => 'required',
-                'id' => 'required',
-                'size' => 'required'
-            ]);
-            if ($validator->fails()) {
-                return response()->json($validator->errors());
-            }
-            if ($request->session()->has("cart_shop_data")) {
-                $arr = [];
-                $data = $request->session()->get("cart_shop_data");
-                $qty = $request->get("qty");
-                $id = $request->get("id");
-                $size = $request->get("size");
-                foreach ($data as $key => $value) {
-                    if ($id == $value["products_id"] && $size == $value["size"]) {
-                        $value["qty"] = $qty;
-                        array_push($arr, $value);
-                    } else {
-                        array_push($arr, $value);
-                    }
-                }
-                $request->session()->forget("cart_shop_data");
-                $request->session()->save();
-                $request->session()->put("cart_shop_data", $arr);
-                $request->session()->save();
-                return response()->json([
-                    'status' => true
-                ]);
-                // return redirect()->route("shoping_cart.index");
-            }
-        }
-    }
-
 
     /**
      * Display the specified resource.
@@ -127,4 +92,43 @@ class Shoping_Cart extends Controller
     {
         //
     }
+    
+    public function changeQty(Request $request)
+    {
+        if ($request->ajax()) {
+            $validator = Validator::make($request->all(), [
+                'qty' => 'required',
+                'id' => 'required',
+                'size' => 'required'
+            ]);
+            if ($validator->fails()) {
+                return response()->json($validator->errors());
+            }
+            if ($request->session()->has("cart_shop_data")) {
+                $arr = [];
+                $data = $request->session()->get("cart_shop_data");
+                $qty = $request->get("qty");
+                $id = $request->get("id");
+                $size = $request->get("size");
+                foreach ($data as $key => $value) {
+                    if ($id == $value["products_id"] && $size == $value["size"]) {
+                        $value["qty"] = $qty;
+                        array_push($arr, $value);
+                    } else {
+                        array_push($arr, $value);
+                    }
+                }
+                $request->session()->forget("cart_shop_data");
+                $request->session()->save();
+                $request->session()->put("cart_shop_data", $arr);
+                $request->session()->save();
+                return response()->json([
+                    'status' => true
+                ]);
+                // return redirect()->route("shoping_cart.index");
+            }
+        }
+    }
+
+
 }
