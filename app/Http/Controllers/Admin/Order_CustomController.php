@@ -41,7 +41,8 @@ class Order_CustomController extends Controller
     {
         $dendes = DB::table('order_customs')
             ->where('id', '=', $id)->update([
-                'status_pengerjaan' => 'Ditolak'
+                'status_pengerjaan' => 'Ditolak',
+                'status_pembayaran' => 'Ditolak',
             ]);
         return redirect('/penjualancustom');
     }

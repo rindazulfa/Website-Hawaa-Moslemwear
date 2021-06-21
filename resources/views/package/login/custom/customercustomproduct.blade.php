@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-8 ftco-animate">
-        <form action="" method="POST" class="billing-form bg-light p-3 p-md-5">
+        <form action="{{ route('history.store') }}" method="POST" class="billing-form bg-light p-3 p-md-5">
           @csrf
           <h3 class="mb-4 billing-heading">Form Custom Product <br>Data Customer </h3>
           <div class="row align-items-end">
@@ -12,33 +12,33 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="alamat">Alamat Rumah</label>
-                <input type="text" class="form-control" placeholder="Masukkan Alamat Rumah Anda" name="alamat">
+                <input type="text" class="form-control" placeholder="Masukkan Alamat Rumah Anda" name="address">
               </div>
             </div>
             <div class="w-100"></div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="kota">Kota</label>
-                <input type="text" class="form-control" placeholder="Masukkan Kota Anda" name="kota">
+                <input type="text" class="form-control" placeholder="Masukkan Kota Anda" name="city">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="provinsi">Provinsi</label>
-                <input type="text" class="form-control" placeholder="Masukkan Provinsi Anda" name="provinsi">
+                <input type="text" class="form-control" name="province" placeholder="Masukkan Provinsi Anda" name="provinsi">
               </div>
             </div>
             <div class="w-100"></div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="kode_pos">Kode Pos</label>
-                <input type="number" class="form-control" placeholder="Masukkan Kode Pos Anda">
+                <input type="number" class="form-control" name="postal" placeholder="Masukkan Kode Pos Anda">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="no_telp">Nomor Telepon</label>
-                <input type="text" class="form-control" placeholder="Masukkan Nomor Telepon Anda">
+                <input type="text" class="form-control" name="phone" placeholder="Masukkan Nomor Telepon Anda">
               </div>
             </div>
           </div>

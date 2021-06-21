@@ -53,7 +53,7 @@
                                 <td class="id_transaksi_penjualan">{{ $key->id }}</td>
                                 <td class="tanggal_transaksi">{{ $key->date }}</td>
                                 <th class="gambar_desain">
-                                    <a href="#" target="_blank">{{ $key->pict_desain }}</a>
+                                    <a href="{{asset('data_file/'.$key->pict_desain)}}" target="_blank">{{ $key->pict_desain }}</a>
                                 </th>
                                 <td class="status_desain">
                                     <?php if ($key->status_pengerjaan == "Menunggu Persetujuan Desain") { ?>
@@ -67,6 +67,8 @@
                                     } else if ($key->status_pengerjaan == "Menunggu Data Order") {
                                         echo "Desain Diterima";
                                     } else if ($key->status_pengerjaan == "Menunggu Proses Pembayaran") {
+                                        echo "Data Diterima";
+                                    } else if ($key->status_pengerjaan == "Menunggu Konfirmasi Pembayaran") {
                                         echo "Data Diterima";
                                     } else if ($key->status_pengerjaan == "Menunggu Harga") {
                                         echo "Data Diterima, Silahkan memasukkan jumlah harga";
@@ -90,21 +92,30 @@
                                     </span>
                                 </td>
                                 <td class="bukti_pembayaran">
-                                    <a href="#">{{ $key->pict_payment }}</a>
+                                    <a href="{{asset('uploads/bukti/'.$key->pict_payment)}}" target="_blank">{{ $key->pict_payment }}</a>
                                 </td>
                                 <td class="aksi">
                                     <?php if ($key->status_pengerjaan == "Menunggu Persetujuan Desain") {
                                         echo "Menunggu Konfirmasi Desain";
                                     } else if ($key->status_pengerjaan == "Menunggu Proses Pembayaran") { ?>
-                                        <button type="button" class="btn btn-outline-success">Terima</button>
-                                        <button type="button" class="btn btn-outline-warning">Tolak</button>
                                         <button type="button" class="btn btn-outline-danger">Delete</button>
                                     <?php
-                                    } else if ($key->status_pengerjaan == "Menunggu Harga") {?>
+                                    } else if ($key->status_pengerjaan == "Menunggu Konfirmasi Pembayaran") {
+                                        ?>
+                                        <button type="button" class="btn btn-outline-success">
+                                            <a href="/confirmpayment/statuspay/acc/{{ $key->id }}">Terima</a>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger">
+                                            <a href="/penjualancustom/statusdesain/den/{{ $key->id }}">Tolak</a>
+                                        </button>
+                                    <?php
+                                    } else if ($key->status_pengerjaan == "Menunggu Harga") { ?>
                                         <button type="button" class="btn btn-outline-success">
                                             <a href="/penjualancustom/update/{{ $key->id }}">Terima</a>
                                         </button>
-                                        <button type="button" class="btn btn-outline-danger">Delete</button>
+                                        <button type="button" class="btn btn-outline-danger">
+                                            <a href="/penjualancustom/statusdesain/den/{{ $key->id }}">Tolak</a>
+                                        </button>
                                     <?php
                                     } else if ($key->status_pengerjaan == "Selesai") {
                                         echo "Selesai";

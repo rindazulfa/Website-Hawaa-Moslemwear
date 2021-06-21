@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\confirm_payment;
 use App\Models\customer;
 use App\Models\Detail_Order_Custom;
 use App\Models\Order_Custom;
@@ -36,8 +37,7 @@ class CustomProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-    }
+    { }
 
     /**
      * Store a newly created resource in storage.
@@ -97,7 +97,7 @@ class CustomProductController extends Controller
     public function show($id)
     {
         $items = Order_Custom::findOrFail($id);
-        return view('package.login.custom.customproductform',[
+        return view('package.login.custom.customproductform', [
             'items' => $items
         ]);
     }
@@ -110,8 +110,32 @@ class CustomProductController extends Controller
      */
     public function edit($id)
     {
-        // return view('package.login.custom.customproductform');
+        $total = DB::table('order_customs')
+            ->select('total')
+            ->where('id', '=', $id)
+            ->get();
+
+        $data = DB::table('order_customs')
+            ->where('id', '=', $id)
+            ->get();
+
+        // dd(
+        //     $total,
+        //     $data
+        // );
+
+        $payment = DB::table('payments')->get();
+        return view('package.login.custom.custombayar', [
+            'total' => $total,
+            'payment' => $payment,
+            'data' => $data
+        ]);
     }
+
+    // public function simpanbayar(Request $request)
+    // {
+        
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -122,19 +146,19 @@ class CustomProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = DB::table('detail_order_customs')
-        ->where('order_customs_id','=',$id)->update([
-            'size' => $request->size,
-            'qty' => $request->qty,
-            'satuan' => $request->satuan
-        ]);
+        $datadetail = DB::table('detail_order_customs')
+            ->where('order_customs_id', '=', $id)->update([
+                'size' => $request->size,
+                'qty' => $request->qty,
+                'satuan' => $request->satuan
+            ]);
 
-        $data = DB::table('order_customs')
-        ->where('id','=',$id)->update([
-            'keterangan' => $request->keterangan,
-            'shipping' => $request->shipping,
-            'status_pengerjaan' => 'Menunggu Harga'
-        ]);
+        $dataorder = DB::table('order_customs')
+            ->where('id', '=', $id)->update([
+                'keterangan' => $request->keterangan,
+                'shipping' => $request->shipping,
+                'status_pengerjaan' => 'Menunggu Harga'
+            ]);
 
         // $data = DB::table('order_customs')
         // ->where('id','=',$id)->update([
@@ -152,6 +176,8 @@ class CustomProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Order_Custom::findOrFail($id);
+        $delete->delete();
+        return redirect('/history');
     }
 }

@@ -39,6 +39,8 @@
                                     echo "Data Diterima, Silahkan Menunggu Total Harga";
                                 } else if ($key->status_pengerjaan == "Menunggu Proses Pembayaran") {
                                     echo "Data Diterima, Silahkan Melanjutkan Transaksi";
+                                } else if ($key->status_pengerjaan == "Menunggu Konfirmasi Pembayaran") {
+                                    echo "Data Diterima, Harap menunggu konfirmasi pembayaran";
                                 } else if ($key->status_pengerjaan == "Selesai") {
                                     echo "Terima Kasih";
                                 } else {
@@ -58,28 +60,32 @@
                                         Lanjutkan Transaksi
                                     </a>
                                     <br><br>
-                                    <a href="" class="btn btn-warning py-3 px-3">
+                                    <a href="{{route('custom.destroy', [$key->id])}}" class="btn btn-warning py-3 px-3">
                                         Batalkan
                                     </a>
                                 <?php
                                 } else if ($key->status_pengerjaan == "Menunggu Proses Pembayaran") { ?>
-                                    <a href="#" class="btn btn-primary py-3 px-3">
-                                        Lanjutkan Transaksi
+                                    <a href="custom/{{$key->id}}/edit " class="btn btn-primary py-3 px-3">
+                                        Bayar Sekarang
                                     </a>
                                     <br><br>
-                                    <a href="" class="btn btn-warning py-3 px-3">
+                                    <a href="{{route('custom.destroy', [$key->id])}}" class="btn btn-warning py-3 px-3">
                                         Batalkan
                                     </a>
                                 <?php
                                 } else if ($key->status_pengerjaan == "Selesai") {
                                     ?>
-                                    <a href="" class="btn btn-success py-3 px-5">
+                                    <a href="https://wa.me/087701401325?text=Halo, Saya {{ $key->first_name }}" class="btn btn-success py-3 px-5" target="_blank">
                                         Silahkan Hubungi Admin
                                     </a>
                                 <?php
                                 } else if ($key->status_pengerjaan == "Menunggu Harga") {
                                     ?>
                                     Silahkan Menunggu Harga
+                                <?php
+                                } else if ($key->status_pengerjaan == "Menunggu Konfirmasi Pembayaran") {
+                                    ?>
+                                    Silahkan Menunggu konfirmasi Pembayaran
                                 <?php
                                 } else {
                                     echo "Pesanan Di tolak";

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             BannerSeeder::class,
             ProductSeeder::class,
-            // CustomerSeeder::class,
+            CustomerSeeder::class,
             MaterialSeeder::class,
             
             StokProductSeeder::class,

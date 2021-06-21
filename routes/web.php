@@ -8,12 +8,14 @@ use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\Order_CustomController;
+use App\Http\Controllers\User\CustomProductController;
 use App\Http\Controllers\Admin\Detail_CheckoutController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\HistoryCustomController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\Confirm_PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -80,7 +82,6 @@ Route::group([
     Route::get('/penjualancustom/statusdesain/acc/{id}', [Order_CustomController::class, 'updsttsdesacc'])->name('acc.desain');
     Route::get('/penjualancustom/statusdesain/den/{id}', [Order_CustomController::class, 'updsttsdesden'])->name('den.desain');
     Route::get('/penjualancustom/update/{id}', [Order_CustomController::class, 'tampileditharga'])->name('edit.harga');
-    // Route::post('/penjualancustom/update/post/{id}', [Order_CustomController::class, 'simpanharga'])->name('harga.store');
 
 });
 
@@ -94,10 +95,13 @@ Route::group([
     // Route::get('/add-cart/{id}','OrderController@addcart')->name('product.addcart');
 
     Route::resource('checkout','CheckoutController');
-    Route::resource('/confirmpayment','Confirm_PaymentController');
     
     // Custom
     Route::resource('/custom','CustomProductController');
+    Route::resource('/confirmpayment','Confirm_PaymentController');
+    Route::get('/confirmpayment/statuspay/acc/{id}', [Confirm_PaymentController::class, 'accpembayaran'])->name('acc.pay');
+
+    // Route::post('/custom/simpanharga', [CustomProductController::class, 'simpanbayar'])->name('harga.store');
 
     // History
     Route::resource('/history','HistoryCustomController');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +21,10 @@ class HistoryCustomController extends Controller
             ->get();
 
         $cek = DB::table('order_customs')
+            ->join('customers', 'customers.id', '=', 'order_customs.customers_id')
+            ->join('users', 'users.id', '=', 'customers.users_id')
             ->where('customers_id', '=', $cust_id[0]->id)
+            ->select('order_customs.*', 'users.first_name')
             ->get();
 
         // dd(
@@ -58,7 +62,16 @@ class HistoryCustomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        customer::create([
+            'users_id' => auth()->user()->id,
+            'address' => $request->address,
+            'city' => $request->city,
+            'province' => $request->province,
+            'postal_code' => $request->postal,
+            'phone' => $request->phone
+        ]);
+
+        return redirect('/custom');
     }
 
     /**
