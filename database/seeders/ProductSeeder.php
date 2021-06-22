@@ -21,7 +21,7 @@ class ProductSeeder extends Seeder
             and typesetting industry. Lorem Ipsum has been the industrys standard 
             dummy text ever since the 1500s, 
             when an unknown printer took a galley of type and scrambled',
-            'category' => 'gamis',
+            // 'category' => 'gamis',
             'pict_1' => 'produk1.png',
             'pict_2' => 'produk2.png',
             'pict_3' => 'produk3.png'
@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
             and typesetting industry. Lorem Ipsum has been the industrys standard 
             dummy text ever since the 1500s, 
             when an unknown printer took a galley of type and scrambled',
-            'category' => 'jubah',
+            // 'category' => 'jubah',
             'pict_1' => 'produk2.png',
             'pict_2' => 'produk3.png',
             'pict_3' => 'produk1.png'
@@ -47,7 +47,7 @@ class ProductSeeder extends Seeder
             and typesetting industry. Lorem Ipsum has been the industrys standard 
             dummy text ever since the 1500s, 
             when an unknown printer took a galley of type and scrambled',
-            'category' => 'baju biasa',
+            // 'category' => 'baju biasa',
             'pict_1' => 'produk3.png',
             'pict_2' => 'produk2.png',
             'pict_3' => 'produk1.png'

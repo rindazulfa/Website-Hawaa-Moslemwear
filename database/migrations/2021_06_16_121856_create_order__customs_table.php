@@ -27,7 +27,7 @@ class CreateOrderCustomsTable extends Migration
             $table->string("pict_payment")->nullable();
             $table->string("shipping")->nullable();
             $table->string("ongkir")->nullable();
-            $table->string("keterangan")->nullable();
+            $table->text("keterangan")->nullable();
             $table->integer("total")->nullable();
             $table->timestamps();
         });

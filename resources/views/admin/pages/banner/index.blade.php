@@ -51,9 +51,9 @@
                                 <td>{{$item->title}}</td>
                                 <td>{{$item->subtitle}}</td>
                                 <td>
-                                    <a href="{{route('banner.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
+                                    <!-- <a href="{{route('banner.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
-                                    </a>
+                                    </a> -->
                                     <!-- <button type="button" class="btn btn-outline-primary">Update</button> -->
                                     <button class="btn btn-outline-danger delete" data-id="{{$item->id}}">Delete</button>
                                 </td>

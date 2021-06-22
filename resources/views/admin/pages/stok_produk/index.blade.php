@@ -8,8 +8,8 @@
                     <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                            <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="/stok_produk">Tables</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Daftar Stok Produk</li>
                         </ol>
                     </nav>
@@ -41,7 +41,7 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="id_produk">Id Stok Produk</th>
+                                <th scope="col" class="sort" data-sort="id_produk">Id</th>
                                 <th scope="col" class="sort" data-sort="nama_produk">Nama Produk</th>
                                 <th scope="col" class="sort" data-sort="nama_produk">Size</th>
                                 <th scope="col" class="sort" data-sort="harga_produk">Stok</th>

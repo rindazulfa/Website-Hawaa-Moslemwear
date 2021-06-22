@@ -90,7 +90,7 @@ class StokProductController extends Controller
     //data resep
     public function show($id)
     {
-        $detail = stock::findOrFail($id); //id stok
+        $detail = stock::with(['product'])->findOrFail($id); //id stok
         //    $product = Product::all()->where('products_id', $detail->products_id)->get();
 
         // $resep = Recipe::with(['stok', 'material'])
@@ -105,9 +105,9 @@ class StokProductController extends Controller
         ->get();
         // dd($resep); 
         // $stok = stock::find($detail->products_id);
-        return view('admin.pages.stok_produk.detail', [
+        return view('admin.pages.resep.index', [
             'resep' => $resep,
-            'stok' => $detail,
+            'detail' => $detail,
             'id' => $id,
             // 'produk', $product
         ]);

@@ -86,7 +86,7 @@ class ProductController extends Controller
             $product->name = $request->get('name');
             $product->price = $request->get('price');
             $product->desc = $request->get('desc');
-            $product->category = $request->get('category');
+            // $product->category = $request->get('category');
             $product->pict_1 = $namaFile1;
             $product->pict_2 = $namaFile2;
             $product->pict_3 = $namaFile3;
@@ -104,15 +104,16 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $detail = Product::findOrFail($id); 
+        $detail = Product::with(['stok'])->findOrFail($id);
         // $produk = Product::where('id', $detail->id);
         $resep = Recipe::with(['stok', 'material'])
             ->where('stocks_id', $detail->id)->get();
+        // dd($detail);
+        $stok = stock::find($detail->products_id);
 
-        // $stok = stock::find($detail->products_id);
         return view('admin.pages.produk.detail', [
             'detail' => $detail,
-            // 'produk' => $produk,
+            'stok' => $stok,
             'resep' => $resep
         ]);
     }
@@ -146,7 +147,7 @@ class ProductController extends Controller
         $product->name = $request->get('name');
         $product->price = $request->get('price');
         $product->desc = $request->get('desc');
-        $product->category = $request->get('category');
+        // $product->category = $request->get('category');
         $product->save();
         if ($request->hasFile('pict_1') || $request->hasFile('pict_2') || $request->hasFile('pict_3')) {
             $request->validate([

@@ -87,7 +87,8 @@ class ProfilController extends Controller
      */
     public function show($id)
     {
-        //
+        $detail = profile::findOrFail($id);
+        return view('admin/pages/profil/detail',['detail' => $detail]);
     }
 
     /**

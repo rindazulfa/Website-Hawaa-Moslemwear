@@ -46,14 +46,21 @@
                         </div>
                         <div class="col-lg-6">
                             <label for="">Size</label>
-                            <h4 class="card-title">{{ $detail->size }} </h4>
+                            <h4 class="card-title">
+                                @forelse ($detail->stok as $key)
+                                <span class="btn btn-sm btn-text btn-light-danger text-uppercase font-weight-bold">{{ $key->size }} </span>
+                                @empty
+                                <span class="btn btn-sm btn-text btn-light-danger font-weight-bold">Tidak Tersedia</span>
+                                @endforelse
+                            </h4>
                         </div>
+
                     </div>
                     <div class="form-group row">
-                        <div class="col-lg-6">
-                            <label>Kategori</label>
+                        <!-- <div class="col-lg-6">
+                           <label>Kategori</label>
                             <h4 class="card-title">{{$detail->category}}</h4>
-                        </div>
+                        </div>  -->
                         <div class="col-lg-6">
                             <label for="">Deskripsi</label>
                             <p class="card-text">{{$detail->desc}}</p>
@@ -62,7 +69,7 @@
                     <a href="/produk" class="btn btn-primary">Kembali</a>
                 </div>
             </div>
-         
+
 
         </div>
     </div>

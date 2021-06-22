@@ -25,7 +25,7 @@ class CreateOrdersTable extends Migration
             $table->integer("total");
             $table->string("pict_payment")->nullable();
             $table->string("status")->nullable();
-            $table->string("keterangan")->nullable();
+            $table->text("keterangan")->nullable();
             $table->string("shipping");
             $table->integer("ongkir");
             // $table->softDeletes();

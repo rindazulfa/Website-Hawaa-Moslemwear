@@ -79,10 +79,10 @@
                             
                         </div>
                         <div class="form-group row">
-                            <div class="col-lg-3">
+                            <!-- <div class="col-lg-3">
                                 <label>Category</label>
                                 <input type="text" class="form-control" value="{{ old('category') }}" name="category" placeholder="Masukkan Kategori" />
-                            </div>
+                            </div> -->
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">Deskripsi</label>
                                 <textarea class="form-control" rows="3" name="desc" placeholder="Masukkan Deskripsi">{{ old('desc') }}</textarea>

@@ -29,7 +29,7 @@
                 <!-- Card header -->
                 <div class="card-header border-0">
                     <h3 class="mb-0">Daftar Profil UMKM</h3>
-                    <p class="mb-0">Note : Profile UMKM yang ditampilkan pada website hanya yang paling atas </p>
+                    <!-- <p class="mb-0">Note : Profile UMKM yang ditampilkan pada website hanya yang paling atas </p> -->
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">
@@ -41,8 +41,8 @@
                                 <th scope="col" class="sort" data-sort="harga_produk">Telepon</th>
                                 <th scope="col" class="sort" data-sort="harga_produk">Alamat</th>
                                 <th scope="col" class="sort" data-sort="stok_produk">Instagram</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Deskripsi 1</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Deskripsi 2</th>
+                                <!-- <th scope="col" class="sort" data-sort="harga_produk">Deskripsi 1</th>
+                                <th scope="col" class="sort" data-sort="harga_produk">Deskripsi 2</th> -->
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
@@ -56,15 +56,14 @@
                                         <img src="{{asset('/uploads/profil/'.$item->picture)}}" alt="photo">
                                     </div>
                                 </td>
-                                {{-- <td >{{$item->subtitle}}</td> --}}
                                 <td >{{$item->telepon}}</td>
                                 <td >{{$item->address}}</td>
                                 <td >{{$item->ig}}</td>
-                                <td >{{$item->desc_1}}</td>
-                                <td >{{$item->desc_2}}</td>
+                                <!-- <td >{{$item->desc_1}}</td>
+                                <td >{{$item->desc_2}}</td> -->
                                 <td>
-                                    <a href="{{route('profilumkm.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
-                                        Update
+                                    <a href="{{route('profilumkm.show',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
+                                        Detail
                                     </a>
                                     <!-- <button type="button" class="btn btn-outline-primary">Update</button> -->
                                     <button class="btn btn-outline-danger delete" data-id="{{$item->id}}">Delete</button>

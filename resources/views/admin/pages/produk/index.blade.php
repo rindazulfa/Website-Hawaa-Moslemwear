@@ -38,7 +38,7 @@
                                 <th>Pict</th>
                                 <!-- <th>Size</th> -->
                                 <th>Price</th>
-                                <th>Category</th>
+                                <!-- <th>Category</th> -->
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -57,7 +57,7 @@
                                 </th>
                               
                                 <td> Rp {{number_format($key->price,2,',','.')}}</td>
-                                <td>{{$key->category}}</td>
+                                <!-- <td>{{$key->category}}</td> -->
                                 <!-- <td>{{$key->desc}}</td> -->
                                 <td>
                                     <a href="{{route('produk.show',[$key->id])}}" class="btn btn-outline-primary" title="Detail">
