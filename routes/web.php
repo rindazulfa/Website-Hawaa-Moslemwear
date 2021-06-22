@@ -136,12 +136,4 @@ Route::resource('/shop', 'ShopController');
 Route::post('/shop/detail/{id}', 'ShopController@process')->name('shop_detail');
 Route::get('/shop/stok', 'ShopController@checkStokBySize')->name("shop_cek");
 
-//detail checkout controller
-Route::get("/test", "Detail_CheckoutController@testCost");
-Route::get('/detail_checkout/check/{id}', 'Detail_CheckoutController@getDetail');
 
-//shoping cart controller
-Route::post("/shoping_cart/change-qty", "Shoping_CartController@changeQty")->name("changeqty");
-
-//confirm controller
-Route::get("/detail/order_checkout","ConfrimController@getDetail");

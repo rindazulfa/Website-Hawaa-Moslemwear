@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\cart;
 use App\Models\confirm_payment;
 use App\Models\customer;
 use App\Models\Detail_Order_Custom;
@@ -20,14 +21,19 @@ class CustomProductController extends Controller
     public function index()
     {
         $cek = customer::where('users_id', '=', auth()->user()->id)->count();
+        $cart = cart::select('id')->count();
         // dd($cek);
 
         if ($cek == 1) {
             // echo 'data ada';
-            return view('package.login.custom.customproduct');
+            return view('package.login.custom.customproduct',[
+                'cart' => $cart
+            ]);
         } else {
             // echo 'data tidak ada';
-            return view('package.login.custom.customercustomproduct');
+            return view('package.login.custom.customercustomproduct',[
+                'cart' => $cart
+            ]);
         }
     }
 

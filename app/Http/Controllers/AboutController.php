@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cart;
 use App\Models\profile;
 use Illuminate\Http\Request;
 
@@ -15,13 +16,11 @@ class AboutController extends Controller
     public function index()
     {
         $profile = profile::all()->last();
-        return view('package/about_us', ['profile' => $profile]);
-    }
-
-    public function indexlogin()
-    {
-        $profile = profile::all()->last();
-        return view('package/login/about_us', ['profile' => $profile]);
+        $cart = cart::select('id')->count();
+        return view('package/about_us', [
+            'profile' => $profile,
+            'cart' => $cart
+        ]);
     }
 
     /**

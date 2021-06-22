@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\cart;
 use App\Models\customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,31 +17,47 @@ class HistoryCustomController extends Controller
      */
     public function index()
     {
+        $cekcust = DB::table('customers')
+            ->select('id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->count();
+
         $cust_id = DB::table('customers')
             ->where('users_id', '=', auth()->user()->id)
             ->get();
 
-        $cek = DB::table('order_customs')
-            ->join('customers', 'customers.id', '=', 'order_customs.customers_id')
-            ->join('users', 'users.id', '=', 'customers.users_id')
-            ->where('customers_id', '=', $cust_id[0]->id)
-            ->select('order_customs.*', 'users.first_name')
-            ->get();
+        $cart = cart::select('id')->count();
 
         // dd(
         //     $cek,
         //     $cust_id[0]->id
         // );
-        // return view('package.login.historycustom',[
-        //     'cek' => $cek
-        // ]);
 
-        if (empty($cek)) {
+        if ($cekcust == 0) {
+            // Data Cust tidak ada masuk ke custom product
             return redirect('/');
         } else {
-            return view('package.login.historycustom', [
-                'cek' => $cek
-            ]);
+            $cekjmlcus = DB::table('order_customs')
+                ->join('customers', 'customers.id', '=', 'order_customs.customers_id')
+                ->join('users', 'users.id', '=', 'customers.users_id')
+                ->where('customers_id', '=', $cust_id[0]->id)
+                ->select('order_customs.*', 'users.first_name')
+                ->count();
+            $cek = DB::table('order_customs')
+                ->join('customers', 'customers.id', '=', 'order_customs.customers_id')
+                ->join('users', 'users.id', '=', 'customers.users_id')
+                ->where('customers_id', '=', $cust_id[0]->id)
+                ->select('order_customs.*', 'users.first_name')
+                ->get();
+
+            if ($cekjmlcus == 0) {
+                return redirect('/');
+            } else {
+                return view('package.login.historycustom', [
+                    'cek' => $cek,
+                    'cart' => $cart
+                ]);
+            }
         }
     }
 

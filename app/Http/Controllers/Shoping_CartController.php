@@ -18,12 +18,13 @@ class Shoping_CartController extends Controller
         $detail_order = Detail_order::with([
             'products'
         ])->get();
-        // $propinsi = $this->getProvince();
+        
+        $cart = cart::select('id')->count();
 
         // dd($propinsi);
         return view('pages.shoping_cart', [
-            'detail' => $detail_order
-            // , 'province' => $propinsi
+            'detail' => $detail_order,
+            'cart' => $cart
         ]);
     }
 

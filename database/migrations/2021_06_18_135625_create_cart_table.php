@@ -14,14 +14,14 @@ class CreateCartTable extends Migration
     public function up()
     {
         Schema::create('cart', function (Blueprint $table) {
-            $table->id();
-            $table->string("id_stock_products");
-            $table->string("name");
+            $table->bigIncrements("id");
+            $table->string("id_products");
+            $table->string("id_customers");
             $table->string("size");
             $table->integer("price");
             $table->integer("qty");
             $table->integer("subtotal");
-            // $table->integer("qty");
+            $table->date("date");
             $table->timestamps();
         });
     }

@@ -32,82 +32,43 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-slider owl-carousel ftco-animate">
+                    @forelse($shop as $key)
                     <div class="item">
                         <div class="product">
-                            <a href="/detailproduct" class="img-prod"><img class="img-fluid" src="images/product-1.png" alt="Colorlib Template">
-                                <span class="status">30%</span>
+                            <a href="{{route('shop.show',[$key->id])}}" class="img-prod"><img class="img-fluid" src="{{'uploads/products/'.$key->pict_1}}" alt="Colorlib Template">
                             </a>
-                            <div class="text pt-3 px-3">
-                                <h3><a href="/detailproduct">Young Woman Wearing Dress</a></h3>
+                            <div class="text py-3 px-3">
+                                <h3><a href="#">{{$key->name}}</a></h3>
                                 <div class="d-flex">
                                     <div class="pricing">
-                                        <p class="price"><span class="mr-2 price-dc">Rp120.00</span><span class="price-sale">Rp80.00</span></p>
-                                    </div>
-                                    <!-- rencananya dibuat time left promonya -->
-                                    <div class="rating">
-                                        <!-- <p class="text-right">
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                        </p> -->
+                                        <p class="price"><span class="price-sale">Rp {{number_format($key->price,2,',','.')}}</span></p>
                                     </div>
                                 </div>
+                                @guest
+                                @else
+                                <hr>
+                                <form action="{{ route('store') }}" method="post">
+                                    @csrf
+                                    <input type="text" name="id" id="id" value="{{ $key->id }}" hidden readonly>
+                                    <input type="number" name="price" id="price" value="{{ $key->price }}" hidden readonly>
+                                    <input type="text" name="size" id="size" value="1" hidden readonly>
+                                    <input type="number" name="qty" id="qty" value="1" hidden readonly>
+                                    <input type="date" name="date" id="date" value="<?php echo date('Y-m-d'); ?>" hidden readonly>
+                                    <p class="bottom-area d-flex">
+                                        <button class="add-to-cart" type="submit"><span>Add to cart<i class="ion-ios-add ml-1"></i></span></button>
+                                    </p>
+                                </form>
+                                @endguest
                             </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="product">
-                            <a href="/detailproduct" class="img-prod"><img class="img-fluid" src="images/product-2.png" alt="Colorlib Template">
-                                <span class="status">30%</span>
-                            </a>
-                            <div class="text pt-3 px-3">
-                                <h3><a href="/detailproduct">Young Woman Wearing Dress</a></h3>
-                                <div class="d-flex">
-                                    <div class="pricing">
-                                        <p class="price"><span class="mr-2 price-dc">Rp120.00</span><span class="price-sale">Rp80.00</span></p>
-                                    </div>
-                                    <!-- rencananya dibuat time left promonya -->
-                                    <div class="rating">
-                                        <!-- <p class="text-right">
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                        </p> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="product">
-                            <a href="/detailproduct" class="img-prod"><img class="img-fluid" src="images/product-3.png" alt="Colorlib Template">
-                                <span class="status">30%</span>
-                            </a>
-                            <div class="text pt-3 px-3">
-                                <h3><a href="/detailproduct">Young Woman Wearing Dress</a></h3>
-                                <div class="d-flex">
-                                    <div class="pricing">
-                                        <p class="price"><span class="mr-2 price-dc">Rp120.00</span><span class="price-sale">Rp80.00</span></p>
-                                    </div>
-                                    <!-- rencananya dibuat time left promonya -->
-                                    <div class="rating">
-                                        <!-- <p class="text-right">
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                        </p> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
+                    <!-- </form> -->
+                    @empty
+                    <tr>
+                        <td colspan="7" class="text-center">Data Kosong</td>
+                    </tr>
+                    @endforelse
+                    <!-- <div class="item">
                         <div class="product">
                             <a href="/detailproduct" class="img-prod"><img class="img-fluid" src="images/product-7.png" alt="Colorlib Template">
                                 <span class="status">30%</span>
@@ -118,27 +79,15 @@
                                     <div class="pricing">
                                         <p class="price"><span class="mr-2 price-dc">Rp120.00</span><span class="price-sale">Rp80.00</span></p>
                                     </div>
-                                    <!-- rencananya dibuat time left promonya -->
-                                    <div class="rating">
-                                        <!-- <p class="text-right">
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                            <span class="ion-ios-star-outline"></span>
-                                        </p> -->
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
 
 <section class="ftco-section bg-light ftco-services">
     <div class="container">
@@ -185,5 +134,4 @@
         </div>
     </div>
 </section>
-
 @endsection

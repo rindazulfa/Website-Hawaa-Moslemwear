@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\cart;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -14,7 +15,11 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('package.login.cart');
+        $cart = cart::select('id')->count();
+        
+        return view('package.login.cart',[
+            'cart' => $cart
+        ]);
     }
 
     /**

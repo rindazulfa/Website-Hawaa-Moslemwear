@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cart;
 use Illuminate\Http\Request;
 
 class DetailProductController extends Controller
@@ -13,7 +14,10 @@ class DetailProductController extends Controller
      */
     public function index()
     {
-        return view('package/detail_product');
+        $cart = cart::select('id')->count();
+        return view('package/detail_product',[
+            'cart' => $cart
+        ]);
     }
 
     /**

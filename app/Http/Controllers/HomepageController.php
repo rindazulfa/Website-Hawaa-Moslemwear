@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\cart;
+use App\Models\customer;
+use App\Models\Product;
 use App\Models\profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomepageController extends Controller
 {
@@ -15,27 +19,21 @@ class HomepageController extends Controller
      */
     public function index()
     {
-        // if(Auth::check()){ 
-        //     if(Auth::user()->role == 'user'){
-        //         return redirect('home');
-        //     }else if(Auth::user()->role == 'admin'){
-        //         return redirect('admin');
-        //     }
-        // }else{
-        //     return view('package/login');
-        // }
-
         $banner = Banner::all()->last();
-        return view('index', ['banner' => $banner]);
-    }
+        $product = Product::with([
+            'stok'
+        ])
+            ->get();
+        $cart = cart::select('id')->count();
 
-    public function indexlogin()
-    {
-        $banner = Banner::all()->last();
-        $profile = profile::all()->last();
-        return view('indexlogin', [
+        // dd(
+        //     $cart
+        // );
+
+        return view('index', [
             'banner' => $banner,
-            'profile' => $profile
+            'shop' => $product,
+            'cart' => $cart
         ]);
     }
 
@@ -57,7 +55,43 @@ class HomepageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cekcust = DB::table('customers')
+            ->select('id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->count();
+
+        $idcust = DB::table('customers')
+            ->select('id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->get();
+
+        if ($cekcust == 1) {
+            $subtotal = $request->qty * $request->price;
+
+            // Memasukkan ke keranjang
+            $tambahcart = cart::create([
+                'id_products' => $request->id,
+                'id_customers' => $idcust[0]->id,
+                'size' => $request->size,
+                'price' => $request->price,
+                'qty' => $request->qty,
+                'subtotal' => $subtotal,
+                'date' => $request->date
+            ]);
+
+            return redirect('/');
+        } else {
+            // Masukkan tampilan form insert customer
+
+            return redirect('/');
+        }
+
+        // dd(
+        //     $idcust,
+        //     $subtotal
+        // );
+
+        // return redirect('/');
     }
 
     /**

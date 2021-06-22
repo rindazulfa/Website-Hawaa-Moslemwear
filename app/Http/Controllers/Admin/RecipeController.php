@@ -172,7 +172,7 @@ class RecipeController extends Controller
     public function edit($id)
     {
         $detail = product::findOrFail($id);
-        $resep = Recipe::where('products_id', $detail->id)->first();
+        $resep = Recipe::where('stocks_id', $detail->id)->first();
         $bahan = material::all();
         return view('admin.pages.resep.edit', [
             // 'items' => $items,
@@ -206,7 +206,7 @@ class RecipeController extends Controller
             $cekbahan = material::where('id', $arr_bahan[$i])->count();
 
             if ($cekbahan > 0) {
-                $tambah = Recipe::where('products_id', $id)
+                $tambah = Recipe::where('stocks_id', $id)
                     ->where('materials_id', $arr_bahan[$i])->first();
                 // dd($tambah);
                 if ($tambah) {

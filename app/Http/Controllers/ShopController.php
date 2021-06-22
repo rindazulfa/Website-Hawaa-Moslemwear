@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cart;
 use App\Models\detail_order;
 use App\Models\Product;
 use App\Models\profile;
@@ -21,12 +22,12 @@ class ShopController extends Controller
         // $product = Product::all()->first();
         // // dd($product);
         // return view('package.product', ['shop' => $product]);
-        $product = Product::with([
-            'stok'
-        ])
-            ->get();
+        $product = Product::with(['stok'])->get();
+        $cart = cart::select('id')->count();
+
         return view('package.product', [
-            'shop' => $product
+            'shop' => $product,
+            'cart' => $cart
         ]);
     }
 
