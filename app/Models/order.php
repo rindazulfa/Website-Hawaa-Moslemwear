@@ -12,7 +12,7 @@ class order extends Model
     use SoftDeletes;
     protected $table = "orders";
     protected $fillable = [
-        'customers_id', 'discounts_id','confirm_payments_id', 'date', 'total', 'status',
+        'customers_id','confirm_payments_id', 'date', 'total', 'status',
         'keterangan', 'shipping', 'ongkir'
     ];
 
@@ -21,10 +21,6 @@ class order extends Model
     public function customer()
     {
         return $this->belongsTo(customer::class, 'customers_id', 'id');
-    }
-    public function discount()
-    {
-        return $this->belongsTo(discount::class, 'discounts_id', 'id');
     }
     public function confirm()
     {

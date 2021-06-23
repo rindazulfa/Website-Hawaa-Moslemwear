@@ -23,11 +23,6 @@ class Product extends Model
     {
         return $this->hasMany(stock::class, 'products_id', 'id');
     }
- 
-    public function discounts()
-    {
-        return $this->belongsToMany(discount::class,'discount_product','products_id','discounts_id');
-    }
 
     
     public function ordercustom()
