@@ -30,4 +30,7 @@ class stock extends Model
     {
         return $this->hasMany(Production::class, 'stocks_id', 'id');
     }
+    public function cart(){
+        return $this->hasMany(cart::class,'stocks_id','id');
+    }
 }

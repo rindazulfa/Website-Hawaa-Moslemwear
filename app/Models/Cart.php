@@ -10,6 +10,18 @@ class cart extends Model
     use HasFactory;
     protected $table = "cart";
     protected $fillable = [
-       'id_products','id_stocks','id_customers','size','price','qty','subtotal','date'
+       'products_id','stocks_id','customers_id','size','price','qty','subtotal','date'
     ];
+        
+    public function customer(){
+        return $this->belongsTo(Customer::class, 'customers_id', 'id');
+    }
+
+    public function produk(){
+        return $this->belongsTo(Product::class, 'products_id', 'id');
+    }
+    
+    public function stok(){
+        return $this->belongsTo(stock::class, 'stocks_id', 'id');
+    }
 }

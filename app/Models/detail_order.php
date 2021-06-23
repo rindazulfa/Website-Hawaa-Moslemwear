@@ -29,6 +29,6 @@ class detail_order extends Model
         return $this->belongsTo(order::class, 'orders_id', 'id');
     }
     public function stok(){
-        return $this->hasMany(stock::class,'products_id','id');
+        return $this->hasMany(stock::class,'stocks_id','id');
     }
 }

@@ -22,14 +22,14 @@ class CartController extends Controller
         ->get();
         
         $cart = cart::select('id')
-        ->where('id_customers','=', $idcust[0]->id)
+        ->where('customers_id','=', $idcust[0]->id)
         ->count();
 
         $cek = cart::select('products.name','products.pict_1','stocks.size','cart.price','cart.subtotal','cart.qty','cart.id')
-        ->join('stocks','stocks.id','=','cart.id_stocks')
-        ->join('products','products.id','=','cart.id_products')
-        ->join('customers','customers.id','=','cart.id_customers')
-        ->where('id_customers','=', $idcust[0]->id)
+        ->join('stocks','stocks.id','=','cart.stocks_id')
+        ->join('products','products.id','=','cart.products_id')
+        ->join('customers','customers.id','=','cart.customers_id')
+        ->where('customers_id','=', $idcust[0]->id)
         ->get();
 
         $total = DB::table('cart')

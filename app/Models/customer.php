@@ -33,5 +33,8 @@ class customer extends Model
     {
         return $this->hasMany('App\order','customers_id');
     }
+    public function cart(){
+        return $this->hasMany(cart::class,'customers_id','id');
+    }
 
 }
