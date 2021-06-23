@@ -102,7 +102,7 @@ class CustomerController extends Controller
         // $data = $request->all()->except(['_token']);
         // dd($data);
         $customer = customer::findOrFail($id);
-        dd($customer);
+        // dd($customer);
         $customer->address= $request->get("address");
         $customer->city = $request->get("city");
         $customer->province= $request->get("province");
@@ -110,7 +110,7 @@ class CustomerController extends Controller
         $customer->postal_code = $request->get("postal_code");
 
         $customer->save();
-        dd($customer);
+        // dd($customer);
         return redirect()->route('customer.index');
     }
 

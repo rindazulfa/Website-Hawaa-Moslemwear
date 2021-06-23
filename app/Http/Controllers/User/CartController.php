@@ -17,29 +17,39 @@ class CartController extends Controller
      */
     public function index()
     {
-        $idcust = customer::select('id')
-        ->where('users_id','=', auth()->user()->id)
-        ->get();
-        
-        $cart = cart::select('id')
-        ->where('customers_id','=', $idcust[0]->id)
-        ->count();
+        $cek = customer::select('id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->count();
 
-        $cek = cart::select('products.name','products.pict_1','stocks.size','cart.price','cart.subtotal','cart.qty','cart.id')
-        ->join('stocks','stocks.id','=','cart.stocks_id')
-        ->join('products','products.id','=','cart.products_id')
-        ->join('customers','customers.id','=','cart.customers_id')
-        ->where('customers_id','=', $idcust[0]->id)
-        ->get();
+        if ($cek == 0) {
+            return view('package/login/biasa/customerform', [
+                'cart' => 0
+            ]);
+        } else {
+            $idcust = customer::select('id')
+                ->where('users_id', '=', auth()->user()->id)
+                ->get();
 
-        $total = DB::table('cart')
-        ->sum('subtotal');
-        
-        return view('package.login.cart',[
-            'cart' => $cart,
-            'cek' => $cek,
-            'total' => $total
-        ]);
+            $cart = cart::select('id')
+                ->where('customers_id', '=', $idcust[0]->id)
+                ->count();
+
+            $cek = cart::select('products.name', 'products.pict_1', 'stocks.size', 'cart.price', 'cart.subtotal', 'cart.qty', 'cart.id')
+                ->join('stocks', 'stocks.id', '=', 'cart.stocks_id')
+                ->join('products', 'products.id', '=', 'cart.products_id')
+                ->join('customers', 'customers.id', '=', 'cart.customers_id')
+                ->where('customers_id', '=', $idcust[0]->id)
+                ->get();
+
+            $total = DB::table('cart')
+                ->sum('subtotal');
+
+            return view('package.login.cart', [
+                'cart' => $cart,
+                'cek' => $cek,
+                'total' => $total
+            ]);
+        }
     }
 
     /**
@@ -94,7 +104,17 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $totalbaru = $request->price * $request->qty;
+
+        // dd($request->id);
+        $updcart = DB::table('cart')
+            ->where('id', '=', $id)->update([
+                'qty' => $request->qty,
+                'size' => $request->size,
+                'subtotal' => $totalbaru
+            ]);
+        
+            return redirect('/cart');
     }
 
     /**
@@ -106,9 +126,10 @@ class CartController extends Controller
     public function destroy($id)
     {
         // Belum Bisa Hpusss
-        // DB::table('cart')
-        // ->where('id','=',$id)
-        // ->delete();
+        // dd($id);
+        $test = DB::table('cart')
+            ->where('id', '=', $id)
+            ->delete();
 
         return view('/cart');
     }

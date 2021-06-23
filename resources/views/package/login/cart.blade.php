@@ -26,41 +26,64 @@
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Sub Total</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($cek as $key)
-                            <form action="">
-                                <tr class="text-center">
-                                    <td class="product-remove"><a href="{{ route('cart.destroy', [$key->id]) }}"><span class="ion-ios-close"></span></a></td>
-                                    <td class="image-prod">
-                                        <div class="img" style="background-image: url({{'uploads/products/'.$key->pict_1}});"></div>
-                                    </td>
-                                    <td class="product-name">
-                                        <h3>{{ $key->name }}</h3>
-                                    </td>
-                                    <td class="size">
-                                        <div class="input-group mb-3">
-                                            <input type="text" name="size" class="quantity form-control input-number" value="{{ $key->size }}" min="1" max="3">
-                                        </div>
-                                    </td>
-                                    <td class="price" id="price">Rp. {{number_format($key->price,2,',','.')}}</td>
-                                    <td class="quantity">
-                                        <div class="input-group mb-3">
-                                            <input type="number" name="qty" id="qty" class="quantity form-control input-number" value="{{ $key->qty }}" min="1" max="100">
-                                        </div>
-                                    </td>
-                                    <td class="subtotal">
-                                        <div class="input-group mb-3">
-                                            <input type="text" name="subtotal" class="quantity form-control input-number" value="Rp. {{number_format($key->subtotal,2,',','.')}}" readonly>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="7" class="text-center">Data Kosong</td>
-                                </tr>
-                                @endforelse
+                            <form action="{{route('cart.update',[$key->id])}}" method="post">
+                                @csrf
+                                {{method_field("PUT")}}
+                                <div class="card-body">
+                                    @if($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
+                                    <tr class="text-center">
+                                        <td class="product-remove">
+                                            <!-- <button type="button"> -->
+                                            <a href="{{ route('cart.destroy', [$key->id]) }}"><span class="ion-ios-close"></span></a>
+                                            <input type="text" name="id" id="id" value="{{ $key->id }}" readonly hidden>
+                                            <!-- </button> -->
+                                        </td>
+                                        <td class="image-prod">
+                                            <div class="img" style="background-image: url({{'uploads/products/'.$key->pict_1}});"></div>
+                                        </td>
+                                        <td class="product-name">
+                                            <h3>{{ $key->name }}</h3>
+                                        </td>
+                                        <td class="size">
+                                            <div class="input-group mb-3">
+                                                <input type="text" name="size" class="quantity form-control input-number" value="{{ $key->size }}" min="1" max="3">
+                                            </div>
+                                        </td>
+                                        <td class="price" id="price">Rp. {{number_format($key->price,2,',','.')}}</td>
+                                        <input type="number" name="price" id="price" value="{{ $key->price }}" readonly hidden>
+                                        <td class="quantity">
+                                            <div class="input-group mb-3">
+                                                <input type="number" name="qty" id="qty" class="quantity form-control input-number" value="{{ $key->qty }}" min="1" max="100">
+                                            </div>
+                                        </td>
+                                        <td class="subtotal">
+                                            <div class="input-group mb-3">
+                                                <input type="text" name="subtotal" class="quantity form-control input-number" value="Rp. {{number_format($key->subtotal,2,',','.')}}" readonly>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input type="submit" value="Ubah" class="btn btn-primary py-3 px-4">
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center">Data Kosong</td>
+                                    </tr>
+                                    @endforelse
+                                </div>
                         </tbody>
                     </table>
                 </div>
@@ -79,9 +102,8 @@
                         <a href="/shop" class="btn btn-primary py-3 px-4">Tambah</a>
                     </p>
                     <p class="text-center">
-                        <button type="submit" class="btn btn-primary py-3 px-4">
-                            Ubah
-                        </button>
+                        <!-- <input type="submit" name="" id="" class="btn btn-primary py-3 px-4" value="Ubah"> -->
+                        <!-- <a href="#" class="btn btn-primary py-3 px-4"></a> -->
                     </p>
                 </div>
             </div>
@@ -110,14 +132,6 @@
             </div>
         </div>
         </form>
-        <!-- <script>
-            function totalharga() {
-                var jmlbeli = document.getElementById('qty').value;
-                var harga = document.getElementById('price').value;
-                var result = parseInt(jmlbeli) * parseInt(harga);
-                document.getElementById('total').value = result;
-            }
-        </script> -->
     </div>
 </section>
 

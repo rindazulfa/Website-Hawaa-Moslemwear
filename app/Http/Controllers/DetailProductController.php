@@ -15,16 +15,26 @@ class DetailProductController extends Controller
      */
     public function index()
     {
-        $idcust = customer::select('id')
-        ->where('users_id','=', auth()->user()->id)
-        ->get();
-        
-        $cart = cart::select('id')
-        ->where('id_customers','=', $idcust[0]->id)
-        ->count();
-        return view('package/detail_product',[
-            'cart' => $cart
-        ]);
+        $cek = customer::select('id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->count();
+
+        if ($cek == 0) {
+            return view('package/detail_product', [
+                'cart' => 0
+            ]);
+        } else {
+            $idcust = customer::select('id')
+                ->where('users_id', '=', auth()->user()->id)
+                ->get();
+
+            $cart = cart::select('id')
+                ->where('customers_id', '=', $idcust[0]->id)
+                ->count();
+            return view('package/detail_product', [
+                'cart' => $cart
+            ]);
+        }
     }
 
     /**

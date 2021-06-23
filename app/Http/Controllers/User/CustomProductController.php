@@ -21,24 +21,24 @@ class CustomProductController extends Controller
     public function index()
     {
         $cek = customer::where('users_id', '=', auth()->user()->id)->count();
-        $idcust = customer::select('id')
-        ->where('users_id','=', auth()->user()->id)
-        ->get();
-        
-        $cart = cart::select('id')
-        ->where('id_customers','=', $idcust[0]->id)
-        ->count();
         // dd($cek);
 
         if ($cek == 1) {
             // echo 'data ada';
-            return view('package.login.custom.customproduct',[
+            $idcust = customer::select('id')
+                ->where('users_id', '=', auth()->user()->id)
+                ->get();
+
+            $cart = cart::select('id')
+                ->where('customers_id', '=', $idcust[0]->id)
+                ->count();
+
+            return view('package.login.custom.customproduct', [
                 'cart' => $cart
             ]);
         } else {
-            // echo 'data tidak ada';
-            return view('package.login.custom.customercustomproduct',[
-                'cart' => $cart
+            return view('package.login.custom.customercustomproduct', [
+                'cart' => 0
             ]);
         }
     }
@@ -146,7 +146,7 @@ class CustomProductController extends Controller
 
     // public function simpanbayar(Request $request)
     // {
-        
+
     // }
 
     /**

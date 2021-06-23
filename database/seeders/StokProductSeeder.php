@@ -32,5 +32,23 @@ class StokProductSeeder extends Seeder
             'qty' => 10,
             'satuan' => 'buah'
         ]);
+        DB::table('stocks')->insert([
+            'products_id' => '2',
+            'size' => 'S',
+            'qty' => 80,
+            'satuan' => 'buah'
+        ]);
+        DB::table('stocks')->insert([
+            'products_id' => '2',
+            'size' => 'M',
+            'qty' => 8,
+            'satuan' => 'buah'
+        ]);
+        DB::table('stocks')->insert([
+            'products_id' => '2',
+            'size' => 'L',
+            'qty' => 10,
+            'satuan' => 'buah'
+        ]);
     }
 }

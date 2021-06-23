@@ -67,17 +67,19 @@ class ProductionController extends Controller
         for ($i = 0; $i < sizeof($ambilbahan); $i++) {
             $databahan[$i] = $ambilbahan[$i]->materials_id;
             $jumlahbahan[$i] = $ambilbahan[$i]->qty * $jumlahproduksi;
+            // $data = DB::table('materials')
             $ambilstockbahan[$i] = DB::table('materials')
                 ->where('id', '=', $databahan[$i])
-                ->select('id', 'qty as jumlah')
+                ->select('id', 'qty')
                 ->get();
+            // $ambilstockbahan[$i] =  $data;
         }
 
         // Pengurangan stok bahan
         $stoksekarang = [];
 
         for ($i = 0; $i < sizeof($ambilbahan); $i++) {
-            // $stoksekarang[$i] = $ambilstockbahan[$i]->jumlah - $jumlahbahan[$i];
+            // $stoksekarang[$i] = $ambilstockbahan[$i]->qty - $jumlahbahan[$i];
         }
 
         $id_produk = stock::select('products_id')
@@ -99,7 +101,7 @@ class ProductionController extends Controller
         //     sizeof($ambilbahan),
         //     $databahan,
         //     $jumlahbahan,
-        //     $ambilstockbahan,
+        //     $ambilstockbahan[0]->qty,
         //     $stoksekarang,
         //     $id_produk[0]->products_id
         // );

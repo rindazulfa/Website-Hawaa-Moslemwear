@@ -19,7 +19,7 @@
                             <li><span class="icon icon-map-marker"></span><span class="text">{{$profile->address}}</span></li>
                             <li><span class="icon icon-phone"></span><span class="text">{{$profile->telepon}}</span></li>
                             <li><span class="icon icon-envelope"></span><span class="text">{{$profile->email}}</span></li>
-                            <li><span class="icon icon-instagram"><a href="https://www.instagram.com/{{$profile->ig}}/"></a></span><span class="text">{{$profile->ig}}</span></li>
+                            <li><a href="https://www.instagram.com/{{$profile->ig}}/" target="_blank"><span class="icon icon-instagram"></span><span class="text">{{$profile->ig}}</span></a></li>
                         </ul>
                     </div>
                 </div>

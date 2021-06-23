@@ -17,17 +17,30 @@ class AboutController extends Controller
     public function index()
     {
         $profile = profile::all()->last();
-        $idcust = customer::select('id')
-        ->where('users_id','=', auth()->user()->id)
-        ->get();
-        
-        $cart = cart::select('id')
-        ->where('id_customers','=', $idcust[0]->id)
-        ->count();
-        return view('package/about_us', [
-            'profile' => $profile,
-            'cart' => $cart
-        ]);
+
+        $cek = customer::select('id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->count();
+
+        if ($cek == 0) {
+            return view('package/about_us', [
+                'profile' => $profile,
+                'cart' => 0
+            ]);
+        } else {
+            $idcust = customer::select('id')
+                ->where('users_id', '=', auth()->user()->id)
+                ->get();
+
+            $cart = cart::select('id')
+                ->where('customers_id', '=', $idcust[0]->id)
+                ->count();
+                
+            return view('package/about_us', [
+                'profile' => $profile,
+                'cart' => $cart
+            ]);
+        }
     }
 
     /**

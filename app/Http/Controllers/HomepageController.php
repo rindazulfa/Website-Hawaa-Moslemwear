@@ -25,23 +25,35 @@ class HomepageController extends Controller
         ])
             ->get();
 
-        $idcust = customer::select('id')
-        ->where('users_id','=', auth()->user()->id)
-        ->get();
-        
-        $cart = cart::select('id')
-        ->where('id_customers','=', $idcust[0]->id)
-        ->count();
+        $cek = customer::select('id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->count();
 
         // dd(
         //     $cart
         // );
 
-        return view('index', [
-            'banner' => $banner,
-            'shop' => $product,
-            'cart' => $cart
-        ]);
+        if ($cek == 0) {
+            return view('index', [
+                'banner' => $banner,
+                'shop' => $product,
+                'cart' => 0
+            ]);
+        } else {
+            $idcust = customer::select('id')
+                ->where('users_id', '=', auth()->user()->id)
+                ->get();
+
+            $cart = cart::select('id')
+                ->where('customers_id', '=', $idcust[0]->id)
+                ->count();
+
+            return view('index', [
+                'banner' => $banner,
+                'shop' => $product,
+                'cart' => $cart
+            ]);
+        }
     }
 
     /**
@@ -76,24 +88,48 @@ class HomepageController extends Controller
             $subtotal = $request->qty * $request->price;
 
             // Memasukkan ke keranjang
-            $tambahcart = cart::create([
-                'id_products' => $request->id,
-                'id_stocks' => $request->size,
-                'id_customers' => $idcust[0]->id,
-                'size' => $request->size,
-                'price' => $request->price,
-                'qty' => $request->qty,
-                'subtotal' => $subtotal,
-                'date' => $request->date
-            ]);
+            $cekprod = cart::select('id')
+                ->where('products_id', '=', $request->id)
+                ->where('stocks_id', '=', $request->size)
+                ->count();
 
-            return redirect('/');
+            $cekidcart = cart::select('id')
+                ->where('products_id', '=', $request->id)
+                ->where('stocks_id', '=', $request->size)
+                ->get();
+
+            if ($cekprod == 1) {
+                $qtyold = cart::select('qty')
+                ->where('products_id', '=', $request->id)
+                ->where('stocks_id', '=', $request->size)
+                ->get();
+
+                $qtynow = $qtyold[0]->qty + $request->qty;
+
+                $updcart = DB::table('cart')
+                    ->where('id', '=', $cekidcart[0]->id)->update([
+                        'qty' => $qtynow
+                    ]);
+
+                return redirect('/');
+            } else {
+                $tambahcart = cart::create([
+                    'products_id' => $request->id,
+                    'stocks_id' => $request->size,
+                    'customers_id' => $idcust[0]->id,
+                    'size' => $request->size,
+                    'price' => $request->price,
+                    'qty' => $request->qty,
+                    'subtotal' => $subtotal,
+                    'date' => $request->date
+                ]);
+
+                return redirect('/');
+            }
         } else {
             // Masukkan tampilan form insert customer
-            $cart = cart::select('id')->count();
-
             return view('package/login/biasa/customerform', [
-                'cart' => $cart
+                'cart' => 0
             ]);
         }
 

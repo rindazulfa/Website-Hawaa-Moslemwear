@@ -30,9 +30,20 @@
 							@guest
 							@else
 							<hr>
-							<p class="bottom-area d-flex">
+							<!-- <p class="bottom-area d-flex">
 								<a href="{{ route('store') }}" class="add-to-cart" type="submit"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-							</p>
+							</p> -->
+							<form action="{{ route('shop.store') }}" method="post">
+                                    @csrf
+                                    <input type="text" name="id" id="id" value="{{ $key->id }}" hidden readonly>
+                                    <input type="number" name="price" id="price" value="{{ $key->price }}" hidden readonly>
+                                    <input type="text" name="size" id="size" value="1" hidden readonly>
+                                    <input type="number" name="qty" id="qty" value="1" hidden readonly>
+                                    <input type="date" name="date" id="date" value="<?php echo date('Y-m-d'); ?>" hidden readonly>
+                                    <p class="bottom-area d-flex">
+                                        <button class="add-to-cart" type="submit"><span>Add to cart<i class="ion-ios-add ml-1"></i></span></button>
+                                    </p>
+                                </form>
 							@endguest
 						</div>
 					</div>
@@ -43,7 +54,7 @@
 				<td colspan="7" class="text-center">Data Kosong</td>
 			</tr>
 			@endforelse
-			@endsection
 		</div>
 	</div>
 </section>
+@endsection

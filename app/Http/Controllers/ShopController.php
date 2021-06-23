@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\profile;
 use App\Models\stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ShopController extends Controller
@@ -24,18 +25,30 @@ class ShopController extends Controller
         // // dd($product);
         // return view('package.product', ['shop' => $product]);
         $product = Product::with(['stok'])->get();
-        $idcust = customer::select('id')
-        ->where('users_id','=', auth()->user()->id)
-        ->get();
-        
-        $cart = cart::select('id')
-        ->where('id_customers','=', $idcust[0]->id)
-        ->count();
 
-        return view('package.product', [
-            'shop' => $product,
-            'cart' => $cart
-        ]);
+        $cek = customer::select('id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->count();
+
+        if ($cek == 0) {
+            return view('package.product', [
+                'shop' => $product,
+                'cart' => 0
+            ]);
+        } else {
+            $idcust = customer::select('id')
+                ->where('users_id', '=', auth()->user()->id)
+                ->get();
+
+            $cart = cart::select('id')
+                ->where('customers_id', '=', $idcust[0]->id)
+                ->count();
+
+            return view('package.product', [
+                'shop' => $product,
+                'cart' => $cart
+            ]);
+        }
     }
 
     // public function indexlogin()
@@ -141,7 +154,64 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cekcust = DB::table('customers')
+            ->select('id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->count();
+
+        $idcust = DB::table('customers')
+            ->select('id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->get();
+
+        if ($cekcust == 1) {
+            $subtotal = $request->qty * $request->price;
+
+            // Memasukkan ke keranjang
+            $cekprod = cart::select('id')
+                ->where('products_id', '=', $request->id)
+                ->where('stocks_id', '=', $request->size)
+                ->count();
+
+            $cekidcart = cart::select('id')
+                ->where('products_id', '=', $request->id)
+                ->where('stocks_id', '=', $request->size)
+                ->get();
+
+            if ($cekprod == 1) {
+                $qtyold = cart::select('qty')
+                ->where('products_id', '=', $request->id)
+                ->where('stocks_id', '=', $request->size)
+                ->get();
+
+                $qtynow = $qtyold[0]->qty + $request->qty;
+
+                $updcart = DB::table('cart')
+                    ->where('id', '=', $cekidcart[0]->id)->update([
+                        'qty' => $qtynow
+                    ]);
+
+                return redirect('/shop');
+            } else {
+                $tambahcart = cart::create([
+                    'products_id' => $request->id,
+                    'stocks_id' => $request->size,
+                    'customers_id' => $idcust[0]->id,
+                    'size' => $request->size,
+                    'price' => $request->price,
+                    'qty' => $request->qty,
+                    'subtotal' => $subtotal,
+                    'date' => $request->date
+                ]);
+
+                return redirect('/shop');
+            }
+        } else {
+            // Masukkan tampilan form insert customer
+            return view('package/login/biasa/customerform', [
+                'cart' => 0
+            ]);
+        }
     }
 
     /**

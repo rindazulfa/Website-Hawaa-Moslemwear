@@ -22,18 +22,6 @@ class HistoryCustomController extends Controller
             ->where('users_id', '=', auth()->user()->id)
             ->count();
 
-        $cust_id = DB::table('customers')
-            ->where('users_id', '=', auth()->user()->id)
-            ->get();
-
-        $idcust = customer::select('id')
-            ->where('users_id', '=', auth()->user()->id)
-            ->get();
-
-        $cart = cart::select('id')
-            ->where('id_customers', '=', $idcust[0]->id)
-            ->count();
-
         // dd(
         //     $cek,
         //     $cust_id[0]->id
@@ -41,14 +29,28 @@ class HistoryCustomController extends Controller
 
         if ($cekcust == 0) {
             // Data Cust tidak ada masuk ke custom product
+            
             return redirect('/');
         } else {
+            $cust_id = DB::table('customers')
+                ->where('users_id', '=', auth()->user()->id)
+                ->get();
+
+            $idcust = customer::select('id')
+                ->where('users_id', '=', auth()->user()->id)
+                ->get();
+
+            $cart = cart::select('id')
+                ->where('customers_id', '=', $idcust[0]->id)
+                ->count();
+
             $cekjmlcus = DB::table('order_customs')
                 ->join('customers', 'customers.id', '=', 'order_customs.customers_id')
                 ->join('users', 'users.id', '=', 'customers.users_id')
                 ->where('customers_id', '=', $cust_id[0]->id)
                 ->select('order_customs.*', 'users.first_name')
                 ->count();
+
             $cek = DB::table('order_customs')
                 ->join('customers', 'customers.id', '=', 'order_customs.customers_id')
                 ->join('users', 'users.id', '=', 'customers.users_id')
