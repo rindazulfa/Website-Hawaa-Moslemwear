@@ -3,7 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PromoController;
-use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\User\CustomerController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\OrderController;
@@ -43,9 +43,8 @@ Route::group([
     Route::resource('profilumkm', 'ProfilController');
 
     Route::resource('user', 'UserController');
-    Route::resource('customer', 'CustomerController');
-    Route::post('custupdate/{id}', 'CustomerController@updateData')->name('custupdate');
-    Route::get('custdelete/{id}', 'CustomerController@deleteData')->name('custdelete');
+    // Route::post('custupdate/{id}', 'CustomerController@updateData')->name('custupdate');
+    // Route::get('custdelete/{id}', 'CustomerController@deleteData')->name('custdelete');
 
     Route::resource('admin', 'DashboardController');
 
@@ -91,6 +90,7 @@ Route::group([
     'namespace' => 'User',
     'middleware' => ['auth', 'checkrole:user,admin']
 ], function () {
+    Route::resource('customer', 'CustomerController');
     Route::resource('cart','CartController');
     // Route::get('/add-cart/{id}','OrderController@addcart')->name('product.addcart');
 

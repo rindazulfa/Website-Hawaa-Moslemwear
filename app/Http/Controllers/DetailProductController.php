@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cart;
+use App\Models\customer;
 use Illuminate\Http\Request;
 
 class DetailProductController extends Controller
@@ -14,7 +15,13 @@ class DetailProductController extends Controller
      */
     public function index()
     {
-        $cart = cart::select('id')->count();
+        $idcust = customer::select('id')
+        ->where('users_id','=', auth()->user()->id)
+        ->get();
+        
+        $cart = cart::select('id')
+        ->where('id_customers','=', $idcust[0]->id)
+        ->count();
         return view('package/detail_product',[
             'cart' => $cart
         ]);

@@ -22,28 +22,6 @@ class OrderController extends Controller
      */
     public function index()
     {
-        // $tampil = DB::table('orders')
-        //     ->join('detail_orders', 'detail_orders.orders_id', '=', 'orders.id')
-        //     ->join('products', 'detail_orders.products_id', '=', 'products.id')
-        //     ->join('discount_customer', 'discount_customer.orders_id', '=', 'orders.id')
-        //     ->select(
-        //         'orders.id',
-        //         'orders.date',
-        //         'products.name',
-        //         'detail_orders.qty',
-        //         'products.price',
-        //         'orders.shipping',
-        //         'orders.ongkir',
-        //         'orders.keterangan',
-        //         'orders.status',
-        //         'orders.total',
-        //         'orders.pict_payment'
-        //     )
-        //     ->get();
-        // return view('admin/pages/penjualan/index',[
-        //     'page'=> $tampil
-        // ]);
-
         $order = order::all();
 
         $arr = [];

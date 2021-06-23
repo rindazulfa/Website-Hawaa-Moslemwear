@@ -21,7 +21,13 @@ class CustomProductController extends Controller
     public function index()
     {
         $cek = customer::where('users_id', '=', auth()->user()->id)->count();
-        $cart = cart::select('id')->count();
+        $idcust = customer::select('id')
+        ->where('users_id','=', auth()->user()->id)
+        ->get();
+        
+        $cart = cart::select('id')
+        ->where('id_customers','=', $idcust[0]->id)
+        ->count();
         // dd($cek);
 
         if ($cek == 1) {

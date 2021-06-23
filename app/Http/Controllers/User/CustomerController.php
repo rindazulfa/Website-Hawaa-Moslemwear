@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Models\customer;
 use App\Http\Controllers\Controller;
@@ -46,7 +46,16 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        
+        customer::create([
+            'users_id' => auth()->user()->id,
+            'address' => $request->address,
+            'city' => $request->city,
+            'province' => $request->province,
+            'postal_code' => $request->postal,
+            'phone' => $request->phone
+        ]);
+
+        return redirect('/');
     }
 
     /**

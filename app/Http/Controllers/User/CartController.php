@@ -4,7 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\cart;
+use App\Models\customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -15,10 +17,28 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = cart::select('id')->count();
+        $idcust = customer::select('id')
+        ->where('users_id','=', auth()->user()->id)
+        ->get();
+        
+        $cart = cart::select('id')
+        ->where('id_customers','=', $idcust[0]->id)
+        ->count();
+
+        $cek = cart::select('products.name','products.pict_1','stocks.size','cart.price','cart.subtotal','cart.qty','cart.id')
+        ->join('stocks','stocks.id','=','cart.id_stocks')
+        ->join('products','products.id','=','cart.id_products')
+        ->join('customers','customers.id','=','cart.id_customers')
+        ->where('id_customers','=', $idcust[0]->id)
+        ->get();
+
+        $total = DB::table('cart')
+        ->sum('subtotal');
         
         return view('package.login.cart',[
-            'cart' => $cart
+            'cart' => $cart,
+            'cek' => $cek,
+            'total' => $total
         ]);
     }
 
@@ -85,6 +105,11 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Belum Bisa Hpusss
+        // DB::table('cart')
+        // ->where('id','=',$id)
+        // ->delete();
+
+        return view('/cart');
     }
 }

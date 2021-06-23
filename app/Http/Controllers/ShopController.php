@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cart;
+use App\Models\customer;
 use App\Models\detail_order;
 use App\Models\Product;
 use App\Models\profile;
@@ -23,7 +24,13 @@ class ShopController extends Controller
         // // dd($product);
         // return view('package.product', ['shop' => $product]);
         $product = Product::with(['stok'])->get();
-        $cart = cart::select('id')->count();
+        $idcust = customer::select('id')
+        ->where('users_id','=', auth()->user()->id)
+        ->get();
+        
+        $cart = cart::select('id')
+        ->where('id_customers','=', $idcust[0]->id)
+        ->count();
 
         return view('package.product', [
             'shop' => $product,
@@ -149,9 +156,12 @@ class ShopController extends Controller
         $detail = Product::with(['stok'])
             ->findOrFail($id);
         $stok = stock::where('products_id', $id)->first();
+        $cart = cart::select('id')->count();
+
         return view('package.detail_product', [
             'detail' => $detail,
-            'stok' => $stok
+            'stok' => $stok,
+            'cart' => $cart
         ]);
     }
 

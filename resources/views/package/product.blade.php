@@ -31,7 +31,7 @@
 							@else
 							<hr>
 							<p class="bottom-area d-flex">
-								<a href="#" class="add-to-cart" type="submit"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+								<a href="{{ route('store') }}" class="add-to-cart" type="submit"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
 							</p>
 							@endguest
 						</div>

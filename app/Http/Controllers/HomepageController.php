@@ -24,7 +24,14 @@ class HomepageController extends Controller
             'stok'
         ])
             ->get();
-        $cart = cart::select('id')->count();
+
+        $idcust = customer::select('id')
+        ->where('users_id','=', auth()->user()->id)
+        ->get();
+        
+        $cart = cart::select('id')
+        ->where('id_customers','=', $idcust[0]->id)
+        ->count();
 
         // dd(
         //     $cart
@@ -71,6 +78,7 @@ class HomepageController extends Controller
             // Memasukkan ke keranjang
             $tambahcart = cart::create([
                 'id_products' => $request->id,
+                'id_stocks' => $request->size,
                 'id_customers' => $idcust[0]->id,
                 'size' => $request->size,
                 'price' => $request->price,
@@ -82,8 +90,11 @@ class HomepageController extends Controller
             return redirect('/');
         } else {
             // Masukkan tampilan form insert customer
+            $cart = cart::select('id')->count();
 
-            return redirect('/');
+            return view('package/login/biasa/customerform', [
+                'cart' => $cart
+            ]);
         }
 
         // dd(
