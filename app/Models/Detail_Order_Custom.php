@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Detail_Order_Custom extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
     protected $table = "detail_order_customs";  
     protected $fillable = [
         'order_customs_id','qty','satuan','harga','subtotal','qty','pict_desain'

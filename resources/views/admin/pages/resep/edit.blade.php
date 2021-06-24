@@ -53,10 +53,11 @@
                                 <tbody class="list">
                                     @forelse($bahan as $key)
                                     <tr>
-                                        <td><input type="checkbox" name="materials_id[]" value="{{$key->id}}"></td>
+                                        <!-- <td><input type="checkbox" name="materials_id[]" value="{{$key->id}}"></td> -->
+                                        <td><input type="number" class="form-control" name="materials_id[]" value="{{$key->id}}" readonly></td>
                                         <td>{{$key->name}}</td>
-                                        <td><input type="number" class="form-control" name="qty[]"></td>
-                                        <td><input type="text" class="form-control" name="satuan[]"></td>
+                                        <td><input type="number" class="form-control" name="qty[]" value="{{$key->qty}}"></td>
+                                        <td><input type="text" class="form-control" name="satuan[]" value="{{$key->satuan}}"></td>
                                     </tr>
 
                                     @empty
@@ -70,7 +71,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer">a
+                    <div class="card-footer">
                         <div class="row">
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">

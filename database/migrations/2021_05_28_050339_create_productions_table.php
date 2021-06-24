@@ -23,7 +23,7 @@ class CreateProductionsTable extends Migration
             $table->integer("qty");
             $table->date("date");
             $table->timestamps();
-            $table->softDeletes();
+            // $table->softDeletes();
         });
 
         // Schema::table('productions', function (Blueprint $table) {

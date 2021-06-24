@@ -8,8 +8,8 @@
                     <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                            <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="/user">Tables</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Tables</li>
                         </ol>
                     </nav>
@@ -53,19 +53,23 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-lg-6 mt-4">
+                            <div class="col-lg-6">
                                 <label>Email</label>
                                 <input type="text" class="form-control" value="{{ $page->email }}" name="email" placeholder="Masukkan Email" readonly />
                             </div>
-                            <div class="col-lg-6 mt-4">
+                            <div class="col-lg-6">
                                 <label>Password</label>
                                 <input type="password" class="form-control" value="" name="password" placeholder="Masukkan Password" />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-lg-6 mt-4">
-                                <label>Roles</label>
-                                <input type="text" class="form-control" value="{{ $page->role }}" name="role" placeholder="Masukkan Role" />
+                            <div class="col-lg-6">
+                                <label>Pilih Roles</label>
+                                <select class="form-control" required name="role">
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+
+                                </select>
                             </div>
                         </div>
 

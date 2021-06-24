@@ -19,6 +19,7 @@ class HomepageController extends Controller
      */
     public function index()
     {
+
         $banner = Banner::all()->last();
         $product = Product::with([
             'stok'
@@ -28,16 +29,18 @@ class HomepageController extends Controller
         $cek = customer::select('id')
             ->where('users_id', '=', auth()->user()->id)
             ->count();
-
+        // dd($cek);
         // dd(
         //     $cart
         // );
 
         if ($cek == 0) {
+            $profile = profile::all()->last();
             return view('index', [
                 'banner' => $banner,
                 'shop' => $product,
-                'cart' => 0
+                'cart' => 0,
+                'profile' => $profile
             ]);
         } else {
             $idcust = customer::select('id')
@@ -47,11 +50,14 @@ class HomepageController extends Controller
             $cart = cart::select('id')
                 ->where('customers_id', '=', $idcust[0]->id)
                 ->count();
+                $profile = profile::all()->last();
+            // dd($profile);
 
             return view('index', [
                 'banner' => $banner,
                 'shop' => $product,
-                'cart' => $cart
+                'cart' => $cart,
+                'profile' => $profile
             ]);
         }
     }
@@ -100,9 +106,9 @@ class HomepageController extends Controller
 
             if ($cekprod == 1) {
                 $qtyold = cart::select('qty')
-                ->where('products_id', '=', $request->id)
-                ->where('stocks_id', '=', $request->size)
-                ->get();
+                    ->where('products_id', '=', $request->id)
+                    ->where('stocks_id', '=', $request->size)
+                    ->get();
 
                 $qtynow = $qtyold[0]->qty + $request->qty;
 

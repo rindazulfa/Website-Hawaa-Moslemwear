@@ -22,7 +22,7 @@ class CreateCustomersTable extends Migration
             $table->string("province");
             $table->string("postal_code");
             $table->string("phone");
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }

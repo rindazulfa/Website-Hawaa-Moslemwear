@@ -22,7 +22,7 @@ class CreateProfilesTable extends Migration
             $table->string("ig");
             $table->string("email");
             $table->string("address");
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }

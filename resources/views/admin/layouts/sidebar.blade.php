@@ -71,6 +71,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link {{ (request()->segment(1) == 'shipping') ? 'active' : '' }}" href="/shipping">
+              <i class="ni ni-tag"></i>
+              <span class="nav-link-text">Shipping</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link {{ (request()->segment(1) == 'supplier') ? 'active' : '' }}" href="/supplier">
               <i class="ni ni-single-02"></i>
               <span class="nav-link-text">Supplier</span>

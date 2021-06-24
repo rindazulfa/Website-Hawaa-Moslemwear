@@ -21,7 +21,7 @@ class CreateMaterialsTable extends Migration
             $table->integer("price");
             $table->integer("qty");
             $table->string("satuan");
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class customer extends Model
 {
     // use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
     protected $table = "customers";
     protected $fillable = [
        'users_id','address','city','province','postal_code','status','phone'

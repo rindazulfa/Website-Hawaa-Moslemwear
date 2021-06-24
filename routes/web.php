@@ -60,9 +60,8 @@ Route::group([
     Route::resource('supplier', 'SupplierController');
     Route::resource('bahan_baku', 'MaterialController');
 
+    Route::resource('shipping', 'ShippingController');
     Route::resource('payment', 'PaymentController');
-    Route::resource('discount', 'DiscountController');
-    Route::resource('discount_product', 'DiscountProductController');
 
     //Resep
     Route::get('/form_resep/{id}', 'RecipeController@form')->name('form_resep');

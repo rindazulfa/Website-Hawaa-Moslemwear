@@ -26,7 +26,7 @@ class CreatePuchasesTable extends Migration
             $table->integer("total");
             $table->text("keterangan");
             $table->timestamps();
-            $table->softDeletes();
+            // $table->softDeletes();
 
         });
     }

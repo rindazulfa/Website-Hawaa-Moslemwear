@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class stock extends Model
 {
     // use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
     protected $table = "stocks";  
     protected $fillable = [
         'products_id','qty','satuan','size'

@@ -45,13 +45,21 @@ class RecipeController extends Controller
             'bahan' => $bahan
         ]);
     }
-//TAMBAH RESEP
+    //TAMBAH RESEP
     public function form(Request $request, $id)
     {
 
-        $detail = stock::findOrFail($id);
-        $resep = Recipe::where('stocks_id', $detail->id)->first();
-        $bahan = material::all();
+        $detail = stock::findOrFail($id); //idstok
+        foreach ($detail->resep as $row) {
+            // dd($row);
+            $arr_idbahan[] = $row->materials_id;
+        }
+        //$resep = Recipe::where('stocks_id', $detail->id)->first();
+        $bahan = material::whereNotIn('id', $arr_idbahan)->get();
+
+
+
+
         return view('admin.pages.resep.create', [
             // 'items' => $items,
             'bahan' => $bahan,
@@ -59,7 +67,7 @@ class RecipeController extends Controller
         ]);
     }
 
-//TAMBAH NK DB NE
+    //TAMBAH NK DB NE
     public function tambah(Request $request, $id)
     {
 
@@ -112,44 +120,7 @@ class RecipeController extends Controller
     public function store(Request $request)
     {
 
-        // $idproduk = Product::findOrFail($id);
-        // $arr_produk = $idproduk['products_id'];
-
-        $data = $request->all();
-        // dd($data);
-
-        $arr_bahan = $data['materials_id'];
-        $arr_qty = $data['qty'];
-        $arr_satuan = $data['satuan'];
-
-        // $cekproduk = Product::where('id', $data['products_id'])->count();
-
-        for ($i = 0; $i < count($arr_bahan); $i++) {
-            $cekbahan = material::where('id', $arr_bahan[$i])->count();
-
-            if ($cekbahan > 0) {
-                $tambah = Recipe::where('products_id', $data['products_id'])
-                    ->where('materials_id', $arr_bahan[$i])->first();
-                dd($tambah);
-                if ($tambah) {
-                    // $tambah->id = $arr_produk[$i];
-                    $tambah->qty =  $arr_qty[$i];
-                    $tambah->satuan =  $arr_satuan[$i];
-                    $tambah->save();
-                } else {
-                    $resep = new Recipe();
-                    $resep->materials_id = $arr_bahan[$i];
-                    $resep->products_id = $data['products_id'];
-                    $resep->qty = $arr_qty[$i];
-                    $resep->satuan = $arr_satuan[$i];
-                    $resep->save();
-                }
-
-                // dd($tambah);
-            }
-        }
-
-        return redirect()->route('produk.index');
+       
     }
 
     /**
@@ -171,9 +142,18 @@ class RecipeController extends Controller
      */
     public function edit($id)
     {
-        $detail = product::findOrFail($id);
-        $resep = Recipe::where('stocks_id', $detail->id)->first();
-        $bahan = material::all();
+        // $detail = product::findOrFail($id);
+        // $resep = Recipe::where('stocks_id', $detail->id)->first();
+        // $bahan = material::all();
+
+        $detail = stock::findOrFail($id); //idstok
+        foreach ($detail->resep as $row) {
+            // dd($row);
+            $arr_idbahan[] = $row->materials_id;
+        }
+        $bahan = material::where('id', $arr_idbahan)->get();
+
+
         return view('admin.pages.resep.edit', [
             // 'items' => $items,
             'bahan' => $bahan,
@@ -190,8 +170,8 @@ class RecipeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $idproduk = Product::findOrFail($id);
-        $arr_produk = $idproduk['products_id'];
+        $idproduk = stock::findOrFail($id);
+        $arr_produk = $idproduk['stocks_id'];
 
         $data = $request->all();
         // dd($data);
@@ -215,19 +195,20 @@ class RecipeController extends Controller
                     $tambah->satuan =  $arr_satuan[$i];
                     $tambah->save();
                 } else {
-                    $resep = new Recipe();
-                    $resep->materials_id = $arr_bahan[$i];
-                    $resep->products_id = $id;
-                    $resep->qty = $arr_qty[$i];
-                    $resep->satuan = $arr_satuan[$i];
-                    $resep->save();
+                    // $tambah = new Recipe();
+                    $tambah->materials_id = $arr_bahan[$i];
+                    $tambah->stocks_id = $id;
+                    $tambah->qty = $arr_qty[$i];
+                    $tambah->satuan = $arr_satuan[$i];
+                    $tambah->save();
                 }
 
                 // dd($tambah);
             }
         }
 
-        return redirect()->route("produk.index")->with("info", "Recipe has been updated");
+
+        return redirect()->route("stok_produk.index")->with("info", "Recipe has been updated");
     }
 
     /**
@@ -238,8 +219,9 @@ class RecipeController extends Controller
      */
     public function destroy($id)
     {
+        // dd($id);
         $delete = Recipe::findOrFail($id);
         $delete->delete();
-        return redirect()->route('produk.index')->with("info", "Recipe has been deleted");;
+        return redirect()->route('stok_produk.index')->with("info", "Recipe has been deleted");;
     }
 }

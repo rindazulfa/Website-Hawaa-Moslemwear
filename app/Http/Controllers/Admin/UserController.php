@@ -45,6 +45,13 @@ class UserController extends Controller
             'password' => ['required','string'],
             // 'password_confirmation' => ['required','string']
         ]);
+        $role =$request->get('role');
+        if ($role == 'user') {
+            $role = 'user';
+        }
+        elseif ($role = 'customer') {
+            $role ='customer';
+        }
         
         $user = new User;
         $user->first_name = $request->get('first_name');
@@ -52,7 +59,7 @@ class UserController extends Controller
         $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password'));
         // $user->password_confirmation = bcrypt($request->get('password_confirmation'));
-        $user->role = $request->get('role');
+        $user->role = $role;
         $user->save();
 
         return redirect()->route("user.index")->with("info", "User has been created");
@@ -91,6 +98,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $user = User::findOrFail($id);
         $credentials = $request->validate([
             'first_name' => ['required', 'string'],
@@ -99,12 +107,18 @@ class UserController extends Controller
             'password' => ['required','string'],
             // 'password_confirmation' => ['required','string']
         ]);
-        
+        $role =$request->get('role');
+        if ($role == 'admin') {
+            $role = 'admin';
+        }
+        elseif ($role = 'user') {
+            $role ='user';  
+        }
         $user->first_name = $request->get('first_name');
         $user->last_name = $request->get('last_name');
         $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password'));
-        $user->role = $request->get('role');
+        $user->role = $role;
         $user->save();
 
         return redirect()->route("user.index")->with("info", "User has been updated");

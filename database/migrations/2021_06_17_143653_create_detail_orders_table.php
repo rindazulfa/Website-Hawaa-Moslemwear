@@ -25,7 +25,7 @@ class CreateDetailOrdersTable extends Migration
             $table->integer("qty");
             $table->string("satuan");
             $table->integer("subtotal");
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -9,7 +9,7 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/bahan_baku">Data Resep</a></li>
+                            <li class="breadcrumb-item"><a href="/resep">Data Resep</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Form Resep</li>
                         </ol>
                     </nav>
@@ -74,7 +74,7 @@
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
                                 <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                                <button type="button" class="btn btn-secondary"><a href="{{route('produk.index')}}">Cancel</a></button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('stok_produk.index')}}">Cancel</a></button>
                             </div>
                         </div>
                     </div>

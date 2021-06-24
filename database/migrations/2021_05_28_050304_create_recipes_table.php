@@ -22,7 +22,7 @@ class CreateRecipesTable extends Migration
             $table->integer("qty");
             $table->string("satuan");
             $table->timestamps();
-            $table->softDeletes();
+            // $table->softDeletes();
         });
     }
 

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class puchase extends Model
 {
     // use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
     protected $table = "puchases";  
     protected $fillable = [
         'materials_id','suppliers_id','date','keterangan', 'total','harga'
