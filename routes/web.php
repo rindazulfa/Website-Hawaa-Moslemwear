@@ -92,7 +92,9 @@ Route::group([
 ], function () {
     Route::resource('customer', 'CustomerController');
     Route::resource('cart','CartController');
-    // Route::get('/add-cart/{id}','OrderController@addcart')->name('product.addcart');
+    Route::get('/delcart/{id}','CartController@delcart')->name('del.cart');
+    Route::post('/updcart','CartController@updcart')->name('upd.cart');
+    // Route::get('/tampil/checkout/{id}','CartController@tampilcheckout')->name('tampil.checkout');
 
     Route::resource('checkout','CheckoutController');
     

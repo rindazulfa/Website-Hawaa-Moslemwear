@@ -4,19 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class order extends Model
 {
     // use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
     protected $table = "orders";
     protected $fillable = [
         'customers_id','confirm_payments_id', 'date', 'total', 'status',
         'keterangan', 'shipping', 'ongkir'
     ];
 
-    protected $dates = ["date", "created_at", "deleted_at", "updated_at"];
+    protected $dates = ["date", "created_at", "updated_at"];
     protected $hidden = [];
     public function customer()
     {
