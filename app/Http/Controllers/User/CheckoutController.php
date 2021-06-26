@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\cart;
+use App\Models\confirm_payment;
+use App\Models\customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
@@ -35,7 +39,40 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $nama_file = time() . "_" . $file->getClientOriginalName();
+
+            confirm_payment::create([
+                'payment_purpose' => $request->cbnamabank,
+                'transfer_date' => $request->date,
+                'transfer_amount' => $request->amount,
+                'proof_of_payment' => 'Menunggu Konfirmasi Pembayaran',
+                'description' => $request->description
+            ]);
+
+            $idconfirm = confirm_payment::all()->last();
+
+            $data = DB::table('orders')
+                ->where('id', '=', $request->id)->update([
+                    'pict_payment' => $nama_file,
+                    'confirm_payments_id' => $idconfirm->id,
+                    'status' => 'Menunggu Konfirmasi Pembayaran',
+                    'keterangan' => $request->description
+                ]);
+
+            $tujuan_upload = 'uploads/bukti';
+            $file->move($tujuan_upload, $nama_file);
+
+            // dd(
+            //     $idconfirm
+            // );
+            
+            return redirect("/riwayat")->with("info", "Your Request has been created");
+        } else {
+            // do nothing
+        }
+        return redirect("/")->with("info", "Your Request has been created");
     }
 
     /**
@@ -57,7 +94,36 @@ class CheckoutController extends Controller
      */
     public function edit($id)
     {
-        //
+        $total = DB::table('orders')
+            ->select('total')
+            ->where('id', '=', $id)
+            ->get();
+
+        $data = DB::table('orders')
+            ->where('id', '=', $id)
+            ->get();
+
+        $idcust = customer::select('id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->get();
+
+        $cart = cart::select('id')
+            ->where('customers_id', '=', $idcust[0]->id)
+            ->count();
+
+        // dd(
+        //     $total,
+        //     $data
+        // );
+
+        $payment = DB::table('payments')->get();
+
+        return view('package.login.biasa.bayar', [
+            'total' => $total,
+            'payment' => $payment,
+            'data' => $data,
+            'cart' => $cart
+        ]);
     }
 
     /**

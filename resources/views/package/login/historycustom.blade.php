@@ -65,7 +65,7 @@
                                     </a>
                                 <?php
                                 } else if ($key->status_pengerjaan == "Menunggu Proses Pembayaran") { ?>
-                                    <a href="custom/{{$key->id}}/edit " class="btn btn-primary py-3 px-3">
+                                    <a href="custom/{{$key->id}}/edit" class="btn btn-primary py-3 px-3">
                                         Bayar Sekarang
                                     </a>
                                     <br><br>

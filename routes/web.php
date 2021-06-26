@@ -74,6 +74,7 @@ Route::group([
 
     // Transaksi Penjualan
     Route::resource('penjualan', 'OrderController');
+    Route::get('/penjualan/statuspay/den/{id}', [OrderController::class, 'updsttspayden'])->name('den.pay');
 
     // Transaksi Penjualan Custom (Masih 40%)
     Route::resource('penjualancustom', 'Order_CustomController');
@@ -95,12 +96,15 @@ Route::group([
     Route::post('/updcart','CartController@updcart')->name('upd.cart');
     // Route::get('/tampil/checkout/{id}','CartController@tampilcheckout')->name('tampil.checkout');
 
+    Route::resource('riwayat', 'RiwayatController');
+
     Route::resource('checkout','CheckoutController');
     
     // Custom
     Route::resource('/custom','CustomProductController');
     Route::resource('/confirmpayment','Confirm_PaymentController');
     Route::get('/confirmpayment/statuspay/acc/{id}', [Confirm_PaymentController::class, 'accpembayaran'])->name('acc.pay');
+    Route::get('/confirmpaymentproduk/statuspay/acc/{id}', [Confirm_PaymentController::class, 'accpembayaranproduk'])->name('acc.payprod');
 
     // Route::post('/custom/simpanharga', [CustomProductController::class, 'simpanbayar'])->name('harga.store');
 

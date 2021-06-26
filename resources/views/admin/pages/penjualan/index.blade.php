@@ -33,10 +33,6 @@
                             <tr>
                                 <th scope="col" class="sort" data-sort="id_transaksi_penjualan">Id Transaksi Penjualan</th>
                                 <th scope="col" class="sort" data-sort="tanggal_transaksi">Tanggal Transaksi</th>
-                                <th scope="col" class="sort" data-sort="nama_produk">Nama Produk</th>
-                                <th scope="col" class="sort" data-sort="jumlah_jual">Jumlah Jual</th>
-                                <th scope="col" class="sort" data-sort="size_jual">Size Jual</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Harga Produk</th>
                                 <th scope="col" class="sort" data-sort="shipping">Shipping</th>
                                 <th scope="col" class="sort" data-sort="ongkir">Ongkir</th>
                                 <th scope="col" class="sort" data-sort="keterangan">Keterangan</th>
@@ -52,10 +48,6 @@
                             <tr>
                                 <td class="id_transaksi_penjualan">{{$key->id}}</td>
                                 <td class="tanggal_transaksi">{{$key->date}}</td>
-                                <th class="nama_produk">{{$key->name}}</th>
-                                <td class="jumlah_jual">{{$key->qty}}</td>
-                                <td class="size_jual">{{$key->size}}</td>
-                                <td class="harga_produk">{{$key->price}}</td>
                                 <td class="shipping">{{$key->shipping}}</td>
                                 <td class="ongkir">{{$key->ongkir}}</td>
                                 <td class="keterangan">{{$key->keterangan}}</td>
@@ -67,14 +59,28 @@
                                     </span>
                                 </td>
                                 <td class="bukti_pembayaran">
-                                    <a href="#">
-                                        {{$key->pict_payment}}
+                                    <a href="{{asset('uploads/bukti/'.$key->pict_payment)}}" target="_blank">
+                                        {{ $key->pict_payment }}
                                     </a>
                                 </td>
                                 <td class="aksi">
-                                    <button type="button" class="btn btn-outline-success">Terima</button>
-                                    <button type="button" class="btn btn-outline-warning">Tolak</button>
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                    <?php if ($key->status == "Menunggu Pembayaran") {
+                                        echo "Menunggu Pembayaran";
+                                    } else if ($key->status == "Menunggu Konfirmasi Pembayaran") {
+                                        ?>
+                                        <button type="button" class="btn btn-outline-success">
+                                            <a href="/confirmpaymentproduk/statuspay/acc/{{ $key->id }}">Terima</a>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger">
+                                            <a href="/penjualan/statuspay/den/{{ $key->id }}">Tolak</a>
+                                        </button>
+                                    <?php
+                                    } else if ($key->status == "Selesai") {
+                                        echo "Selesai";
+                                    } else {
+                                        echo "Pesanan Di tolak";
+                                    }
+                                    ?>
                                 </td>
                             </tr>
                             @empty

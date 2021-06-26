@@ -131,6 +131,14 @@ class CustomProductController extends Controller
             ->where('id', '=', $id)
             ->get();
 
+        $idcust = customer::select('id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->get();
+
+        $cart = cart::select('id')
+            ->where('customers_id', '=', $idcust[0]->id)
+            ->count();
+
         // dd(
         //     $total,
         //     $data
@@ -140,7 +148,8 @@ class CustomProductController extends Controller
         return view('package.login.custom.custombayar', [
             'total' => $total,
             'payment' => $payment,
-            'data' => $data
+            'data' => $data,
+            'cart' => $cart
         ]);
     }
 

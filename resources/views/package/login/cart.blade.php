@@ -127,9 +127,11 @@
                     </p>
                 </div>
                 <p class="text-center">
+                    @if(isset($key))
                     <a href="{{ route('cart.show', [$key->id]) }}" type="submit" class="btn btn-primary py-3 px-4">
                         Proceed to Checkout
                     </a>
+                    @endif
                 </p>
             </div>
         </div>

@@ -18,13 +18,13 @@ class ProductionController extends Controller
      */
     public function index()
     {
-        $page = Production::all();
+        // $page = Production::all();
         $page = DB::table('productions')
-        ->join('recipes','productions.recipes_id','=','recipes.id')
-        ->join('stocks','recipes.stocks_id','=','stocks.id')
-        ->join('products','stocks.products_id','=','products.id')
-        ->select('productions.*','products.name','stocks.size')
-        ->get();
+            ->join('recipes', 'productions.recipes_id', '=', 'recipes.id')
+            ->join('stocks', 'recipes.stocks_id', '=', 'stocks.id')
+            ->join('products', 'stocks.products_id', '=', 'products.id')
+            ->select('productions.*', 'products.name', 'stocks.size')
+            ->get();
         return view('admin/pages/produksi/index', ['page' => $page]);
     }
 
@@ -36,7 +36,7 @@ class ProductionController extends Controller
     public function create()
     {
         $items = Recipe::select('stocks_id')
-        ->distinct()->get();
+            ->distinct()->get();
         // dd($id);
         return view('admin/pages/produksi/create', [
             'items' => $items
@@ -58,40 +58,20 @@ class ProductionController extends Controller
             ->select('materials_id', 'qty')
             ->get();
 
+        // $arrbahan[] = $ambilbahan;
+
         // Ambil data bahan + stok
-        $databahan = [];
+        // $ambilstockbahan = [];
         $jumlahbahan = [];
-        $ambilstockbahan = [];
         $jumlahproduksi = $request->qty;
 
         for ($i = 0; $i < sizeof($ambilbahan); $i++) {
-            $databahan[$i] = $ambilbahan[$i]->materials_id;
-            $jumlahbahan[$i] = $ambilbahan[$i]->qty * $jumlahproduksi;
-            // $data = DB::table('materials')
-            $ambilstockbahan[$i] = DB::table('materials')
-                ->where('id', '=', $databahan[$i])
+            $jumlahbahan[] = $ambilbahan[$i]->qty * $jumlahproduksi;
+            $ambilstockbahan[] = DB::table('materials')
+                ->where('id', '=', $ambilbahan[$i]->materials_id)
                 ->select('id', 'qty')
                 ->get();
-            // $ambilstockbahan[$i] =  $data;
         }
-
-        // Pengurangan stok bahan
-        $stoksekarang = [];
-
-        for ($i = 0; $i < sizeof($ambilbahan); $i++) {
-            // $stoksekarang[$i] = $ambilstockbahan[$i]->qty - $jumlahbahan[$i];
-        }
-
-        $id_produk = stock::select('products_id')
-        ->where('id',$request->id_stock)
-        ->get();
-
-        Production::create([
-            'recipes_id' => $request->id_stock,
-            'stocks_id' => $id_produk[0]->products_id,
-            'qty' => $request->qty,
-            'date' => $request->date
-        ]);
 
         // dd(
         //     $request->date,
@@ -99,12 +79,33 @@ class ProductionController extends Controller
         //     $request->id_stock,
         //     $ambilbahan,
         //     sizeof($ambilbahan),
-        //     $databahan,
         //     $jumlahbahan,
-        //     $ambilstockbahan[0]->qty,
-        //     $stoksekarang,
-        //     $id_produk[0]->products_id
+        //     $ambilstockbahan,
+            // $ambilstockbahan[0]->qty
+            // $stockdatabahan
+            // $stoksekarang,
+            // $id_produk->products_id
         // );
+
+        // Pengurangan stok bahan
+        for ($i = 0; $i < sizeof($ambilbahan); $i++) {
+            $stoksekarang[] = $ambilstockbahan[$i]->qty - $jumlahbahan[$i];
+            $updtstock = DB::table('materials')
+            ->where('id','=',$ambilstockbahan[$i]->id)->update([
+                'qty' => $stoksekarang[$i]
+            ]);
+        }
+
+        $id_produk = stock::select('products_id')
+            ->where('id', $request->id_stock)
+            ->get();
+
+        Production::create([
+            'recipes_id' => $request->id_stock,
+            'stocks_id' => $id_produk[0]->products_id,
+            'qty' => $request->qty,
+            'date' => $request->date
+        ]);
 
         return redirect()->route("produksi.index")->with("info", "Your Transaction has been saved");
     }
@@ -128,7 +129,7 @@ class ProductionController extends Controller
         //     $id_stok
         // );
 
-        return view('admin/pages/produksi/create',[
+        return view('admin/pages/produksi/create', [
             'id_stok' => $id_stok,
         ]);
     }
@@ -144,7 +145,7 @@ class ProductionController extends Controller
         $page = Production::findOrFail($id);
         // $data_produksi = Production::where('id',$id)->get();
 
-        return view('admin.pages.produksi.edit',[
+        return view('admin.pages.produksi.edit', [
             'page' => $page
             // 'data_produksi' => $data_produksi
         ]);
@@ -160,7 +161,7 @@ class ProductionController extends Controller
     public function update(Request $request, $id)
     {
         // DB::table('production')->where('id', $id)->update([
-            // gatau mau update apa
+        // gatau mau update apa
         // ]);
 
         return redirect()->route("produksi.index")->with("info", "Your Transaction has been updated");

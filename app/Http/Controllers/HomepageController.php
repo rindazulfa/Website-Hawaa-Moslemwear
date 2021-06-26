@@ -8,6 +8,7 @@ use App\Models\customer;
 use App\Models\Product;
 use App\Models\profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomepageController extends Controller
@@ -19,45 +20,49 @@ class HomepageController extends Controller
      */
     public function index()
     {
-
         $banner = Banner::all()->last();
         $product = Product::with([
             'stok'
         ])
             ->get();
 
-        $cek = customer::select('id')
-            ->where('users_id', '=', auth()->user()->id)
-            ->count();
         // dd($cek);
         // dd(
         //     $cart
         // );
 
-        if ($cek == 0) {
-            $profile = profile::all()->last();
-            return view('index', [
-                'banner' => $banner,
-                'shop' => $product,
-                'cart' => 0,
-                'profile' => $profile
-            ]);
-        } else {
-            $idcust = customer::select('id')
+        if (Auth::check()) {
+
+            $cek = customer::select('id')
                 ->where('users_id', '=', auth()->user()->id)
-                ->get();
-
-            $cart = cart::select('id')
-                ->where('customers_id', '=', $idcust[0]->id)
                 ->count();
-                $profile = profile::all()->last();
-            // dd($profile);
 
+            if ($cek == 0) {
+                return view('index', [
+                    'banner' => $banner,
+                    'shop' => $product,
+                    'cart' => 0
+                ]);
+            } else {
+                $idcust = customer::select('id')
+                    ->where('users_id', '=', auth()->user()->id)
+                    ->get();
+
+                $cart = cart::select('id')
+                    ->where('customers_id', '=', $idcust[0]->id)
+                    ->count();
+
+                return view('index', [
+                    'banner' => $banner,
+                    'shop' => $product,
+                    'cart' => $cart
+                ]);
+            }
+        } else {
             return view('index', [
                 'banner' => $banner,
                 'shop' => $product,
-                'cart' => $cart,
-                'profile' => $profile
+                'cart' => 0
             ]);
         }
     }
@@ -111,10 +116,12 @@ class HomepageController extends Controller
                     ->get();
 
                 $qtynow = $qtyold[0]->qty + $request->qty;
+                $subtotalnow = $qtynow * $request->price;
 
                 $updcart = DB::table('cart')
                     ->where('id', '=', $cekidcart[0]->id)->update([
-                        'qty' => $qtynow
+                        'qty' => $qtynow,
+                        'subtotal' => $subtotalnow
                     ]);
 
                 return redirect('/');

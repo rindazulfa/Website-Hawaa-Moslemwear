@@ -22,17 +22,26 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $order = order::all();
+        $page = DB::table('orders')
+            ->join('detail_orders', 'detail_orders.orders_id', '=', 'orders.id')
+            ->select(
+                'orders.*',
+                'detail_orders.*'
+            )
+            ->get();
 
-        $arr = [];
-        foreach ($order as $key => $value) {
+        return view('admin.pages.penjualan.index', [
+            'page' => $page
+        ]);
+    }
 
-            $data = json_decode(json_encode($value), true);
-            $arr[] = array_merge($data);
-        }
-
-        $order = json_decode(json_encode($arr));
-        return view('admin.pages.order.index', ['order' => $order]);
+    public function updsttspayden($id)
+    {
+        $dendes = DB::table('orders')
+            ->where('id', '=', $id)->update([
+                'status' => 'Ditolak'
+            ]);
+        return redirect('/penjualan');
     }
 
     /**

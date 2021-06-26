@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\confirm_payment;
+use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -42,6 +43,42 @@ class Confirm_PaymentController extends Controller
                 'proof_of_payment' => 'Selesai'
             ]);
         return redirect('/penjualancustom');
+    }
+
+    public function accpembayaranproduk($id)
+    {
+        $accpay1 = DB::table('orders')
+            ->where('id', '=', $id)->update([
+                'status' => 'Selesai'
+            ]);
+
+        $accpay2 = DB::table('confirm_payments')
+            ->where('id', '=', $id)->update([
+                'proof_of_payment' => 'Selesai'
+            ]);
+        
+        $ambildata = DB::table('detail_orders')
+        ->where('orders_id','=',$id)
+        ->select('products_id','size','qty')
+        ->get();
+
+        foreach ($ambildata as $key => $row) {
+            $ambildatastock = DB::table('stocks')
+            ->where('products_id','=',$ambildata[$key]->products_id)
+            ->where('size','=',$ambildata[$key]->size)
+            ->select('id','qty')
+            ->get();
+
+            $qtynow[] = $ambildatastock[$key]->qty - $ambildata[$key]->qty;
+
+            // dd($qtynow[$key]);
+
+            $stock = stock::findorfail($ambildatastock[$key]->id);
+            $stock->qty = $qtynow[$key];
+            $stock->save();
+        }
+        
+        return redirect('/penjualan');
     }
 
     /**

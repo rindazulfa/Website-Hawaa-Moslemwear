@@ -44,14 +44,29 @@ class CartController extends Controller
                 ->where('customers_id', '=', $idcust[0]->id)
                 ->get();
 
+            $cekjmlcart = cart::select('products.name', 'products.pict_1', 'stocks.size', 'cart.price', 'cart.subtotal', 'cart.qty', 'cart.id')
+                ->join('stocks', 'stocks.id', '=', 'cart.stocks_id')
+                ->join('products', 'products.id', '=', 'cart.products_id')
+                ->join('customers', 'customers.id', '=', 'cart.customers_id')
+                ->where('customers_id', '=', $idcust[0]->id)
+                ->count();
+
             $total = DB::table('cart')
                 ->sum('subtotal');
 
-            return view('package.login.cart', [
-                'cart' => $cart,
-                'cek' => $cek,
-                'total' => $total
-            ]);
+            if ($cekjmlcart == 0) {
+                return view('package.login.cart', [
+                    'cart' => $cart,
+                    'cek' => $cek,
+                    'total' => $total
+                ]);
+            } else {
+                return view('package.login.cart', [
+                    'cart' => $cart,
+                    'cek' => $cek,
+                    'total' => $total
+                ]);
+            }
         }
     }
 
@@ -96,51 +111,58 @@ class CartController extends Controller
         $cekid = customer::select('id')
             ->where('users_id', '=', auth()->user()->id)
             ->get();
-        
-        $iniid = $cekid[0]->id;
 
-        dd(
-            $request->all(),
-            $cekid[0]->id,
-            $iniid,
-            $subtotal,
-            $total[0],
-            $date
-        );
+        $iniid = $cekid[0]->id;
 
         order::create([
             'customers_id' => $iniid,
             'date' => $date,
-            'total' => $total,
+            'total' => $total[0],
             'status' => 'Menunggu Pembayaran'
         ]);
 
-        // $order = order::findorfail($cekid[0]->id);
-        // $order->customers_id = $cekid[0]->id;
-        // $order->date = $date;
-        // $order->total = $total[0];
-        // $order->status = 'Menunggu Pembayaran';
-        // $order->save();        
+        // dd(
+        //     $request->all(),
+        //     $request->id,
+        //     $cekid[0]->id,
+        //     $iniid,
+        //     $subtotal,
+        //     $total[0],
+        //     $date
+        // );       
 
         $idorder = order::all()->last()->id;
-
-        // foreach ($request->id as $key => $row) {
-        //     $idprod = stock::select('products_id')
-        //         ->where('id', '=', $id[$key])
+        // $idprod = cart::select('products_id')
+        //         ->where('id', '=', $id[0])
         //         ->get();
-        //     $detail = detail_order::findorfail($row);
-        //     $detail->orders_id = $idorder;
-        //     $detail->products_id = $idprod[0]->products_id;
-        //     $detail->qty = $qty[$key];
-        //     $detail->size = $size[$key];
-        //     $detail->satuan = 'buah';
-        //     $detail->subtotal = $price[$key] * $qty[$key];
-        //     $detail->save();
-        // }
 
-        // cart::delete();
+        // dd(
+        //     $idorder,
+        //     $request->id,
+        //     $id,
+        //     $qty,
+        //     $size,
+        //     $price[0] * $qty[0],
+        //     $idprod[0]->products_id
+        // );
 
-        return view('/');
+        foreach ($request->id as $key => $row) {
+            $idprod = cart::select('products_id')
+                ->where('id', '=', $id[$key])
+                ->get();
+            $detail = new detail_order();
+            $detail->orders_id = $idorder;
+            $detail->products_id = $idprod[0]->products_id;
+            $detail->size = $size[$key];
+            $detail->qty = $qty[$key];
+            $detail->satuan = 'buah';
+            $detail->subtotal = $price[$key] * $qty[$key];
+            $detail->save();
+        }
+
+        $del = DB::table('cart')->delete();
+
+        return redirect('/');
     }
 
     public function tampilcheckout($id)
@@ -250,13 +272,10 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        // Belum Bisa Hpusss
-        // dd($id);
-        // $test = DB::table('cart')
-        //     ->where('id', '=', $id)
-        //     ->delete();
+        $delete = order::findOrFail($id);
+        $delete->delete();
 
-        // return view('/cart');
+        return view('/riwayat');
     }
 
     public function delcart($id)

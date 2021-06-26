@@ -17,7 +17,8 @@
                         <a class="dropdown-item" href="/custom">Custom Product</a>
                         <!-- <a class="dropdown-item" href="/checkout">Checkout</a>
                         <a class="dropdown-item" href="/confirmpayment">Confirm Payment</a> -->
-                        <a class="dropdown-item" href="/history">History</a>
+                        <a class="dropdown-item" href="/riwayat">History Orderan</a>
+                        <a class="dropdown-item" href="/history">History Custom</a>
                     </div>
                 </li>
                 @endguest

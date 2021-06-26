@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\profile;
 use App\Models\stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,32 +22,36 @@ class ShopController extends Controller
      */
     public function index()
     {
-        // $product = Product::all()->first();
-        // // dd($product);
-        // return view('package.product', ['shop' => $product]);
         $product = Product::with(['stok'])->get();
 
-        $cek = customer::select('id')
-            ->where('users_id', '=', auth()->user()->id)
-            ->count();
+        if (Auth::check()) {
+            $cek = customer::select('id')
+                ->where('users_id', '=', auth()->user()->id)
+                ->count();
 
-        if ($cek == 0) {
+            if ($cek == 0) {
+                return view('package.product', [
+                    'shop' => $product,
+                    'cart' => 0
+                ]);
+            } else {
+                $idcust = customer::select('id')
+                    ->where('users_id', '=', auth()->user()->id)
+                    ->get();
+
+                $cart = cart::select('id')
+                    ->where('customers_id', '=', $idcust[0]->id)
+                    ->count();
+
+                return view('package.product', [
+                    'shop' => $product,
+                    'cart' => $cart
+                ]);
+            }
+        } else {
             return view('package.product', [
                 'shop' => $product,
                 'cart' => 0
-            ]);
-        } else {
-            $idcust = customer::select('id')
-                ->where('users_id', '=', auth()->user()->id)
-                ->get();
-
-            $cart = cart::select('id')
-                ->where('customers_id', '=', $idcust[0]->id)
-                ->count();
-
-            return view('package.product', [
-                'shop' => $product,
-                'cart' => $cart
             ]);
         }
     }
@@ -180,15 +185,17 @@ class ShopController extends Controller
 
             if ($cekprod == 1) {
                 $qtyold = cart::select('qty')
-                ->where('products_id', '=', $request->id)
-                ->where('stocks_id', '=', $request->size)
-                ->get();
+                    ->where('products_id', '=', $request->id)
+                    ->where('stocks_id', '=', $request->size)
+                    ->get();
 
                 $qtynow = $qtyold[0]->qty + $request->qty;
+                $subtotalnow = $qtynow * $request->price;
 
                 $updcart = DB::table('cart')
                     ->where('id', '=', $cekidcart[0]->id)->update([
-                        'qty' => $qtynow
+                        'qty' => $qtynow,
+                        'subtotal' => $subtotalnow
                     ]);
 
                 return redirect('/shop');
