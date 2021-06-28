@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\supplier;
 use App\Models\material;
 use App\Models\puchase;
-use Barryvdh\DomPDF\PDF;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -165,15 +165,15 @@ class PurchaseController extends Controller
         //
     }
 
-    public function export_excel()
-	{
-		return Excel::download(new ProductExport(), 'product.xlsx');
-    }
+    // public function export_excel()
+	// {
+	// 	return Excel::download(new ProductExport(), 'product.xlsx');
+    // }
 
     public function cetak_pdf()
     {
     	$pembelian = puchase::all();
     	$pdf = PDF::loadview('admin.pages.pembelian.pdf',['pembelian'=>$pembelian]);
-    	return $pdf->download('laporan-pembelian-pdf');
+    	return $pdf->download('laporan-pembelian.pdf');
     }
 }

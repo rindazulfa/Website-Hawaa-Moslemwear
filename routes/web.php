@@ -69,8 +69,9 @@ Route::group([
     Route::resource('resep', 'RecipeController');
 
     // Transaksi Pembelian
-    Route::resource('pembelian', 'PurchaseController');
     Route::get('/pembelian/cetak_pdf', 'PurchaseController@cetak_pdf')->name('pembelian.pdf');
+    Route::resource('pembelian', 'PurchaseController');
+    
     Route::resource('produksi', 'ProductionController');
 
     // Transaksi Penjualan
