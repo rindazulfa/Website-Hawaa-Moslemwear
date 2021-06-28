@@ -49,7 +49,7 @@
                                         Bayar Sekarang
                                     </a>
                                     <br><br>
-                                    <a href="{{route('cart.destroy', [$key->id])}}" class="btn btn-warning py-3 px-3">
+                                    <a href="{{ route('del.his', [$key->id]) }}" class="btn btn-warning py-3 px-3">
                                         Batalkan
                                     </a>
                                 <?php

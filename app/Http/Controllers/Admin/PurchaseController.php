@@ -172,7 +172,11 @@ class PurchaseController extends Controller
 
     public function cetak_pdf()
     {
-    	$pembelian = puchase::all();
+    	$pembelian = DB::table('puchases')
+            ->join('materials', 'puchases.materials_id', '=', 'materials.id')
+            ->join('suppliers', 'puchases.suppliers_id', '=', 'suppliers.id')
+            ->select('puchases.*', 'materials.name as nama_bahan', 'materials.price', 'suppliers.name as nama_sup')
+            ->get();
     	$pdf = PDF::loadview('admin.pages.pembelian.pdf',['pembelian'=>$pembelian]);
     	return $pdf->download('laporan-pembelian.pdf');
     }

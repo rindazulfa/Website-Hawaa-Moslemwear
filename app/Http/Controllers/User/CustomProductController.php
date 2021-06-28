@@ -8,6 +8,7 @@ use App\Models\confirm_payment;
 use App\Models\customer;
 use App\Models\Detail_Order_Custom;
 use App\Models\Order_Custom;
+use App\Models\Shipping;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -108,10 +109,32 @@ class CustomProductController extends Controller
      */
     public function show($id)
     {
+        $cek = customer::where('users_id', '=', auth()->user()->id)->count();
         $items = Order_Custom::findOrFail($id);
-        return view('package.login.custom.customproductform', [
-            'items' => $items
-        ]);
+        $ship = Shipping::all();
+        if ($cek == 1) {
+            // echo 'data ada';
+            $idcust = customer::select('id')
+                ->where('users_id', '=', auth()->user()->id)
+                ->get();
+
+            $cart = cart::select('id')
+                ->where('customers_id', '=', $idcust[0]->id)
+                ->count();
+
+            
+            return view('package.login.custom.customproductform', [
+                'items' => $items,
+                'ship' => $ship,
+                'cart' => $cart
+            ]);
+        } else {
+            return view('package.login.custom.customproductform', [
+                'items' => $items,
+                'ship' => $ship,
+                'cart' => 0
+            ]);
+        }
     }
 
     /**
@@ -177,7 +200,7 @@ class CustomProductController extends Controller
         $dataorder = DB::table('order_customs')
             ->where('id', '=', $id)->update([
                 'keterangan' => $request->keterangan,
-                'shipping' => $request->shipping,
+                'shipping' => $request->cbnamashipping,
                 'status_pengerjaan' => 'Menunggu Harga'
             ]);
 

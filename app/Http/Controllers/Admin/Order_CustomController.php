@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order_Custom;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -158,5 +159,18 @@ class Order_CustomController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cetak_pdf()
+    {
+    	$page = DB::table('order_customs')
+            ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
+            ->select(
+                'order_customs.*',
+                'detail_order_customs.*'
+            )
+            ->get();
+    	$pdf = PDF::loadview('admin.pages.penjualan_custom.pdf',['custom'=>$page]);
+    	return $pdf->download('laporan-penjualan_custom.pdf');
     }
 }

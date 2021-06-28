@@ -14,23 +14,23 @@
         }
     </style>
     <center>
-        <h5>Laporan PDF Pembelian</h4>
+        <h5>Laporan PDF Produksi</h4>
     </center>
 
     <table class='table table-bordered'>
         <thead>
             <tr>
-                <th>Nama Supplier</th>
-                <th>Nama Bahan</th>
-                <th>Price</th>
+                <th>Tanggal Produksi</th>
+                <th>Nama Produk</th>
+                <th>Jumlah Produksi</th>
             </tr>
         </thead>
         <tbody>
-            @forelse($pembelian as $key)
+            @forelse($produksi as $key)
             <tr>
-                <td>{{$key->nama_sup}}</td>
-                <td>{{$key->nama_bahan}}</td>
-                <td> Rp. {{number_format($key->total,2,',','.')}}</td>
+                <td>{{$key->date}}</td>
+                <td>{{$key->name}}</td>
+                <td> {{ $key->qty }}</td>
             </tr>
             @empty
             <tr>

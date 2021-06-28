@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\order;
 use App\Models\Order_Custom;
 use App\Models\puchase;
 use Illuminate\Http\Request;
@@ -17,16 +18,21 @@ class DashboardController extends Controller
     public function index()
     {
         $pengeluaran = puchase::sum('total');
-        $pemasukkancustom = Order_Custom::sum('total');
-        $jmlordercustom = Order_Custom::count('total');
 
-        $keuntungan = $pemasukkancustom - $pengeluaran;
+        $pemasukkancustom = Order_Custom::sum('total');
+        $pemasukkanbiasa = order::sum('total');
+
+        $jmlordercustom = Order_Custom::count('total');
+        $jmlorderbiasa = order::count('total');
+
+        $keuntungan = ($pemasukkancustom+$pemasukkanbiasa) - $pengeluaran;
+        $pesanan = $jmlordercustom+$jmlorderbiasa;
         // dd($pengeluaran);
         return view ('admin/pages/dashboard',[
             'pengeluaran' => $pengeluaran,
             'pemasukkancustom' => $pemasukkancustom,
             'keuntungan' => $keuntungan,
-            'jmlordercustom' => $jmlordercustom
+            'jmlordercustom' => $pesanan
         ]);
     }
 

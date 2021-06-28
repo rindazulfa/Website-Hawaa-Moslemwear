@@ -14,22 +14,22 @@
         }
     </style>
     <center>
-        <h5>Laporan PDF Pembelian</h4>
+        <h5>Laporan PDF Penjualan Custom</h4>
     </center>
 
     <table class='table table-bordered'>
         <thead>
             <tr>
-                <th>Nama Supplier</th>
-                <th>Nama Bahan</th>
-                <th>Price</th>
+                <th>Tanggal Transaksi</th>
+                <th>Shipping</th>
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>
-            @forelse($pembelian as $key)
+            @forelse($custom as $key)
             <tr>
-                <td>{{$key->nama_sup}}</td>
-                <td>{{$key->nama_bahan}}</td>
+                <td>{{$key->date}}</td>
+                <td>{{$key->shipping}}</td>
                 <td> Rp. {{number_format($key->total,2,',','.')}}</td>
             </tr>
             @empty

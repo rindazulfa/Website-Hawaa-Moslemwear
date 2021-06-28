@@ -8,6 +8,7 @@ use App\Models\detail_order;
 use App\Models\order;
 use App\Models\Product;
 use App\Models\Recipe;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -101,4 +102,17 @@ class OrderController extends Controller
      */
     public function destroy(Request $request, $id)
     { }
+
+    public function cetak_pdf()
+    {
+    	$page = DB::table('orders')
+            ->join('detail_orders', 'detail_orders.orders_id', '=', 'orders.id')
+            ->select(
+                'orders.*',
+                'detail_orders.*'
+            )
+            ->get();
+    	$pdf = PDF::loadview('admin.pages.penjualan.pdf',['penjualan'=>$page]);
+    	return $pdf->download('laporan-penjualan.pdf');
+    }
 }

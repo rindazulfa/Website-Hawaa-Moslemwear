@@ -162,7 +162,7 @@ class CartController extends Controller
 
         $del = DB::table('cart')->delete();
 
-        return redirect('/');
+        return redirect('/riwayat');
     }
 
     public function tampilcheckout($id)
@@ -276,6 +276,13 @@ class CartController extends Controller
         $delete->delete();
 
         return view('/riwayat');
+    }
+
+    public function delhis($id){
+        $delete = order::findOrFail($id);
+        $delete->delete();
+
+        return redirect('/riwayat');
     }
 
     public function delcart($id)

@@ -72,13 +72,17 @@ Route::group([
     Route::get('/pembelian/cetak_pdf', 'PurchaseController@cetak_pdf')->name('pembelian.pdf');
     Route::resource('pembelian', 'PurchaseController');
     
+    // Produksi
+    Route::get('/produksi/cetak_pdf', 'ProductionController@cetak_pdf')->name('produksi.pdf');
     Route::resource('produksi', 'ProductionController');
 
     // Transaksi Penjualan
+    Route::get('/penjualan/cetak_pdf', 'OrderController@cetak_pdf')->name('penjualan.pdf');
     Route::resource('penjualan', 'OrderController');
     Route::get('/penjualan/statuspay/den/{id}', [OrderController::class, 'updsttspayden'])->name('den.pay');
 
-    // Transaksi Penjualan Custom (Masih 40%)
+    // Transaksi Penjualan Custom
+    Route::get('/penjualancustom/cetak_pdf', 'Order_CustomController@cetak_pdf')->name('custom.pdf');
     Route::resource('penjualancustom', 'Order_CustomController');
     Route::get('/penjualancustom/statusdesain/acc/{id}', [Order_CustomController::class, 'updsttsdesacc'])->name('acc.desain');
     Route::get('/penjualancustom/statusdesain/den/{id}', [Order_CustomController::class, 'updsttsdesden'])->name('den.desain');
@@ -93,9 +97,12 @@ Route::group([
 ], function () {
     Route::resource('customer', 'CustomerController');
     Route::resource('cart', 'CartController');
+    Route::get('/delhis/{id}', 'CartController@delhis')->name('del.his');
     Route::get('/delcart/{id}', 'CartController@delcart')->name('del.cart');
     Route::post('/updcart', 'CartController@updcart')->name('upd.cart');
     // Route::get('/tampil/checkout/{id}','CartController@tampilcheckout')->name('tampil.checkout');
+
+    Route::resource('riwayat', 'RiwayatController');
 
     Route::resource('checkout', 'CheckoutController');
 

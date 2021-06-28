@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\material;
 use App\Models\Production;
 use App\Models\Recipe;
+use PDF;
 use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -197,5 +198,17 @@ class ProductionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cetak_pdf()
+    {
+    	$page = DB::table('productions')
+            ->join('recipes', 'productions.recipes_id', '=', 'recipes.id')
+            ->join('stocks', 'recipes.stocks_id', '=', 'stocks.id')
+            ->join('products', 'stocks.products_id', '=', 'products.id')
+            ->select('productions.*', 'products.name', 'stocks.size')
+            ->get();
+    	$pdf = PDF::loadview('admin.pages.produksi.pdf',['produksi'=>$page]);
+    	return $pdf->download('laporan-produksi.pdf');
     }
 }
