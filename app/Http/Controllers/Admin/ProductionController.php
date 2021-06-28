@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\material;
 use App\Models\Production;
 use App\Models\Recipe;
 use App\Models\stock;
@@ -52,26 +53,67 @@ class ProductionController extends Controller
      */
     public function store(Request $request)
     {
-        // Ambil resep
-        $ambilbahan = DB::table('recipes')
-            ->where('stocks_id', '=', $request->id_stock)
-            ->select('materials_id', 'qty')
-            ->get();
+        //Update Stok
+        $stok = stock::findorFail($request->id_stock);
+        $stok->qty = $stok->qty + $request->qty;
+        $stok->save();
 
-        // $arrbahan[] = $ambilbahan;
+        //Update Bahan Baku
+        $resep = Recipe::where('stocks_id', $request->id_stock)->get();
+        foreach ($resep as $key => $value) {
+            $bahan = material::findorFail($value->materials_id);
+            $bahan->qty = $bahan->qty - ($value->qty * $request->qty );
+            $bahan->save();
+        }
+
+        Production::create([
+            'recipes_id' => $request->id_stock,
+            'stocks_id' => $stok->products_id,
+            'qty' => $request->qty,
+            'date' => $request->date
+        ]);
+
+
+        // Ambil resep
+        // $ambilbahan = DB::table('recipes')
+        //     ->where('stocks_id', '=', $request->id_stock)
+        //     ->select('materials_id', 'qty')
+        //     ->get();
 
         // Ambil data bahan + stok
+        // $databahan = [];
+        // $jumlahbahan = [];
         // $ambilstockbahan = [];
-        $jumlahbahan = [];
-        $jumlahproduksi = $request->qty;
+        // $jumlahproduksi = $request->qty;
 
-        for ($i = 0; $i < sizeof($ambilbahan); $i++) {
-            $jumlahbahan[] = $ambilbahan[$i]->qty * $jumlahproduksi;
-            $ambilstockbahan[] = DB::table('materials')
-                ->where('id', '=', $ambilbahan[$i]->materials_id)
-                ->select('id', 'qty')
-                ->get();
-        }
+        // for ($i = 0; $i < sizeof($ambilbahan); $i++) {
+        //     $databahan[$i] = $ambilbahan[$i]->materials_id;
+        //     $jumlahbahan[$i] = $ambilbahan[$i]->qty * $jumlahproduksi;
+        // $data = DB::table('materials')
+        // $ambilstockbahan[$i] = DB::table('materials')
+        //     ->where('id', '=', $databahan[$i])
+        //     ->select('id', 'qty')
+        //     ->get();
+        // $ambilstockbahan[$i] =  $data;
+        // }
+
+        // Pengurangan stok bahan
+        $stoksekarang = [];
+
+        // for ($i = 0; $i < sizeof($ambilbahan); $i++) {
+        // $stoksekarang[$i] = $ambilstockbahan[$i]->qty - $jumlahbahan[$i];
+        // }
+
+        // $id_produk = stock::select('products_id')
+        // ->where('id',$request->id_stock)
+        // ->get();
+
+        // Production::create([
+        //     'recipes_id' => $request->id_stock,
+        //     'stocks_id' => $id_produk[0]->products_id,
+        //     'qty' => $request->qty,
+        //     'date' => $request->date
+        // ]);
 
         // dd(
         //     $request->date,
@@ -79,33 +121,12 @@ class ProductionController extends Controller
         //     $request->id_stock,
         //     $ambilbahan,
         //     sizeof($ambilbahan),
+        //     $databahan,
         //     $jumlahbahan,
-        //     $ambilstockbahan,
-            // $ambilstockbahan[0]->qty
-            // $stockdatabahan
-            // $stoksekarang,
-            // $id_produk->products_id
+        //     $ambilstockbahan[0]->qty,
+        //     $stoksekarang,
+        //     $id_produk[0]->products_id
         // );
-
-        // Pengurangan stok bahan
-        for ($i = 0; $i < sizeof($ambilbahan); $i++) {
-            $stoksekarang[] = $ambilstockbahan[$i]->qty - $jumlahbahan[$i];
-            $updtstock = DB::table('materials')
-            ->where('id','=',$ambilstockbahan[$i]->id)->update([
-                'qty' => $stoksekarang[$i]
-            ]);
-        }
-
-        $id_produk = stock::select('products_id')
-            ->where('id', $request->id_stock)
-            ->get();
-
-        Production::create([
-            'recipes_id' => $request->id_stock,
-            'stocks_id' => $id_produk[0]->products_id,
-            'qty' => $request->qty,
-            'date' => $request->date
-        ]);
 
         return redirect()->route("produksi.index")->with("info", "Your Transaction has been saved");
     }

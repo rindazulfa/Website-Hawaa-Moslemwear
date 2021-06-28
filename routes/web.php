@@ -69,7 +69,9 @@ Route::group([
     Route::resource('resep', 'RecipeController');
 
     // Transaksi Pembelian
+    Route::get('/pembelian/cetak_pdf', 'PurchaseController@cetak_pdf')->name('pembelian.pdf');
     Route::resource('pembelian', 'PurchaseController');
+    
     Route::resource('produksi', 'ProductionController');
 
     // Transaksi Penjualan
@@ -81,7 +83,6 @@ Route::group([
     Route::get('/penjualancustom/statusdesain/acc/{id}', [Order_CustomController::class, 'updsttsdesacc'])->name('acc.desain');
     Route::get('/penjualancustom/statusdesain/den/{id}', [Order_CustomController::class, 'updsttsdesden'])->name('den.desain');
     Route::get('/penjualancustom/update/{id}', [Order_CustomController::class, 'tampileditharga'])->name('edit.harga');
-
 });
 
 
@@ -91,27 +92,25 @@ Route::group([
     'middleware' => ['auth', 'checkrole:user,admin']
 ], function () {
     Route::resource('customer', 'CustomerController');
-    Route::resource('cart','CartController');
-    Route::get('/delcart/{id}','CartController@delcart')->name('del.cart');
-    Route::post('/updcart','CartController@updcart')->name('upd.cart');
+    Route::resource('cart', 'CartController');
+    Route::get('/delcart/{id}', 'CartController@delcart')->name('del.cart');
+    Route::post('/updcart', 'CartController@updcart')->name('upd.cart');
     // Route::get('/tampil/checkout/{id}','CartController@tampilcheckout')->name('tampil.checkout');
 
-    Route::resource('riwayat', 'RiwayatController');
+    Route::resource('checkout', 'CheckoutController');
 
-    Route::resource('checkout','CheckoutController');
-    
     // Custom
-    Route::resource('/custom','CustomProductController');
-    Route::resource('/confirmpayment','Confirm_PaymentController');
+    Route::resource('/custom', 'CustomProductController');
+    Route::resource('/confirmpayment', 'Confirm_PaymentController');
     Route::get('/confirmpayment/statuspay/acc/{id}', [Confirm_PaymentController::class, 'accpembayaran'])->name('acc.pay');
     Route::get('/confirmpaymentproduk/statuspay/acc/{id}', [Confirm_PaymentController::class, 'accpembayaranproduk'])->name('acc.payprod');
 
     // Route::post('/custom/simpanharga', [CustomProductController::class, 'simpanbayar'])->name('harga.store');
 
     // History
-    Route::resource('/history','HistoryCustomController');
+    Route::resource('/history', 'HistoryCustomController');
 
-    Route::resource('/profil','ProfileController');
+    Route::resource('/profil', 'ProfileController');
 
     // Route::resource('dashboard', 'DashboardController');
     // Route::get('/home', [HomepageController::class, 'indexlogin'])->name('home');
@@ -119,7 +118,7 @@ Route::group([
     // Route::get('/home/shop', [ShopController::class, 'indexlogin'])->name('shoplogin');
 });
 
-// Auth 
+// Auth
 Route::get('/login', 'Auth\LoginController@getLogin');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 
@@ -140,5 +139,3 @@ Route::resource('/shop', 'ShopController');
 //ORDER CUSTOM
 Route::post('/shop/detail/{id}', 'ShopController@process')->name('shop_detail');
 Route::get('/shop/stok', 'ShopController@checkStokBySize')->name("shop_cek");
-
-

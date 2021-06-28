@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\supplier;
 use App\Models\material;
 use App\Models\puchase;
+use PDF;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
 {
@@ -123,7 +124,7 @@ class PurchaseController extends Controller
         $data_materials = DB::table('materials')->where('id', $data_pembelian[0]->materials_id)->get();
         // dd($data_materials);
         $data_suppliers = DB::table('suppliers')->where('id', $data_pembelian[0]->suppliers_id)->get();
-        
+
 
         return view('admin.pages.pembelian.edit', [
             'data_pembelian' => $data_pembelian,
@@ -162,5 +163,17 @@ class PurchaseController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // public function export_excel()
+	// {
+	// 	return Excel::download(new ProductExport(), 'product.xlsx');
+    // }
+
+    public function cetak_pdf()
+    {
+    	$pembelian = puchase::all();
+    	$pdf = PDF::loadview('admin.pages.pembelian.pdf',['pembelian'=>$pembelian]);
+    	return $pdf->download('laporan-pembelian.pdf');
     }
 }

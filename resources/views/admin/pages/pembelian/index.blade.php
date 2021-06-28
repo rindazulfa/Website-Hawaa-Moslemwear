@@ -16,7 +16,9 @@
                 </div>
                 <div class="col-lg-6 col-5 text-right">
                     <a href="{{route('pembelian.create')}}" class="btn btn-sm btn-neutral">Tambah Pembelian</a>
+                    <a href="{{route('pembelian.pdf')}}" class="btn btn-sm btn-neutral">Cetak PDF</a>
                 </div>
+
             </div>
         </div>
     </div>
