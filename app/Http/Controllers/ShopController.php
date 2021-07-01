@@ -25,6 +25,12 @@ class ShopController extends Controller
         $product = Product::with(['stok'])->get();
 
         if (Auth::check()) {
+            $product = DB::table('products')
+                ->select('products.*')
+                ->join('stocks', 'stocks.products_id', '=', 'products.id')
+                ->where('stocks.qty', '>', 0)
+                ->distinct()
+                ->get();
             $cek = customer::select('id')
                 ->where('users_id', '=', auth()->user()->id)
                 ->count();
@@ -35,6 +41,12 @@ class ShopController extends Controller
                     'cart' => 0
                 ]);
             } else {
+                $product = DB::table('products')
+                    ->select('products.*')
+                    ->join('stocks', 'stocks.products_id', '=', 'products.id')
+                    ->where('stocks.qty', '>', 0)
+                    ->distinct()
+                    ->get();
                 $idcust = customer::select('id')
                     ->where('users_id', '=', auth()->user()->id)
                     ->get();

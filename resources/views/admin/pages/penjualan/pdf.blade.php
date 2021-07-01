@@ -20,9 +20,10 @@
     <table class='table table-bordered'>
         <thead>
             <tr>
-                <th>Tanggal Transaksi</th>
-                <th>Shipping</th>
-                <th>Total</th>
+                <th>Nama Bulan</th>
+                <th>Jumlah Transaksi</th>
+                <th>Jumlah Income</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +40,10 @@
             @endforelse
         </tbody>
     </table>
+    <p>Pesanan terbanyak berada pada bulan: <strong>[[ nama bulan ]]</strong><br>
+    
+</p>
+    
 
 </body>
 

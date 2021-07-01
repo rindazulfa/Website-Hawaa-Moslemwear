@@ -44,7 +44,7 @@
       </div>
       <div class="col-md-6">
         @forelse($data as $dt)
-        <form action="{{ route('checkout.store') }}" method="post" enctype="multipart/form-data" class="billing-form bg-light p-3 p-md-5" >
+        <form action="{{ route('checkout.store') }}" method="post" enctype="multipart/form-data" class="billing-form bg-light p-3 p-md-5">
           @if($errors->any())
           <div class="alert alert-danger">
             <ul>
@@ -60,7 +60,7 @@
             <div class="w-100"></div>
             <div class="col-md-12">
               <div class="form-group">
-              <input type="number" class="form-control" name="id" value="{{ $dt->id }}" readonly hidden>
+                <input type="number" class="form-control" name="id" value="{{ $dt->id }}" readonly hidden>
                 <label for="purpose">Tujuan Pembayaran</label>
                 <select class="form-control" name="cbnamabank" id="cbnamabank">
                   <option value="" selected>Pilih Bank Tujuan</option>
@@ -93,6 +93,15 @@
                 <label for="description">Keterangan</label>
                 <input type="text" class="form-control" placeholder="Masukkan Keterangan Anda" name="description">
               </div>
+            </div>
+            <div class="col-md-12">
+              <label for="description">Shipping</label>
+              <select class="form-control" name="cbnamashipping" id="cbnamashipping">
+                <option value="" selected>Pilih Jenis Pengiriman</option>
+                @foreach($ship as $sp)
+                <option value="{{ $sp->nama }}">{{ $sp->nama }}</option>
+                @endforeach
+              </select>
             </div>
           </div>
           <div class="container col-md-4">

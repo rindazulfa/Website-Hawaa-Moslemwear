@@ -41,7 +41,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Pemasukan</h5>
-                  <span class="h2 font-weight-bold mb-0">Rp. {{number_format($pemasukkancustom,2,',','.')}}</span>
+                  <span class="h2 font-weight-bold mb-0">Rp. {{number_format($pemasukkan,2,',','.')}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -77,7 +77,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Pesanan</h5>
-                  <span class="h2 font-weight-bold mb-0">{{ $jmlordercustom }}</span>
+                  <span class="h2 font-weight-bold mb-0">{{ $pesanan }}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -94,55 +94,36 @@
 </div>
 <div class="container-fluid mt--6">
   <div class="row">
-    <div class="col-xl-8">
-      <div class="card bg-default">
-        <div class="card-header bg-transparent">
-          <div class="row align-items-center">
-            <div class="col">
-              <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-              <h5 class="h3 text-white mb-0">Total Pemasukan</h5>
-            </div>
-            <div class="col">
-              <ul class="nav nav-pills justify-content-end">
-                <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
-                  <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
-                    <span class="d-none d-md-block">Bulan</span>
-                    <span class="d-md-none">M</span>
-                  </a>
-                </li>
-                <li class="nav-item" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
-                  <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                    <span class="d-none d-md-block">Minggu</span>
-                    <span class="d-md-none">W</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <!-- Chart -->
-          <div class="chart">
-            <!-- Chart wrapper -->
-            <canvas id="chart-sales-dark" class="chart-canvas"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-4">
+    <div class="col-xl-6">
       <div class="card">
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">
-              <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
+              <h6 class="text-uppercase text-muted ls-1 mb-1">Diagram Penjualan</h6>
               <h5 class="h3 mb-0">Total Pesanan</h5>
             </div>
           </div>
         </div>
         <div class="card-body">
           <!-- Chart -->
-          <div class="chart">
-            <canvas id="chart-bars" class="chart-canvas"></canvas>
+          <div class="chart" id="chartpenjualan">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="card">
+        <div class="card-header bg-transparent">
+          <div class="row align-items-center">
+            <div class="col">
+              <h6 class="text-uppercase text-muted ls-1 mb-1">Diagram Kas</h6>
+              <h5 class="h3 mb-0">Jumlah Nominal</h5>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- Chart -->
+          <div class="chart" id="chartpemasukkan">
           </div>
         </div>
       </div>
@@ -281,4 +262,100 @@
   </div>
   @include('admin.layouts.footer')
 </div>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script>
+  Highcharts.chart('chartpenjualan', {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: 'Grafik Jumlah Penjualan'
+    },
+    subtitle: {
+      text: 'I ❥ U'
+    },
+    xAxis: {
+      categories: [
+        'Jenis Penjualan'
+      ],
+      crosshair: true
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: 'Jumlah Transaksi'
+      }
+    },
+    tooltip: {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f} kali</b></td></tr>',
+      footerFormat: '</table>',
+      shared: true,
+      useHTML: true
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0.2,
+        borderWidth: 0
+      }
+    },
+    series: [{
+      name: 'Penjualan Produk',
+      data: [{{ $penjualan_produk }}]
+
+    }, {
+      name: 'Penjualan Custom',
+      data: [{{ $penjualan_custom }}]
+
+    }]
+  });
+
+  Highcharts.chart('chartpemasukkan', {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: 'Grafik Jumlah Pemasukkan'
+    },
+    subtitle: {
+      text: 'I ❥ U'
+    },
+    xAxis: {
+      categories: [
+        'Jenis Transaksi'
+      ],
+      crosshair: true
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: 'Nominal'
+      }
+    },
+    tooltip: {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+      footerFormat: '</table>',
+      shared: true,
+      useHTML: true
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0.2,
+        borderWidth: 0
+      }
+    },
+    series: [{
+      name: 'Pemasukkan',
+      data: [{{ $pemasukkan }}]
+
+    }, {
+      name: 'Pengeluaran',
+      data: [{{ $pengeluaran }}]
+
+    }]
+  });
+</script>
 @endsection

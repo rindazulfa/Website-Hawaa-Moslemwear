@@ -30,9 +30,11 @@ class DashboardController extends Controller
         // dd($pengeluaran);
         return view ('admin/pages/dashboard',[
             'pengeluaran' => $pengeluaran,
-            'pemasukkancustom' => $pemasukkancustom,
+            'pemasukkan' => $pemasukkancustom+$pemasukkanbiasa,
             'keuntungan' => $keuntungan,
-            'jmlordercustom' => $pesanan
+            'penjualan_produk' => $jmlorderbiasa,
+            'penjualan_custom' => $jmlordercustom,
+            'pesanan' => $pesanan
         ]);
     }
 

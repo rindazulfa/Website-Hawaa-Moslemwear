@@ -29,6 +29,7 @@ class OrderController extends Controller
                 'orders.*',
                 'detail_orders.*'
             )
+            ->distinct()
             ->get();
 
         return view('admin.pages.penjualan.index', [
@@ -106,10 +107,8 @@ class OrderController extends Controller
     public function cetak_pdf()
     {
     	$page = DB::table('orders')
-            ->join('detail_orders', 'detail_orders.orders_id', '=', 'orders.id')
             ->select(
                 'orders.*',
-                'detail_orders.*'
             )
             ->get();
     	$pdf = PDF::loadview('admin.pages.penjualan.pdf',['penjualan'=>$page]);

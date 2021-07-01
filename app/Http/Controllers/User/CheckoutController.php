@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\cart;
 use App\Models\confirm_payment;
 use App\Models\customer;
+use App\Models\Shipping;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -58,6 +59,7 @@ class CheckoutController extends Controller
                     'pict_payment' => $nama_file,
                     'confirm_payments_id' => $idconfirm->id,
                     'status' => 'Menunggu Konfirmasi Pembayaran',
+                    'shipping' => $request->cbnamashipping,
                     'keterangan' => $request->description
                 ]);
 
@@ -67,7 +69,7 @@ class CheckoutController extends Controller
             // dd(
             //     $idconfirm
             // );
-            
+
             return redirect("/riwayat")->with("info", "Your Request has been created");
         } else {
             // do nothing
@@ -103,6 +105,8 @@ class CheckoutController extends Controller
             ->where('id', '=', $id)
             ->get();
 
+        $ship = Shipping::all();
+
         $idcust = customer::select('id')
             ->where('users_id', '=', auth()->user()->id)
             ->get();
@@ -122,7 +126,8 @@ class CheckoutController extends Controller
             'total' => $total,
             'payment' => $payment,
             'data' => $data,
-            'cart' => $cart
+            'cart' => $cart,
+            'ship' => $ship
         ]);
     }
 

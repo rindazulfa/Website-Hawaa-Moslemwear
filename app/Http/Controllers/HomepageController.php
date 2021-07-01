@@ -7,6 +7,7 @@ use App\Models\cart;
 use App\Models\customer;
 use App\Models\Product;
 use App\Models\profile;
+use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -28,10 +29,16 @@ class HomepageController extends Controller
 
         // dd($cek);
         // dd(
-        //     $cart
+        //     $product
         // );
 
         if (Auth::check()) {
+            $product = DB::table('products')
+                ->select('products.*')
+                ->join('stocks', 'stocks.products_id', '=', 'products.id')
+                ->where('stocks.qty', '>', 0)
+                ->distinct()
+                ->get();
 
             $cek = customer::select('id')
                 ->where('users_id', '=', auth()->user()->id)
@@ -44,6 +51,13 @@ class HomepageController extends Controller
                     'cart' => 0
                 ]);
             } else {
+                $product = DB::table('products')
+                    ->select('products.*')
+                    ->join('stocks', 'stocks.products_id', '=', 'products.id')
+                    ->where('stocks.qty', '>', 0)
+                    ->distinct()
+                    ->get();
+                    
                 $idcust = customer::select('id')
                     ->where('users_id', '=', auth()->user()->id)
                     ->get();

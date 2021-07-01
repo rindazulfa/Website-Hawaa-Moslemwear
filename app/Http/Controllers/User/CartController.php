@@ -203,6 +203,21 @@ class CartController extends Controller
                 ->where('customers_id', '=', $idcust[0]->id)
                 ->get();
 
+            // $cekidstock = cart::select('cart.products_id')
+            // ->where('customers_id', '=', $idcust[0]->id)
+            // ->get();
+
+            // foreach ($cekidstock as $key => $row) {
+            // $isian = 
+            // }
+
+            // foreach ($cekidstock as $key => $row) {
+            //     $stock = new stock();
+            //     $stock->id = $a;
+            //     $stock->products_id = $a;
+            //     $stock->save();
+            // }            
+
             $total = DB::table('cart')
                 ->sum('subtotal');
 
