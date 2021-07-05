@@ -98,21 +98,21 @@ class Order_CustomController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
+    {
         $updhar = DB::table('order_customs')
-        ->where('id', '=', $request->id)->update([
-            'status_pembayaran' => 'Belum Dibayar',
-            'ongkir' => $request->ongkir,
-            'total' => $request->total,
-            'status_pengerjaan' => 'Menunggu Proses Pembayaran',
-            'status_pembayaran' => 'Belum Dibayar'
-        ]);
+            ->where('id', '=', $request->id)->update([
+                'status_pembayaran' => 'Belum Dibayar',
+                'ongkir' => $request->ongkir,
+                'total' => $request->total,
+                'status_pengerjaan' => 'Menunggu Proses Pembayaran',
+                'status_pembayaran' => 'Belum Dibayar'
+            ]);
 
         $updhar2 = DB::table('detail_order_customs')
-        ->where('order_customs_id', '=', $request->id)->update([
-            'harga' => $request->harga,
-            'subtotal' => $request->total
-        ]);
+            ->where('order_customs_id', '=', $request->id)->update([
+                'harga' => $request->harga,
+                'subtotal' => $request->total
+            ]);
         return redirect('/penjualancustom');
     }
 
@@ -163,14 +163,18 @@ class Order_CustomController extends Controller
 
     public function cetak_pdf()
     {
-    	$page = DB::table('order_customs')
+        $page = DB::table('order_customs')
             ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
             ->select(
                 'order_customs.*',
                 'detail_order_customs.*'
             )
             ->get();
-    	$pdf = PDF::loadview('admin.pages.penjualan_custom.pdf',['custom'=>$page]);
-    	return $pdf->download('laporan-penjualan_custom.pdf');
+        $total = Order_Custom::sum('total');
+        $pdf = PDF::loadview('admin.pages.penjualan_custom.pdf', [
+            'custom' => $page,
+            'total' => $total
+        ]);
+        return $pdf->download('laporan-penjualan_custom.pdf');
     }
 }

@@ -111,7 +111,11 @@ class OrderController extends Controller
                 'orders.*',
             )
             ->get();
-    	$pdf = PDF::loadview('admin.pages.penjualan.pdf',['penjualan'=>$page]);
+        $total = order::sum('total');
+    	$pdf = PDF::loadview('admin.pages.penjualan.pdf',[
+            'penjualan'=>$page,
+            'total' => $total
+        ]);
     	return $pdf->download('laporan-penjualan.pdf');
     }
 }

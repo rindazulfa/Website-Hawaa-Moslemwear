@@ -31,49 +31,55 @@
 
 					</div>
 				</div>
-				<form action="{{route('shop_detail', [$detail->id])}}" method="post" id="formDetail">
-					@csrf
-					<input type="hidden" name="products_id" class="products_id" value="{{$detail->id}}">
-					<div class="row mt-4">
-						<div class="col-md-6">
-							<div class="form-group d-flex">
-								<div class="select-wrap">
-									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-									<select name="size" id="size" class="form-control">
-										<option value="0">Pilih Ukuran</option>
-										@forelse($detail->stok as $key)
-										<option value="{{ $key->id }}">
-											{{ ($key->qty) > 0 ? $key->size : ''}}
-										</option>
-										@empty
-										<option value="">Tidak Tersedia</option>
-										@endforelse
-									</select>
-								</div>
+				<input type="hidden" name="products_id" class="products_id" value="{{$detail->id}}">
+				<div class="row mt-4">
+					<div class="col-md-6">
+						<div class="form-group d-flex">
+							<div class="select-wrap">
+								<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+								<select name="size" id="size" class="form-control">
+									<option value="0">Pilih Ukuran</option>
+									@forelse($detail->stok as $key)
+									<option value="{{ $key->id }}">
+										{{ ($key->qty) > 0 ? $key->size : ''}}
+									</option>
+									@empty
+									<option value="">Tidak Tersedia</option>
+									@endforelse
+								</select>
 							</div>
 						</div>
-						<div class="w-100"></div>
-						<div class="input-group col-md-6 d-flex mb-3">
-							<span class="input-group-btn mr-2">
-								<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
-									<i class="ion-ios-remove"></i>
-								</button>
-							</span>
-							<!-- <input type="text" id="quantity" name="qty" class="form-control input-number qty" value="1" min="1" max="100">
+					</div>
+					<div class="w-100"></div>
+					<div class="input-group col-md-6 d-flex mb-3">
+						<span class="input-group-btn mr-2">
+							<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+								<i class="ion-ios-remove"></i>
+							</button>
+						</span>
+						<!-- <input type="text" id="quantity" name="qty" class="form-control input-number qty" value="1" min="1" max="100">
 							<span class="input-group-btn ml-2">
 								<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
 									<i class="ion-ios-add"></i>
 								</button>
 							</span> -->
-						</div>
 					</div>
+				</div>
 
-					<!-- <p><a href="cart.html" id="btnShopCart" class="btn btn-primary py-3 px-5">Add to Cart</a></p> -->
+				<!-- <p><a href="cart.html" id="btnShopCart" class="btn btn-primary py-3 px-5">Add to Cart</a></p> -->
+				<form action="{{ route('shop.store') }}" method="post">
+					@csrf
+					<input type="text" name="id" id="id" value="{{ $detail->id }}" hidden readonly>
+					<input type="number" name="price" id="price" value="{{ $detail->price }}" hidden readonly>
+					<input type="text" name="size" id="size" value="1" hidden readonly>
+					<input type="number" name="qty" id="qty" value="1" hidden readonly>
+					<input type="date" name="date" id="date" value="<?php echo date('Y-m-d'); ?>" hidden readonly>
 					<button type="submit" id="btnShopCart" class="btncart flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 						Add to cart
 					</button>
-					@endguest
 				</form>
+
+				@endguest
 			</div>
 		</div>
 	</div>

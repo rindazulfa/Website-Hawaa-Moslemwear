@@ -208,7 +208,11 @@ class ProductionController extends Controller
             ->join('products', 'stocks.products_id', '=', 'products.id')
             ->select('productions.*', 'products.name', 'stocks.size')
             ->get();
-    	$pdf = PDF::loadview('admin.pages.produksi.pdf',['produksi'=>$page]);
+        $total = Production::sum('id');
+    	$pdf = PDF::loadview('admin.pages.produksi.pdf',[
+            'produksi'=>$page,
+            'total' => $total
+        ]);
     	return $pdf->download('laporan-produksi.pdf');
     }
 }

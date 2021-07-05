@@ -177,7 +177,11 @@ class PurchaseController extends Controller
             ->join('suppliers', 'puchases.suppliers_id', '=', 'suppliers.id')
             ->select('puchases.*', 'materials.name as nama_bahan', 'materials.price', 'suppliers.name as nama_sup')
             ->get();
-    	$pdf = PDF::loadview('admin.pages.pembelian.pdf',['pembelian'=>$pembelian]);
+        $total = puchase::sum('total');
+    	$pdf = PDF::loadview('admin.pages.pembelian.pdf',[
+            'pembelian'=>$pembelian,
+            'total' => $total
+        ]);
     	return $pdf->download('laporan-pembelian.pdf');
     }
 }

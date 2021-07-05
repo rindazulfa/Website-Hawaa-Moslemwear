@@ -37,6 +37,10 @@
                 <td colspan="6" class="text-center">Data Kosong</td>
             </tr>
             @endforelse
+            <tr>
+                <td colspan="2">Jumlah Produksi Keseluruhan :</td>
+                <td>{{ $total }}</td>
+            </tr>
         </tbody>
     </table>
 

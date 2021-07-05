@@ -20,16 +20,18 @@
     <table class='table table-bordered'>
         <thead>
             <tr>
-                <th>Nama Supplier</th>
+                <th>Tanggal Pembelian</th>
                 <th>Nama Bahan</th>
-                <th>Price</th>
+                <th>Jumlah Beli</th>
+                <th>Total Harga</th>
             </tr>
         </thead>
         <tbody>
             @forelse($pembelian as $key)
             <tr>
-                <td>{{$key->nama_sup}}</td>
+                <td>{{$key->date}}</td>
                 <td>{{$key->nama_bahan}}</td>
+                <td>{{$key->qty}}</td>
                 <td> Rp. {{number_format($key->total,2,',','.')}}</td>
             </tr>
             @empty
@@ -37,6 +39,10 @@
                 <td colspan="6" class="text-center">Data Kosong</td>
             </tr>
             @endforelse
+            <tr>
+                <td colspan="3">Total : </td>
+                <td>Rp. {{number_format($total,2,',','.')}}</td>
+            </tr>
         </tbody>
     </table>
 

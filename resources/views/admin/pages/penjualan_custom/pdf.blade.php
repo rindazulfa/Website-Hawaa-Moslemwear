@@ -21,7 +21,7 @@
         <thead>
             <tr>
                 <th>Tanggal Transaksi</th>
-                <th>Shipping</th>
+                <th>Status Transaksi</th>
                 <th>Total</th>
             </tr>
         </thead>
@@ -29,7 +29,7 @@
             @forelse($custom as $key)
             <tr>
                 <td>{{$key->date}}</td>
-                <td>{{$key->shipping}}</td>
+                <td>{{$key->status_pengerjaan}}</td>
                 <td> Rp. {{number_format($key->total,2,',','.')}}</td>
             </tr>
             @empty
@@ -37,6 +37,10 @@
                 <td colspan="6" class="text-center">Data Kosong</td>
             </tr>
             @endforelse
+            <tr>
+                <td colspan="2">Total :</td>
+                <td>Rp. {{number_format($total,2,',','.')}}</td>
+            </tr>
         </tbody>
     </table>
 

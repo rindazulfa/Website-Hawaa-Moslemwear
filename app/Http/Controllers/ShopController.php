@@ -92,76 +92,7 @@ class ShopController extends Controller
     }
     public function process(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'size' => 'required',
-            'qty' => 'required',
-
-        ]);
-        // dd($request->all());
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors());
-        } else {
-            if ($request->session()->has("cart_shop_data")) {
-                $cek = false;
-                $res = $request->session()->get("cart_shop_data");
-                $arr = [];
-                foreach ($res as $key => $value) {
-                    if ($request->get("products_id") == $value["products_id"] && $request->get("size") == $value["size"]) {
-                        $x["products_id"] = $value["products_id"];
-                        $x["size"] = $value["size"];
-                        $dataqty = $request->get("qty") + (int) $value["qty"];
-                        $x["qty"] = $dataqty;
-                        $cek = true;
-                        array_push($arr, $x);
-                    } else {
-                        array_push($arr, $value);
-                    }
-                }
-
-                if (!$cek) {
-                    $data = [
-                        'products_id' => $request->get("products_id"),
-                        "size" => $request->get("size"),
-                        "qty" => $request->get("qty")
-                    ];
-                    array_push($arr, $data);
-                }
-
-                $request->session()->forget("cart_shop_data");
-                $request->session()->put(["cart_shop_data" => $arr]);
-                $request->session()->save();
-            } else {
-                $dataarray = [];
-                $data = [
-                    'products_id' => $request->get("products_id"),
-                    "size" => $request->get("size"),
-                    "qty" => $request->get("qty")
-                ];
-                array_push($dataarray, $data);
-                $request->session()->put(["cart_shop_data" => $dataarray]);
-                $request->session()->save();
-            }
-            $product = Product::all();
-            $datacart = request()->session()->get("cart_shop_data");
-            $arr = [];
-            foreach ($datacart as $key => $valuecart) {
-                $value = Product::find($valuecart["products_id"]);
-                // $pic = Picture::where("products_id", $value->id)->first();
-                $x["products_id"] = $value->id;
-                $x["name"] = $value->name;
-                $x["pict_1"] = $value->pict_1;
-                $x["pict_2"] = $value->pict_2;
-                $x["pict_3"] = $value->pict_3;
-                $x["size"] = $valuecart["size"];
-                $x["qty"] = $valuecart["qty"];
-                $x["price"] = $value["price"];
-                array_push($arr, $x);
-            }
-            $request->session()->forget("cart_shop_data");
-            $request->session()->put(["cart_shop_data" => $arr]);
-            $request->session()->save();
-            // return redirect("shop");
-        }
+        
     }
     /**
      * Store a newly created resource in storage.
@@ -212,9 +143,15 @@ class ShopController extends Controller
 
                 return redirect('/shop');
             } else {
+                $stockid = stock::select('id')
+                ->where('products_id','=',$request->id)
+                ->first();
+
+                // dd($stockid->id);
+
                 $tambahcart = cart::create([
                     'products_id' => $request->id,
-                    'stocks_id' => $request->size,
+                    'stocks_id' => $stockid->id,
                     'customers_id' => $idcust[0]->id,
                     'size' => $request->size,
                     'price' => $request->price,
