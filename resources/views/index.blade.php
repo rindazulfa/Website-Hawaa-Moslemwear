@@ -127,7 +127,8 @@
                     </div>
                     <div class="media-body">
                         <h3 class="heading">Garansi Pengembalian</h3>
-                        <p>Kami memberikan garansi pengembalian terhadap produk yang anda pesan melalui halaman website kami, apabila terjadi ketidakkesesuian dengan produk yang anda pesan.</p>
+                        <p>Kami memberikan garansi pengembalian terhadap produk yang anda pesan melalui halaman website kami, 
+                            apabila terjadi ketidakkesesuian dengan produk yang anda pesan. Syarat & Ketentuan Belaku</p>
                     </div>
                 </div>
             </div>

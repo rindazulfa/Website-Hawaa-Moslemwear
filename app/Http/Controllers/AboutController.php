@@ -17,8 +17,8 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $profile = profile::all()->last();
-
+        $footer = profile::all()->last();
+// dd($profile);
         if (Auth::check()) {
             $cek = customer::select('id')
                 ->where('users_id', '=', auth()->user()->id)
@@ -26,7 +26,7 @@ class AboutController extends Controller
 
             if ($cek == 0) {
                 return view('package/about_us', [
-                    'profile' => $profile,
+                    'footer' => $footer,
                     'cart' => 0
                 ]);
             } else {
@@ -39,13 +39,13 @@ class AboutController extends Controller
                     ->count();
 
                 return view('package/about_us', [
-                    'profile' => $profile,
+                    'footer' => $footer,
                     'cart' => $cart
                 ]);
             }
         } else {
             return view('package/about_us', [
-                'profile' => $profile,
+                'footer' => $footer,
                 'cart' => 0
             ]);
         }

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Detail_order;
+// use App\Detail_order;
+use App\Models\cart;
+use App\Models\detail_order;
+use App\Models\profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,16 +18,17 @@ class Shoping_CartController extends Controller
      */
     public function index()
     {
-        $detail_order = Detail_order::with([
+        $detail_order = detail_order::with([
             'products'
         ])->get();
-        
+        $footer = profile::all()->last();
         $cart = cart::select('id')->count();
 
         // dd($propinsi);
         return view('pages.shoping_cart', [
             'detail' => $detail_order,
-            'cart' => $cart
+            'cart' => $cart,
+            'footer' => $footer
         ]);
     }
 

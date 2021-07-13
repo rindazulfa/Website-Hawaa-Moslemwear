@@ -23,7 +23,7 @@ class ShopController extends Controller
     public function index()
     {
         $product = Product::with(['stok'])->get();
-
+        $footer = profile::all()->last();
         if (Auth::check()) {
             $product = DB::table('products')
                 ->select('products.*')
@@ -38,7 +38,8 @@ class ShopController extends Controller
             if ($cek == 0) {
                 return view('package.product', [
                     'shop' => $product,
-                    'cart' => 0
+                    'cart' => 0,
+                    'footer' => $footer
                 ]);
             } else {
                 $product = DB::table('products')
@@ -57,13 +58,15 @@ class ShopController extends Controller
 
                 return view('package.product', [
                     'shop' => $product,
-                    'cart' => $cart
+                    'cart' => $cart,
+                    'footer' => $footer
                 ]);
             }
         } else {
             return view('package.product', [
                 'shop' => $product,
-                'cart' => 0
+                'cart' => 0,
+                'footer' => $footer
             ]);
         }
     }
@@ -92,7 +95,6 @@ class ShopController extends Controller
     }
     public function process(Request $request, $id)
     {
-        
     }
     /**
      * Store a newly created resource in storage.
@@ -144,8 +146,8 @@ class ShopController extends Controller
                 return redirect('/shop');
             } else {
                 $stockid = stock::select('id')
-                ->where('products_id','=',$request->id)
-                ->first();
+                    ->where('products_id', '=', $request->id)
+                    ->first();
 
                 // dd($stockid->id);
 

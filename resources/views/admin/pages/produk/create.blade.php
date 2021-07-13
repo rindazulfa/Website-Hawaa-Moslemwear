@@ -45,7 +45,7 @@
                             <div class="col-lg-6">
                                 <div class="custom-file">
                                     <input type="file" name="pict_1" accept=".png, .jpg, .jpeg" class="custom-file-input" id="customFileLang" lang="en">
-                                    <input type="hidden" name="id" value="{{ old('pict_1') }}" />
+                                    <input type="hidden" name="id" value="{{ old('pict_1') }}" required/>
                                     <label class="custom-file-label" for="customFileLang">Select file</label>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                             <div class="col-lg-6">
                                 <div class="custom-file">
                                     <input type="file" name="pict_2" accept=".png, .jpg, .jpeg" class="custom-file-input" id="customFileLang" lang="en">
-                                    <input type="hidden" name="id" value="{{ old('pict_2') }}" />
+                                    <input type="hidden" name="id" value="{{ old('pict_2') }}" required/>
                                     <label class="custom-file-label" for="customFileLang">Select file</label>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                             <div class="col-lg-6">
                                 <div class="custom-file">
                                     <input type="file" name="pict_3" accept=".png, .jpg, .jpeg" class="custom-file-input" id="customFileLang" lang="en">
-                                    <input type="hidden" name="id" value="{{ old('pict_3') }}" />
+                                    <input type="hidden" name="id" value="{{ old('pict_3') }}" required/>
                                     <label class="custom-file-label" for="customFileLang">Select file</label>
                                 </div>
                             </div>
@@ -69,11 +69,11 @@
                         <div class="form-group row">
                             <div class="col-lg-3">
                                 <label>Nama Produk</label>
-                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Masukkan Nama Produk" />
+                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" required placeholder="Masukkan Nama Produk" />
                             </div>
                             <div class="col-lg-3">
                                 <label>Harga</label>
-                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" placeholder="Masukkan Harga" />
+                                <input type="number" class="form-control" value="{{ old('price') }}" name="price" required placeholder="Masukkan Harga" />
                             </div>
 
                             
@@ -85,7 +85,7 @@
                             </div> -->
                             <div class="col-lg-6">
                                 <label for="exampleTextarea">Deskripsi</label>
-                                <textarea class="form-control" rows="3" name="desc" placeholder="Masukkan Deskripsi">{{ old('desc') }}</textarea>
+                                <textarea class="form-control" rows="3" name="desc" required     placeholder="Masukkan Deskripsi">{{ old('desc') }} </textarea>
                             </div>
 
                         </div>

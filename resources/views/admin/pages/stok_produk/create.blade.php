@@ -40,7 +40,7 @@
                                 <label>Pilih Produk</label>
                                 <select class="form-control" required name="products_id">
                                     @foreach($items as $key)
-                                    <option value="{{ $key->id }}">{{ $key->name }}</option>
+                                    <option value="{{ $key->id }}" >{{ $key->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -49,27 +49,27 @@
                                 <!-- <span class="form-text text-muted">Pilih Ukuran</span> -->
                                 <div class="radio-inline">
                                     <label class="radio radio-solid">
-                                        <input type="radio" name="size" checked="checked" value="S" />
+                                        <input type="radio" name="size" checked="checked" value="S" required/>
                                         <span></span>
                                         S
                                     </label>
                                     <label class="radio radio-solid">
-                                        <input type="radio" name="size" value="M" />
+                                        <input type="radio" name="size" value="M" required/>
                                         <span></span>
                                         M
                                     </label>
                                     <label class="radio radio-solid">
-                                        <input type="radio" name="size" value="L" />
+                                        <input type="radio" name="size" value="L" required />
                                         <span></span>
                                         L
                                     </label>
                                     <label class="radio radio-solid">
-                                        <input type="radio" name="size" value="XL" />
+                                        <input type="radio" name="size" value="XL" required/>
                                         <span></span>
                                         XL
                                     </label>
                                     <label class="radio radio-solid">
-                                        <input type="radio" name="size" value="XXL" />
+                                        <input type="radio" name="size" value="XXL" required />
                                         <span></span>
                                         XXL
                                     </label>
@@ -81,11 +81,11 @@
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>QTY</label>
-                                <input type="number" class="form-control" value="{{ old('qty') }}" name="qty" />
+                                <input type="number" class="form-control" value="{{ old('qty') }}" required name="qty" />
                             </div>
                             <div class="col-lg-6">
                                 <label>Satuan</label>
-                                <input type="text" class="form-control" value="{{ old('satuan') }}" name="satuan" />
+                                <input type="text" class="form-control" value="{{ old('satuan') }}" required name="satuan" />
                             </div>
                         </div>
                     </div>

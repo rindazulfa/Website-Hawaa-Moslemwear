@@ -34,7 +34,7 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="id_transaksi_penjualan">Id Transaksi Penjualan Custom</th>
+                                <th scope="col" class="sort" data-sort="id_transaksi_penjualan">ID</th>
                                 <th scope="col" class="sort" data-sort="tanggal_transaksi">Tanggal Transaksi</th>
                                 <th scope="col" class="sort" data-sort="gambar_desain">Gambar Desain</th>
                                 <th scope="col" class="sort" data-sort="status_desain">Status Desain</th>

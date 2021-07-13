@@ -43,18 +43,18 @@
                         <div class="form-group row">
                             <div class="col-lg-6 mt-4">
                                 <label>Nama</label>
-                                <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Masukkan Nama" />
+                                <input type="text" class="form-control" value="{{ old('name') }}" required name="name" placeholder="Masukkan Nama" />
                             </div>
                             <div class="col-lg-6 mt-4">
                                 <label>Telepon</label>
-                                <input type="text" class="form-control" value="{{ old('phone') }}" name="phone" placeholder="Masukkan Telepon" />
+                                <input type="text" class="form-control" value="{{ old('phone') }}" required name="phone" placeholder="Masukkan Telepon" />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-lg-6 mt-4">
                                 <label>Email</label>
-                                <input type="text" class="form-control" value="{{ old('email') }}" name="email" placeholder="Masukkan Email" />
+                                <input type="text" class="form-control" value="{{ old('email') }}" required name="email" placeholder="Masukkan Email" />
                             </div>
                             <!-- <div class="col-lg-6 mt-4">
                                 <label>Material</label>

@@ -16,10 +16,10 @@
                     <h2 class="ftco-heading-2">Have a Questions?</h2>
                     <div class="block-23 mb-3">
                         <ul>
-                            <li><span class="icon icon-map-marker"></span><span class="text">{{$profile->address}}</span></li>
-                            <li><span class="icon icon-phone"></span><span class="text">{{$profile->telepon}}</span></li>
-                            <li><span class="icon icon-envelope"></span><span class="text">{{$profile->email}}</span></li>
-                            <li><a href="https://www.instagram.com/{{$profile->ig}}/" target="_blank"><span class="icon icon-instagram"></span><span class="text">{{$profile->ig}}</span></a></li>
+                            <li><span class="icon icon-map-marker"></span><span class="text">{{\App\Models\profile::all()->last()->address}}</span></li>
+                            <li><span class="icon icon-phone"></span><span class="text">{{\App\Models\profile::all()->last()->telepon}}</span></li>
+                            <li><span class="icon icon-envelope"></span><span class="text">{{\App\Models\profile::all()->last()->email}}</span></li>
+                            <li><a href="https://www.instagram.com/{{\App\Models\profile::all()->last()->ig}}/" target="_blank"><span class="icon icon-instagram"></span><span class="text">{{$profile->ig}}</span></a></li>
                         </ul>
                     </div>
                 </div>

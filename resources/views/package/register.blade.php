@@ -12,27 +12,27 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="email">Nama Depan</label>
-                                <input type="text" name='first_name' class="form-control" placeholder="Masukkan Email Anda">
+                                <input type="text" name='first_name' required class="form-control" placeholder="Masukkan Email Anda">
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Nama Belakang</label>
-                                <input type="text" name='last_name' class="form-control" placeholder="Masukkan Email Anda">
+                                <input type="text" name='last_name' required class="form-control" placeholder="Masukkan Email Anda">
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" name='email' class="form-control" placeholder="Masukkan Email Anda">
+                                <input type="text" name='email' required class="form-control" placeholder="Masukkan Email Anda">
                             </div>
 
                             <div class="form-group">
                                 <label for="kata_sandi">Password</label>
-                                <input type="password" name='password' class="form-control" placeholder="Masukkan Password Anda">
+                                <input type="password" name='password' required class="form-control" placeholder="Masukkan Password Anda">
                             </div>
 
                             <div class="form-group">
                                 <label for="kata_sandi">Confirm Password</label>
-                                <input type="password" name='password_confirmation' class="form-control" placeholder="Masukkan Password Anda">
+                                <input type="password" name='password_confirmation' required class="form-control" placeholder="Masukkan Password Anda">
                             </div>
 
                         </div>

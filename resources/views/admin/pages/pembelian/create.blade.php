@@ -41,11 +41,11 @@
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>Tanggal</label>
-                                <input type="date" class="form-control" name="date" value="<?php echo date('y-m-d'); ?>"/>
+                                <input type="date" class="form-control" required name="date" value="<?php echo date('y-m-d'); ?>"/>
                             </div>
                             <div class="col-lg-6">
                                 <label>Nama Bahan</label>
-                                <select class="form-control" name="cbnamabahan" id="cbnamabahan">
+                                <select class="form-control" required name="cbnamabahan" id="cbnamabahan">
                                     <option value="" selected>Pilih Bahan</option>
                                     @foreach($data_materials as $DM)
                                     <option value="{{ $DM->id }}" data-harga="{{ $DM->price }}">{{ $DM->name }}</option>
@@ -56,21 +56,21 @@
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>Harga Bahan</label>
-                                <input type="number" class="form-control" name="harga" id="harga" onkeyup="totalharga();" />
+                                <input type="number" required class="form-control" name="harga" id="harga" onkeyup="totalharga();" />
                             </div>
                             <div class="col-lg-6">
                                 <label>QTY Beli</label>
-                                <input type="number" class="form-control" name="jumlah" id="jumlah" onkeyup="totalharga();" />
+                                <input type="number" required class="form-control" name="jumlah" id="jumlah" onkeyup="totalharga();" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>Total Beli</label>
-                                <input type="text" class="form-control" name="total" id="total" onkeyup="totalharga();" readonly />
+                                <input type="text" required class="form-control" name="total" id="total" onkeyup="totalharga();" readonly />
                             </div>
                             <div class="col-lg-6">
                                 <label>Nama Supplier</label>
-                                <select class="form-control" name="cbnamasup" id="cbnamasup">
+                                <select class="form-control" required name="cbnamasup" id="cbnamasup">
                                     <option value="" selected>Pilih Supplier</option>
                                     @foreach($data_supplier as $DS)
                                     <option value="{{ $DS->id }}">{{ $DS->name }}</option>
@@ -81,11 +81,11 @@
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>Keterangan Beli</label>
-                                <input type="text" class="form-control" name="keterangan" />
+                                <input type="text" required class="form-control" name="keterangan" />
                             </div>
                             <div class="col-lg-6">
                                 <label>Satuan Beli</label>
-                                <input type="text" class="form-control" name="satuan"/>
+                                <input type="text" required class="form-control" name="satuan"/>
                             </div>
                         </div>
                     </div>

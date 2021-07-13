@@ -41,6 +41,9 @@ class LoginController extends Controller
             // }
             
         }
+        else {
+            return redirect('login')->withErrors(["Kata Sandi Anda Salah"]);
+        }
     }
 
     public function logout()

@@ -24,13 +24,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="firstname">Firt Name</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" required class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="lastname">Last Name</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" required class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="w-100"></div>
@@ -39,7 +39,7 @@
                                     <label for="country">State / Country</label>
                                     <div class="select-wrap">
                                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="" id="" class="form-control">
+                                        <select name="" id="" class="form-control" required>
 											<option value="">France</option>
 											<option value="">Italy</option>
 											<option value="">Philippines</option>
@@ -54,38 +54,38 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="streetaddress">Street Address</label>
-                                    <input type="text" class="form-control" placeholder="House number and street name">
+                                    <input type="text" required class="form-control" placeholder="House number and street name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Appartment, suite, unit etc: (optional)">
+                                    <input type="text" required class="form-control" placeholder="Appartment, suite, unit etc: (optional)">
                                 </div>
                             </div>
                             <div class="w-100"></div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="towncity">Town / City</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" required class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="postcodezip">Postcode / ZIP *</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" required class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="w-100"></div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" required class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="emailaddress">Email Address</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" required class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="w-100"></div>

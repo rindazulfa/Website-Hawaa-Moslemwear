@@ -11,6 +11,7 @@ use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpKernel\Profiler\Profile as ProfilerProfile;
 
 class HomepageController extends Controller
 {
@@ -22,12 +23,13 @@ class HomepageController extends Controller
     public function index()
     {
         $banner = Banner::all()->last();
+        $footer = profile::all()->last();
         $product = Product::with([
             'stok'
         ])
             ->get();
 
-        // dd($cek);
+        // dd($profile);
         // dd(
         //     $product
         // );
@@ -48,7 +50,8 @@ class HomepageController extends Controller
                 return view('index', [
                     'banner' => $banner,
                     'shop' => $product,
-                    'cart' => 0
+                    'cart' => 0,
+                    'footer' => $footer
                 ]);
             } else {
                 $product = DB::table('products')
@@ -69,14 +72,16 @@ class HomepageController extends Controller
                 return view('index', [
                     'banner' => $banner,
                     'shop' => $product,
-                    'cart' => $cart
+                    'cart' => $cart,
+                    'footer' => $footer
                 ]);
             }
         } else {
             return view('index', [
                 'banner' => $banner,
                 'shop' => $product,
-                'cart' => 0
+                'cart' => 0,
+                'footer' => $footer
             ]);
         }
     }
