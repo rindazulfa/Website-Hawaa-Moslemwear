@@ -94,7 +94,7 @@
         <div class="row justify-content-center mb-3 pb-3">
             <div class="col-md-12 heading-section text-center ftco-animate">
                 <h1 class="big">Services</h1>
-                <h2>We want you to express yourself</h2>
+                <h2></h2>
             </div>
         </div>
         <div class="row">
@@ -104,8 +104,8 @@
                         <span class="flaticon-002-recommended"></span>
                     </div>
                     <div class="media-body">
-                        <h3 class="heading">Refund Policy</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+                        <h3 class="heading">Customize Product</h3>
+                        <p>Anda dapat melakukan customisasi produk yang anda pesan, sesuai dengan kebutuhan anda.</p>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="media-body">
                         <h3 class="heading">Premium Packaging</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+                        <p>Pengemasan produk kami menggunakan bahan yang sesuai dengan standarasi kualitas dalam pengiriman barang.</p>
                     </div>
                 </div>
             </div>
@@ -126,8 +126,8 @@
                         <span class="flaticon-003-medal"></span>
                     </div>
                     <div class="media-body">
-                        <h3 class="heading">Superior Quality</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+                        <h3 class="heading">Garansi Pengembalian</h3>
+                        <p>Kami memberikan garansi pengembalian terhadap produk yang anda pesan melalui halaman website kami, apabila terjadi ketidakkesesuian dengan produk yang anda pesan.</p>
                     </div>
                 </div>
             </div>

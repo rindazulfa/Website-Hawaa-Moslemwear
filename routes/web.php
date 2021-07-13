@@ -103,6 +103,7 @@ Route::group([
     // Route::get('/tampil/checkout/{id}','CartController@tampilcheckout')->name('tampil.checkout');
 
     Route::resource('riwayat', 'RiwayatController');
+    Route::get('/riwayat/cetak_pdf/{id}', 'RiwayatController@cetak_pdf')->name('invoice_produk');
 
     Route::resource('checkout', 'CheckoutController');
 
@@ -116,6 +117,8 @@ Route::group([
 
     // History
     Route::resource('/history', 'HistoryCustomController');
+    Route::get('/history/cetak_pdf/{id}', 'HistoryCustomController@cetak_pdf')->name('invoice_custom');
+
 
     Route::resource('/profil', 'ProfileController');
 

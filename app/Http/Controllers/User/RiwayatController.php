@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\cart;
+use PDF;
 use App\Models\customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -131,5 +132,36 @@ class RiwayatController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cetak_pdf($id)
+    {
+        $page = DB::table('detail_orders')
+            ->join('orders', 'orders.id', '=', 'detail_orders.orders_id')
+            ->join('products','detail_orders.products_id', '=' ,'products.id')
+            ->join('stocks','stocks.products_id', '=','products.id')
+            ->select(
+                'products.name',
+                'products.price',
+                'stocks.size',
+                'detail_orders.*',
+                'orders.*'
+            )
+            ->where('orders_id','=',$id)
+            ->get();
+        
+        // dd($page);
+        
+        $pelanggan = DB::table('customers')
+        ->join('users','customers.users_id','=','users.id')
+        ->where('users_id','=', auth()->user()->id)
+        ->get();
+
+        // dd($pelanggan);
+        $pdf = PDF::loadview('package.login.biasa.invoicebiasa', [
+            'produk' => $page,
+            'pelanggan' => $pelanggan
+        ]);
+        return $pdf->download('invoice_produk'.$page[0]->id.'.pdf');
     }
 }

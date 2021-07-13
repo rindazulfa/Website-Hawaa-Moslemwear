@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use PDF;
 use App\Models\cart;
 use App\Models\customer;
 use Illuminate\Http\Request;
@@ -142,5 +143,31 @@ class HistoryCustomController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cetak_pdf($id)
+    {
+        $page = DB::table('detail_order_customs')
+            ->join('order_customs', 'order_customs.id', '=', 'detail_order_customs.order_customs_id')
+            ->select(
+                'order_customs.*',
+                'detail_order_customs.*'
+            )
+            ->where('order_customs_id','=',$id)
+            ->get();
+        
+        // dd($page);
+        
+        $pelanggan = DB::table('customers')
+        ->join('users','customers.users_id','=','users.id')
+        ->where('users_id','=', auth()->user()->id)
+        ->get();
+
+        // dd($pelanggan);
+        $pdf = PDF::loadview('package.login.custom.invoicecustom', [
+            'custom' => $page,
+            'pelanggan' => $pelanggan
+        ]);
+        return $pdf->download('invoice_custom'.$page[0]->id.'.pdf');
     }
 }
