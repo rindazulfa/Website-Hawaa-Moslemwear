@@ -69,20 +69,24 @@ Route::group([
     Route::resource('resep', 'RecipeController');
 
     // Transaksi Pembelian
-    Route::get('/pembelian/cetak_pdf', 'PurchaseController@cetak_pdf')->name('pembelian.pdf');
+    // Route::get('/pembelian/cetak_pdf', 'PurchaseController@cetak_pdf')->name('pembelian.pdf');
     Route::resource('pembelian', 'PurchaseController');
+    Route::post('/pembelian/cetak_pdf','PurchaseController@cetak_pdf')->name('pembelian.pdf');
     
     // Produksi
-    Route::get('/produksi/cetak_pdf', 'ProductionController@cetak_pdf')->name('produksi.pdf');
+    // Route::get('/produksi/cetak_pdf', 'ProductionController@cetak_pdf')->name('produksi.pdf');
+    Route::post('/produksi/cetak_pdf', 'ProductionController@cetak_pdf')->name('produksi.pdf');
     Route::resource('produksi', 'ProductionController');
 
     // Transaksi Penjualan
-    Route::get('/penjualan/cetak_pdf', 'OrderController@cetak_pdf')->name('penjualan.pdf');
+    // Route::get('/penjualan/cetak_pdf', 'OrderController@cetak_pdf')->name('penjualan.pdf');
+    Route::post('/penjualan/cetak_pdf', 'OrderController@cetak_pdf')->name('penjualan.pdf');
     Route::resource('penjualan', 'OrderController');
     Route::get('/penjualan/statuspay/den/{id}', [OrderController::class, 'updsttspayden'])->name('den.pay');
 
     // Transaksi Penjualan Custom
-    Route::get('/penjualancustom/cetak_pdf', 'Order_CustomController@cetak_pdf')->name('custom.pdf');
+    // Route::get('/penjualancustom/cetak_pdf', 'Order_CustomController@cetak_pdf')->name('custom.pdf');
+    Route::post('/penjualancustom/cetak_pdf', 'Order_CustomController@cetak_pdf')->name('custom.pdf');
     Route::resource('penjualancustom', 'Order_CustomController');
     Route::get('/penjualancustom/statusdesain/acc/{id}', [Order_CustomController::class, 'updsttsdesacc'])->name('acc.desain');
     Route::get('/penjualancustom/statusdesain/den/{id}', [Order_CustomController::class, 'updsttsdesden'])->name('den.desain');

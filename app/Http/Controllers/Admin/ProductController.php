@@ -128,10 +128,12 @@ class ProductController extends Controller
     public function edit($id)
     {
         $edit = product::findOrFail($id);//id produk
+        
         //RESEP
         $stok =stock::where('products_id',$id)->first();
         $resep = Recipe::where('stocks_id',$stok->id)->first();
-        $material = material::where('materials_id',$resep->id)->first();
+        $material = material::where('id',$resep->id)->first();
+        
         // dd($resep);
         // foreach ($hitung as $key => $value) {
         //     # code...

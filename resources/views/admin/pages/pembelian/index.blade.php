@@ -14,10 +14,20 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="col-lg-6 col-5 text-right">
+                <!-- <div class="col-lg-6"> -->
+                <div class="col-lg-6 col-1 text-right">
                     <a href="{{route('pembelian.create')}}" class="btn btn-sm btn-neutral">Tambah Pembelian</a>
-                    <a href="{{route('pembelian.pdf')}}" class="btn btn-sm btn-neutral">Cetak PDF</a>
                 </div>
+                <div class="col-lg-6 col-1 text-left">
+                    <form action="{{route('pembelian.pdf')}}" method="post">
+                        @csrf
+                        <input type="date" name="tglawal">
+                        <input type="date" name="tglakhir">
+                        <button type="submit" class="btn btn-sm btn-neutral">Cetak PDF</button>
+                        <!-- <a href="" class="btn btn-sm btn-neutral">Cetak PDF</a> -->
+                    </form>
+                </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>

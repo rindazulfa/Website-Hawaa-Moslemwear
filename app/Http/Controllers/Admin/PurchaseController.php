@@ -70,22 +70,22 @@ class PurchaseController extends Controller
         $puchases->keterangan = $request->get('keterangan');
         $puchases->save();
 
-        $stock = material::where('id','=',$request->cbnamabahan)->get();
-        if($request->satuan == "m"){
+        $stock = material::where('id', '=', $request->cbnamabahan)->get();
+        if ($request->satuan == "m") {
             $stock_bahan = $stock[0]->qty;
             $jumlah = $request->get('jumlah');
-            $stok_baru = ($jumlah*100) + $stock_bahan;
+            $stok_baru = ($jumlah * 100) + $stock_bahan;
             DB::table('materials')->where('id', $request->cbnamabahan)->update([
                 'qty' => $stok_baru
             ]);
-        }else if($request->satuan == "cm"){
+        } else if ($request->satuan == "cm") {
             $stock_bahan = $stock[0]->qty;
             $jumlah = $request->get('jumlah');
             $stok_baru = $jumlah + $stock_bahan;
             DB::table('materials')->where('id', $request->cbnamabahan)->update([
                 'qty' => $stok_baru
             ]);
-        }else{
+        } else {
             $stock_bahan = $stock[0]->qty;
             $jumlah = $request->get('jumlah');
             $stok_baru = $jumlah + $stock_bahan;
@@ -166,22 +166,66 @@ class PurchaseController extends Controller
     }
 
     // public function export_excel()
-	// {
-	// 	return Excel::download(new ProductExport(), 'product.xlsx');
+    // {
+    // 	return Excel::download(new ProductExport(), 'product.xlsx');
     // }
 
-    public function cetak_pdf()
+    public function cetak_pdf(Request $request)
     {
-    	$pembelian = DB::table('puchases')
-            ->join('materials', 'puchases.materials_id', '=', 'materials.id')
-            ->join('suppliers', 'puchases.suppliers_id', '=', 'suppliers.id')
-            ->select('puchases.*', 'materials.name as nama_bahan', 'materials.price', 'suppliers.name as nama_sup')
-            ->get();
-        $total = puchase::sum('total');
-    	$pdf = PDF::loadview('admin.pages.pembelian.pdf',[
-            'pembelian'=>$pembelian,
+        $tglawal = $request->get('tglawal');
+        $tglakhir = $request->get('tglakhir');
+
+        // dd(
+        //     $tglakhir,
+        //     $tglawal
+        // );
+
+        if (!isset($tglawal) && isset($tglakhir)) {
+            $pembelian = DB::table('puchases')
+                ->select('puchases.*', 'materials.name as nama_bahan')
+                ->join('materials', 'puchases.materials_id', '=', 'materials.id')
+                ->where('puchases.date', '<=', $tglakhir)
+                ->get();
+
+            $total = puchase::where('puchases.date', '<=', $tglakhir)
+                ->sum('total');
+        } else if (!isset($tglakhir) && isset($tglawal)) {
+            $pembelian = DB::table('puchases')
+                ->select('puchases.*', 'materials.name as nama_bahan')
+                ->join('materials', 'puchases.materials_id', '=', 'materials.id')
+                ->where('puchases.date', '>=', $tglawal)
+                ->get();
+
+            $total = puchase::where('puchases.date', '>=', $tglawal)
+                ->sum('total');
+        } else if (!isset($tglawal) && !isset($tglakhir)) {
+            $pembelian = DB::table('puchases')
+                ->select('puchases.*', 'materials.name as nama_bahan')
+                ->join('materials', 'puchases.materials_id', '=', 'materials.id')
+                ->get();
+            $total = puchase::sum('total');
+        } else {
+            $pembelian = DB::table('puchases')
+                ->select('puchases.*', 'materials.name as nama_bahan')
+                ->join('materials', 'puchases.materials_id', '=', 'materials.id')
+                ->where('puchases.date', '>=', $tglawal)
+                ->where('puchases.date', '<=', $tglakhir)
+                ->get();
+
+            $total = puchase::where('puchases.date', '<=', $tglawal)
+                ->where('puchases.date', '<=', $tglakhir)
+                ->sum('total');
+        }
+
+        // $pembelian = DB::table('puchases')
+        //     ->select('puchases.*')
+        //     ->get();
+        // $total = puchase::sum('total');
+
+        $pdf = PDF::loadview('admin.pages.pembelian.pdf', [
+            'pembelian' => $pembelian,
             'total' => $total
         ]);
-    	return $pdf->download('laporan-pembelian.pdf');
+        return $pdf->download('laporan-pembelian.pdf');
     }
 }

@@ -161,16 +161,74 @@ class Order_CustomController extends Controller
         //
     }
 
-    public function cetak_pdf()
+    public function cetak_pdf(Request $request)
     {
-        $page = DB::table('order_customs')
-            ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
-            ->select(
-                'order_customs.*',
-                'detail_order_customs.*'
-            )
-            ->get();
-        $total = Order_Custom::sum('total');
+        $tglawal = $request->get('tglawal');
+        $tglakhir = $request->get('tglakhir');
+
+        // dd(
+        //     $tglakhir,
+        //     $tglawal
+        // );
+
+        if (!isset($tglawal) && isset($tglakhir)) {
+            $page = DB::table('order_customs')
+                ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
+                ->select(
+                    'order_customs.*',
+                    'detail_order_customs.*'
+                )
+                ->where('order_customs.date', '<=', $tglakhir)
+                ->get();
+
+            $total = Order_Custom::where('order_customs.date', '<=', $tglakhir)
+                ->sum('total');
+        } else if (!isset($tglakhir) && isset($tglawal)) {
+            $page = DB::table('order_customs')
+                ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
+                ->select(
+                    'order_customs.*',
+                    'detail_order_customs.*'
+                )
+                ->where('order_customs.date', '>=', $tglawal)
+                ->get();
+
+            $total = Order_Custom::where('order_customs.date', '>=', $tglawal)
+                ->sum('total');
+        } else if (!isset($tglawal) && !isset($tglakhir)) {
+            $page = DB::table('order_customs')
+                ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
+                ->select(
+                    'order_customs.*',
+                    'detail_order_customs.*'
+                )
+                ->get();
+            $total = Order_Custom::sum('total');
+        } else {
+            $page = DB::table('order_customs')
+                ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
+                ->select(
+                    'order_customs.*',
+                    'detail_order_customs.*'
+                )
+                ->where('order_customs.date', '>=', $tglawal)
+                ->where('order_customs.date', '<=', $tglakhir)
+                ->get();
+
+            $total = Order_Custom::where('order_customs.date', '<=', $tglakhir)
+                ->where('order_customs.date', '>=', $tglawal)
+                ->sum('total');
+        }
+
+        // $page = DB::table('order_customs')
+        //     ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
+        //     ->select(
+        //         'order_customs.*',
+        //         'detail_order_customs.*'
+        //     )
+        //     ->get();
+        // $total = Order_Custom::sum('total');
+
         $pdf = PDF::loadview('admin.pages.penjualan_custom.pdf', [
             'custom' => $page,
             'total' => $total

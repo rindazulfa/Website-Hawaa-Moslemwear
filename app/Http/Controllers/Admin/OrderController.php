@@ -104,18 +104,59 @@ class OrderController extends Controller
     public function destroy(Request $request, $id)
     { }
 
-    public function cetak_pdf()
+    public function cetak_pdf(Request $request)
     {
-    	$page = DB::table('orders')
-            ->select(
-                'orders.*',
-            )
-            ->get();
-        $total = order::sum('total');
-    	$pdf = PDF::loadview('admin.pages.penjualan.pdf',[
-            'penjualan'=>$page,
+        $tglawal = $request->get('tglawal');
+        $tglakhir = $request->get('tglakhir');
+
+        // dd(
+        //     $tglakhir,
+        //     $tglawal
+        // );
+
+        if (!isset($tglawal) && isset($tglakhir)) {
+            $page = DB::table('orders')
+                ->select('orders.*')
+                ->where('date', '<=', $tglakhir)
+                ->get();
+
+            $total = order::where('date', '<=', $tglakhir)
+                ->sum('total');
+        } else if (!isset($tglakhir) && isset($tglawal)) {
+            $page = DB::table('orders')
+                ->select('orders.*')
+                ->where('date', '>=', $tglawal)
+                ->get();
+
+            $total = order::where('date', '>=', $tglawal)
+                ->sum('total');
+        } else if (!isset($tglawal) && !isset($tglakhir)) {
+            $page = DB::table('orders')
+                ->select('orders.*')
+                ->get();
+            $total = order::sum('total');
+        } else {
+            $page = DB::table('orders')
+                ->select('orders.*')
+                ->where('date', '>=', $tglawal)
+                ->where('date', '<=', $tglakhir)
+                ->get();
+            $total = order::where('date', '>=', $tglawal)
+                ->where('date', '<=', $tglakhir)
+                ->sum('total');
+        }
+
+        // $page = DB::table('orders')
+        //     ->select(
+        //         'orders.*',
+        //     )
+        //     ->get();
+        // $total = order::sum('total');
+
+        $pdf = PDF::loadview('admin.pages.penjualan.pdf', [
+            'penjualan' => $page,
             'total' => $total
         ]);
-    	return $pdf->download('laporan-penjualan.pdf');
+        return $pdf->download('laporan-penjualan.pdf');
     }
 }

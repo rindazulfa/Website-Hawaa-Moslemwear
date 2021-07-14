@@ -13,8 +13,17 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="col-lg-6 col-5 text-right">
+                <!-- <div class="col-lg-6 col-5 text-right">
                     <a href="{{route('produksi.pdf')}}" class="btn btn-sm btn-neutral">Cetak PDF</a>
+                </div> -->
+                <div class="col-lg-6 col-1 text-right">
+                    <form action="{{route('produksi.pdf')}}" method="post">
+                        @csrf
+                        <input type="date" name="tglawal">
+                        <input type="date" name="tglakhir">
+                        <button type="submit" class="btn btn-sm btn-neutral">Cetak PDF</button>
+                        <!-- <a href="" class="btn btn-sm btn-neutral">Cetak PDF</a> -->
+                    </form>
                 </div>
             </div>
         </div>

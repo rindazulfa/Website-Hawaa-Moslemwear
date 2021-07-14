@@ -63,7 +63,7 @@ class ProductionController extends Controller
         $resep = Recipe::where('stocks_id', $request->id_stock)->get();
         foreach ($resep as $key => $value) {
             $bahan = material::findorFail($value->materials_id);
-            $bahan->qty = $bahan->qty - ($value->qty * $request->qty );
+            $bahan->qty = $bahan->qty - ($value->qty * $request->qty);
             $bahan->save();
         }
 
@@ -200,19 +200,73 @@ class ProductionController extends Controller
         //
     }
 
-    public function cetak_pdf()
+    public function cetak_pdf(Request $request)
     {
-    	$page = DB::table('productions')
-            ->join('recipes', 'productions.recipes_id', '=', 'recipes.id')
-            ->join('stocks', 'recipes.stocks_id', '=', 'stocks.id')
-            ->join('products', 'stocks.products_id', '=', 'products.id')
-            ->select('productions.*', 'products.name', 'stocks.size')
-            ->get();
-        $total = Production::sum('id');
-    	$pdf = PDF::loadview('admin.pages.produksi.pdf',[
-            'produksi'=>$page,
+        $tglawal = $request->get('tglawal');
+        $tglakhir = $request->get('tglakhir');
+
+        // dd(
+        //     $tglakhir,
+        //     $tglawal
+        // );
+
+        if (!isset($tglawal) && isset($tglakhir)) {
+            $page = DB::table('productions')
+                ->join('recipes', 'productions.recipes_id', '=', 'recipes.id')
+                ->join('stocks', 'recipes.stocks_id', '=', 'stocks.id')
+                ->join('products', 'stocks.products_id', '=', 'products.id')
+                ->select('productions.*', 'products.name', 'stocks.size')
+                ->where('productions.date', '<=', $tglakhir)
+                ->get();
+
+            $total = Production::where('productions.date', '<=', $tglakhir)
+                ->sum('id');
+        } else if (!isset($tglakhir) && isset($tglawal)) {
+            $page = DB::table('productions')
+                ->join('recipes', 'productions.recipes_id', '=', 'recipes.id')
+                ->join('stocks', 'recipes.stocks_id', '=', 'stocks.id')
+                ->join('products', 'stocks.products_id', '=', 'products.id')
+                ->select('productions.*', 'products.name', 'stocks.size')
+                ->where('productions.date', '>=', $tglawal)
+                ->get();
+
+            $total = Production::where('productions.date', '>=', $tglawal)
+                ->sum('id');
+        } else if (!isset($tglawal) && !isset($tglakhir)) {
+            $page = DB::table('productions')
+                ->join('recipes', 'productions.recipes_id', '=', 'recipes.id')
+                ->join('stocks', 'recipes.stocks_id', '=', 'stocks.id')
+                ->join('products', 'stocks.products_id', '=', 'products.id')
+                ->select('productions.*', 'products.name', 'stocks.size')
+                ->get();
+
+            $total = Production::sum('id');
+        } else {
+            $page = DB::table('productions')
+                ->join('recipes', 'productions.recipes_id', '=', 'recipes.id')
+                ->join('stocks', 'recipes.stocks_id', '=', 'stocks.id')
+                ->join('products', 'stocks.products_id', '=', 'products.id')
+                ->select('productions.*', 'products.name', 'stocks.size')
+                ->where('productions.date', '>=', $tglawal)
+                ->where('productions.date', '<=', $tglakhir)
+                ->get();
+            $total = Production::where('productions.date', '>=', $tglawal)
+                ->where('productions.date', '<=', $tglakhir)
+                ->sum('id');
+        }
+
+        // $page = DB::table('productions')
+        //     ->join('recipes', 'productions.recipes_id', '=', 'recipes.id')
+        //     ->join('stocks', 'recipes.stocks_id', '=', 'stocks.id')
+        //     ->join('products', 'stocks.products_id', '=', 'products.id')
+        //     ->select('productions.*', 'products.name', 'stocks.size')
+        //     ->get();
+        // $total = Production::sum('id');
+
+        $pdf = PDF::loadview('admin.pages.produksi.pdf', [
+            'produksi' => $page,
             'total' => $total
         ]);
-    	return $pdf->download('laporan-produksi.pdf');
+        return $pdf->download('laporan-produksi.pdf');
     }
 }

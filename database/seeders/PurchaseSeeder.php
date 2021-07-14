@@ -17,7 +17,7 @@ class PurchaseSeeder extends Seeder
         DB::table('puchases')->insert([
             'materials_id' => '1',
             'suppliers_id' => '1',
-            'date' => '2022-02-10',
+            'date' => '2021-07-13',
             'harga' => 40000,
             'qty' => 2,
             'satuan' => 'cm',
@@ -27,7 +27,7 @@ class PurchaseSeeder extends Seeder
         DB::table('puchases')->insert([
             'materials_id' => '2',
             'suppliers_id' => '2',
-            'date' => '2022-02-10',
+            'date' => '2021-07-14',
             'harga' => 40000,
             'qty' => 2,
             'satuan' => 'cm',
