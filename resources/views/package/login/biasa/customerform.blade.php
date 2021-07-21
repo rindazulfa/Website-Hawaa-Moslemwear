@@ -6,7 +6,7 @@
       <div class="col-xl-8 ftco-animate">
         <form action="{{ route('customer.store') }}" method="POST" class="billing-form bg-light p-3 p-md-5">
           @csrf
-          <h3 class="mb-4 billing-heading">Form Custom Product <br>Data Customer </h3>
+          <h3 class="mb-4 billing-heading">Form Data Customer </h3>
           <div class="row align-items-end">
             <div class="w-100"></div>
             <div class="col-md-12">

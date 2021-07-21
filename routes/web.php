@@ -124,7 +124,7 @@ Route::group([
     Route::get('/history/cetak_pdf/{id}', 'HistoryCustomController@cetak_pdf')->name('invoice_custom');
 
 
-    Route::resource('/profil', 'ProfileController');
+    // Route::resource('/profil', 'ProfileController');
 
     // Route::resource('dashboard', 'DashboardController');
     // Route::get('/home', [HomepageController::class, 'indexlogin'])->name('home');

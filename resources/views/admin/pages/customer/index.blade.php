@@ -61,9 +61,9 @@
                                 <td class="stok_produk">{{$key->postal_code}}</td>
                                 <td class="stok_produk">{{$key->phone}}</td>
                                 <td>
-                                    <a href="{{route('customer.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
+                                    <!-- <a href="{{route('customer.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update
-                                    </a>
+                                    </a> -->
                                     <!-- <button type="button" class="btn btn-outline-primary">Update</button> -->
                                     {{-- <button class="btn btn-outline-danger delete" data-id="{{$key->id}}">Delete</button> --}}
                                 </td>

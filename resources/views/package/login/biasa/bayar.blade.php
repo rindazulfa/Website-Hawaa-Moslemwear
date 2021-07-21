@@ -55,7 +55,7 @@
           </div>
           @endif
           @csrf
-          <h3 class="mb-4 billing-heading">Form Custom Product <br>Data Pembayaran</h3>
+          <h3 class="mb-4 billing-heading">Form Pembelian Product <br>Data Pembayaran</h3>
           <div class="row align-items-end">
             <div class="w-100"></div>
             <div class="col-md-12">
