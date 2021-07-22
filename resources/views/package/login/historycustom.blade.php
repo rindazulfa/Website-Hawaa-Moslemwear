@@ -32,7 +32,7 @@
                             <td>
                                 <?php
                                 if ($key->status_pengerjaan == "Menunggu Persetujuan Desain") {
-                                    echo "Masih Nunggu Acc Desain Sayang";
+                                    echo "Menunggu Status Pengajuan Desain";
                                 } else if ($key->status_pengerjaan == "Menunggu Data Order") {
                                     echo "Desain Diterima, Silahkan Melanjutkan Transaksi";
                                 } else if ($key->status_pengerjaan == "Menunggu Harga") {
@@ -53,7 +53,7 @@
                             <td>
                                 <?php
                                 if ($key->status_pengerjaan == "Menunggu Persetujuan Desain") {
-                                    echo "Masih Nunggu Acc Desain Sayang";
+                                    echo "Menunggu Status Pengajuan Desain";
                                 } else if ($key->status_pengerjaan == "Menunggu Data Order") {
                                     ?>
                                     <a href="/custom/{{$key->id}}" class="btn btn-primary py-3 px-3">

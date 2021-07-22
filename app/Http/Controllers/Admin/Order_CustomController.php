@@ -174,9 +174,12 @@ class Order_CustomController extends Controller
         if (!isset($tglawal) && isset($tglakhir)) {
             $page = DB::table('order_customs')
                 ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
+                ->join('customers','customers.id','=','order_customs.customers_id')
+                ->join('users','users.id','=','customers.users_id')
                 ->select(
                     'order_customs.*',
-                    'detail_order_customs.*'
+                    'detail_order_customs.*',
+                    'users.first_name'
                 )
                 ->where('order_customs.date', '<=', $tglakhir)
                 ->get();
@@ -186,9 +189,12 @@ class Order_CustomController extends Controller
         } else if (!isset($tglakhir) && isset($tglawal)) {
             $page = DB::table('order_customs')
                 ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
+                ->join('customers','customers.id','=','order_customs.customers_id')
+                ->join('users','users.id','=','customers.users_id')
                 ->select(
                     'order_customs.*',
-                    'detail_order_customs.*'
+                    'detail_order_customs.*',
+                    'users.first_name'
                 )
                 ->where('order_customs.date', '>=', $tglawal)
                 ->get();
@@ -198,18 +204,24 @@ class Order_CustomController extends Controller
         } else if (!isset($tglawal) && !isset($tglakhir)) {
             $page = DB::table('order_customs')
                 ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
+                ->join('customers','customers.id','=','order_customs.customers_id')
+                ->join('users','users.id','=','customers.users_id')
                 ->select(
                     'order_customs.*',
-                    'detail_order_customs.*'
+                    'detail_order_customs.*',
+                    'users.first_name'
                 )
                 ->get();
             $total = Order_Custom::sum('total');
         } else {
             $page = DB::table('order_customs')
                 ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
+                ->join('customers','customers.id','=','order_customs.customers_id')
+                ->join('users','users.id','=','customers.users_id')
                 ->select(
                     'order_customs.*',
-                    'detail_order_customs.*'
+                    'detail_order_customs.*',
+                    'users.first_name'
                 )
                 ->where('order_customs.date', '>=', $tglawal)
                 ->where('order_customs.date', '<=', $tglakhir)

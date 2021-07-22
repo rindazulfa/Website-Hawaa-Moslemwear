@@ -272,7 +272,7 @@
       text: 'Grafik Jumlah Penjualan'
     },
     subtitle: {
-      text: 'I ❥ U'
+      text: ''
     },
     xAxis: {
       categories: [
@@ -319,7 +319,7 @@
       text: 'Grafik Jumlah Pemasukkan'
     },
     subtitle: {
-      text: 'I ❥ U'
+      text: ''
     },
     xAxis: {
       categories: [

@@ -116,7 +116,9 @@ class OrderController extends Controller
 
         if (!isset($tglawal) && isset($tglakhir)) {
             $page = DB::table('orders')
-                ->select('orders.*')
+                ->select('orders.*','users.first_name')
+                ->join('customers','customers.id','=','orders.customers_id')
+                ->join('users','users.id','=','customers.users_id')
                 ->where('date', '<=', $tglakhir)
                 ->get();
 
@@ -124,7 +126,9 @@ class OrderController extends Controller
                 ->sum('total');
         } else if (!isset($tglakhir) && isset($tglawal)) {
             $page = DB::table('orders')
-                ->select('orders.*')
+                ->select('orders.*','users.first_name')
+                ->join('customers','customers.id','=','orders.customers_id')
+                ->join('users','users.id','=','customers.users_id')
                 ->where('date', '>=', $tglawal)
                 ->get();
 
@@ -132,12 +136,16 @@ class OrderController extends Controller
                 ->sum('total');
         } else if (!isset($tglawal) && !isset($tglakhir)) {
             $page = DB::table('orders')
-                ->select('orders.*')
+                ->select('orders.*','users.first_name')
+                ->join('customers','customers.id','=','orders.customers_id')
+                ->join('users','users.id','=','customers.users_id')
                 ->get();
             $total = order::sum('total');
         } else {
             $page = DB::table('orders')
-                ->select('orders.*')
+                ->select('orders.*','users.first_name')
+                ->join('customers','customers.id','=','orders.customers_id')
+                ->join('users','users.id','=','customers.users_id')
                 ->where('date', '>=', $tglawal)
                 ->where('date', '<=', $tglakhir)
                 ->get();

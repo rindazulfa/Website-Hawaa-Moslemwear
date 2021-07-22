@@ -19,11 +19,15 @@ class DashboardController extends Controller
     {
         $pengeluaran = puchase::sum('total');
 
-        $pemasukkancustom = Order_Custom::sum('total');
-        $pemasukkanbiasa = order::sum('total');
+        $pemasukkancustom = Order_Custom::where('status_pembayaran','=','Selesai')
+        ->sum('total');
+        $pemasukkanbiasa = order::where('status','=','Selesai')
+        ->sum('total');
 
-        $jmlordercustom = Order_Custom::count('total');
-        $jmlorderbiasa = order::count('total');
+        $jmlordercustom = Order_Custom::where('status_pembayaran','=','Selesai')
+        ->count('total');
+        $jmlorderbiasa = order::where('status','=','Selesai')
+        ->count('total');
 
         $keuntungan = ($pemasukkancustom+$pemasukkanbiasa) - $pengeluaran;
         $pesanan = $jmlordercustom+$jmlorderbiasa;
