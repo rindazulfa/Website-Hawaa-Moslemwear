@@ -22,14 +22,14 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="size">Ukuran Order</label>
-                <input type="text" class="form-control" placeholder="Masukkan Ukuran yang Anda Pesan" name="size">
+                <input type="text" class="form-control" placeholder="Masukkan Ukuran yang Anda Pesan" name="size" required>
               </div>
             </div>
             <div class="w-100"></div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="qty">Jumlah Pesanan</label>
-                <input type="number" class="form-control" placeholder="Masukkan Jumlah Pesanan Anda" name="qty">
+                <input type="number" class="form-control" placeholder="Masukkan Jumlah Pesanan Anda" name="qty" required>
               </div>
               <div class="form-group">
                 <label for="harga">Harga</label>
@@ -44,7 +44,7 @@
               <div class="form-group">
                 <label for="shipping">Shipping</label>
                 <!-- <input type="text" class="form-control" placeholder="Masukkan jenis shipping yang Anda Pesan" name="shipping"> -->
-                <select class="form-control" name="cbnamashipping" id="cbnamashipping">
+                <select class="form-control" name="cbnamashipping" id="cbnamashipping" required>
                   <option value="" selected>Pilih Jenis Pengiriman</option>
                   @foreach($ship as $sp)
                   <option value="{{ $sp->nama }}">{{ $sp->nama }}</option>

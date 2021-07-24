@@ -15,7 +15,7 @@ class ProfileSeeder extends Seeder
     public function run()
     {
         DB::table('profiles')->insert([
-            'picture' => 'bg_4.jpg',
+            'picture' => 'about.jpg',
             'desc_1' => 'Hawaa Moslem merupakan sebuah toko fashion yang memberikan penawaran produk mereka dengan menggunakan tema muslim',
             'desc_2' => 'Dimana mereka menawarkan berbagai produk kami untuk dipasarkan dan kami juga bisa menerima pemesanan secara custom untuk jumlah yang lebih banyak',
             'telepon' => '+62 811-3104-430',

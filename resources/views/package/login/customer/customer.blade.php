@@ -23,33 +23,33 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="alamat">Alamat Rumah</label>
-                                    <input type="text" class="form-control" name="address" value="{{ $items[0]->address }}">
+                                    <input type="text" class="form-control" name="address" value="{{ $items[0]->address }}" required>
                                 </div>
                             </div>
                             <div class="w-100"></div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="kota">Kota</label>
-                                    <input type="text" class="form-control" name="city" value="{{ $items[0]->city }}">
+                                    <input type="text" class="form-control" name="city" value="{{ $items[0]->city }}" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="provinsi">Provinsi</label>
-                                    <input type="text" class="form-control" name="province" name="provinsi" value="{{ $items[0]->province }}">
+                                    <input type="text" class="form-control" name="province" name="provinsi" value="{{ $items[0]->province }}" required>
                                 </div>
                             </div>
                             <div class="w-100"></div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="kode_pos">Kode Pos</label>
-                                    <input type="number" class="form-control" name="postal" value="{{ $items[0]->postal_code }}">
+                                    <input type="number" class="form-control" name="postal" value="{{ $items[0]->postal_code }}" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="no_telp">Nomor Telepon</label>
-                                    <input type="text" class="form-control" name="phone" value="{{ $items[0]->phone }}">
+                                    <input type="text" class="form-control" name="phone" value="{{ $items[0]->phone }}" required>
                                 </div>
                             </div>
                         </div>

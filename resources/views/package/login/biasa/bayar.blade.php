@@ -62,7 +62,7 @@
               <div class="form-group">
                 <input type="number" class="form-control" name="id" value="{{ $dt->id }}" readonly hidden>
                 <label for="purpose">Tujuan Pembayaran</label>
-                <select class="form-control" name="cbnamabank" id="cbnamabank">
+                <select class="form-control" name="cbnamabank" id="cbnamabank" required>
                   <option value="" selected>Pilih Bank Tujuan</option>
                   @foreach($payment as $pay)
                   <option value="{{ $pay->bank }}">{{ $pay->bank }}</option>
@@ -78,13 +78,13 @@
               </div>
               <div class="form-group">
                 <label for="amount">Jumlah Transfer</label>
-                <input type="number" class="form-control" placeholder="Masukkan Jumlah Pembayaran" name="amount">
+                <input type="number" class="form-control" placeholder="Masukkan Jumlah Pembayaran" name="amount" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="file">Bukti Pembayaran</label>
-                <input type="file" class="form-control" placeholder="Masukkan bukti pembayaran Anda" name="file">
+                <input type="file" class="form-control" placeholder="Masukkan bukti pembayaran Anda" name="file" required>
               </div>
             </div>
             <div class="w-100"></div>
@@ -96,7 +96,7 @@
             </div>
             <div class="col-md-12">
               <label for="description">Shipping</label>
-              <select class="form-control" name="cbnamashipping" id="cbnamashipping">
+              <select class="form-control" name="cbnamashipping" id="cbnamashipping" required>
                 <option value="" selected>Pilih Jenis Pengiriman</option>
                 @foreach($ship as $sp)
                 <option value="{{ $sp->nama }}">{{ $sp->nama }}</option>

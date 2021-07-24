@@ -19,7 +19,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="file">File Desain</label>
-                <input type="file" class="form-control" placeholder="Masukkan file Anda" name="file">
+                <input type="file" class="form-control" placeholder="Masukkan file Anda" name="file" required>
               </div>
             </div>
           </div>
