@@ -22,7 +22,6 @@
                         <input type="date" name="tglawal">
                         <input type="date" name="tglakhir">
                         <button type="submit" class="btn btn-sm btn-neutral">Cetak PDF</button>
-                        <!-- <a href="" class="btn btn-sm btn-neutral">Cetak PDF</a> -->
                     </form>
                 </div>
             </div>

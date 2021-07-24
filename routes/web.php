@@ -61,6 +61,7 @@ Route::group([
     Route::resource('bahan_baku', 'MaterialController');
 
     Route::resource('shipping', 'ShippingController');
+    Route::resource('kategori', 'CategoryController');
     Route::resource('payment', 'PaymentController');
 
     //Resep

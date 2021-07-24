@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\detail_order;
 use App\Models\Discount_Product;
 use App\Models\material;
@@ -13,6 +14,7 @@ use App\Stok;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -23,7 +25,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $items = product::with(['stok'])->get();
+        $items = product::with(['stok','kategori'])->get();
         //    dd($items);
         // $items = stock::with(['product'])->get();
         return view('admin/pages/produk/index', [
@@ -38,7 +40,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.produk.create');
+        $items = Category::all();
+        return view('admin.pages.produk.create', [
+            'items' => $items
+        ]);
     }
 
     /**
@@ -82,16 +87,19 @@ class ProductController extends Controller
             } catch (\Throwable $th) {
                 dd($th);
             }
-
+            $data = $request->all();
             $product = new Product();
             $product->name = $request->get('name');
             $product->price = $request->get('price');
             $product->desc = $request->get('desc');
+            $product->categories_id = $request->get('categories_id');
+            // dd($product);
             // $product->category = $request->get('category');
             $product->pict_1 = $namaFile1;
             $product->pict_2 = $namaFile2;
             $product->pict_3 = $namaFile3;
             $product->save();
+
         }
 
         return redirect()->route("stok_produk.create")->with("info", "Product has been created");
@@ -127,21 +135,25 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $edit = product::findOrFail($id);//id produk
-        
-        //RESEP
-        $stok =stock::where('products_id',$id)->first();
-        $resep = Recipe::where('stocks_id',$stok->id)->first();
-        $material = material::where('id',$resep->id)->first();
-        
-        // dd($resep);
-        // foreach ($hitung as $key => $value) {
-        //     # code...
-        // }
+        $edit = product::findOrFail($id); //id produk
 
+        $max = 0;
+        //RESEP
+        $resep = DB::table('recipes')
+            ->join('stocks', 'recipes.stocks_id', '=', 'stocks.id')
+            ->join('products', 'stocks.products_id', '=', 'products.id')
+            ->join('materials', 'recipes.materials_id', '=', 'materials.id')
+            ->select(DB::raw('sum(materials.price*recipes.qty) as subtotal'), 'stocks.id')
+            ->where('products_id', '=', $id)
+            ->groupBy('stocks.id')
+            ->get()->toArray();
+        if (!empty($resep)) {
+            $max = max(array_column($resep, 'subtotal'));
+        }
 
         return view('admin.pages.produk.edit', [
-            'edit' => $edit
+            'edit' => $edit,
+            'biaya' => $max
         ]);
     }
 
@@ -234,19 +246,15 @@ class ProductController extends Controller
     {
         //cek relasi
         $cekStok = stock::where('products_id', $id)->first();
-        $cekDcProduct = Discount_Product::where('products_id', $id)->first();
         $cekDtOrder = detail_order::where('products_id', $id)->first();
         if ($cekStok) {
-            return redirect()->route('produk.index')->with("info", "Sorry, cant delete this product");
-        }
-        if ($cekDcProduct) {
             return redirect()->route('produk.index')->with("info", "Sorry, cant delete this product");
         }
         if ($cekDtOrder) {
             return redirect()->route('produk.index')->with("info", "Sorry, cant delete this product");
         }
 
-        if (!$cekStok && !$cekDcProduct && !$cekDtOrder) {
+        if (!$cekStok && !$cekDtOrder) {
 
             $delete = Product::findOrFail($id);
             $namaFileLama1 = "uploads/products/" . $delete->pict_1;

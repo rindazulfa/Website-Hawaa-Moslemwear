@@ -12,18 +12,20 @@ class Product extends Model
     // use SoftDeletes;
     protected $table = "products";
     protected $fillable = [
-         'name', 'price', 'desc', 
+         'categories_id','name', 'price', 'desc', 
       'pict_1', 'pict_2', 'pict_3'
     ];
 
     protected $hidden = [];
-
+    public function kategori(){
+        return $this->belongsTo(Category::class, 'categories_id', 'id');
+    }
 
     public function stok()
     {
         return $this->hasMany(stock::class, 'products_id', 'id');
     }
-
+    
     
     public function ordercustom()
     {

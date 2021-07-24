@@ -43,20 +43,30 @@
                                     <th>Nama Produk</th>
                                     <th>Size</th>
                                     <th>Nama Bahan</th>
+                                    <th>Harga</th>
                                     <th>QTY</th>
+                                    <th>Subtotal</th>
                                     <th>Satuan</th>
                                     <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody class="list">
+                                @php
+                                    $total = 0;
+                                @endphp
                                 @forelse($resep as $key)
+                                @php
+                                    $total += $key->price* $key->qty;
+                                @endphp
                                 <tr>
                                     <td>{{$key->id}}</td>
                                     <td>{{$key->nama_produk}}</td>
                                     <td>{{$key->size}}</td>
                                     <td>{{$key->name}}</td>
+                                    <td>{{$key->price}}</td>
                                     <td>{{$key->qty}}</td>
+                                    <td>{{$key->qty * $key->price }}</td>
                                     <td>{{$key->satuan}}</td>
                                     <td>
                                         <a href="{{route('resep.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
@@ -101,7 +111,9 @@
                         </table>
                         <div class="card-footer">
                         <div class="row">
-                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4">
+                                <h3>Total Biaya Bahan adalah {{ $total }} </h3>
+                            </div>
                             <div class="col-lg-8">
                                 <button type="button" class="btn btn-secondary"><a href="/stok_produk">Kembali</a></button>
                             </div>

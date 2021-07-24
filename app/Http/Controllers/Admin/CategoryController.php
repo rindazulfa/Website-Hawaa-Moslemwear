@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Shipping;
+use App\Models\Category;
+use COM;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Prophecy\Call\Call;
 
-class ShippingController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +18,8 @@ class ShippingController extends Controller
      */
     public function index()
     {
-        $page = Shipping::all();
-        return view('admin/pages/shipping/index', ['page' => $page]);
+        $page = Category::all();
+        return view('admin/pages/kategori/index', ['page' => $page]);
     }
 
     /**
@@ -27,7 +29,7 @@ class ShippingController extends Controller
      */
     public function create()
     {
-        return view('admin/pages/shipping/create');
+        return view('admin/pages/kategori/create');
     }
 
     /**
@@ -39,17 +41,17 @@ class ShippingController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make(request()->all(), [
-            'nama' => 'required'
+            'name' => 'required'
         ]);
 
         if ($validator->fails()) {
             return back()->withErrors($validator->errors());
         } else {
-            $page = new Shipping();
-            $page->nama = $request->get("nama");
+            $page = new Category();
+            $page->name = $request->get("name");
             $page->save();
 
-            return redirect()->route("shipping.index")->with("info", "Shipping has been created");
+            return redirect()->route("kategori.index")->with("info", "kategori has been created");
         }
     }
 
@@ -72,9 +74,9 @@ class ShippingController extends Controller
      */
     public function edit($id)
     {
-        $edit = Shipping::findOrFail($id);
+        $edit = Category::findOrFail($id);
 
-        return view('admin.pages.shipping.edit', [
+        return view('admin.pages.kategori.edit', [
             'edit' => $edit
         ]);
     }
@@ -88,11 +90,11 @@ class ShippingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $page = Shipping::findOrFail($id);
-        $page->nama = $request->get("nama");
+        $page = Category::findOrFail($id);
+        $page->name = $request->get("name");
         $page->save();
 
-        return redirect()->route("shipping.index")->with("info", "Shipping has been created");
+        return redirect()->route("kategori.index")->with("info", "kategori has been created");
     }
 
     /**
@@ -103,9 +105,8 @@ class ShippingController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Shipping::findOrFail($id);
+        $delete = Category::findOrFail($id);
         $delete->delete();
-        return redirect()->route('shipping.index')->with("info", "Shipping has been deleted");
-        // return redirect()->route('shipping.index');
+        return redirect()->route('kategori.index')->with("info", "kategori has been deleted");
     }
 }

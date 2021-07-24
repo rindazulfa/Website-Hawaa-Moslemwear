@@ -17,13 +17,15 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             // $table->unsignedBigInteger('discounts_id');
             // $table->foreign('pictures_id')->references('id')->on('pictures')->onDelete('cascade');
+            $table->unsignedBigInteger('categories_id')->nullable();
+            $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string("name");
             $table->integer("price");
             $table->text("desc");
             // $table->string("category");
             $table->string("pict_1");
-            $table->string("pict_2");
-            $table->string("pict_3");
+            $table->string("pict_2")->nullable();
+            $table->string("pict_3")->nullable();
             // $table->softDeletes();
             $table->timestamps();
         });

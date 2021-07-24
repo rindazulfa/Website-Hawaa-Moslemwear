@@ -45,6 +45,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link {{ (request()->segment(1) == 'kategori') ? 'active' : '' }}" href="/kategori">
+              <i class="ni ni-spaceship"></i>
+              <span class="nav-link-text">Kategori</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link {{ (request()->segment(1) == 'produk') ? 'active' : '' }}" href="/produk">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Produk</span>

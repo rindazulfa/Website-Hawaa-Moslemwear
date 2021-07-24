@@ -15,6 +15,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
         DB::table('products')->insert([
+            'categories_id' => '1',
             'name' => 'Woman Dress',
             'price' => 450000,
             'desc' => 'Lorem Ipsum is simply dummy text of the printing 
@@ -28,6 +29,7 @@ class ProductSeeder extends Seeder
         ]);
 
         DB::table('products')->insert([
+            'categories_id' => '1',
             'name' => 'Gamis',
             'price' => 50000,
             'desc' => 'Lorem Ipsum is simply dummy text of the printing 
@@ -41,6 +43,7 @@ class ProductSeeder extends Seeder
         ]);
 
         DB::table('products')->insert([
+            'categories_id' => '2',
             'name' => 'Woman Dress',
             'price' => 30000,
             'desc' => 'Lorem Ipsum is simply dummy text of the printing 
@@ -53,6 +56,7 @@ class ProductSeeder extends Seeder
             'pict_3' => 'produk1.png'
         ]);
         DB::table('products')->insert([
+            'categories_id' => '2',
             'name' => 'Produk 4',
             'price' => 70000,
             'desc' => 'Lorem Ipsum is simply dummy text of the printing 
@@ -65,6 +69,7 @@ class ProductSeeder extends Seeder
             'pict_3' => 'produk1.png'
         ]);
         DB::table('products')->insert([
+            'categories_id' => '1',
             'name' => 'Produk 5',
             'price' => 90000,
             'desc' => 'Lorem Ipsum is simply dummy text of the printing 

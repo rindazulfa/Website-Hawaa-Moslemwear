@@ -48,7 +48,7 @@ class RecipeController extends Controller
     //TAMBAH RESEP
     public function form(Request $request, $id)
     {
-
+        $arr_idbahan =[];
         $detail = stock::findOrFail($id); //idstok
         foreach ($detail->resep as $row) {
             // dd($row);
