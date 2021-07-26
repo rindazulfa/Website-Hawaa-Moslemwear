@@ -14,7 +14,7 @@
         }
     </style>
     <center>
-        <h5>Laporan PDF Pembelian</h4>
+        <h5>Laporan PDF Pembelian</h5>
     </center>
 
     <table class='table table-bordered'>

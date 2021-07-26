@@ -29,7 +29,7 @@
           </p>
           <hr>
           @endforelse
-          <p>Berikut merupakan contoh screenshoot bukti pembayaran</p>
+          <!-- <p>Berikut merupakan contoh screenshoot bukti pembayaran</p>
           <div class="row">
             <div class="col-sm text-center">
               <p><strong>Bukti Valid</strong></p>
@@ -39,7 +39,19 @@
               <p><strong>Bukti Tidak valid</strong></p>
               <img src="{{ asset('uploads/bukti/contohbuktinon.jpeg') }}" alt="gbrcthbuktinon" width="230px" height="400px">
             </div>
-          </div>
+          </div> -->
+          <h3 class="billing-heading">Ketentuan Upload Bukti Pembayaran</h3>
+          <ol>
+            <strong class="text-justify">
+              <li>Pembayaran dapat dilakukan secara digital melalui nomor rekening yang tersedia.</li>
+              <li>Harap melakukan pembayaran sesuai dengan nominal yang tertera, tidak kurang dan tidak lebih (PAS)</li>
+              <li>Jika terjadi kesalahan dalam pembayaran, segera melakukan konfirmasi melalui kontak Wa dibawah dengan melampirkan bukti transfer</li>
+              <li>Setelah melakukan pembayaran harap menunggu 1x24 jam kerja, untuk validasi pembayaran. Jika melebihi waktu tunggu segera konfirmasi melalui kontak wa dibawah dengan melampirkan bukti transfer</li>
+            </strong>
+          </ol>
+          <a href="https://wa.me/0811111111">
+            <h3 class="billing-heading">WA : 0811111111111</h3>
+          </a>
         </div>
       </div>
       <div class="col-md-6">
@@ -104,6 +116,7 @@
               </select>
             </div>
           </div>
+          <br>
           <div class="container col-md-4">
             <input type="submit" value="Lanjutkan" class="btn btn-primary py-3 px-5">
           </div>

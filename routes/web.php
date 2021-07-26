@@ -91,6 +91,7 @@ Route::group([
     Route::get('/penjualancustom/statusdesain/acc/{id}', [Order_CustomController::class, 'updsttsdesacc'])->name('acc.desain');
     Route::get('/penjualancustom/statusdesain/den/{id}', [Order_CustomController::class, 'updsttsdesden'])->name('den.desain');
     Route::get('/penjualancustom/update/{id}', [Order_CustomController::class, 'tampileditharga'])->name('edit.harga');
+    Route::get('/penjualancustom/updatetanggal/{id}', [Order_CustomController::class, 'tampiltanggalpengiriman'])->name('edit.tanggal');
 });
 
 
@@ -113,6 +114,7 @@ Route::group([
 
     // Custom
     Route::resource('/custom', 'CustomProductController');
+    Route::get('/custom/status/den/{id}', [CustomProductController::class, 'updsttsden'])->name('den.status');
     Route::resource('/confirmpayment', 'Confirm_PaymentController');
     Route::get('/confirmpayment/statuspay/acc/{id}', [Confirm_PaymentController::class, 'accpembayaran'])->name('acc.pay');
     Route::get('/confirmpaymentproduk/statuspay/acc/{id}', [Confirm_PaymentController::class, 'accpembayaranproduk'])->name('acc.payprod');

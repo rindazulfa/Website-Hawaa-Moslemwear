@@ -212,6 +212,16 @@ class CustomProductController extends Controller
         return redirect('/history');
     }
 
+    public function updsttsden($id)
+    {
+        $dendes = DB::table('order_customs')
+            ->where('id', '=', $id)->update([
+                'status_pengerjaan' => 'Ditolak',
+                'status_pembayaran' => 'Ditolak',
+            ]);
+        return redirect('/history');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

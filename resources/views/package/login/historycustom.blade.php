@@ -60,18 +60,20 @@
                                         Lanjutkan Transaksi
                                     </a>
                                     <br><br>
-                                    <a href="{{route('custom.destroy', [$key->id])}}" class="btn btn-warning py-3 px-3">
+                                    <a href="/custom/status/den/{{ $key->id }}" class="btn btn-warning py-3 px-3">Batalkan</a>
+                                    <!-- <a href="{{route('custom.destroy', [$key->id])}}" class="btn btn-warning py-3 px-3">
                                         Batalkan
-                                    </a>
+                                    </a> -->
                                 <?php
                                 } else if ($key->status_pengerjaan == "Menunggu Proses Pembayaran") { ?>
                                     <a href="custom/{{$key->id}}/edit" class="btn btn-primary py-3 px-3">
                                         Bayar Sekarang
                                     </a>
                                     <br><br>
-                                    <a href="{{route('custom.destroy', [$key->id])}}" class="btn btn-warning py-3 px-3">
+                                    <a href="/custom/status/den/{{ $key->id }}" class="btn btn-warning py-3 px-3">Batalkan</a>
+                                    <!-- <a href="{{route('custom.destroy', [$key->id])}}" class="btn btn-warning py-3 px-3">
                                         Batalkan
-                                    </a>
+                                    </a> -->
                                 <?php
                                 } else if ($key->status_pengerjaan == "Selesai") {
                                     ?>

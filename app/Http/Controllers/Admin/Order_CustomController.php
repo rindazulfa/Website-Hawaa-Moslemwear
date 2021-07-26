@@ -21,7 +21,8 @@ class Order_CustomController extends Controller
             ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
             ->select(
                 'order_customs.*',
-                'detail_order_customs.*'
+                'detail_order_customs.*',
+                'detail_order_customs.date as tanggal'
             )
             ->get();
         return view('admin/pages/penjualan_custom/index', [
@@ -77,6 +78,31 @@ class Order_CustomController extends Controller
         //     $data_penjualan
         // );
         return view('admin/pages/penjualan_custom/create', [
+            'data_penjualan' => $data_penjualan
+        ]);
+    }
+
+    public function tampiltanggalpengiriman($id)
+    {
+        $data_penjualan = DB::table('detail_order_customs')
+            ->join('order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
+            ->join('customers', 'customers.id', '=', 'order_customs.customers_id')
+            ->where('order_customs_id', '=', $id)
+            ->select(
+                'order_customs.id',
+                'order_customs.date',
+                'detail_order_customs.qty',
+                'detail_order_customs.size',
+                'customers.address'
+            )
+            ->get();
+
+        // dd(
+        //     $id,
+        //     $data_penjualan
+        // );
+
+        return view('admin/pages/penjualan_custom/tanggal', [
             'data_penjualan' => $data_penjualan
         ]);
     }
@@ -147,7 +173,12 @@ class Order_CustomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updtanggal = DB::table('detail_order_customs')
+            ->where('order_customs_id', '=', $request->id)->update([
+                'date' => $request->tglpengiriman
+            ]);
+
+        return redirect('/penjualancustom');
     }
 
     /**
@@ -165,6 +196,12 @@ class Order_CustomController extends Controller
     {
         $tglawal = $request->get('tglawal');
         $tglakhir = $request->get('tglakhir');
+        $jumlahtransaksi = DB::table('order_customs')
+            ->where('status_pengerjaan', '=', 'Selesai')
+            ->count();
+
+        $periode1 = 'All';
+        $periode2 = $tglakhir;
 
         // dd(
         //     $tglakhir,
@@ -174,8 +211,8 @@ class Order_CustomController extends Controller
         if (!isset($tglawal) && isset($tglakhir)) {
             $page = DB::table('order_customs')
                 ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
-                ->join('customers','customers.id','=','order_customs.customers_id')
-                ->join('users','users.id','=','customers.users_id')
+                ->join('customers', 'customers.id', '=', 'order_customs.customers_id')
+                ->join('users', 'users.id', '=', 'customers.users_id')
                 ->select(
                     'order_customs.*',
                     'detail_order_customs.*',
@@ -183,14 +220,35 @@ class Order_CustomController extends Controller
                 )
                 ->where('order_customs.date', '<=', $tglakhir)
                 ->get();
+
+            $jumlahtransaksi = DB::table('order_customs')
+                ->where('status_pengerjaan', '=', 'Selesai')
+                ->where('order_customs.date', '<=', $tglakhir)
+                ->count();
+
+            $periode1 = $tglawal;
+            $periode2 = $tglakhir;
+
+            // $jmlkirim = DB::table('order_customs')
+            //     ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
+            //     ->join('customers', 'customers.id', '=', 'order_customs.customers_id')
+            //     ->join('users', 'users.id', '=', 'customers.users_id')
+            //     ->select(
+            //         'order_customs.*',
+            //         'detail_order_customs.*',
+            //         'users.first_name'
+            //     )
+            //     ->where('order_customs.date', '<=', $tglakhir)
+            //     ->where('','=','')
+            //     ->count();
 
             $total = Order_Custom::where('order_customs.date', '<=', $tglakhir)
                 ->sum('total');
         } else if (!isset($tglakhir) && isset($tglawal)) {
             $page = DB::table('order_customs')
                 ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
-                ->join('customers','customers.id','=','order_customs.customers_id')
-                ->join('users','users.id','=','customers.users_id')
+                ->join('customers', 'customers.id', '=', 'order_customs.customers_id')
+                ->join('users', 'users.id', '=', 'customers.users_id')
                 ->select(
                     'order_customs.*',
                     'detail_order_customs.*',
@@ -199,25 +257,41 @@ class Order_CustomController extends Controller
                 ->where('order_customs.date', '>=', $tglawal)
                 ->get();
 
+            $jumlahtransaksi = DB::table('order_customs')
+                ->where('status_pengerjaan', '=', 'Selesai')
+                ->where('order_customs.date', '>=', $tglawal)
+                ->count();
+
+            $periode1 = $tglawal;
+            $periode2 = $tglakhir;
+
             $total = Order_Custom::where('order_customs.date', '>=', $tglawal)
                 ->sum('total');
         } else if (!isset($tglawal) && !isset($tglakhir)) {
             $page = DB::table('order_customs')
                 ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
-                ->join('customers','customers.id','=','order_customs.customers_id')
-                ->join('users','users.id','=','customers.users_id')
+                ->join('customers', 'customers.id', '=', 'order_customs.customers_id')
+                ->join('users', 'users.id', '=', 'customers.users_id')
                 ->select(
                     'order_customs.*',
                     'detail_order_customs.*',
                     'users.first_name'
                 )
                 ->get();
+
+            $jumlahtransaksi = DB::table('order_customs')
+                ->where('status_pengerjaan', '=', 'Selesai')
+                ->count();
+
+            $periode1 = $tglawal;
+            $periode2 = $tglakhir;
+
             $total = Order_Custom::sum('total');
         } else {
             $page = DB::table('order_customs')
                 ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
-                ->join('customers','customers.id','=','order_customs.customers_id')
-                ->join('users','users.id','=','customers.users_id')
+                ->join('customers', 'customers.id', '=', 'order_customs.customers_id')
+                ->join('users', 'users.id', '=', 'customers.users_id')
                 ->select(
                     'order_customs.*',
                     'detail_order_customs.*',
@@ -226,6 +300,15 @@ class Order_CustomController extends Controller
                 ->where('order_customs.date', '>=', $tglawal)
                 ->where('order_customs.date', '<=', $tglakhir)
                 ->get();
+
+            $jumlahtransaksi = DB::table('order_customs')
+                ->where('status_pengerjaan', '=', 'Selesai')
+                ->where('order_customs.date', '>=', $tglawal)
+                ->where('order_customs.date', '<=', $tglakhir)
+                ->count();
+
+            $periode1 = $tglawal;
+            $periode2 = $tglakhir;
 
             $total = Order_Custom::where('order_customs.date', '<=', $tglakhir)
                 ->where('order_customs.date', '>=', $tglawal)
@@ -243,8 +326,11 @@ class Order_CustomController extends Controller
 
         $pdf = PDF::loadview('admin.pages.penjualan_custom.pdf', [
             'custom' => $page,
-            'total' => $total
+            'total' => $total,
+            'periode1' => $periode1,
+            'periode2' => $periode2,
+            'jumlahtransaksi' => $jumlahtransaksi
         ]);
-        return $pdf->download('laporan-penjualan_custom.pdf');
+        return $pdf->download('laporan-penjualan_custom-' . $periode1 . ' - ' . $periode2 . '.pdf');
     }
 }

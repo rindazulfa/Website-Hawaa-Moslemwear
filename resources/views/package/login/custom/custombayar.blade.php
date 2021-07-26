@@ -13,7 +13,7 @@
           @empty
           <h4>Id Order : Kosong</h4>
           @endforelse
-          <h3 class="billing-heading mb-4">Daftar Rekening Transfer</h3>
+          <h3 class="billing-heading">Daftar Rekening Transfer</h3>
           <p>Jumlah yang harus anda bayar : Rp. <strong>{{number_format($total[0]->total,2,',','.')}}</strong> </p>
           <hr>
           @forelse($payment as $key)
@@ -29,7 +29,7 @@
           </p>
           <hr>
           @endforelse
-          <p>Berikut merupakan contoh screenshoot bukti pembayaran</p>
+          <!-- <p>Berikut merupakan contoh screenshoot bukti pembayaran</p>
           <div class="row">
             <div class="col-sm text-center">
               <p><strong>Bukti Valid</strong></p>
@@ -39,12 +39,24 @@
               <p><strong>Bukti Tidak valid</strong></p>
               <img src="{{ asset('uploads/bukti/contohbuktinon.jpeg') }}" alt="gbrcthbuktinon" width="230px" height="400px">
             </div>
-          </div>
+          </div> -->
+          <h3 class="billing-heading">Ketentuan Upload Bukti Pembayaran</h3>
+          <ol>
+            <strong class="text-justify">
+              <li>Pembayaran dapat dilakukan secara digital melalui nomor rekening yang tersedia.</li>
+              <li>Harap melakukan pembayaran sesuai dengan nominal yang tertera, tidak kurang dan tidak lebih (PAS)</li>
+              <li>Jika terjadi kesalahan dalam pembayaran, segera melakukan konfirmasi melalui kontak Wa dibawah dengan melampirkan bukti transfer</li>
+              <li>Setelah melakukan pembayaran harap menunggu 1x24 jam kerja, untuk validasi pembayaran. Jika melebihi waktu tunggu segera konfirmasi melalui kontak wa dibawah dengan melampirkan bukti transfer</li>
+            </strong>
+          </ol>
+          <a href="https://wa.me/0811111111">
+            <h3 class="billing-heading">WA : 0811111111111</h3>
+          </a>
         </div>
       </div>
       <div class="col-md-6">
         @forelse($data as $dt)
-        <form action="{{ route('confirmpayment.store') }}" method="post" enctype="multipart/form-data" class="billing-form bg-light p-3 p-md-5" >
+        <form action="{{ route('confirmpayment.store') }}" method="post" enctype="multipart/form-data" class="billing-form bg-light p-3 p-md-5">
           @if($errors->any())
           <div class="alert alert-danger">
             <ul>
@@ -60,7 +72,7 @@
             <div class="w-100"></div>
             <div class="col-md-12">
               <div class="form-group">
-              <input type="number" class="form-control" name="id" value="{{ $dt->id }}" readonly hidden>
+                <input type="number" class="form-control" name="id" value="{{ $dt->id }}" readonly hidden>
                 <label for="purpose">Tujuan Pembayaran</label>
                 <select class="form-control" name="cbnamabank" id="cbnamabank" required>
                   <option value="" selected>Pilih Bank Tujuan</option>

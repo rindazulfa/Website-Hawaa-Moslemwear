@@ -14,7 +14,13 @@
         }
     </style>
     <center>
-        <h5>Laporan PDF Penjualan Custom</h4>
+        <h5>Laporan PDF Penjualan Custom</h5>
+        @if(isset($periode1)||isset($periode2))
+        <h5>Tanggal</h5><strong>{{ $periode1 }} - {{ $periode2 }}</strong>
+        @else
+        <h5>Seluruh Periode</h5>
+        @endif
+        <br>
     </center>
 
     <table class='table table-bordered'>
@@ -45,7 +51,9 @@
             </tr>
         </tbody>
     </table>
-
+    <p>Jumlah Transaksi Berhasil : <strong>{{ $jumlahtransaksi }}</strong> Transaksi</p>
+    <p>Jumlah Estimasi Pemasukkan : <strong>Rp. {{number_format($total,2,',','.')}}</strong></p>
+    <p></p>
 </body>
 
 </html>

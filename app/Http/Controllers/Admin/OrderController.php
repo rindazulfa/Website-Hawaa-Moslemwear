@@ -26,8 +26,7 @@ class OrderController extends Controller
         $page = DB::table('orders')
             ->join('detail_orders', 'detail_orders.orders_id', '=', 'orders.id')
             ->select(
-                'orders.*',
-                'detail_orders.*'
+                'orders.*'
             )
             ->distinct()
             ->get();
@@ -108,6 +107,12 @@ class OrderController extends Controller
     {
         $tglawal = $request->get('tglawal');
         $tglakhir = $request->get('tglakhir');
+        $jumlahtransaksi = DB::table('orders')
+            ->where('status', '=', 'Selesai')
+            ->count();
+
+        $periode1 = 'All';
+        $periode2 = $tglakhir;
 
         // dd(
         //     $tglakhir,
@@ -116,39 +121,73 @@ class OrderController extends Controller
 
         if (!isset($tglawal) && isset($tglakhir)) {
             $page = DB::table('orders')
-                ->select('orders.*','users.first_name')
-                ->join('customers','customers.id','=','orders.customers_id')
-                ->join('users','users.id','=','customers.users_id')
+                ->select('orders.*', 'users.first_name')
+                ->join('customers', 'customers.id', '=', 'orders.customers_id')
+                ->join('users', 'users.id', '=', 'customers.users_id')
                 ->where('date', '<=', $tglakhir)
                 ->get();
+
+            $jumlahtransaksi = DB::table('orders')
+                ->where('status', '=', 'Selesai')
+                ->where('date', '<=', $tglakhir)
+                ->count();
+
+            $periode1 = $tglawal;
+            $periode2 = $tglakhir;
 
             $total = order::where('date', '<=', $tglakhir)
                 ->sum('total');
         } else if (!isset($tglakhir) && isset($tglawal)) {
             $page = DB::table('orders')
-                ->select('orders.*','users.first_name')
-                ->join('customers','customers.id','=','orders.customers_id')
-                ->join('users','users.id','=','customers.users_id')
+                ->select('orders.*', 'users.first_name')
+                ->join('customers', 'customers.id', '=', 'orders.customers_id')
+                ->join('users', 'users.id', '=', 'customers.users_id')
                 ->where('date', '>=', $tglawal)
                 ->get();
+
+            $jumlahtransaksi = DB::table('orders')
+                ->where('status', '=', 'Selesai')
+                ->where('date', '>=', $tglawal)
+                ->count();
+
+            $periode1 = $tglawal;
+            $periode2 = $tglakhir;
 
             $total = order::where('date', '>=', $tglawal)
                 ->sum('total');
         } else if (!isset($tglawal) && !isset($tglakhir)) {
             $page = DB::table('orders')
-                ->select('orders.*','users.first_name')
-                ->join('customers','customers.id','=','orders.customers_id')
-                ->join('users','users.id','=','customers.users_id')
+                ->select('orders.*', 'users.first_name')
+                ->join('customers', 'customers.id', '=', 'orders.customers_id')
+                ->join('users', 'users.id', '=', 'customers.users_id')
                 ->get();
+
+            $jumlahtransaksi = DB::table('orders')
+                ->where('status', '=', 'Selesai')
+                ->count();
+
+            $periode1 = $tglawal;
+            $periode2 = $tglakhir;
+
             $total = order::sum('total');
         } else {
             $page = DB::table('orders')
-                ->select('orders.*','users.first_name')
-                ->join('customers','customers.id','=','orders.customers_id')
-                ->join('users','users.id','=','customers.users_id')
+                ->select('orders.*', 'users.first_name')
+                ->join('customers', 'customers.id', '=', 'orders.customers_id')
+                ->join('users', 'users.id', '=', 'customers.users_id')
                 ->where('date', '>=', $tglawal)
                 ->where('date', '<=', $tglakhir)
                 ->get();
+
+            $jumlahtransaksi = DB::table('orders')
+                ->where('status', '=', 'Selesai')
+                ->where('date', '>=', $tglawal)
+                ->where('date', '<=', $tglakhir)
+                ->count();
+
+            $periode1 = $tglawal;
+            $periode2 = $tglakhir;
+
             $total = order::where('date', '>=', $tglawal)
                 ->where('date', '<=', $tglakhir)
                 ->sum('total');
@@ -163,8 +202,11 @@ class OrderController extends Controller
 
         $pdf = PDF::loadview('admin.pages.penjualan.pdf', [
             'penjualan' => $page,
-            'total' => $total
+            'total' => $total,
+            'periode1' => $periode1,
+            'periode2' => $periode2,
+            'jumlahtransaksi' => $jumlahtransaksi
         ]);
-        return $pdf->download('laporan-penjualan.pdf');
+        return $pdf->download('laporan-penjualan-' . $periode1 . ' - ' . $periode2 . '.pdf');
     }
 }
