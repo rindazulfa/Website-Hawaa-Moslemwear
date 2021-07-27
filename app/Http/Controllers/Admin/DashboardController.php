@@ -17,6 +17,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        // sampai sini dulu ya gaes
         $pengeluaran = puchase::sum('total');
 
         $pemasukkancustom = Order_Custom::where('status_pembayaran','=','Selesai')

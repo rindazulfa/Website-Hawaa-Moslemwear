@@ -47,6 +47,44 @@ class Confirm_PaymentController extends Controller
 
     public function accpembayaranproduk($id)
     {
+        $ambildata = DB::table('detail_orders')
+            ->where('orders_id', '=', $id)
+            ->select('products_id', 'size', 'qty')
+            ->get();
+
+        // dd($ambildata);
+
+        foreach ($ambildata as $key => $row) {
+            $ambildatastock = DB::table('stocks')
+                ->where('products_id', '=', $ambildata[$key]->products_id)
+                ->where('size', '=', $ambildata[$key]->size)
+                ->select('id', 'qty')
+                ->first();
+
+            // dd(
+            //     $ambildata,
+            //     $ambildata[$key]->qty,
+            //     $ambildatastock,
+            //     $ambildatastock[$key]->qty,
+            //     $ambildatastock[$key]->id
+            // );
+
+            // $qtynow[] = $ambildatastock[$key]->qty - $ambildata[$key]->qty;
+
+            // dd($qtynow[$key]);
+
+            // dibawah ga bisa baca stock selanjutnya error undefined offset 1
+
+            $stock = stock::findorfail($ambildatastock->id);
+            $stock->qty = $ambildatastock->qty - $ambildata[$key]->qty;
+            $stock->save();
+        }
+
+        // dd(
+        //     $ambildata,
+        //     $ambildatastock
+        // );
+
         $accpay1 = DB::table('orders')
             ->where('id', '=', $id)->update([
                 'status' => 'Selesai'
@@ -56,28 +94,7 @@ class Confirm_PaymentController extends Controller
             ->where('id', '=', $id)->update([
                 'proof_of_payment' => 'Selesai'
             ]);
-        
-        $ambildata = DB::table('detail_orders')
-        ->where('orders_id','=',$id)
-        ->select('products_id','size','qty')
-        ->get();
 
-        foreach ($ambildata as $key => $row) {
-            $ambildatastock = DB::table('stocks')
-            ->where('products_id','=',$ambildata[$key]->products_id)
-            ->where('size','=',$ambildata[$key]->size)
-            ->select('id','qty')
-            ->get();
-
-            $qtynow[] = $ambildatastock[$key]->qty - $ambildata[$key]->qty;
-
-            // dd($qtynow[$key]);
-
-            $stock = stock::findorfail($ambildatastock[$key]->id);
-            $stock->qty = $qtynow[$key];
-            $stock->save();
-        }
-        
         return redirect('/penjualan');
     }
 

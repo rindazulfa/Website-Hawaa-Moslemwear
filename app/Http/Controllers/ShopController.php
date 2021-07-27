@@ -117,21 +117,36 @@ class ShopController extends Controller
         if ($cekcust == 1) {
             $subtotal = $request->qty * $request->price;
 
+            $stockid = stock::select('id')
+                    ->where('products_id', '=', $request->id)
+                    ->first();
+
             // Memasukkan ke keranjang
             $cekprod = cart::select('id')
                 ->where('products_id', '=', $request->id)
-                ->where('stocks_id', '=', $request->size)
+                ->where('stocks_id', '=', $stockid->id)
                 ->count();
 
+            // dd(
+            //     $cekprod,
+            //     $request->id,
+            //     $stockid->id
+            // );
+
+            // dibawah ini error
             $cekidcart = cart::select('id')
                 ->where('products_id', '=', $request->id)
-                ->where('stocks_id', '=', $request->size)
+                ->where('stocks_id', '=', $stockid->id)
                 ->get();
 
-            if ($cekprod == 1) {
+            if ($cekprod >= 1) {
+                $stockid = stock::select('id')
+                    ->where('products_id', '=', $request->id)
+                    ->first();
+
                 $qtyold = cart::select('qty')
                     ->where('products_id', '=', $request->id)
-                    ->where('stocks_id', '=', $request->size)
+                    ->where('stocks_id', '=', $stockid->id)
                     ->get();
 
                 $qtynow = $qtyold[0]->qty + $request->qty;

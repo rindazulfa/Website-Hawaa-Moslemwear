@@ -14,7 +14,7 @@
         }
     </style>
     <center>
-        <h5>Laporan PDF Produksi</h4>
+        <h5>Laporan PDF Produksi</h5>
     </center>
 
     <table class='table table-bordered'>

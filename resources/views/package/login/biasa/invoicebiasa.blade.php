@@ -150,7 +150,7 @@
         <!-- <div id="logo">
             <img src="logo.png">
         </div> -->
-        <h1>INVOICE {{$produk[0]->id}} </h1>
+        <h1>INVOICE {{$id}} </h1>
         <div id="project" style="float:left;">
             <div>Hawaa Moslemwear</div>
             <div>Jl. Ketintang,<br /> Surabaya</div>
@@ -162,7 +162,7 @@
             <div><span>Nama Pelanggan</span> {{$pelanggan[0]->first_name}}</div>
             <div><span>Alamat Pengiriman</span> {{$pelanggan[0]->address}}</div>
             <div><span>No Telepon</span> {{$pelanggan[0]->phone}}</div>
-            <div><span>Tanggal Pemesanan</span> {{$produk[0]->date}}}</div>
+            <div><span>Tanggal Pemesanan</span> {{$produk[0]->date}}</div>
             <div><span>Alamat Email</span> <a href="mailto:{{$pelanggan[0]->email}}">{{$pelanggan[0]->email}}</a></div>
 
         </div>
@@ -185,7 +185,7 @@
                 <tr>
                     <td class="service">Pembelian Produk</td>
                     <td class="desc">{{ $dp->name }}</td>
-                    <td>{{ $dp->size }} </td>
+                    <td>{{ $dp->size }}</td>
                     <td class="unit"> {{ $dp->ongkir }} </td>
                     <td class="unit"> {{ $dp->price }} </td>
                     <td class="qty"> {{ $dp->qty }}</td>

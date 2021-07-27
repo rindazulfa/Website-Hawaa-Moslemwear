@@ -137,31 +137,48 @@ class RiwayatController extends Controller
     public function cetak_pdf($id)
     {
         $page = DB::table('detail_orders')
+            ->join('products', 'detail_orders.products_id', '=', 'products.id')
             ->join('orders', 'orders.id', '=', 'detail_orders.orders_id')
-            ->join('products','detail_orders.products_id', '=' ,'products.id')
-            ->join('stocks','stocks.products_id', '=','products.id')
             ->select(
                 'products.name',
+                'products.id as id_products',
                 'products.price',
-                'stocks.size',
                 'detail_orders.*',
                 'orders.*'
             )
-            ->where('orders_id','=',$id)
+            ->where('orders_id', '=', $id)
             ->get();
-        
-        // dd($page);
-        
+
+        $arr = [];
+        foreach ($page as $row) {
+            $stock = DB::table('stocks')
+                ->where('products_id', $row->id_products)
+                ->where('size', $row->size)
+                ->first();
+
+            $stock = collect($stock);
+            $baris = collect($row);
+            $gabung = $stock->merge($baris);
+            array_push($arr, $gabung);
+        }
+
+        $arr = json_decode(json_encode($arr,true));
+
+        // dd(
+        //     $arr
+        // );
+
         $pelanggan = DB::table('customers')
-        ->join('users','customers.users_id','=','users.id')
-        ->where('users_id','=', auth()->user()->id)
-        ->get();
+            ->join('users', 'customers.users_id', '=', 'users.id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->get();
 
         // dd($pelanggan);
         $pdf = PDF::loadview('package.login.biasa.invoicebiasa', [
-            'produk' => $page,
-            'pelanggan' => $pelanggan
+            'produk' => $arr,
+            'pelanggan' => $pelanggan,
+            'id' => $id
         ]);
-        return $pdf->download('invoice_produk'.$page[0]->id.'.pdf');
+        return $pdf->download('invoice_produk' . $page[0]->id . '.pdf');
     }
 }

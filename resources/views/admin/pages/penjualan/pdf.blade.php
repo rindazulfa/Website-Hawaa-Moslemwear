@@ -2,8 +2,7 @@
 
 <head>
     <title>Laporan PDF</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
@@ -14,7 +13,13 @@
         }
     </style>
     <center>
-        <h5>Laporan PDF Penjualan</h4>
+        <h5>Laporan PDF Penjualan</h5>
+        @if(isset($periode1)||isset($periode2))
+        <h5>Tanggal</h5><strong>{{ $periode1 }} - {{ $periode2 }}</strong>
+        @else
+        <h5>Seluruh Periode</h5>
+        @endif
+        <br>
     </center>
 
     <table class='table table-bordered'>
@@ -23,7 +28,7 @@
                 <th>Tanggal Transaksi</th>
                 <th>Nama Pelanggan</th>
                 <th>Status Transaksi</th>
-                <th>Jumlah Income</th>
+                <th>Jumlah Pemasukkan</th>
             </tr>
         </thead>
         <tbody>
@@ -44,10 +49,10 @@
                 <td>Rp. {{number_format($total,2,',','.')}}</td>
             </tr>
         </tbody>
-    </table>    
-</p>
-    
-
+    </table>
+    <p>Jumlah Transaksi Berhasil : <strong>{{ $jumlahtransaksi }}</strong> Transaksi</p>
+    <p>Jumlah Estimasi Pemasukkan : <strong>Rp. {{number_format($total,2,',','.')}}</strong></p>
+    <p></p>
 </body>
 
 </html>

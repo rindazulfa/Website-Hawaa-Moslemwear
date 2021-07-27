@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
+<meta http-equiv="refresh" content="300">
 <div class="header bg-primary pb-6">
     <div class="container-fluid">
         <div class="header-body">
@@ -56,6 +57,7 @@
                                 <th scope="col" class="sort" data-sort="status">Status Transaksi</th>
                                 <th scope="col" class="sort" data-sort="bukti_pembayaran">Bukti Pembayaran</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
+                                <th scope="col" class="sort" data-sort="tanggal jadi">Tanggal Pengiriman</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -110,7 +112,9 @@
                                     <?php if ($key->status_pengerjaan == "Menunggu Persetujuan Desain") {
                                         echo "Menunggu Konfirmasi Desain";
                                     } else if ($key->status_pengerjaan == "Menunggu Proses Pembayaran") { ?>
-                                        <button type="button" class="btn btn-outline-danger">Delete</button>
+                                        <button type="button" class="btn btn-outline-danger">
+                                            <a href="/penjualancustom/statusdesain/den/{{ $key->id }}">Delete</a>
+                                        </button>
                                     <?php
                                     } else if ($key->status_pengerjaan == "Menunggu Konfirmasi Pembayaran") {
                                         ?>
@@ -133,6 +137,22 @@
                                         echo "Selesai";
                                     } else {
                                         echo "Pesanan Di tolak";
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <!-- Tanggal Pengiriman -->
+                                    <?php
+                                    if ($key->status_pengerjaan == "Selesai" && $key->tanggal == null) {
+                                        ?>
+                                        <button type="button" class="btn btn-outline-success">
+                                            <a href="/penjualancustom/updatetanggal/{{ $key->id }}">Terima</a>
+                                        </button>
+                                    <?php
+                                    } else {
+                                        ?>
+                                        {{ $key->tanggal }}
+                                    <?php
                                     }
                                     ?>
                                 </td>

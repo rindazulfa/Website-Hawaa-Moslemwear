@@ -11,16 +11,22 @@
             <div class="w-100"></div>
             <div class="col-md-12">
               <div class="form-group">
-                <label for="alamat">Tanggal Pembelian</label>
+                <label for="">Tanggal Pembelian</label>
                 <input type="text" class="form-control" name="date" value="<?php echo date('Y-m-d'); ?>" readonly>
               </div>
             </div>
             <div class="w-100"></div>
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="file">File Desain</label>
                 <input type="file" class="form-control" placeholder="Masukkan file Anda" name="file" required>
               </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-12">
+              <label for="">Catatan : <p>Hanya dapat mengupload 1 file desain,
+                  diharapkan 1 file desain mengandung seluruh tampilan desain terkait.
+                </p></label>
             </div>
           </div>
           <div class="container col-md-4">

@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
+<meta http-equiv="refresh" content="300">
 <div class="header bg-primary pb-6">
     <div class="container-fluid">
         <div class="header-body">
