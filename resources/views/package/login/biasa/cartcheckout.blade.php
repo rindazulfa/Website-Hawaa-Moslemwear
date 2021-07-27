@@ -99,7 +99,7 @@
                     </p>
                     <p class="d-flex">
                         <span>Delivery</span>
-                        <span>Rp0.00</span>
+                        <span>Rp 0.00</span>
                     </p>
                     <hr>
                     <p class="d-flex total-price">

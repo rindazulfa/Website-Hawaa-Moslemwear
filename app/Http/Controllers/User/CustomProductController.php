@@ -162,17 +162,20 @@ class CustomProductController extends Controller
             ->where('customers_id', '=', $idcust[0]->id)
             ->count();
 
-        // dd(
-        //     $total,
-        //     $data
-        // );
+        $nomorhp = DB::table('profiles')->first();
 
         $payment = DB::table('payments')->get();
+
+        // dd(
+        //     $nomorhp->telepon
+        // );
+
         return view('package.login.custom.custombayar', [
             'total' => $total,
             'payment' => $payment,
             'data' => $data,
-            'cart' => $cart
+            'cart' => $cart,
+            'nomor' => $nomorhp
         ]);
     }
 

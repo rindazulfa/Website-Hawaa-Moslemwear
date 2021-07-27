@@ -48,7 +48,7 @@
                                 }
                                 ?>
                             </td>
-                            <td>{{ $key->total }}</td>
+                            <td>Rp. {{number_format($total,2,',','.')}}</td>
                             <td>{{ $key->status_pembayaran }}</td>
                             <td>
                                 <?php
@@ -80,7 +80,7 @@
                                     <a href="{{route('invoice_custom', [$key->id])}}" class="btn btn-light py-3 px-3">
                                         Cetak Invoice
                                     </a>
-                                    <a href="https://wa.me/087701401325?text=Halo, Saya {{ $key->first_name }}" class="btn btn-success py-3 px-5" target="_blank">
+                                    <a href="https://wa.me/{{ $data->telepon }}?text=Halo, Saya {{ $key->first_name }}" class="btn btn-success py-3 px-5" target="_blank">
                                         Silahkan Hubungi Admin
                                     </a>
                                 <?php

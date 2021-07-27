@@ -120,6 +120,8 @@ class CheckoutController extends Controller
         //     $data
         // );
 
+        $nomorhp = DB::table('profiles')->first();
+
         $payment = DB::table('payments')->get();
 
         return view('package.login.biasa.bayar', [
@@ -127,7 +129,8 @@ class CheckoutController extends Controller
             'payment' => $payment,
             'data' => $data,
             'cart' => $cart,
-            'ship' => $ship
+            'ship' => $ship,
+            'nomor' => $nomorhp
         ]);
     }
 

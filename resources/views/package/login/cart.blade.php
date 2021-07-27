@@ -16,6 +16,7 @@
         <div class="row">
             <div class="col-md-12 ftco-animate">
                 <div class="cart-list">
+                    <!-- <p>**Untuk ukuran yang dipilih dapat menghubungi admin</p> -->
                     <form action="{{route('upd.cart')}}" method="post">
                         <table class="table">
                             <thead class="thead-primary">
@@ -48,7 +49,7 @@
                                         <td class="product-remove">
                                             <!-- <button type="button"> -->
                                             <a href="{{ route('del.cart', [$key->id]) }}"><span class="ion-ios-close"></span></a>
-                                            <input type="text" name="id[]" id="id" value="{{ $key->id }}" readonly hidden>
+                                            <input type="text" name="id[]" id="id" value="{{ $key->id_cart }}" readonly hidden>
                                             <!-- </button> -->
                                         </td>
                                         <td class="image-prod">
@@ -59,7 +60,17 @@
                                         </td>
                                         <td class="size">
                                             <div class="input-group mb-3">
-                                                <input type="text" name="size[]" class="quantity form-control input-number" value="{{ $key->size }}" min-length="1" max-length="3">
+                                                <!-- <input type="text" name="size[]" class="form-control" value="{{ $key->size }}" min-length="1" max-length="3"> -->
+                                                <select name="size[]" id="size" class="form-control">
+                                                    <option value="0">Pilih Ukuran</option>
+                                                    @forelse($key->stok as $stok)
+                                                    <option value="{{ $stok->id }}" @if($key->size == $stok->size) selected @endif>
+                                                        {{ $stok->size }}
+                                                    </option>
+                                                    @empty
+                                                    <option value="">Tidak Tersedia</option>
+                                                    @endforelse
+                                                </select>
                                             </div>
                                         </td>
                                         <td class="price" id="price">Rp. {{number_format($key->price,2,',','.')}}</td>
@@ -118,7 +129,7 @@
                     </p>
                     <p class="d-flex">
                         <span>Delivery</span>
-                        <span>Rp0.00</span>
+                        <span>Rp 0.00</span>
                     </p>
                     <hr>
                     <p class="d-flex total-price">

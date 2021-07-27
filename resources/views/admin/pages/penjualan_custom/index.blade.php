@@ -58,14 +58,14 @@
                                 <th scope="col" class="sort" data-sort="bukti_pembayaran">Bukti Pembayaran</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col" class="sort" data-sort="tanggal jadi">Tanggal Pengiriman</th>
-                                <th scope="col"></th>
+                                <th scope="col" class="sort" data-sort="detail">Detail</th>
                             </tr>
                         </thead>
                         <tbody class="list">
                             @forelse($page as $key)
                             <tr>
                                 <td class="id_transaksi_penjualan">{{ $key->id }}</td>
-                                <td class="tanggal_transaksi">{{ $key->date }}</td>
+                                <td class="tanggal_transaksi">{{ $key->tanggals }}</td>
                                 <th class="gambar_desain">
                                     <a href="{{asset('data_file/'.$key->pict_desain)}}" target="_blank">{{ $key->pict_desain }}</a>
                                 </th>
@@ -146,7 +146,7 @@
                                     if ($key->status_pengerjaan == "Selesai" && $key->tanggal == null) {
                                         ?>
                                         <button type="button" class="btn btn-outline-success">
-                                            <a href="/penjualancustom/updatetanggal/{{ $key->id }}">Terima</a>
+                                            <a href="/penjualancustom/updatetanggal/{{ $key->id }}">Kirim</a>
                                         </button>
                                     <?php
                                     } else {
@@ -155,6 +155,11 @@
                                     <?php
                                     }
                                     ?>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary">
+                                        <a href="{{ route('penjualancustom.show',[$key->id]) }}">Detail</a>
+                                    </button>
                                 </td>
                             </tr>
                             @empty

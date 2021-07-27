@@ -49,8 +49,8 @@
               <li>Setelah melakukan pembayaran harap menunggu 1x24 jam kerja, untuk validasi pembayaran. Jika melebihi waktu tunggu segera konfirmasi melalui kontak wa dibawah dengan melampirkan bukti transfer</li>
             </strong>
           </ol>
-          <a href="https://wa.me/0811111111">
-            <h3 class="billing-heading">WA : 0811111111111</h3>
+          <a href="https://wa.me/{{ $nomor->telepon }}">
+            <h3 class="billing-heading">WA : {{ $nomor->telepon }}</h3>
           </a>
         </div>
       </div>

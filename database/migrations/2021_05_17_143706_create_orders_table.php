@@ -21,7 +21,8 @@ class CreateOrdersTable extends Migration
             $table->foreign('confirm_payments_id')->references('id')->on('confirm_payments')->onDelete('cascade');
             // $table->unsignedBigInteger('discounts_id');
             // $table->foreign('discounts_id')->references('id')->on('discounts')->onDelete('cascade');
-            $table->date("date");
+            $table->date("date")->nullable();
+            $table->date("tanggal_pengiriman")->nullable();
             $table->integer("total");
             $table->string("pict_payment")->nullable();
             $table->string("status")->nullable();

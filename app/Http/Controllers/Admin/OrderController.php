@@ -69,7 +69,76 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    { }
+    {
+        // 
+        $page = DB::table('detail_orders')
+            ->join('products', 'detail_orders.products_id', '=', 'products.id')
+            ->join('orders', 'orders.id', '=', 'detail_orders.orders_id')
+            ->select(
+                'products.name',
+                'products.id as id_products',
+                'products.price',
+                'detail_orders.*',
+                'orders.*'
+            )
+            ->where('orders_id', '=', $id)
+            ->get();
+
+        $arr = [];
+        foreach ($page as $row) {
+            $stock = DB::table('stocks')
+                ->where('products_id', $row->id_products)
+                ->where('size', $row->size)
+                ->first();
+
+            $stock = collect($stock);
+            $baris = collect($row);
+            $gabung = $stock->merge($baris);
+            array_push($arr, $gabung);
+        }
+
+        $arr = json_decode(json_encode($arr,true));
+
+        // dd(
+        //     $arr
+        // );
+
+        $pelanggan = DB::table('customers')
+            ->join('users', 'customers.users_id', '=', 'users.id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->get();
+
+        return view('admin.pages.penjualan.detail',[
+            'produk' => $arr,
+            'pelanggan' => $pelanggan,
+            'id' => $id
+        ]);
+    }
+
+    public function tampiltanggalpengiriman($id)
+    {
+        $page = DB::table('detail_orders')
+            ->join('products', 'detail_orders.products_id', '=', 'products.id')
+            ->join('orders', 'orders.id', '=', 'detail_orders.orders_id')
+            ->select(
+                'products.name',
+                'products.id as id_products',
+                'products.price',
+                'detail_orders.*',
+                'orders.*'
+            )
+            ->where('orders_id', '=', $id)
+            ->get();
+
+        // dd(
+        //     $id,
+        //     $data_penjualan
+        // );
+
+        return view('admin/pages/penjualan/tanggal', [
+            'data_penjualan' => $page
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -91,7 +160,12 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updtanggal = DB::table('orders')
+            ->where('id', '=', $request->id)->update([
+                'tanggal_pengiriman' => $request->tglpengiriman
+            ]);
+
+        return redirect('/penjualan');
     }
 
     /**

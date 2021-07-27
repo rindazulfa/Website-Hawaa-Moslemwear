@@ -18,16 +18,23 @@ class DashboardController extends Controller
     public function index()
     {
         // sampai sini dulu ya gaes
-        $pengeluaran = puchase::sum('total');
+        $month = date('m');
+
+        $pengeluaran = puchase::whereMonth('date',$month)
+        ->sum('total');
 
         $pemasukkancustom = Order_Custom::where('status_pembayaran','=','Selesai')
+        ->whereMonth('date',$month)
         ->sum('total');
         $pemasukkanbiasa = order::where('status','=','Selesai')
+        ->whereMonth('date',$month)
         ->sum('total');
 
         $jmlordercustom = Order_Custom::where('status_pembayaran','=','Selesai')
+        ->whereMonth('date',$month)
         ->count('total');
         $jmlorderbiasa = order::where('status','=','Selesai')
+        ->whereMonth('date',$month)
         ->count('total');
 
         $keuntungan = ($pemasukkancustom+$pemasukkanbiasa) - $pengeluaran;

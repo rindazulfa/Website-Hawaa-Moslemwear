@@ -21,10 +21,16 @@ class Order_CustomController extends Controller
             ->join('detail_order_customs', 'detail_order_customs.order_customs_id', '=', 'order_customs.id')
             ->select(
                 'order_customs.*',
+                'order_customs.date as tanggals',
                 'detail_order_customs.*',
                 'detail_order_customs.date as tanggal'
             )
             ->get();
+
+            // dd(
+            //     $page
+            // );
+
         return view('admin/pages/penjualan_custom/index', [
             'page' => $page
         ]);
@@ -150,7 +156,26 @@ class Order_CustomController extends Controller
      */
     public function show($id)
     {
-        //
+        $page = DB::table('detail_order_customs')
+            ->join('order_customs', 'order_customs.id', '=', 'detail_order_customs.order_customs_id')
+            ->select(
+                'order_customs.*',
+                'detail_order_customs.*'
+            )
+            ->where('order_customs_id','=',$id)
+            ->get();
+        
+        // dd($page);
+        
+        $pelanggan = DB::table('customers')
+        ->join('users','customers.users_id','=','users.id')
+        ->where('users_id','=', auth()->user()->id)
+        ->get();
+
+        return view('admin/pages/penjualan_custom/detail', [
+            'produk' => $page,
+            'pelanggan' => $pelanggan
+        ]);
     }
 
     /**

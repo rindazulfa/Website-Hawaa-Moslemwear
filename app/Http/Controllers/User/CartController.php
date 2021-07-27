@@ -7,9 +7,11 @@ use App\Models\cart;
 use App\Models\customer;
 use App\Models\detail_order;
 use App\Models\order;
+use App\Models\Product;
 use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Helper\Table;
 
 class CartController extends Controller
 {
@@ -37,6 +39,46 @@ class CartController extends Controller
                 ->where('customers_id', '=', $idcust[0]->id)
                 ->count();
 
+            // ganti mulai sini
+
+            $page = DB::table('cart')
+                ->join('products', 'cart.products_id', '=', 'products.id')
+                ->select(
+                    'products.name',
+                    'products.pict_1',
+                    'products.id as id_products',
+                    'cart.*',
+                    'cart.id as id_cart'
+                )
+                ->where('customers_id', '=', $idcust[0]->id)
+                ->get();
+
+            $arr = [];
+            foreach ($page as $row) {
+                $stock = DB::table('stocks')
+                    ->where('id', $row->size)
+                    ->select('size')
+                    ->first();
+
+                $size = Product::with('stok')
+                    ->where('id', '=', $row->id_products)
+                    ->first();
+
+                $size = collect($size);
+
+                $stock = collect($stock);
+                $baris = collect($row);
+                $gabung = $baris->merge($stock);
+                $gabung = $gabung->merge($size);
+                array_push($arr, $gabung);
+            }
+
+            $arr = json_decode(json_encode($arr, true));
+
+            // dd(
+            //     $arr
+            // );
+
             $cek = cart::select('products.name', 'products.pict_1', 'stocks.size', 'cart.price', 'cart.subtotal', 'cart.qty', 'cart.id')
                 ->join('stocks', 'stocks.id', '=', 'cart.stocks_id')
                 ->join('products', 'products.id', '=', 'cart.products_id')
@@ -57,13 +99,13 @@ class CartController extends Controller
             if ($cekjmlcart == 0) {
                 return view('package.login.cart', [
                     'cart' => $cart,
-                    'cek' => $cek,
+                    'cek' => $arr,
                     'total' => $total
                 ]);
             } else {
                 return view('package.login.cart', [
                     'cart' => $cart,
-                    'cek' => $cek,
+                    'cek' => $arr,
                     'total' => $total
                 ]);
             }
@@ -121,29 +163,13 @@ class CartController extends Controller
             'status' => 'Menunggu Pembayaran'
         ]);
 
-        // dd(
-        //     $request->all(),
-        //     $request->id,
-        //     $cekid[0]->id,
-        //     $iniid,
-        //     $subtotal,
-        //     $total[0],
-        //     $date
-        // );       
-
         $idorder = order::all()->last()->id;
         // $idprod = cart::select('products_id')
         //         ->where('id', '=', $id[0])
         //         ->get();
 
         // dd(
-        //     $idorder,
-        //     $request->id,
-        //     $id,
-        //     $qty,
-        //     $size,
-        //     $price[0] * $qty[0],
-        //     $idprod[0]->products_id
+        //     $size
         // );
 
         foreach ($request->id as $key => $row) {
@@ -196,6 +222,32 @@ class CartController extends Controller
                 ->where('customers_id', '=', $idcust[0]->id)
                 ->count();
 
+            $page = DB::table('cart')
+                ->join('products', 'cart.products_id', '=', 'products.id')
+                ->select(
+                    'products.name',
+                    'products.pict_1',
+                    'products.id as id_products',
+                    'cart.*'
+                )
+                ->where('customers_id', '=', $idcust[0]->id)
+                ->get();
+
+            $arr = [];
+            foreach ($page as $row) {
+                $stock = DB::table('stocks')
+                    ->where('id', $row->size)
+                    ->select('size')
+                    ->first();
+
+                $stock = collect($stock);
+                $baris = collect($row);
+                $gabung = $baris->merge($stock);
+                array_push($arr, $gabung);
+            }
+
+            $arr = json_decode(json_encode($arr, true));
+
             $cek = cart::select('products.name', 'products.pict_1', 'stocks.size', 'cart.price', 'cart.subtotal', 'cart.qty', 'cart.id')
                 ->join('stocks', 'stocks.id', '=', 'cart.stocks_id')
                 ->join('products', 'products.id', '=', 'cart.products_id')
@@ -203,27 +255,12 @@ class CartController extends Controller
                 ->where('customers_id', '=', $idcust[0]->id)
                 ->get();
 
-            // $cekidstock = cart::select('cart.products_id')
-            // ->where('customers_id', '=', $idcust[0]->id)
-            // ->get();
-
-            // foreach ($cekidstock as $key => $row) {
-            // $isian = 
-            // }
-
-            // foreach ($cekidstock as $key => $row) {
-            //     $stock = new stock();
-            //     $stock->id = $a;
-            //     $stock->products_id = $a;
-            //     $stock->save();
-            // }            
-
             $total = DB::table('cart')
                 ->sum('subtotal');
 
             return view('package.login.biasa.cartcheckout', [
                 'cart' => $cart,
-                'cek' => $cek,
+                'cek' => $arr,
                 'total' => $total
             ]);
         }
@@ -264,17 +301,38 @@ class CartController extends Controller
     public function updcart(Request $request)
     {
         // dd($request->all());
+        $id = $request->id;
         $qty = $request->qty;
         $size = $request->size;
         $price = $request->price;
 
+        // dd($request->all());
+
         foreach ($request->id as $key => $row) {
+            // $productsid = DB::table('cart')
+            //     ->where('id', '=', $id[$key])
+            //     ->first();
+
+            // dd(
+            //     $productsid->products_id
+            // );
+
+            // $stockid = DB::table('stocks')
+            //     ->where('products_id', '=', $productsid->products_id)
+            //     ->where('size', '=', $size[$key])
+            //     ->first();
+
             $cart = cart::findorfail($row);
             $cart->qty = $qty[$key];
             $cart->size = $size[$key];
             $cart->subtotal = $price[$key] * $qty[$key];
             $cart->save();
         }
+
+        // dd(
+        //     $productsid,
+        //     $stockid->id
+        // );
 
         return redirect('/cart');
     }
@@ -293,7 +351,8 @@ class CartController extends Controller
         return view('/riwayat');
     }
 
-    public function delhis($id){
+    public function delhis($id)
+    {
         $delete = order::findOrFail($id);
         $delete->delete();
 
