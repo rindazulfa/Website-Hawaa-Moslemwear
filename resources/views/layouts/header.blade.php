@@ -22,7 +22,7 @@
                     </div>
                 </li>
                 @endguest
-                <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+                {{-- <li class="nav-item"><a href="/about" class="nav-link">About</a></li> --}}
                 @guest
                 <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
                 @endguest

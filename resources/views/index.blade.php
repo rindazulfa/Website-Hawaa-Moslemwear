@@ -1,11 +1,12 @@
 @extends('layouts.app')
 @section('content')
+@if (isset($banner->picture))
 <div class="hero-wrap js-fullheight" style="background-image: url({{'uploads/banner/'.$banner->picture}});">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
             <h3 class="v">Hawaa Moslemwear - Better Moslem wear</h3>
-            <h3 class="vr">Since - 2019</h3>
+            <h3 class="vr">Since - 2017</h3>
             <div class="col-md-11 ftco-animate text-center">
                 <h1>{{$banner->title}}</h1>
                 <h2><span>{{$banner->subtitle}}</span></h2>
@@ -18,6 +19,8 @@
         </div>
     </div>
 </div>
+@endif
+
 
 <div class="goto-here"></div>
 
@@ -88,6 +91,32 @@
         </div>
     </div>
 </section>
+@if (isset($footer))
+<section class="ftco-section ftco-no-pb ftco-no-pt">
+	<div class="container">
+        <div class="row justify-content-center mb-10 pb-4">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <h1 class="big">About Us</h1>
+            </div>
+        </div>
+		<div class="row mt-md-5">
+			<div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url({{'uploads/profil/'.$footer->picture}});">
+			</div>
+			<div class="col-md-7 py-5 wrap-about pb-md-5 ftco-animate">
+				<div class="heading-section-bold mb-5 mt-md-5">
+					<div class="ml-md-0">
+						<h2 class="mb-4">Hawaa Moslemwear</span></h2>
+					</div>
+				</div>
+				<div class="pb-md-5">
+					<p>{{$footer->desc_1}}</p>
+					<p>{{$footer->desc_2}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+@endif
 
 <section class="ftco-section bg-light ftco-services">
     <div class="container">

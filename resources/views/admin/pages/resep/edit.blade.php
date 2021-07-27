@@ -51,22 +51,17 @@
                                     </tr>
                                 </thead>
                                 <tbody class="list">
-                                    @forelse($bahan as $key)
+                                    {{-- resep --}}
                                     <tr>
-                                        <!-- <td><input type="checkbox" name="materials_id[]" value="{{$key->id}}"></td> -->
-                                        <td><input type="number" class="form-control" name="materials_id[]" value="{{$key->id}}" readonly></td>
-                                        <td>{{$key->name}}</td>
-                                        <td><input type="number" class="form-control" name="qty[]" value="{{$key->qty}}"></td>
-                                        <td><input type="text" class="form-control" name="satuan[]" value="{{$key->satuan}}"></td>
+                                        <!-- <td><input type="checkbox" name="materials_id[]" value="{{$detail->id}}"></td> -->
+                                        <td><input type="number" class="form-control" name="materials_id" value="{{$detail->id}}" readonly></td>
+                                        <td>{{$detail->material->name}}</td>
+                                        <td><input type="number" class="form-control" name="qty" value="{{$detail->qty}}"></td>
+                                        <td><input type="text" class="form-control" name="satuan" value="{{$detail->satuan}}"></td>
                                     </tr>
 
-                                    @empty
 
-                                    <tr>
-                                        <td colspan="7" class="text-center">Data Kosong</td>
-                                    </tr>
-
-                                    @endforelse
+                                    
                                 </tbody>
                             </table>
                         </div>

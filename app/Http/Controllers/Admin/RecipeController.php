@@ -77,11 +77,43 @@ class RecipeController extends Controller
         $data = $request->all();
         // dd($data);
 
-        $arr_bahan = $data['materials_id'];
-        $arr_qty = $data['qty'];
-        $arr_satuan = $data['satuan'];
 
-        // $cekproduk = Product::where('id', $data['products_id'])->count();
+        
+        $arr_bahan = $data['materials_id'];
+        // $arr_bahan = array_filter($arr_bahan);
+        $arr_qty = $data['qty'];
+        // $arr_qty = array_filter($arr_qty);
+      
+        $arr_satuan = $data['satuan'];
+        $arr_satuan = array_filter($arr_satuan);
+        $bahankos =[];
+        $qtykos =[];
+        $satuankos= [];
+        foreach ($arr_bahan as $key => $value) {
+            if (!empty($value)) {
+                array_push($bahankos,$value);
+
+            }
+        }
+        foreach ($arr_qty as $key => $value) {
+            if (!empty($value)) {
+                array_push($qtykos,$value);
+
+            }
+        }
+        foreach ($arr_satuan as $key => $value) {
+            if (!empty($value)) {
+                array_push($satuankos,$value);
+
+            }
+        }
+
+        $arr_bahan=$bahankos;
+        $arr_qty = $qtykos;
+        $arr_satuan= $satuankos;
+        // dd($arr_qty);
+        
+        
 
         for ($i = 0; $i < count($arr_bahan); $i++) {
             $cekbahan = material::where('id', $arr_bahan[$i])->count();
@@ -146,12 +178,10 @@ class RecipeController extends Controller
         // $resep = Recipe::where('stocks_id', $detail->id)->first();
         // $bahan = material::all();
 
-        $detail = stock::findOrFail($id); //idstok
-        foreach ($detail->resep as $row) {
-            // dd($row);
-            $arr_idbahan[] = $row->materials_id;
-        }
-        $bahan = material::where('id', $arr_idbahan)->get();
+        $detail = Recipe::findOrFail($id); //idstok
+        // dd($id);
+        
+        $bahan = material::where('id', $detail->materials_id)->get();
 
 
         return view('admin.pages.resep.edit', [
@@ -170,42 +200,19 @@ class RecipeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $idproduk = stock::findOrFail($id);
-        $arr_produk = $idproduk['stocks_id'];
-
+        // $idproduk = Recipe::findOrFail($id);
+        // $arr_produk = $idproduk['stocks_id'];
+        $tambah = Recipe::where('id', $id)->first();
         $data = $request->all();
         // dd($data);
 
         $arr_bahan = $data['materials_id'];
         $arr_qty = $data['qty'];
         $arr_satuan = $data['satuan'];
-
+        $tambah->qty =  $arr_qty;
+        $tambah->satuan =  $arr_satuan;
+        $tambah->save();
         // $cekproduk = Product::where('id', $data['products_id'])->count();
-
-        for ($i = 0; $i < count($arr_bahan); $i++) {
-            $cekbahan = material::where('id', $arr_bahan[$i])->count();
-
-            if ($cekbahan > 0) {
-                $tambah = Recipe::where('stocks_id', $id)
-                    ->where('materials_id', $arr_bahan[$i])->first();
-                // dd($tambah);
-                if ($tambah) {
-                    // $tambah->products_id = $arr_produk[$i];
-                    $tambah->qty =  $arr_qty[$i];
-                    $tambah->satuan =  $arr_satuan[$i];
-                    $tambah->save();
-                } else {
-                    // $tambah = new Recipe();
-                    $tambah->materials_id = $arr_bahan[$i];
-                    $tambah->stocks_id = $id;
-                    $tambah->qty = $arr_qty[$i];
-                    $tambah->satuan = $arr_satuan[$i];
-                    $tambah->save();
-                }
-
-                // dd($tambah);
-            }
-        }
 
 
         return redirect()->route("stok_produk.index")->with("info", "Recipe has been updated");

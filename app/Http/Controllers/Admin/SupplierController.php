@@ -97,7 +97,7 @@ class SupplierController extends Controller
         $page = supplier::findOrFail($id);
 
         $page->name = $request->get("name");
-        $page->materials_id = $request->get("materials_id");
+        // $page->materials_id = $request->get("materials_id");
         $page->address = $request->get("address");
         $page->email = $request->get("email");
         $page->phone = $request->get("phone");

@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-lg-6 mt-4">
                                 <label>Telepon</label>
-                                <input type="text" class="form-control" value="{{ old('phone') }}" required name="phone" placeholder="Masukkan Telepon" />
+                                <input type="number" class="form-control" value="{{ old('phone') }}" required name="phone" placeholder="Masukkan Telepon" />
                             </div>
                         </div>
 
