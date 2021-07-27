@@ -15,7 +15,38 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 mb-5 ftco-animate">
-				<a href="#" class="image-popup"><img src="{{asset('/uploads/products/'.$detail["pict_1"])}}" class="img-fluid" alt="Colorlib Template"></a>
+				<div id="dprod" class="carousel slide" data-ride="carousel">
+					<!-- The slideshow -->
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="{{asset('/uploads/products/'.$detail["pict_1"])}}" alt="Los Angeles" width="540" height="auto">
+						</div>
+						<div class="carousel-item">
+							<img src="{{asset('/uploads/products/'.$detail["pict_2"])}}" alt="Chicago" width="540" height="auto">
+						</div>
+						<div class="carousel-item">
+							<img src="{{asset('/uploads/products/'.$detail["pict_3"])}}" alt="New York" width="540" height="auto">
+						</div>
+					</div>
+
+					<!-- Left and right controls -->
+					<a class="carousel-control-prev" href="#dprod" data-slide="prev">
+						<div class="bg-ctrl" style="background-color: black;
+						width: 40px;
+						height: 40px;
+						border-radius: 5px;">
+							<span class="carousel-control-prev-icon" style="vertical-align: bottom; margin-top: 10px;"></span>	
+						</div>
+					</a>
+					<a class="carousel-control-next" href="#dprod" data-slide="next">
+						<div class="bg-ctrl" style="background-color: black;
+						width: 40px;
+						height: 40px;
+						border-radius: 5px;">
+							<span class="carousel-control-next-icon" style="vertical-align: bottom; margin-top: 10px;"></span>
+						</div>
+					</a>
+				</div>
 			</div>
 			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
 				<h3>{{$detail->name}}</h3>
