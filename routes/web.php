@@ -84,6 +84,7 @@ Route::group([
     Route::post('/penjualan/cetak_pdf', 'OrderController@cetak_pdf')->name('penjualan.pdf');
     Route::resource('penjualan', 'OrderController');
     Route::get('/penjualan/statuspay/den/{id}', [OrderController::class, 'updsttspayden'])->name('den.pay');
+    Route::get('/penjualan/updatetanggal/{id}', [OrderController::class, 'tampiltanggalpengiriman'])->name('edit.tanggal.biasa');
 
     // Transaksi Penjualan Custom
     // Route::get('/penjualancustom/cetak_pdf', 'Order_CustomController@cetak_pdf')->name('custom.pdf');
@@ -94,7 +95,6 @@ Route::group([
     Route::get('/penjualancustom/update/{id}', [Order_CustomController::class, 'tampileditharga'])->name('edit.harga');
     Route::get('/penjualancustom/updatetanggal/{id}', [Order_CustomController::class, 'tampiltanggalpengiriman'])->name('edit.tanggal');
 });
-
 
 // User
 Route::group([

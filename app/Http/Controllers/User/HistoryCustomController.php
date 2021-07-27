@@ -59,12 +59,15 @@ class HistoryCustomController extends Controller
                 ->select('order_customs.*', 'users.first_name')
                 ->get();
 
+            $nomorhp = DB::table('profiles')->first();
+
             if ($cekjmlcus == 0) {
                 return redirect('/');
             } else {
                 return view('package.login.historycustom', [
                     'cek' => $cek,
-                    'cart' => $cart
+                    'cart' => $cart,
+                    'data' => $nomorhp
                 ]);
             }
         }

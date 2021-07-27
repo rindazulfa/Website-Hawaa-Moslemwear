@@ -57,12 +57,15 @@ class RiwayatController extends Controller
                 ->select('orders.*', 'users.first_name')
                 ->get();
 
+            $nomorhp = DB::table('profiles')->first();
+
             if ($cekjmlcus == 0) {
                 return redirect('/');
             } else {
                 return view('package.login.biasa.history', [
                     'cek' => $cek,
-                    'cart' => $cart
+                    'cart' => $cart,
+                    'data' => $nomorhp
                 ]);
             }
         }
@@ -162,7 +165,7 @@ class RiwayatController extends Controller
             array_push($arr, $gabung);
         }
 
-        $arr = json_decode(json_encode($arr,true));
+        $arr = json_decode(json_encode($arr, true));
 
         // dd(
         //     $arr

@@ -53,7 +53,8 @@
                                 <th scope="col" class="sort" data-sort="status">Status Transaksi</th>
                                 <th scope="col" class="sort" data-sort="bukti_pembayaran">Bukti Pembayaran</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
-                                <th scope="col"></th>
+                                <th scope="col" class="sort" data-sort="tanggal">Tanggal Pengiriman</th>
+                                <th scope="col" class="sort" data-sort="detail">Detail</th>
                             </tr>
                         </thead>
                         <tbody class="list">
@@ -92,6 +93,27 @@
                                         echo "Selesai";
                                     } else {
                                         echo "Pesanan Di tolak";
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary">
+                                        <a href="{{ route('penjualan.show',[$key->id]) }}">Detail</a>
+                                    </button>
+                                </td>
+                                <td>
+                                    <!-- Tanggal Pengiriman -->
+                                    <?php
+                                    if ($key->status == "Selesai" && $key->tanggal_pengiriman == null) {
+                                        ?>
+                                        <button type="button" class="btn btn-outline-success">
+                                            <a href="/penjualan/updatetanggal/{{ $key->id }}">Kirim</a>
+                                        </button>
+                                    <?php
+                                    } else {
+                                        ?>
+                                        {{ $key->tanggal_pengiriman }}
+                                    <?php
                                     }
                                     ?>
                                 </td>
