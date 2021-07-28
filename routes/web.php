@@ -152,6 +152,7 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::resource('/', 'HomepageController');
 Route::resource('/about', 'AboutController');
 Route::resource('/shop', 'ShopController');
+Route::get('/shop/cat/{id}','ShopController@kategori')->name('kategori.tampil');
 
 //ORDER CUSTOM
 Route::post('/shop/detail/{id}', 'ShopController@process')->name('shop_detail');

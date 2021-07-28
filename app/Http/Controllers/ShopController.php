@@ -24,6 +24,8 @@ class ShopController extends Controller
     {
         $product = Product::with(['stok'])->get();
         $footer = profile::all()->last();
+        $kategori = DB::table('categories')->get();
+
         if (Auth::check()) {
             $product = DB::table('products')
                 ->select('products.*')
@@ -59,14 +61,16 @@ class ShopController extends Controller
                 return view('package.product', [
                     'shop' => $product,
                     'cart' => $cart,
-                    'footer' => $footer
+                    'footer' => $footer,
+                    'kategori' => $kategori
                 ]);
             }
         } else {
             return view('package.product', [
                 'shop' => $product,
                 'cart' => 0,
-                'footer' => $footer
+                'footer' => $footer,
+                'kategori' => $kategori
             ]);
         }
     }
@@ -176,7 +180,6 @@ class ShopController extends Controller
                     'subtotal' => $subtotal,
                     'date' => $request->date
                 ]);
-
                 return redirect('/shop');
             }
         } else {
@@ -206,6 +209,67 @@ class ShopController extends Controller
             'stok' => $stok,
             'cart' => $cart
         ]);
+    }
+
+    public function kategori($id){
+        $product = Product::with(['stok'])->get();
+        $footer = profile::all()->last();
+        $kategori = DB::table('categories')->get();
+
+        if (Auth::check()) {
+            $product = DB::table('products')
+                ->select('products.*')
+                ->join('stocks', 'stocks.products_id', '=', 'products.id')
+                ->where('stocks.qty', '>', 0)
+                ->where('categories_id','=',$id)
+                ->distinct()
+                ->get();
+            
+            // dd(
+            //     $product
+            // );
+
+            $cek = customer::select('id')
+                ->where('users_id', '=', auth()->user()->id)
+                ->count();
+
+            if ($cek == 0) {
+                return view('package.product', [
+                    'shop' => $product,
+                    'cart' => 0,
+                    'footer' => $footer
+                ]);
+            } else {
+                $product = DB::table('products')
+                    ->select('products.*')
+                    ->join('stocks', 'stocks.products_id', '=', 'products.id')
+                    ->where('stocks.qty', '>', 0)
+                    ->where('categories_id','=',$id)
+                    ->distinct()
+                    ->get();
+                $idcust = customer::select('id')
+                    ->where('users_id', '=', auth()->user()->id)
+                    ->get();
+
+                $cart = cart::select('id')
+                    ->where('customers_id', '=', $idcust[0]->id)
+                    ->count();
+
+                return view('package.product', [
+                    'shop' => $product,
+                    'cart' => $cart,
+                    'footer' => $footer,
+                    'kategori' => $kategori
+                ]);
+            }
+        } else {
+            return view('package.product', [
+                'shop' => $product,
+                'cart' => 0,
+                'footer' => $footer,
+                'kategori' => $kategori
+            ]);
+        }
     }
 
     /**

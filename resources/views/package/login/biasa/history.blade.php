@@ -78,10 +78,8 @@
                 </table>
             </div>
         </div>
-        @forelse($cek as $key)
-        <div class="row d-flex mt-5 contact-info">
+        <!-- <div class="row d-flex mt-5 contact-info">
             <div class="col-md-4 d-flex">
-
             </div>
             <div class="col-md-4 d-flex">
                 <div class="info bg-white p-4">
@@ -91,26 +89,8 @@
                 </div>
             </div>
             <div class="col-md-4 d-flex">
-
             </div>
-        </div>
-        @empty
-        <div class="row d-flex mt-5 contact-info">
-            <div class="col-md-4 d-flex">
-
-            </div>
-            <div class="col-md-4 d-flex">
-                <div class="info bg-white p-4">
-                    <p><span><strong>Status Pesanan :</strong></span></p>
-                    <br>
-                    <h3><strong>Data tidak tersedia</strong></h3>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex">
-
-            </div>
-        </div>
-        @endforelse
+        </div> -->
     </div>
 </section>
 @endsection

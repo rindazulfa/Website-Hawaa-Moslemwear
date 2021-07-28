@@ -12,42 +12,50 @@
 </div>
 <section class="ftco-section bg-light">
 	<div class="container-fluid">
+		<div class="content-justify-center text-center mb-5">
+			<h4 class="breadcrumbs">Kategori Produk</h4>
+			@forelse($kategori as $cat)
+			<a href="{{ route('kategori.tampil',[$cat->id]) }}">{{ $cat->name }}</a>
+			@empty
+			<a href="#">Belum ada kategori Produk}</a>
+			@endforelse
+		</div>
 		<div class="row justify-content-center">
 			<!-- <form action="" method="post"> -->
-				@forelse($shop as $key)
-				<div class="col-sm col-md-6 col-lg-3 ftco-animate">
-					<div class="product">
-						<a href="{{route('shop.show',[$key->id])}}" class="img-prod"><img class="img-fluid" src="{{'uploads/products/'.$key->pict_1}}" alt="Colorlib Template">
-							<!-- <span class="status">30%</span> -->
-						</a>
-						<div class="text py-3 px-3">
-							<h3><a href="#">{{$key->name}}</a></h3>
-							<div class="d-flex">
-								<div class="pricing">
-									<p class="price"><span class="price-sale">Rp {{number_format($key->price,2,',','.')}}</span></p>
-								</div>
+			@forelse($shop as $key)
+			<div class="col-sm col-md-6 col-lg-3 ftco-animate">
+				<div class="product">
+					<a href="{{route('shop.show',[$key->id])}}" class="img-prod"><img class="img-fluid" src="{{'/uploads/products/'.$key->pict_1}}" alt="{{ $key->name }}">
+						<!-- <span class="status">30%</span> -->
+					</a>
+					<div class="text py-3 px-3">
+						<h3><a href="#">{{$key->name}}</a></h3>
+						<div class="d-flex">
+							<div class="pricing">
+								<p class="price"><span class="price-sale">Rp {{number_format($key->price,2,',','.')}}</span></p>
 							</div>
-							@guest
-							@else
-							<hr>
-							<!-- <p class="bottom-area d-flex">
+						</div>
+						@guest
+						@else
+						<hr>
+						<!-- <p class="bottom-area d-flex">
 								<a href="{{ route('store') }}" class="add-to-cart" type="submit"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
 							</p> -->
-							<form action="{{ route('shop.store') }}" method="post">
-                                    @csrf
-                                    <input type="text" name="id" id="id" value="{{ $key->id }}" hidden readonly>
-                                    <input type="number" name="price" id="price" value="{{ $key->price }}" hidden readonly>
-                                    <input type="text" name="size" id="size" value="1" hidden readonly>
-                                    <input type="number" name="qty" id="qty" value="1" hidden readonly>
-                                    <input type="date" name="date" id="date" value="<?php echo date('Y-m-d'); ?>" hidden readonly>
-                                    <p class="bottom-area d-flex">
-                                        <button class="add-to-cart" type="submit"><span>Add to cart<i class="ion-ios-add ml-1"></i></span></button>
-                                    </p>
-                                </form>
-							@endguest
-						</div>
+						<form action="{{ route('shop.store') }}" method="post">
+							@csrf
+							<input type="text" name="id" id="id" value="{{ $key->id }}" hidden readonly>
+							<input type="number" name="price" id="price" value="{{ $key->price }}" hidden readonly>
+							<input type="text" name="size" id="size" value="1" hidden readonly>
+							<input type="number" name="qty" id="qty" value="1" hidden readonly>
+							<input type="date" name="date" id="date" value="<?php echo date('Y-m-d'); ?>" hidden readonly>
+							<p class="bottom-area d-flex">
+								<button class="add-to-cart" type="submit"><span>Add to cart<i class="ion-ios-add ml-1"></i></span></button>
+							</p>
+						</form>
+						@endguest
 					</div>
 				</div>
+			</div>
 			<!-- </form> -->
 			@empty
 			<tr>

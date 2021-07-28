@@ -53,8 +53,8 @@
                                 <th scope="col" class="sort" data-sort="status">Status Transaksi</th>
                                 <th scope="col" class="sort" data-sort="bukti_pembayaran">Bukti Pembayaran</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
-                                <th scope="col" class="sort" data-sort="tanggal">Tanggal Pengiriman</th>
                                 <th scope="col" class="sort" data-sort="detail">Detail</th>
+                                <th scope="col" class="sort" data-sort="tanggal">Tanggal Pengiriman</th>
                             </tr>
                         </thead>
                         <tbody class="list">

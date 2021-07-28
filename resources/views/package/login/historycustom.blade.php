@@ -44,11 +44,11 @@
                                 } else if ($key->status_pengerjaan == "Selesai") {
                                     echo "Terima Kasih";
                                 } else {
-                                    echo "Pesanan Di tolak";
+                                    echo "Pesanan Di batalkan";
                                 }
                                 ?>
                             </td>
-                            <td>Rp. {{number_format($total,2,',','.')}}</td>
+                            <td>Rp. {{number_format($key->total,2,',','.')}}</td>
                             <td>{{ $key->status_pembayaran }}</td>
                             <td>
                                 <?php
@@ -93,7 +93,7 @@
                                     Silahkan Menunggu konfirmasi Pembayaran
                                 <?php
                                 } else {
-                                    echo "Pesanan Di tolak";
+                                    echo "Pesanan Di batalkan";
                                 }
                                 ?>
                                 <!-- <input type="submit" value="Ajukan Desain" class="btn btn-primary py-3 px-5"> -->
@@ -108,8 +108,7 @@
                 </table>
             </div>
         </div>
-        @forelse($cek as $key)
-        <div class="row d-flex mt-5 contact-info">
+        <!-- <div class="row d-flex mt-5 contact-info">
             <div class="w-100"></div>
             <div class="col-md-4 d-flex">
                 <div class="info bg-white p-4">
@@ -132,33 +131,7 @@
                     <h3><strong>{{ $key->status_pengerjaan }}</strong></h3>
                 </div>
             </div>
-        </div>
-        @empty
-        <div class="row d-flex mt-5 contact-info">
-            <div class="w-100"></div>
-            <div class="col-md-4 d-flex">
-                <div class="info bg-white p-4">
-                    <p><span><strong>Status Pengerjaan Desain :</strong></span></p>
-                    <br>
-                    <h3><strong>Data Tidak Tersedia</strong></h3>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex">
-                <div class="info bg-white p-4">
-                    <p><span><strong>Status Pembayaran :</strong></span></p>
-                    <br>
-                    <h3><strong>Data Tidak Tersedia</strong></h3>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex">
-                <div class="info bg-white p-4">
-                    <p><span><strong>Status Pesanan :</strong></span></p>
-                    <br>
-                    <h3><strong>Data Tidak Tersedia</strong></h3>
-                </div>
-            </div>
-        </div>
-        @endforelse
+        </div> -->
     </div>
 </section>
 @endsection

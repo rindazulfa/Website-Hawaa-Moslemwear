@@ -89,7 +89,7 @@
                                     } else if ($key->status_pengerjaan == "Selesai") {
                                         echo "Terima Kasih";
                                     } else {
-                                        echo "Pesanan Di tolak";
+                                        echo "Pesanan Di batalkan";
                                     }
                                     ?>
                                 </td>
@@ -136,7 +136,7 @@
                                     } else if ($key->status_pengerjaan == "Selesai") {
                                         echo "Selesai";
                                     } else {
-                                        echo "Pesanan Di tolak";
+                                        echo "Pesanan Di batalkan";
                                     }
                                     ?>
                                 </td>
