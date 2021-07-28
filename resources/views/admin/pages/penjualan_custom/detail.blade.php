@@ -34,7 +34,7 @@
                                 <label>Id Order : {{ $produk[0]->id }}</label>
                             </div>
                             <div class="col-lg-6">
-                                <label>Tanggal Order : <strong>{{ $produk[0]->date }}</strong></label>
+                                <label>Tanggal Order : <strong>{{ $produk[0]->tanggals }}</strong></label>
                             </div>
                         </div>
                         <div class="form-group row">

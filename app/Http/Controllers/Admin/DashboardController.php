@@ -19,6 +19,7 @@ class DashboardController extends Controller
     {
         // sampai sini dulu ya gaes
         $month = date('m');
+        $year = date('Y');
 
         if($month == 1){
             $bulan = "Januari";
@@ -47,20 +48,25 @@ class DashboardController extends Controller
         }
 
         $pengeluaran = puchase::whereMonth('date',$month)
+        ->whereYear('date',$year)
         ->sum('total');
 
         $pemasukkancustom = Order_Custom::where('status_pembayaran','=','Selesai')
         ->whereMonth('date',$month)
+        ->whereYear('date',$year)
         ->sum('total');
         $pemasukkanbiasa = order::where('status','=','Selesai')
         ->whereMonth('date',$month)
+        ->whereYear('date',$year)
         ->sum('total');
 
         $jmlordercustom = Order_Custom::where('status_pembayaran','=','Selesai')
         ->whereMonth('date',$month)
+        ->whereYear('date',$year)
         ->count('total');
         $jmlorderbiasa = order::where('status','=','Selesai')
         ->whereMonth('date',$month)
+        ->whereYear('date',$year)
         ->count('total');
 
         $keuntungan = ($pemasukkancustom+$pemasukkanbiasa) - $pengeluaran;

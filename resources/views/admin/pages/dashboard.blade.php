@@ -59,7 +59,11 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Keuntungan</h5>
+                  @if($keuntungan <= 0)
+                  <span class="h2 font-weight-bold mb-0">Rp. 0,00</span>
+                  @else
                   <span class="h2 font-weight-bold mb-0">Rp. {{number_format($keuntungan,2,',','.')}}</span>
+                  @endif
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">

@@ -160,6 +160,7 @@ class Order_CustomController extends Controller
             ->join('order_customs', 'order_customs.id', '=', 'detail_order_customs.order_customs_id')
             ->select(
                 'order_customs.*',
+                'order_customs.date as tanggals',
                 'detail_order_customs.*'
             )
             ->where('order_customs_id','=',$id)
