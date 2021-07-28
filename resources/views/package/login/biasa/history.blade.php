@@ -36,6 +36,8 @@
                                     echo "Data Diterima, Harap menunggu konfirmasi pembayaran";
                                 } else if ($key->status == "Selesai") {
                                     echo "Terima Kasih";
+                                } else if ($key->status == "Menunggu Harga") {
+                                    echo "Menunggu Konfirmasi Harga";
                                 } else {
                                     echo "Pesanan Di tolak";
                                 }
@@ -55,6 +57,8 @@
                                 <?php
                                 } else if ($key->status == "Menunggu Konfirmasi Pembayaran") {
                                     echo "Data Diterima, Harap menunggu konfirmasi pembayaran";
+                                } else if ($key->status == "Menunggu Harga") {
+                                    echo "Menunggu Konfirmasi Harga";
                                 } else if ($key->status == "Selesai") { ?>
                                     <a href="{{route('invoice_produk', [$key->id])}}" class="btn btn-light py-3 px-3">
                                         Cetak Invoice
@@ -64,7 +68,12 @@
                                     </a>
                                 <?php
                                 } else {
-                                    echo "Pesanan Di tolak";
+                                    echo "Pesanan Di batalkan</br>";
+                                    ?>
+                                    <a href="https://wa.me/{{ $data->telepon }}?text=Halo, Saya {{ $key->first_name }}" class="btn btn-success py-3 px-5" target="_blank">
+                                        Silahkan Hubungi Admin
+                                    </a>
+                                <?php
                                 }
                                 ?>
                             </td>

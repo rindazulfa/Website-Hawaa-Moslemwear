@@ -12,12 +12,12 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="email">Nama Depan</label>
-                                <input type="text" name='first_name' required class="form-control" placeholder="Masukkan Email Anda">
+                                <input type="text" name='first_name' required class="form-control" placeholder="Masukkan Nama Depan Anda">
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Nama Belakang</label>
-                                <input type="text" name='last_name' required class="form-control" placeholder="Masukkan Email Anda">
+                                <input type="text" name='last_name' required class="form-control" placeholder="Masukkan Nama Belakang Anda">
                             </div>
 
                             <div class="form-group">
@@ -38,17 +38,9 @@
                         </div>
 
                     </div>
-                    <p><button type="submit" class="btn btn-primary py-3 px-4">Register</button></p>
+                    <p><button type="submit" class="btn btn-primary py-3 px-4">Registrasi</button></p>
                 </form>
-                {{-- <div class="form-group">
-                    <div class="col-md-12">
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="" class="mr-2"> I have read and accept
-                                the terms and conditions</label>
-                        </div>
-                    </div>
-                </div> --}}
-                <a href="/login">Have an account ?</a>
+                <a href="/login">Sudah punya akun ?</a>
             </div>
             <!-- .col-md-8 -->
         </div>

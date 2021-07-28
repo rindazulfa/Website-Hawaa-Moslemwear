@@ -86,7 +86,7 @@
                                 <?php
                                 } else if ($key->status_pengerjaan == "Menunggu Harga") {
                                     ?>
-                                    Silahkan Menunggu Harga
+                                    Silahkan Menunggu Konfirmasi Harga
                                 <?php
                                 } else if ($key->status_pengerjaan == "Menunggu Konfirmasi Pembayaran") {
                                     ?>
@@ -94,6 +94,11 @@
                                 <?php
                                 } else {
                                     echo "Pesanan Di batalkan";
+                                    ?>
+                                    <a href="https://wa.me/{{ $data->telepon }}?text=Halo, Saya {{ $key->first_name }}" class="btn btn-success py-3 px-5" target="_blank">
+                                        Silahkan Hubungi Admin
+                                    </a>
+                                <?php
                                 }
                                 ?>
                                 <!-- <input type="submit" value="Ajukan Desain" class="btn btn-primary py-3 px-5"> -->

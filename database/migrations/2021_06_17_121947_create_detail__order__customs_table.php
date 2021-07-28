@@ -20,7 +20,8 @@ class CreateDetailOrderCustomsTable extends Migration
             $table->string("size")->nullable();
             $table->integer("qty")->nullable();
             $table->integer("harga")->nullable();
-            $table->string("satuan")->nullable();
+            $table->string("warna")->nullable();
+            $table->string("keterangan_order")->nullable();
             $table->integer("subtotal")->nullable();
             $table->date("date")->nullable();
             $table->string("pict_desain");

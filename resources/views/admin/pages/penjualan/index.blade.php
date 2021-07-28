@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-<meta http-equiv="refresh" content="300">
+<meta http-equiv="refresh" content="600">
 <div class="header bg-primary pb-6">
     <div class="container-fluid">
         <div class="header-body">
@@ -69,7 +69,17 @@
                                 <td class="status">
                                     <span class="badge badge-dot mr-4">
                                         <i class="bg-info"></i>
-                                        <span class="status">{{$key->status}}</span>
+                                        <?php
+                                        if ($key->status == 'Menunggu Harga') {
+                                            ?>
+                                            <span class="status">Menunggu Konfirmasi Harga</span>
+                                        <?php
+                                        } else {
+                                            ?>
+                                            <span class="status">{{$key->status}}</span>
+                                        <?php
+                                        }
+                                        ?>
                                     </span>
                                 </td>
                                 <td class="bukti_pembayaran">
@@ -89,10 +99,21 @@
                                             <a href="/penjualan/statuspay/den/{{ $key->id }}">Tolak</a>
                                         </button>
                                     <?php
-                                    } else if ($key->status == "Selesai") {
-                                        echo "Selesai";
+                                    } else if ($key->status == "Menunggu Harga") {
+                                        ?>
+                                        <button type="button" class="btn btn-outline-success">
+                                            <a href="{{ route('cart.edit',[$key->id]) }}">Terima</a>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger">
+                                            <a href="">Tolak</a>
+                                        </button>
+                                    <?php
+                                    } else if ($key->status == "Selesai" && $key->tanggal_pengiriman == null) {
+                                        echo "Sedang Di Proses";
+                                    } else if ($key->status == "Selesai" && $key->tanggal_pengiriman != null) {
+                                        echo "Pesanan Selesai";
                                     } else {
-                                        echo "Pesanan Di tolak";
+                                        echo "Pesanan Di batalkan";
                                     }
                                     ?>
                                 </td>
@@ -127,7 +148,7 @@
                     </table>
                 </div>
                 <!-- Card footer -->
-              
+
             </div>
         </div>
     </div>

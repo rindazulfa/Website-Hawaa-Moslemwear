@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-<meta http-equiv="refresh" content="300">
+<meta http-equiv="refresh" content="600">
 <div class="header bg-primary pb-6">
     <div class="container-fluid">
         <div class="header-body">
@@ -102,7 +102,17 @@
                                 <td class="status">
                                     <span class="badge badge-dot mr-4">
                                         <i class="bg-info"></i>
-                                        <span class="status">{{ $key->status_pengerjaan }}</span>
+                                        <?php
+                                        if ($key->status_pengerjaan == 'Menunggu Harga') {
+                                            ?>
+                                            <span class="status">Menunggu Konfirmasi Harga</span>
+                                        <?php
+                                        } else {
+                                            ?>
+                                            <span class="status">{{$key->status_pengerjaan}}</span>
+                                        <?php
+                                        }
+                                        ?>
                                     </span>
                                 </td>
                                 <td class="bukti_pembayaran">
@@ -133,9 +143,11 @@
                                             <a href="/penjualancustom/statusdesain/den/{{ $key->id }}">Tolak</a>
                                         </button>
                                     <?php
-                                    } else if ($key->status_pengerjaan == "Selesai") {
-                                        echo "Selesai";
-                                    } else {
+                                    } else if ($key->status_pengerjaan == "Selesai" && $key->tanggal == null) {
+                                        echo "Sedang Di Proses";
+                                    } else if($key->status_pengerjaan == "Selesai" && $key->tanggal != null){
+                                        echo "Pesanan Selesai";
+                                    }else{
                                         echo "Pesanan Di batalkan";
                                     }
                                     ?>

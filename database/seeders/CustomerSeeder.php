@@ -19,6 +19,8 @@ class CustomerSeeder extends Seeder
             'address' => 'Taman Pinang',
             'city' => 'Sidoarjo',
             'province' => 'Jawa Timur',
+            'kelurahan' => 'Sidoarjo',
+            'kecamatan' => 'Sidoarjo',
             'postal_code' => '21021',
             'phone' => '082131313'
         ]);

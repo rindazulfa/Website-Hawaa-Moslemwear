@@ -18,6 +18,8 @@ class CreateCustomersTable extends Migration
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->string("address");
+            $table->string("kecamatan");
+            $table->string("kelurahan");
             $table->string("city");
             $table->string("province");
             $table->string("postal_code");

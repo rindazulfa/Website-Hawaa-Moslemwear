@@ -22,6 +22,12 @@
                 <input type="file" class="form-control" placeholder="Masukkan file Anda" name="file" required>
               </div>
             </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="keterangan">Keterangan Desain</label>
+                <input type="text" class="form-control" placeholder="Tambahkan Keterangan Desain" name="keterangan" required>
+              </div>
+            </div>
             <div class="w-100"></div>
             <div class="col-md-12">
               <label for="">Catatan : <p>Hanya dapat mengupload 1 file desain,

@@ -29,18 +29,18 @@
           </p>
           <hr>
           @endforelse
-          <!-- <p>Berikut merupakan contoh screenshoot bukti pembayaran</p>
+          <p>Berikut merupakan contoh screenshoot bukti pembayaran</p>
           <div class="row">
             <div class="col-sm text-center">
               <p><strong>Bukti Valid</strong></p>
-              <img src="{{ asset('uploads/bukti/contohbukti.jpg') }}" alt="gbrcthbukti" width="230px" height="400px">
+              <img src="{{ asset('uploads/bukti/contohbukti.jpeg') }}" alt="gbrcthbukti" width="230px" height="430px">
             </div>
             <div class="col-sm text-center">
               <p><strong>Bukti Tidak valid</strong></p>
-              <img src="{{ asset('uploads/bukti/contohbuktinon.jpeg') }}" alt="gbrcthbuktinon" width="230px" height="400px">
+              <img src="{{ asset('uploads/bukti/contohbuktinon.jpeg') }}" alt="gbrcthbuktinon" width="230px" height="430px">
             </div>
-          </div> -->
-          <h3 class="billing-heading">Ketentuan Upload Bukti Pembayaran</h3>
+          </div>
+          <!-- <h3 class="billing-heading">Ketentuan Upload Bukti Pembayaran</h3>
           <ol>
             <strong class="text-justify">
               <li>Pembayaran dapat dilakukan secara digital melalui nomor rekening yang tersedia.</li>
@@ -51,7 +51,7 @@
           </ol>
           <a href="https://wa.me/{{ $nomor->telepon }}">
             <h3 class="billing-heading">WA : {{ $nomor->telepon }}</h3>
-          </a>
+          </a> -->
         </div>
       </div>
       <div class="col-md-6">

@@ -65,7 +65,7 @@ class PurchaseController extends Controller
         $puchases->date = $tanggal;
         $puchases->harga = $request->get('harga');
         $puchases->qty = $request->get('jumlah');
-        $puchases->satuan = $request->get('satuan');
+        // $puchases->satuan = $request->get('satuan');
         $puchases->total = $request->get('total');
         $puchases->keterangan = $request->get('keterangan');
         $puchases->save();

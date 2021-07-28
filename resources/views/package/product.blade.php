@@ -49,7 +49,7 @@
 							<input type="number" name="qty" id="qty" value="1" hidden readonly>
 							<input type="date" name="date" id="date" value="<?php echo date('Y-m-d'); ?>" hidden readonly>
 							<p class="bottom-area d-flex">
-								<button class="add-to-cart" type="submit"><span>Add to cart<i class="ion-ios-add ml-1"></i></span></button>
+								<button class="add-to-cart" type="submit"><span>Tambah Keranjang<i class="ion-ios-add ml-1"></i></span></button>
 							</p>
 						</form>
 						@endguest

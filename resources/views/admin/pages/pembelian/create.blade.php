@@ -44,7 +44,7 @@
                                 <input type="date" class="form-control" required name="date" value="<?php echo date('y-m-d'); ?>"/>
                             </div>
                             <div class="col-lg-6">
-                                <label>Nama Bahan</label>
+                                <label>Nama Bahan (Termasuk Warna)</label>
                                 <select class="form-control" required name="cbnamabahan" id="cbnamabahan">
                                     <option value="" selected>Pilih Bahan</option>
                                     @foreach($data_materials as $DM)
@@ -59,13 +59,13 @@
                                 <input type="number" required class="form-control" name="harga" id="harga" onkeyup="totalharga();" />
                             </div>
                             <div class="col-lg-6">
-                                <label>QTY Beli</label>
+                                <label>Jumlah Beli (M<sup>2</sup>)</label>
                                 <input type="number" required class="form-control" name="jumlah" id="jumlah" onkeyup="totalharga();" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Total Beli</label>
+                                <label>Total Harga Beli</label>
                                 <input type="text" required class="form-control" name="total" id="total" onkeyup="totalharga();" readonly />
                             </div>
                             <div class="col-lg-6">
@@ -81,12 +81,12 @@
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>Keterangan Beli</label>
-                                <input type="text" required class="form-control" name="keterangan" />
+                                <input type="text" class="form-control" name="keterangan" />
                             </div>
-                            <div class="col-lg-6">
-                                <label>Satuan Beli</label>
+                            <!-- <div class="col-lg-6">
+                                <label>Warna</label>
                                 <input type="text" required class="form-control" name="satuan"/>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="card-footer">

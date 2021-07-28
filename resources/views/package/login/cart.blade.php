@@ -23,10 +23,10 @@
                                 <tr class="text-center">
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
-                                    <th>Product</th>
-                                    <th>Size</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
+                                    <th>Produk</th>
+                                    <th>Ukuran Produk</th>
+                                    <th>Harga</th>
+                                    <th>Jumlah Beli</th>
                                     <th>Sub Total</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -48,7 +48,7 @@
                                     <tr class="text-center">
                                         <td class="product-remove">
                                             <!-- <button type="button"> -->
-                                            <a href="{{ route('del.cart', [$key->id]) }}"><span class="ion-ios-close"></span></a>
+                                            <a href="{{ route('del.cart', [$key->id_cart]) }}"><span class="ion-ios-close"></span></a>
                                             <input type="text" name="id[]" id="id" value="{{ $key->id_cart }}" readonly hidden>
                                             <!-- </button> -->
                                         </td>
@@ -105,7 +105,7 @@
         <div class="row justify-content-center">
             <div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
                 <div class="cart-total mb-3">
-                    <h3>Option Cart</h3>
+                    <h3>Opsi Lain</h3>
                     <!-- <p class="d-flex">
                         <span>Delivery</span>
                         <span>Rp0.00</span>
@@ -122,7 +122,7 @@
             </div>
             <div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
                 <div class="cart-total mb-3">
-                    <h3>Cart Totals</h3>
+                    <h3>Total Keranjang</h3>
                     <p class="d-flex">
                         <span>Subtotal</span>
                         <span>Rp. {{number_format($total,2,',','.')}}</span>
@@ -140,7 +140,7 @@
                 <p class="text-center">
                     @if(isset($key))
                     <a href="{{ route('cart.show', [$key->id]) }}" type="submit" class="btn btn-primary py-3 px-4">
-                        Proceed to Checkout
+                        Lanjut Checkout
                     </a>
                     @endif
                 </p>

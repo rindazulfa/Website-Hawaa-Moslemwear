@@ -36,7 +36,7 @@
                             </div>
                             <p><button class="btn btn-primary py-3 px-4" type="submit">Login</button></p>
                         </form>
-                        <a href="/register">Dont have an account ?</a>
+                        <a href="/register">Belum punya akun ?</a>
                     </div>
                     <!-- .col-md-8 -->
                 </div>

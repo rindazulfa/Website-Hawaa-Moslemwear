@@ -63,7 +63,7 @@
 					<input type="number" name="qty" id="qty" value="1" hidden readonly>
 					<input type="date" name="date" id="date" value="<?php echo date('Y-m-d'); ?>" hidden readonly>
 					<button type="submit" id="btnShopCart" class="btncart flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-						Add to cart
+						Tambah Keranjang
 					</button>
 				</form>
 

@@ -67,12 +67,21 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>Keterangan Desain : <strong>{{ $produk[0]->keterangan }}</strong></label>
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Keterangan Order : <strong>{{ $produk[0]->keterangan_order }}</strong></label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" class="sort" data-sort="">Desain Produk</th>
                                         <th scope="col" class="sort" data-sort="">Size Produk</th>
                                         <th scope="col" class="sort" data-sort="">Jumlah Order</th>
+                                        <th scope="col" class="sort" data-sort="">Total Harga</th>
                                     </tr>
                                 </thead>
                                 <tbody class="list">
@@ -83,6 +92,7 @@
                                         </td>
                                         <td>{{ $key->size }}</td>
                                         <td>{{ $key->qty }}</td>
+                                        <td>Rp. {{number_format($key->total,2,',','.')}}</td>
                                     </tr>
                                     @empty
                                     <tr>

@@ -38,8 +38,8 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="satuan">Satuan</label>
-                <input type="text" class="form-control" placeholder="Satuan yang Anda Pesan" value="pcs" name="satuan" readonly>
+                <label for="satuan">Warna</label>
+                <input type="text" class="form-control" placeholder="Warna yang Anda Pesan" name="warna" required>
               </div>
               <div class="form-group">
                 <label for="shipping">Shipping</label>
@@ -56,7 +56,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="keterangan">Keterangan</label>
-                <input type="text" class="form-control" placeholder="Masukkan Keterangan Anda" name="keterangan">
+                <input type="text" class="form-control" placeholder="Masukkan Keterangan Anda" name="keterangan" required>
               </div>
             </div>
           </div>

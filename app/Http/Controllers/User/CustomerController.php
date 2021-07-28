@@ -55,6 +55,8 @@ class CustomerController extends Controller
             'address' => $request->address,
             'city' => $request->city,
             'province' => $request->province,
+            'kecamatan' => $request->kecamatan,
+            'kelurahan' => $request->kelurahan,
             'postal_code' => $request->postal,
             'phone' => $request->phone
         ]);
@@ -166,6 +168,8 @@ class CustomerController extends Controller
         $customer->address = $request->get("address");
         $customer->city = $request->get("city");
         $customer->province = $request->get("province");
+        $customer->kelurahan = $request->get("kelurahan");
+        $customer->kecamatan = $request->get("kecamatan");
         $customer->phone = $request->get("phone");
         $customer->postal_code = $request->get("postal");
 

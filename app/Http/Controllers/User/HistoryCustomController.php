@@ -91,11 +91,15 @@ class HistoryCustomController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+        
         customer::create([
             'users_id' => auth()->user()->id,
             'address' => $request->address,
             'city' => $request->city,
             'province' => $request->province,
+            'kelurahan' => $request->kelurahan,
+            'kecamatan' => $request->kecamatan,
             'postal_code' => $request->postal,
             'phone' => $request->phone
         ]);

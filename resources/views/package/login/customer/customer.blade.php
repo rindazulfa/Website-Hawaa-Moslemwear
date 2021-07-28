@@ -17,7 +17,7 @@
                             </ul>
                         </div>
                         @endif
-                        <h3 class="mb-4 billing-heading">Data Anda</h3>
+                        <h3 class="mb-4 billing-heading">Data Diri Anda</h3>
                         <div class="row align-items-end">
                             <div class="w-100"></div>
                             <div class="col-md-12">
@@ -37,6 +37,19 @@
                                 <div class="form-group">
                                     <label for="provinsi">Provinsi</label>
                                     <input type="text" class="form-control" name="province" name="provinsi" value="{{ $items[0]->province }}" required>
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="kelurahan">Kelurahan</label>
+                                    <input type="text" class="form-control" required placeholder="Masukkan Kelurahan Anda" value="{{ $items[0]->kelurahan }}" name="kelurahan">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="kecamatan">Kecamatan</label>
+                                    <input type="text" class="form-control" required placeholder="Masukkan Kecamatan Anda" value="{{ $items[0]->kecamatan }}" name="kecamatan">
                                 </div>
                             </div>
                             <div class="w-100"></div>

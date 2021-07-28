@@ -42,8 +42,6 @@
                                 <th scope="col" class="sort" data-sort="harga_produk">Alamat</th>
                                 <th scope="col" class="sort" data-sort="stok_produk">Kode POS</th>
                                 <th scope="col" class="sort" data-sort="stok_produk">No Telepon</th>
-                                <th scope="col" class="sort" data-sort="aksi">Aksi</th>
-                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody class="list">
@@ -79,7 +77,6 @@
                     </table>
                 </div>
                 <!-- Card footer -->
-                
             </div>
         </div>
     </div>

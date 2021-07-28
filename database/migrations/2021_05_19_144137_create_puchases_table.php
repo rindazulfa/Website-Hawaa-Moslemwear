@@ -24,7 +24,7 @@ class CreatePuchasesTable extends Migration
             $table->double("qty");
             $table->string("satuan");
             $table->integer("total");
-            $table->text("keterangan");
+            $table->text("keterangan")->nullable();
             $table->timestamps();
             // $table->softDeletes();
 

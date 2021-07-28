@@ -5,7 +5,7 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-            <h3 class="v">Hawaa Moslemwear - Better Moslem wear</h3>
+            <h3 class="v">PROUD WEARING SYAR'I</h3>
             <h3 class="vr">Since - 2017</h3>
             <div class="col-md-11 ftco-animate text-center">
                 <h1>{{$banner->title}}</h1>
@@ -58,7 +58,7 @@
                                     <input type="number" name="qty" id="qty" value="1" hidden readonly>
                                     <input type="date" name="date" id="date" value="<?php echo date('Y-m-d'); ?>" hidden readonly>
                                     <p class="bottom-area d-flex">
-                                        <button class="add-to-cart" type="submit"><span>Add to cart<i class="ion-ios-add ml-1"></i></span></button>
+                                        <button class="add-to-cart" type="submit"><span>Tambah Keranjang<i class="ion-ios-add ml-1"></i></span></button>
                                     </p>
                                 </form>
                                 @endguest

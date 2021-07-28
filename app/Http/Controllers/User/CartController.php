@@ -160,7 +160,7 @@ class CartController extends Controller
             'customers_id' => $iniid,
             'date' => $date,
             'total' => $total[0],
-            'status' => 'Menunggu Pembayaran'
+            'status' => 'Menunggu Harga'
         ]);
 
         $idorder = order::all()->last()->id;
@@ -274,7 +274,48 @@ class CartController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page = DB::table('detail_orders')
+            ->join('products', 'detail_orders.products_id', '=', 'products.id')
+            ->join('orders', 'orders.id', '=', 'detail_orders.orders_id')
+            ->select(
+                'products.name',
+                'products.id as id_products',
+                'products.price',
+                'detail_orders.*',
+                'orders.*'
+            )
+            ->where('orders_id', '=', $id)
+            ->get();
+
+        $arr = [];
+        foreach ($page as $row) {
+            $stock = DB::table('stocks')
+                ->where('products_id', $row->id_products)
+                ->where('size', $row->size)
+                ->first();
+
+            $stock = collect($stock);
+            $baris = collect($row);
+            $gabung = $stock->merge($baris);
+            array_push($arr, $gabung);
+        }
+
+        $arr = json_decode(json_encode($arr,true));
+
+        // dd(
+        //     $arr
+        // );
+
+        $pelanggan = DB::table('customers')
+            ->join('users', 'customers.users_id', '=', 'users.id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->get();
+
+        return view('admin.pages.penjualan.create', [
+            'produk' => $arr,
+            'pelanggan' => $pelanggan,
+            'id' => $id
+        ]);
     }
 
     /**
@@ -288,14 +329,13 @@ class CartController extends Controller
     {
         // $totalbaru = $request->price * $request->qty;
 
-        // $updcart = DB::table('cart')
-        //     ->where('id', '=', $id)->update([
-        //         'qty' => $request->qty,
-        //         'size' => $request->size,
-        //         'subtotal' => $totalbaru
-        //     ]);
+        $updongkir = DB::table('orders')
+            ->where('id', '=', $id)->update([
+                'total' => $request->total,
+                'status' => 'Menunggu Pembayaran'
+            ]);
 
-        // return redirect('/cart');
+        return redirect('/penjualan');
     }
 
     public function updcart(Request $request)

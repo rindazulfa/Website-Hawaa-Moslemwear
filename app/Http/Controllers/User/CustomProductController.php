@@ -76,6 +76,7 @@ class CustomProductController extends Controller
             $order = new Order_Custom();
             $order->customers_id = $cust_id[0]->id;
             $order->date = $request->get('date');
+            $order->keterangan = $request->get('keterangan');
             $order->status_pengerjaan = 'Menunggu Persetujuan Desain';
             $order->save();
 
@@ -197,12 +198,12 @@ class CustomProductController extends Controller
             ->where('order_customs_id', '=', $id)->update([
                 'size' => $request->size,
                 'qty' => $request->qty,
-                'satuan' => $request->satuan
+                'warna' => $request->warna,
+                'keterangan_order' => $request->keterangan,
             ]);
 
         $dataorder = DB::table('order_customs')
             ->where('id', '=', $id)->update([
-                'keterangan' => $request->keterangan,
                 'shipping' => $request->cbnamashipping,
                 'status_pengerjaan' => 'Menunggu Harga'
             ]);

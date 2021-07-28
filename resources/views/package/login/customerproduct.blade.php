@@ -30,6 +30,19 @@
             <div class="w-100"></div>
             <div class="col-md-6">
               <div class="form-group">
+                <label for="kelurahan">Kelurahan</label>
+                <input type="text" class="form-control" required placeholder="Masukkan Kelurahan Anda" name="kelurahan">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="kecamatan">Kecamatan</label>
+                <input type="text" class="form-control" required placeholder="Masukkan Kecamatan Anda" name="kecamatan">
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-6">
+              <div class="form-group">
                 <label for="kode_pos">Kode Pos</label>
                 <input type="number" class="form-control" required placeholder="Masukkan Kode Pos Anda">
               </div>
