@@ -13,12 +13,16 @@
 <section class="ftco-section bg-light">
 	<div class="container-fluid">
 		<div class="content-justify-center text-center mb-5">
+			<h5>**Jika anda ingin melihat kategori, anda wajib login</h5>
+			@guest
+			@else
 			<h4 class="breadcrumbs">Kategori Produk</h4>
 			@forelse($kategori as $cat)
 			<a href="{{ route('kategori.tampil',[$cat->id]) }}">{{ $cat->name }}</a>
 			@empty
 			<a href="#">Belum ada kategori Produk}</a>
 			@endforelse
+			@endguest
 		</div>
 		<div class="row justify-content-center">
 			<!-- <form action="" method="post"> -->
