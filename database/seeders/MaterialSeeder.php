@@ -15,24 +15,24 @@ class MaterialSeeder extends Seeder
     public function run()
     {
         DB::table('materials')->insert([
-            'name' => 'Kain Wol',
+            'name' => 'Kain Wol Putih',
             'price' => 450000,
             'qty' => 40,
-            'satuan' => 'cm'
+            'satuan' => 'm'
         ]);
 
         DB::table('materials')->insert([
-            'name' => 'Katun',
+            'name' => 'Katun Merah',
             'price' => 70000,
             'qty' => 20,
-            'satuan' => 'cm'
+            'satuan' => 'm'
         ]);
 
         DB::table('materials')->insert([
-            'name' => 'Benang',
+            'name' => 'Katun Ungu',
             'price' => 50000,
             'qty' => 10,
-            'satuan' => 'cm'
+            'satuan' => 'm'
         ]);
     }
 }

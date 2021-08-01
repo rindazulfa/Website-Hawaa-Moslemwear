@@ -105,8 +105,8 @@
                         <div class="row">
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
-                                <button type="submit" class="btn btn-primary mr-2">Update</button>
-                                <button type="button" class="btn btn-secondary"><a href="{{route('pembelian.index')}}">Cancel</a></button>
+                                <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('pembelian.index')}}">Kembali</a></button>
                             </div>
                         </div>
                     </div>

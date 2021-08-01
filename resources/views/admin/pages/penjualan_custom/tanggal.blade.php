@@ -9,8 +9,8 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/penjualancustom">Daftar Transaksi Penjualan Custom</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Form Data Transaksi Penjualan Custom</li>
+                            <li class="breadcrumb-item"><a href="/penjualancustom">Daftar Penjualan Custom</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Form Penjualan Custom</li>
                         </ol>
                     </nav>
                 </div>

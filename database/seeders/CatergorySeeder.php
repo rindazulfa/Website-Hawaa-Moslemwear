@@ -15,13 +15,13 @@ class CatergorySeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            'name' => 'Masker'
-        ]);
-        DB::table('categories')->insert([
-            'name' => 'Gamis'
+            'name' => 'Pakaian'
         ]);
         DB::table('categories')->insert([
             'name' => 'Kerudung'
+        ]);
+        DB::table('categories')->insert([
+            'name' => 'Aksesoris'
         ]);
     }
 }

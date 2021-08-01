@@ -5,12 +5,12 @@
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">Stok Produk</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/stok_produk">Tables</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Tables</li>
+                            <li class="breadcrumb-item"><a href="/stok_produk">Daftar Stok Produk</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Form Tambah Stok Produk</li>
                         </ol>
                     </nav>
                 </div>
@@ -25,7 +25,7 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Form Stok Produk</h3>
+                    <h3 class="mb-0">Form Tambah Stok Produk</h3>
                 </div>
                 <form class="form" method="post" action="{{route('stok_produk.store')}}" enctype="multipart/form-data">
                     @csrf
@@ -80,12 +80,12 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>QTY</label>
+                                <label>Stok</label>
                                 <input type="number" class="form-control" value="{{ old('qty') }}" required name="qty" />
                             </div>
                             <div class="col-lg-6">
                                 <label>Satuan</label>
-                                <input type="text" class="form-control" value="{{ old('satuan') }}" required name="satuan" />
+                                <input type="text" class="form-control" value="pcs" readonly name="satuan" />
                             </div>
                         </div>
                     </div>
@@ -93,8 +93,8 @@
                         <div class="row">
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button type="button" class="btn btn-secondary"><a href="{{route('stok_produk.index')}}">Cancel</a></button>
+                                <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('stok_produk.index')}}">Kembali</a></button>
                             </div>
                         </div>
                     </div>

@@ -5,11 +5,11 @@
             <div class="header-body">
                 <div class="row align-items-center py-4">
                     <div class="col-lg-6 col-7">
-                        <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+                        <h6 class="h2 text-white d-inline-block mb-0">Banner</h6>
                         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                 <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
-                                <li class="breadcrumb-item"><a href="/banner">Data Banner</a></li>
+                                <li class="breadcrumb-item"><a href="/banner">Daftar Banner</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Form Data Banner</li>
                             </ol>
                         </nav>
@@ -68,9 +68,9 @@
                             <div class="row">
                                 <div class="col-lg-4"></div>
                                 <div class="col-lg-8">
-                                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                    <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                                     <button type="button" class="btn btn-secondary"><a
-                                            href="{{ route('banner.index') }}">Cancel</a></button>
+                                            href="{{ route('banner.index') }}">Kembali</a></button>
                                 </div>
                             </div>
                         </div>

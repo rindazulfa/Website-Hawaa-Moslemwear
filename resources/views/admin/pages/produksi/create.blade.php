@@ -5,12 +5,12 @@
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">Produksi</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/produksi">Data Produksi</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Form Data Produksi</li>
+                            <li class="breadcrumb-item"><a href="/produksi">Daftar Produksi</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Form Tambah Produksi</li>
                         </ol>
                     </nav>
                 </div>
@@ -25,7 +25,7 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Form Produksi</h3>
+                    <h3 class="mb-0">Form Tambah Produksi</h3>
                 </div>
                 <form class="form" method="post" action="{{route('produksi.store')}}" enctype="multipart/form-data">
                     @csrf
@@ -60,7 +60,7 @@
 
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Id Stok Produk</label>
+                                <label>ID Stok Produk</label>
                                 <input type="number" class="form-control datepicker" name="id_stock" value="{{ $id_stok }}" readonly>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
                                 <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                                <button type="button" class="btn btn-secondary"><a href="{{route('produksi.index')}}">Cancel</a></button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('produksi.index')}}">Kembali</a></button>
                             </div>
                         </div>
                     </div>

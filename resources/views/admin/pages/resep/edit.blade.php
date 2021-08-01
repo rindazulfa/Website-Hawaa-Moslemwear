@@ -5,12 +5,12 @@
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">Komposisi</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/bahan_baku">Data Resep</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Form Resep</li>
+                            <li class="breadcrumb-item"><a href="/stok_produk">Daftar Stok Produk</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Form Ubah Komposisi</li>
                         </ol>
                     </nav>
                 </div>
@@ -25,7 +25,7 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Form Resep Produk</h3>
+                    <h3 class="mb-0">Form Ubah Komposisi</h3>
                 </div>
                 <form class="form" method="post" action="{{route('resep.update',[$detail->id])}}">
                 @method('PUT')    
@@ -46,7 +46,7 @@
                                     <tr>
                                         <th scope="col" class="sort" data-sort="no">ID</th>
                                         <th>Nama Bahan</th>
-                                        <th>QTY</th>
+                                        <th>Pcs</th>
                                         <th>Satuan</th>
                                     </tr>
                                 </thead>
@@ -57,7 +57,7 @@
                                         <td><input type="number" class="form-control" name="materials_id" value="{{$detail->id}}" readonly></td>
                                         <td>{{$detail->material->name}}</td>
                                         <td><input type="number" class="form-control" name="qty" value="{{$detail->qty}}"></td>
-                                        <td><input type="text" class="form-control" name="satuan" value="{{$detail->satuan}}"></td>
+                                        <td><input type="text" class="form-control" name="satuan" value="pcs" readonly></td>
                                     </tr>
 
 
@@ -71,7 +71,7 @@
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
                                 <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                                <button type="button" class="btn btn-secondary"><a href="{{route('stok_produk.index')}}">Cancel</a></button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('stok_produk.index')}}">Kembali</a></button>
                             </div>
                         </div>
                     </div>

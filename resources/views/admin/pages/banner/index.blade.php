@@ -5,7 +5,7 @@
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">Banner</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
@@ -34,10 +34,10 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="no">Pict</th>
+                                <th scope="col" class="sort" data-sort="no">Gambar</th>
                                 <th scope="col" class="sort" data-sort="no">Judul</th>
                                 <th scope="col" class="sort" data-sort="no">SubJudul</th>
-                                <th scope="col" class="sort" data-sort="no">Actions</th>
+                                <th scope="col" class="sort" data-sort="no">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="list">
@@ -55,7 +55,7 @@
                                         Update
                                     </a> -->
                                     <!-- <button type="button" class="btn btn-outline-primary">Update</button> -->
-                                    <button class="btn btn-outline-danger delete" data-id="{{$item->id}}">Delete</button>
+                                    <button class="btn btn-outline-danger delete" data-id="{{$item->id}}">Hapus</button>
                                 </td>
                             </tr>
                             @empty

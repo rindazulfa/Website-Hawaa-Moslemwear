@@ -5,11 +5,11 @@
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">Payment</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/pyament">Tables</a></li>
+                            {{-- <li class="breadcrumb-item"><a href="/pyament">Daftar Payment</a></li> --}}
                             <li class="breadcrumb-item active" aria-current="page">Daftar Payment</li>
                         </ol>
                     </nav>
@@ -52,9 +52,9 @@
                                 <td>{{$key->name}}</td>
                                 <td>
                                     <a href="{{route('payment.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
-                                        Update
+                                        Ubah
                                     </a>
-                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button>
+                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Hapus</button>
                                 </td>
                             </tr>
                             <div class="modal fade" id="exampleModal-{{$key->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
@@ -64,7 +64,7 @@
                                         @method('delete')
                                         <div class="modal-content">
                                             <div class="modal-header py-5">
-                                                <h2 class="modal-title" id="exampleModalLabel"> Hapus Bahan Baku</h2>
+                                                <h2 class="modal-title" id="exampleModalLabel"> Hapus Payment</h2>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <i aria-hidden="true" class="ki ki-close"></i>
                                                 </button>
@@ -75,8 +75,8 @@
                                                 </h3>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-danger font-weight-bold text-uppercase">Submit</button>
+                                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-danger font-weight-bold text-uppercase">Hapus</button>
                                             </div>
                                         </div>
                                     </form>

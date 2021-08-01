@@ -10,12 +10,6 @@
         <div class="col-lg-6">
             <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                 <li class="nav-item">
-                    <a href="https://github.com/dqbigd" class="nav-link" target="_blank">Diqi</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://github.com/gadingsukma" class="nav-link" target="_blank">Gading</a>
-                </li>
-                <li class="nav-item">
                     <a href="https://github.com/dimazivan" class="nav-link" target="_blank">Dimaz</a>
                 </li>
                 <li class="nav-item">
@@ -24,6 +18,13 @@
                 <li class="nav-item">
                     <a href="https://github.com/" class="nav-link" target="_blank">Amel</a>
                 </li>
+                <li class="nav-item">
+                    <a href="https://github.com/dqbigd" class="nav-link" target="_blank">Diqi</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://github.com/gadingsukma" class="nav-link" target="_blank">Gading</a>
+                </li>
+               
             </ul>
         </div>
     </div>

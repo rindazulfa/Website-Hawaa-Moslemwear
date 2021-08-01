@@ -56,7 +56,7 @@
                                 <!-- <td >{{$item->material->name ?? ''}}</td> -->
                                 <td>
                                     <a href="{{route('supplier.edit',[$item->id])}}" class="btn btn-outline-primary" title="Edit">
-                                        Update
+                                        Ubah
                                     </a>
                                     
                                     <!-- <button class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" title="Delete">Delete</button>
@@ -81,8 +81,8 @@
                                                 </h4>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-danger font-weight-bold text-uppercase">Submit</button>
+                                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-danger font-weight-bold text-uppercase">Hapus</button>
                                             </div>
                                         </div>
                                     </form>

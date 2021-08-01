@@ -5,11 +5,11 @@
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">Stok Produk</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/stok_produk">Tables</a></li>
+                            {{-- <li class="breadcrumb-item"><a href="/stok_produk">Daftar</a></li> --}}
                             <li class="breadcrumb-item active" aria-current="page">Daftar Stok Produk</li>
                         </ol>
                     </nav>
@@ -45,7 +45,7 @@
                                 <th scope="col" class="sort" data-sort="nama_produk">Nama Produk</th>
                                 <th scope="col" class="sort" data-sort="nama_produk">Size</th>
                                 <th scope="col" class="sort" data-sort="harga_produk">Stok</th>
-                                <th scope="col" class="sort" data-sort="harga_produk">Satuan</th>
+                                {{-- <th scope="col" class="sort" data-sort="harga_produk">Satuan</th> --}}
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
@@ -56,11 +56,11 @@
                                 <td>{{$key->id}}</td>
                                 <td>{{$key->product->name}}</td>
                                 <td>{{$key->size}}</td>
-                                <td>{{$key->qty}}</td>
-                                <td>{{$key->satuan}}</td>
+                                <td>{{$key->qty}} pcs</td>
+                                {{-- <td>{{$key->satuan}}</td> --}}
                                 <td class="aksi">
                                     <a href="{{route('stok_produk.show',[$key->id])}}" class="btn btn-outline-primary" title="Detail">
-                                        BOM
+                                        Komposisi
                                     </a>
                                     <!-- <a href="{{route('stok_produk.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
                                         Update

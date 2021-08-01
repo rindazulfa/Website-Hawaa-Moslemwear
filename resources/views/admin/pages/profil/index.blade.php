@@ -5,11 +5,11 @@
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">Profil UMKM</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="/admin"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/profilumkm">Tables</a></li>
+                            {{-- <li class="breadcrumb-item"><a href="/profilumkm">Daftar Profil UMKM</a></li> --}}
                             <li class="breadcrumb-item active" aria-current="page">Daftar Profil UMKM</li>
                         </ol>
                     </nav>
@@ -66,7 +66,7 @@
                                         Detail
                                     </a>
                                     <!-- <button type="button" class="btn btn-outline-primary">Update</button> -->
-                                    <button class="btn btn-outline-danger delete" data-id="{{$item->id}}">Delete</button>
+                                    <button class="btn btn-outline-danger delete" data-id="{{$item->id}}">Hapus</button>
                                 </td>
                             </tr>
                             @empty

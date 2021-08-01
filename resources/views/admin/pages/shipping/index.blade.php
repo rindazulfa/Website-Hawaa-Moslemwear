@@ -5,17 +5,17 @@
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">Pengiriman</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/shipping">Tables</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Daftar Shipping</li>
+                            {{-- <li class="breadcrumb-item"><a href="/shipping">Pengiriman</a></li> --}}
+                            <li class="breadcrumb-item active" aria-current="page">Daftar Pengiriman</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="{{route('shipping.create')}}" class="btn btn-sm btn-neutral">Tambah Shipping</a>
+                    <a href="{{route('shipping.create')}}" class="btn btn-sm btn-neutral">Tambah Pengiriman</a>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Daftar Shipping</h3>
+                    <h3 class="mb-0">Daftar Pengiriman</h3>
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">
@@ -47,9 +47,9 @@
                                 <td>{{$key->nama}}</td>
                                 <td>
                                     <a href="{{route('shipping.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
-                                        Update
+                                        Ubah
                                     </a>
-                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Delete</button>
+                                    <button class="btn btn-outline-danger delete" value="{{ $key->id }}" data-toggle="modal" data-target="#exampleModal-{{$key->id}}" title="Delete">Hapus</button>
                                 </td>
                             </tr>
                             <div class="modal fade" id="exampleModal-{{$key->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
@@ -70,8 +70,8 @@
                                                 </h3>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-danger font-weight-bold text-uppercase">Submit</button>
+                                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-danger font-weight-bold text-uppercase">Hapus</button>
                                             </div>
                                         </div>
                                     </form>
