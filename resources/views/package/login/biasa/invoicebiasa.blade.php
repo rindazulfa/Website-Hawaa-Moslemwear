@@ -161,6 +161,9 @@
             <div><span>Jenis Pesanan</span> Pembelian Produk </div>
             <div><span>Nama Pelanggan</span> {{$pelanggan[0]->first_name}}</div>
             <div><span>Alamat Pengiriman</span> {{$pelanggan[0]->address}}</div>
+            <div><span>Kecamatan</span> {{$pelanggan[0]->kecamatan}}</div>
+            <div><span>Kelurahan</span> {{$pelanggan[0]->kelurahan}}</div>
+            <div><span>Kota</span> {{$pelanggan[0]->city}}</div>
             <div><span>No Telepon</span> {{$pelanggan[0]->phone}}</div>
             <div><span>Tanggal Pemesanan</span> {{$produk[0]->date}}</div>
             <div><span>Alamat Email</span> <a href="mailto:{{$pelanggan[0]->email}}">{{$pelanggan[0]->email}}</a></div>
@@ -194,7 +197,11 @@
                 @endforeach
                 <tr>
                     <td colspan="6">SUBTOTAL</td>
-                    <td class="total">Rp. {{number_format($dp->total,2,',','.')}} </td>
+                    <td class="total">Rp. {{number_format($dp->total-$dp->ongkir,2,',','.')}} </td>
+                </tr>
+                <tr>
+                <td colspan="6">ONGKIR</td>
+                    <td class="total">Rp. {{number_format($dp->ongkir,2,',','.')}} </td>
                 </tr>
                 <tr>
                     <td colspan="6" class="grand total">GRAND TOTAL</td>

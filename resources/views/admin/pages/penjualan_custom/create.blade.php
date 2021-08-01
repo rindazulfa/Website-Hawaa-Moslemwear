@@ -30,72 +30,77 @@
                 @foreach($data_penjualan as $DP)
                 <form class="form" method="post" action="{{route('penjualancustom.store')}}">
                     @csrf
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label>Id Order</label>
-                                    <input type="number" class="form-control" name="id" id="id" value="{{ $DP->id }}" readonly/>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label>Tanggal Order</label>
-                                    <input type="text" class="form-control" name="date" id="date" value="{{ $DP->date }}" readonly/>
-                                </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>Id Order</label>
+                                <input type="number" class="form-control" name="id" id="id" value="{{ $DP->id_order }}" readonly />
                             </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label>Size Beli</label>
-                                    <input type="text" class="form-control" name="size" value="{{ $DP->size }}" readonly/>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label>Jumlah Beli</label>
-                                    <input type="number" class="form-control" name="jumlah" id="jumlah" value="{{ $DP->qty }}" onkeyup="totalharga();" readonly/>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label>Harga</label>
-                                    <input type="number" class="form-control" name="harga" id="harga" onkeyup="totalharga();"/>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label>Alamat</label>
-                                    <input type="text" class="form-control" name="alamat" value="{{ $DP->address }}" readonly/>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label>Ongkir</label>
-                                    <input type="number" class="form-control" name="ongkir" id="ongkir" onkeyup="totalharga();"/>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label>Total</label>
-                                    <input type="number" class="form-control" name="total" id="total" onkeyup="totalharga();" readonly/>
-                                </div>
+                            <div class="col-lg-6">
+                                <label>Tanggal Order</label>
+                                <input type="text" class="form-control" name="date" id="date" value="{{ $DP->date }}" readonly />
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-lg-4"></div>
-                                <div class="col-lg-8">
-                                    <button type="submit" class="btn btn-primary mr-2">Order</button>
-                                    <button type="button" class="btn btn-secondary"><a href="{{route('custom.index')}}">Cancel</a></button>
-                                </div>
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>Size Beli</label>
+                                <input type="text" class="form-control" name="size" value="{{ $DP->size }}" readonly />
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Jumlah Beli</label>
+                                <input type="number" class="form-control" name="jumlah" id="jumlah" value="{{ $DP->qty }}" onkeyup="totalharga();" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>Harga</label>
+                                <input type="number" class="form-control" name="harga" id="harga" onkeyup="totalharga();" />
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Data Alamat Pelanggan : </label>
+                                <textarea rows="4" cols="40" class="form-control" readonly>
+                                    Alamat : {{ $DP->address }},
+                                    Kecamatan : {{ $DP->kecamatan }},
+                                    Kelurahan = {{ $DP->kelurahan }},
+                                    Kota : {{ $DP->city }}
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>Ongkir</label>
+                                <input type="number" class="form-control" name="ongkir" id="ongkir" onkeyup="totalharga();" />
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Total</label>
+                                <input type="number" class="form-control" name="total" id="total" onkeyup="totalharga();" readonly />
                             </div>
                         </div>
                     </div>
-                </form>
-                @endforeach
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-8">
+                                <button type="submit" class="btn btn-primary mr-2">Order</button>
+                                <button type="button" class="btn btn-secondary"><a href="{{route('custom.index')}}">Cancel</a></button>
+                            </div>
+                        </div>
+                    </div>
             </div>
-            <script>
-                function totalharga() {
-                    var jmlbeli = document.getElementById('jumlah').value;
-                    var harga = document.getElementById('harga').value;
-                    var ongkir = document.getElementById('ongkir').value;
-                    var result = (parseInt(jmlbeli) * parseInt(harga)) + parseInt(ongkir);
-                    document.getElementById('total').value = result;
-                }
-            </script>
+            </form>
+            @endforeach
         </div>
+        <script>
+            function totalharga() {
+                var jmlbeli = document.getElementById('jumlah').value;
+                var harga = document.getElementById('harga').value;
+                var ongkir = document.getElementById('ongkir').value;
+                var result = (parseInt(jmlbeli) * parseInt(harga)) + parseInt(ongkir);
+                document.getElementById('total').value = result;
+            }
+        </script>
     </div>
-    @include('admin.layouts.footer')
+</div>
+@include('admin.layouts.footer')
 </div>
 @endsection

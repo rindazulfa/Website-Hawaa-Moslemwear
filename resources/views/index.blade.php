@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+<!-- popup  -->
+<div class="popup-wrapper" id="popup">
+        <div class="popup-container">    
+            <!-- Konten popup -->
+            <a href="#">
+                <img width="70%" height="70%" src="{{'uploads/banner/payment.png'}}" alt="payment.png">
+            </a>
+            <!-- <img src="Gambar/" alt=""> -->
+            <a class="popup-close" href="#popup">X</a>
+        </div>
+    </div>
 @if (isset($banner->picture))
 <div class="hero-wrap js-fullheight" style="background-image: url({{'uploads/banner/'.$banner->picture}});">
     <div class="overlay"></div>

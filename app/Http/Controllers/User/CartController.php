@@ -332,6 +332,7 @@ class CartController extends Controller
         $updongkir = DB::table('orders')
             ->where('id', '=', $id)->update([
                 'total' => $request->total,
+                'ongkir' => $request->ongkir,
                 'status' => 'Menunggu Pembayaran'
             ]);
 
@@ -364,6 +365,7 @@ class CartController extends Controller
 
             $cart = cart::findorfail($row);
             $cart->qty = $qty[$key];
+            $cart->stocks_id = $size[$key];
             $cart->size = $size[$key];
             $cart->subtotal = $price[$key] * $qty[$key];
             $cart->save();

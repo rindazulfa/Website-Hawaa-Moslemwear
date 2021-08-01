@@ -71,11 +71,11 @@ class Order_CustomController extends Controller
             ->join('customers', 'customers.id', '=', 'order_customs.customers_id')
             ->where('order_customs_id', '=', $id)
             ->select(
-                'order_customs.id',
+                'order_customs.id as id_order',
                 'order_customs.date',
                 'detail_order_customs.qty',
                 'detail_order_customs.size',
-                'customers.address'
+                'customers.*'
             )
             ->get();
 
@@ -131,6 +131,9 @@ class Order_CustomController extends Controller
      */
     public function store(Request $request)
     {
+        // dd(
+        //     $request->all()
+        // );
         $updhar = DB::table('order_customs')
             ->where('id', '=', $request->id)->update([
                 'status_pembayaran' => 'Belum Dibayar',

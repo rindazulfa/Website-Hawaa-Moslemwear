@@ -42,7 +42,10 @@
                                 <label>Nama Customer : <strong>{{ $pelanggan[0]->first_name }}</strong></label>
                             </div>
                             <div class="col-lg-6">
-                                <label>Alamat Pengiriman : <strong>{{ $pelanggan[0]->address }} , {{ $pelanggan[0]->city }}</strong></label>
+                                <label>Alamat Pengiriman : <strong>{{ $pelanggan[0]->address }}</strong></label>
+                                <label>Kecamatan Pengiriman : <strong>{{ $pelanggan[0]->kecamatan }}</strong></label>
+                                <label>Kelurahan Pengiriman : <strong>{{ $pelanggan[0]->kelurahan }}</strong></label>
+                                <label>Kota Pengiriman : <strong>{{ $pelanggan[0]->city }}</strong></label>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -67,6 +70,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>Biaya ongkir : <strong>Rp. {{number_format($produk[0]->ongkir,2,',','.')}}</strong> </label><br>
+                                <label>Total Biaya : <strong>Rp. {{number_format($produk[0]->total-$produk[0]->ongkir,2,',','.')}}</strong></label>
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Total Tagihan + Ongkir: <strong>Rp. {{number_format($produk[0]->total,2,',','.')}}</strong></label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
@@ -80,7 +92,7 @@
                                     <tr>
                                         <td>{{ $key->name }}</td>
                                         <td>{{ $key->size }}</td>
-                                        <td>{{ $key->qty }}</td>
+                                        <td>{{ $key->qty }} pcs</td>
                                     </tr>
                                     @empty
                                     <tr>

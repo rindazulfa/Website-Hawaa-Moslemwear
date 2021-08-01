@@ -52,10 +52,8 @@
                                 <th scope="col" class="sort" data-sort="jumlah_beli">Jumlah Beli</th>
                                 <th scope="col" class="sort" data-sort="harga_bahan">Harga Bahan</th>
                                 <th scope="col" class="sort" data-sort="total_harga">Total Harga</th>
-                                <th scope="col" class="sort" data-sort="satuan">Satuan</th>
                                 <th scope="col" class="sort" data-sort="tanggal_transaksi">Tanggal Transaksi</th>
                                 <th scope="col" class="sort" data-sort="aksi">Aksi</th>
-                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody class="list">
@@ -64,10 +62,9 @@
                                 <td>{{$key->id}}</td>
                                 <td>{{$key->nama_sup}}</td>
                                 <td>{{$key->nama_bahan}}</td>
-                                <td>{{$key->qty}}</td>
-                                <td>{{$key->harga}}</td>
-                                <td>{{$key->total}}</td>
-                                <td>{{$key->satuan}}</td>
+                                <td>{{$key->qty}} {{ $key->satuan }}</td>
+                                <td>Rp. {{number_format($key->harga,2,',','.')}}</td>
+                                <td>Rp. {{number_format($key->total,2,',','.')}}</td>
                                 <td>{{$key->date}}</td>
                                 <td>
                                     <a href="{{route('pembelian.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">

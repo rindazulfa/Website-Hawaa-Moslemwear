@@ -92,7 +92,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">Data Kosong</td>
+                                        <td colspan="7" class="text-center">Keranjang Anda Kosong</td>
                                     </tr>
                                     @endforelse
                                 </div>
@@ -128,8 +128,8 @@
                         <span>Rp. {{number_format($total,2,',','.')}}</span>
                     </p>
                     <p class="d-flex">
-                        <span>Delivery</span>
-                        <span>Rp 0.00</span>
+                        <span>Ongkir</span>
+                        <span>Rp. 0.00</span>
                     </p>
                     <hr>
                     <p class="d-flex total-price">

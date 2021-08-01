@@ -42,7 +42,10 @@
                                 <label>Nama Customer : <strong>{{ $pelanggan[0]->first_name }}</strong></label>
                             </div>
                             <div class="col-lg-6">
-                                <label>Alamat Pengiriman : <strong>{{ $pelanggan[0]->address }} , {{ $pelanggan[0]->city }}</strong></label>
+                                <label>Alamat Pengiriman : <strong>{{ $pelanggan[0]->address }}</strong></label>
+                                <label>Kecamatan Pengiriman : <strong>{{ $pelanggan[0]->kecamatan }}</strong></label>
+                                <label>Kelurahan Pengiriman : <strong>{{ $pelanggan[0]->kelurahan }}</strong></label>
+                                <label>Kota Pengiriman : <strong>{{ $pelanggan[0]->city }}</strong></label>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -67,14 +70,6 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-lg-6">
-                                <label>Keterangan Desain : <strong>{{ $produk[0]->keterangan }}</strong></label>
-                            </div>
-                            <div class="col-lg-6">
-                                <label>Keterangan Order : <strong>{{ $produk[0]->keterangan_order }}</strong></label>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
@@ -82,6 +77,8 @@
                                         <th scope="col" class="sort" data-sort="">Size Produk</th>
                                         <th scope="col" class="sort" data-sort="">Jumlah Order</th>
                                         <th scope="col" class="sort" data-sort="">Total Harga</th>
+                                        <th scope="col" class="sort" data-sort="">Keterangan Desain</th>
+                                        <th scope="col" class="sort" data-sort="">Keterangn Order</th>
                                     </tr>
                                 </thead>
                                 <tbody class="list">
@@ -91,8 +88,10 @@
                                             <a href="{{asset('data_file/'.$key->pict_desain)}}" target="_blank">{{ $key->pict_desain }}</a>
                                         </td>
                                         <td>{{ $key->size }}</td>
-                                        <td>{{ $key->qty }}</td>
+                                        <td>{{ $key->qty }} pcs</td>
                                         <td>Rp. {{number_format($key->total,2,',','.')}}</td>
+                                        <td>{{ $produk[0]->keterangan }}</td>
+                                        <td>{{ $produk[0]->keterangan_order }}</td>
                                     </tr>
                                     @empty
                                     <tr>

@@ -56,9 +56,9 @@
                             <tr>
                                 <td>{{$key->id}}</td>
                                 <td>{{$key->name}}</td>
-                                <td>{{$key->recipes_id}}</td>
+                                <td>{{$key->size}}</td>
                                 <td>{{$key->date}}</td>
-                                <td>{{$key->qty}}</td>
+                                <td>{{$key->qty}} pcs</td>
                                 <td>{{$key->date}}</td>
                                 <!-- <td>
                                     <a href="{{route('produksi.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">

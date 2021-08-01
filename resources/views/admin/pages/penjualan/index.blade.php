@@ -63,19 +63,25 @@
                                 <td class="id_transaksi_penjualan">{{$key->id}}</td>
                                 <td class="tanggal_transaksi">{{$key->date}}</td>
                                 <td class="shipping">{{$key->shipping}}</td>
-                                <td class="ongkir">{{$key->ongkir}}</td>
+                                <td class="ongkir">Rp. {{number_format($key->ongkir,2,',','.')}}</td>
                                 <td class="keterangan">{{$key->keterangan}}</td>
-                                <td class="total_harga">{{$key->total}}</td>
+                                <td class="total_harga">Rp. {{number_format($key->total,2,',','.')}}</td>
                                 <td class="status">
                                     <span class="badge badge-dot mr-4">
-                                        <i class="bg-info"></i>
                                         <?php
                                         if ($key->status == 'Menunggu Harga') {
                                             ?>
+                                            <i class="bg-info"></i>
                                             <span class="status">Menunggu Konfirmasi Harga</span>
+                                        <?php
+                                        } else if ($key->status == 'Selesai') {
+                                            ?>
+                                            <i class="bg-success"></i>
+                                            <span class="status">{{$key->status}}</span>
                                         <?php
                                         } else {
                                             ?>
+                                            <i class="bg-danger"></i>
                                             <span class="status">{{$key->status}}</span>
                                         <?php
                                         }
