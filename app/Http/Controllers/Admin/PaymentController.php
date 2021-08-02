@@ -113,6 +113,6 @@ class PaymentController extends Controller
     {
         $delete = payment::findOrFail($id);
         $delete->delete();
-        return redirect()->route('payment.index');
+        return redirect()->route('payment.index')->with("info", "Shipping has been deleted");
     }
 }

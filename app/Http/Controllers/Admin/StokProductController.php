@@ -70,8 +70,8 @@ class StokProductController extends Controller
             if ($ceksize > 0) {
                 $update = stock::where('products_id', $data['products_id'])
                     ->where('size', $data['size'])->first();
-                $stokk =  $request->get('stok');
-                $update->stok = $update->stok + $stokk;
+                $stokk =  $request->get('qty');
+                $update->qty = $update->qty + $stokk;
                 $update->save();
             } else {
                 $data['size'] = $size;
