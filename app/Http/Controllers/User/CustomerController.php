@@ -24,7 +24,12 @@ class CustomerController extends Controller
         // $items = User::where('id','!=',1)->get();
         $items = DB::table('users')
             ->join('customers', 'users.id', '=', 'customers.users_id')
-            ->select('users.*', 'customers.*')
+            ->select(
+                'users.first_name',
+                'users.email',
+                'users.last_name',
+                'customers.*'
+                )
             ->get();
 
         return view('admin/pages/customer/index', [
@@ -72,7 +77,21 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $items = DB::table('users')
+            ->join('customers', 'users.id', '=', 'customers.users_id')
+            ->select(
+                'users.first_name',
+                'users.email',
+                'users.last_name',
+                'customers.*'
+                )
+            ->where('customers.id','=',$id)
+            ->get();
+
+        return view('admin/pages/customer/detail', [
+            'pelanggan' => $items,
+            'id' => $id
+        ]);
     }
 
     /**

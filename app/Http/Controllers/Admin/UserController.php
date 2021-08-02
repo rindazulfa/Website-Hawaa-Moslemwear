@@ -46,11 +46,11 @@ class UserController extends Controller
             // 'password_confirmation' => ['required','string']
         ]);
         $role =$request->get('role');
-        if ($role == 'user') {
-            $role = 'user';
+        if ($role == 'admin') {
+            $role = 'admin';
         }
-        elseif ($role = 'customer') {
-            $role ='customer';
+        elseif ($role = 'user') {
+            $role ='user';  
         }
         
         $user = new User;

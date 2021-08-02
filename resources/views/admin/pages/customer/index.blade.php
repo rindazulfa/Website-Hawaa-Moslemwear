@@ -42,14 +42,12 @@
                                 <th scope="col" class="sort" data-sort="harga_produk">Alamat</th>
                                 <th scope="col" class="sort" data-sort="stok_produk">Kode POS</th>
                                 <th scope="col" class="sort" data-sort="stok_produk">No Telepon</th>
+                                <th scope="col" class="sort" data-sort="stok_produk">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="list">
                         @forelse($items as $key)
-                            {{-- @foreach ($key->customer as $item) --}}
-                            {{-- @if ($item->status==1) --}}
                             <tr>
-                                {{-- <th class="no">1.</th> --}}
                                 <td class="id_produk">{{$key->id}}</td>
                                 <td class="nama_produk">{{$key->first_name}} {{$key->last_name}}</td>
                                 <td class="harga_produk">{{$key->email}}</td>
@@ -59,15 +57,11 @@
                                 <td class="stok_produk">{{$key->postal_code}}</td>
                                 <td class="stok_produk">{{$key->phone}}</td>
                                 <td>
-                                    <!-- <a href="{{route('customer.edit',[$key->id])}}" class="btn btn-outline-primary" title="Edit">
-                                        Update
-                                    </a> -->
-                                    <!-- <button type="button" class="btn btn-outline-primary">Update</button> -->
-                                    {{-- <button class="btn btn-outline-danger delete" data-id="{{$key->id}}">Delete</button> --}}
+                                    <button type="button" class="btn btn-outline-primary">
+                                        <a href="{{ route('customer.show',[$key->id]) }}">Detail</a>
+                                    </button>
                                 </td>
                             </tr>
-                            {{-- @endif --}}
-                            {{-- @endforeach --}}
                             @empty
                             <tr>
                                 <td colspan="7" class="text-center">Data Kosong</td>
