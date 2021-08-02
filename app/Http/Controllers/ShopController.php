@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cart;
+use App\Models\Cart;
 use App\Models\customer;
 use App\Models\detail_order;
-use App\Models\Product;
+use App\Models\product;
 use App\Models\profile;
 use App\Models\stock;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $product = Product::with(['stok'])->get();
+        $product = product::with(['stok'])->get();
         $footer = profile::all()->last();
         $kategori = DB::table('categories')->get();
 
@@ -55,7 +55,7 @@ class ShopController extends Controller
                     ->where('users_id', '=', auth()->user()->id)
                     ->get();
 
-                $cart = cart::select('id')
+                $cart = Cart::select('id')
                     ->where('customers_id', '=', $idcust[0]->id)
                     ->count();
 
@@ -127,7 +127,7 @@ class ShopController extends Controller
                     ->first();
 
             // Memasukkan ke keranjang
-            $cekprod = cart::select('id')
+            $cekprod = Cart::select('id')
                 ->where('products_id', '=', $request->id)
                 ->where('stocks_id', '=', $stockid->id)
                 ->count();
@@ -139,7 +139,7 @@ class ShopController extends Controller
             // );
 
             // dibawah ini error
-            $cekidcart = cart::select('id')
+            $cekidcart = Cart::select('id')
                 ->where('products_id', '=', $request->id)
                 ->where('stocks_id', '=', $stockid->id)
                 ->get();
@@ -149,7 +149,7 @@ class ShopController extends Controller
                     ->where('products_id', '=', $request->id)
                     ->first();
 
-                $qtyold = cart::select('qty')
+                $qtyold = Cart::select('qty')
                     ->where('products_id', '=', $request->id)
                     ->where('stocks_id', '=', $stockid->id)
                     ->get();
@@ -171,7 +171,7 @@ class ShopController extends Controller
 
                 // dd($stockid->id);
 
-                $tambahcart = cart::create([
+                $tambahcart = Cart::create([
                     'products_id' => $request->id,
                     'stocks_id' => $stockid->id,
                     'customers_id' => $idcust[0]->id,
@@ -200,10 +200,10 @@ class ShopController extends Controller
     public function show($id)
     {
         //detail produk
-        $detail = Product::with(['stok'])
+        $detail = product::with(['stok'])
             ->findOrFail($id);
         $stok = stock::where('products_id', $id)->first();
-        $cart = cart::select('id')->count();
+        $cart = Cart::select('id')->count();
 
         return view('package.detail_product', [
             'detail' => $detail,
@@ -213,7 +213,7 @@ class ShopController extends Controller
     }
 
     public function kategori($id){
-        $product = Product::with(['stok'])->get();
+        $product = product::with(['stok'])->get();
         $footer = profile::all()->last();
         $kategori = DB::table('categories')->get();
 
@@ -252,7 +252,7 @@ class ShopController extends Controller
                     ->where('users_id', '=', auth()->user()->id)
                     ->get();
 
-                $cart = cart::select('id')
+                $cart = Cart::select('id')
                     ->where('customers_id', '=', $idcust[0]->id)
                     ->count();
 

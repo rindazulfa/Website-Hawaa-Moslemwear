@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use PDF;
-use App\Models\cart;
+use App\Models\Cart;
 use App\Models\customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -41,7 +41,7 @@ class HistoryCustomController extends Controller
                 ->where('users_id', '=', auth()->user()->id)
                 ->get();
 
-            $cart = cart::select('id')
+            $cart = Cart::select('id')
                 ->where('customers_id', '=', $idcust[0]->id)
                 ->count();
 

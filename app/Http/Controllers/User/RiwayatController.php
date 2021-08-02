@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\cart;
+use App\Models\Cart;
 use PDF;
 use App\Models\customer;
 use Illuminate\Http\Request;
@@ -42,7 +42,7 @@ class RiwayatController extends Controller
                 ->where('users_id', '=', auth()->user()->id)
                 ->get();
 
-            $cart = cart::select('id')
+            $cart = Cart::select('id')
                 ->where('customers_id', '=', $idcust[0]->id)
                 ->count();
 

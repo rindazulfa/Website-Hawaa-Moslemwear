@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\cart;
+use App\Models\Cart;
 use App\Models\confirm_payment;
 use App\Models\customer;
 use App\Models\Detail_Order_Custom;
@@ -30,7 +30,7 @@ class CustomProductController extends Controller
                 ->where('users_id', '=', auth()->user()->id)
                 ->get();
 
-            $cart = cart::select('id')
+            $cart = Cart::select('id')
                 ->where('customers_id', '=', $idcust[0]->id)
                 ->count();
 
@@ -119,7 +119,7 @@ class CustomProductController extends Controller
                 ->where('users_id', '=', auth()->user()->id)
                 ->get();
 
-            $cart = cart::select('id')
+            $cart = Cart::select('id')
                 ->where('customers_id', '=', $idcust[0]->id)
                 ->count();
 
@@ -159,7 +159,7 @@ class CustomProductController extends Controller
             ->where('users_id', '=', auth()->user()->id)
             ->get();
 
-        $cart = cart::select('id')
+        $cart = Cart::select('id')
             ->where('customers_id', '=', $idcust[0]->id)
             ->count();
 

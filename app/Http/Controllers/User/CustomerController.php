@@ -4,8 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Models\customer;
 use App\Http\Controllers\Controller;
-use App\Models\cart;
-use App\Models\Product;
+use App\Models\Cart;
+use App\Models\product;
 use App\Models\profile;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -108,7 +108,7 @@ class CustomerController extends Controller
             ->where('users_id', '=', auth()->user()->id)
             ->get();
 
-        $product = Product::with(['stok'])->get();
+        $product = product::with(['stok'])->get();
         $footer = profile::all()->last();
 
         if (Auth::check()) {
@@ -141,7 +141,7 @@ class CustomerController extends Controller
                     ->where('users_id', '=', auth()->user()->id)
                     ->get();
 
-                $cart = cart::select('id')
+                $cart = Cart::select('id')
                     ->where('customers_id', '=', $idcust[0]->id)
                     ->count();
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 // use App\Detail_order;
-use App\Models\cart;
+use App\Models\Cart;
 use App\Models\detail_order;
 use App\Models\profile;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class Shoping_CartController extends Controller
             'products'
         ])->get();
         $footer = profile::all()->last();
-        $cart = cart::select('id')->count();
+        $cart = Cart::select('id')->count();
 
         // dd($propinsi);
         return view('pages.shoping_cart', [

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
-use App\Models\cart;
+use App\Models\Cart;
 use App\Models\customer;
-use App\Models\Product;
+use App\Models\product;
 use App\Models\profile;
 use App\Models\stock;
 use Illuminate\Http\Request;
@@ -24,7 +24,7 @@ class HomepageController extends Controller
     {
         $banner = Banner::all()->last();
         $footer = profile::all()->last();
-        $product = Product::with([
+        $product = product::with([
             'stok'
         ])
             ->get();
@@ -65,7 +65,7 @@ class HomepageController extends Controller
                     ->where('users_id', '=', auth()->user()->id)
                     ->get();
 
-                $cart = cart::select('id')
+                $cart = Cart::select('id')
                     ->where('customers_id', '=', $idcust[0]->id)
                     ->count();
 
@@ -118,18 +118,18 @@ class HomepageController extends Controller
             $subtotal = $request->qty * $request->price;
 
             // Memasukkan ke keranjang
-            $cekprod = cart::select('id')
+            $cekprod = Cart::select('id')
                 ->where('products_id', '=', $request->id)
                 ->where('stocks_id', '=', $request->size)
                 ->count();
 
-            $cekidcart = cart::select('id')
+            $cekidcart = Cart::select('id')
                 ->where('products_id', '=', $request->id)
                 ->where('stocks_id', '=', $request->size)
                 ->get();
 
             if ($cekprod == 1) {
-                $qtyold = cart::select('qty')
+                $qtyold = Cart::select('qty')
                     ->where('products_id', '=', $request->id)
                     ->where('stocks_id', '=', $request->size)
                     ->get();
@@ -145,7 +145,7 @@ class HomepageController extends Controller
 
                 return redirect('/');
             } else {
-                $tambahcart = cart::create([
+                $tambahcart = Cart::create([
                     'products_id' => $request->id,
                     'stocks_id' => $request->size,
                     'customers_id' => $idcust[0]->id,

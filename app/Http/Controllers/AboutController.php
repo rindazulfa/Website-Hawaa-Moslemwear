@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cart;
+use App\Models\Cart;
 use App\Models\customer;
 use App\Models\profile;
 use Illuminate\Http\Request;
@@ -34,7 +34,7 @@ class AboutController extends Controller
                     ->where('users_id', '=', auth()->user()->id)
                     ->get();
 
-                $cart = cart::select('id')
+                $cart = Cart::select('id')
                     ->where('customers_id', '=', $idcust[0]->id)
                     ->count();
 

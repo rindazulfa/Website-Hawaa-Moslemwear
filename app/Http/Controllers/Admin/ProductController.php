@@ -88,7 +88,7 @@ class ProductController extends Controller
                 dd($th);
             }
             $data = $request->all();
-            $product = new Product();
+            $product = new product();
             $product->name = $request->get('name');
             $product->price = $request->get('price');
             $product->desc = $request->get('desc');
@@ -113,7 +113,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $detail = Product::with(['stok'])->findOrFail($id);
+        $detail = product::with(['stok'])->findOrFail($id);
         // $produk = Product::where('id', $detail->id);
         $resep = Recipe::with(['stok', 'material'])
             ->where('stocks_id', $detail->id)->get();
@@ -256,7 +256,7 @@ class ProductController extends Controller
 
         if (!$cekStok && !$cekDtOrder) {
 
-            $delete = Product::findOrFail($id);
+            $delete = product::findOrFail($id);
             $namaFileLama1 = "uploads/products/" . $delete->pict_1;
             File::delete($namaFileLama1);
             $namaFileLama2 = "uploads/products/" . $delete->pict_2;

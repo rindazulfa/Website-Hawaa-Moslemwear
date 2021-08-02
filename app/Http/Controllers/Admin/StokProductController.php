@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
+use App\Models\product;
 use App\Models\Recipe;
 use App\Models\stock;
 Use Illuminate\Support\Facades\DB;
@@ -32,7 +32,7 @@ class StokProductController extends Controller
      */
     public function create()
     {
-        $items = Product::all();
+        $items = product::all();
         return view('admin.pages.stok_produk.create', [
             'items' => $items
         ]);
@@ -60,9 +60,9 @@ class StokProductController extends Controller
             $size = 'XXL';
         }
 
-        $item = Product::findOrFail($data['products_id']); //mencari id produk yg diinputkan
+        $item = product::findOrFail($data['products_id']); //mencari id produk yg diinputkan
 
-        $cekproduk = Product::where('id', $data['products_id'])->count();
+        $cekproduk = product::where('id', $data['products_id'])->count();
         $ceksize = stock::where('products_id', $data['products_id'])
             ->where('size', $data['size'])->count();
 
@@ -122,7 +122,7 @@ class StokProductController extends Controller
     public function edit($id)
     {
         $edit = stock::findOrFail($id);
-        $product = Product::find($edit->products_id);
+        $product = product::find($edit->products_id);
         // $stok = stock::find($edit->products_id);
         return view('admin.pages.stok_produk.edit', [
             'edit' => $edit,

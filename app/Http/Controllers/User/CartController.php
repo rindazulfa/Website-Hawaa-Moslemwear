@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\cart;
+use App\Models\Cart;
 use App\Models\customer;
 use App\Models\detail_order;
 use App\Models\order;
-use App\Models\Product;
+use App\Models\product;
 use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +35,7 @@ class CartController extends Controller
                 ->where('users_id', '=', auth()->user()->id)
                 ->get();
 
-            $cart = cart::select('id')
+            $cart = Cart::select('id')
                 ->where('customers_id', '=', $idcust[0]->id)
                 ->count();
 
@@ -60,7 +60,7 @@ class CartController extends Controller
                     ->select('size')
                     ->first();
 
-                $size = Product::with('stok')
+                $size = product::with('stok')
                     ->where('id', '=', $row->id_products)
                     ->first();
 
@@ -79,14 +79,14 @@ class CartController extends Controller
             //     $arr
             // );
 
-            $cek = cart::select('products.name', 'products.pict_1', 'stocks.size', 'cart.price', 'cart.subtotal', 'cart.qty', 'cart.id')
+            $cek = Cart::select('products.name', 'products.pict_1', 'stocks.size', 'cart.price', 'cart.subtotal', 'cart.qty', 'cart.id')
                 ->join('stocks', 'stocks.id', '=', 'cart.stocks_id')
                 ->join('products', 'products.id', '=', 'cart.products_id')
                 ->join('customers', 'customers.id', '=', 'cart.customers_id')
                 ->where('customers_id', '=', $idcust[0]->id)
                 ->get();
 
-            $cekjmlcart = cart::select('products.name', 'products.pict_1', 'stocks.size', 'cart.price', 'cart.subtotal', 'cart.qty', 'cart.id')
+            $cekjmlcart = Cart::select('products.name', 'products.pict_1', 'stocks.size', 'cart.price', 'cart.subtotal', 'cart.qty', 'cart.id')
                 ->join('stocks', 'stocks.id', '=', 'cart.stocks_id')
                 ->join('products', 'products.id', '=', 'cart.products_id')
                 ->join('customers', 'customers.id', '=', 'cart.customers_id')
@@ -173,7 +173,7 @@ class CartController extends Controller
         // );
 
         foreach ($request->id as $key => $row) {
-            $idprod = cart::select('products_id')
+            $idprod = Cart::select('products_id')
                 ->where('id', '=', $id[$key])
                 ->get();
             $detail = new detail_order();
@@ -218,7 +218,7 @@ class CartController extends Controller
                 ->where('users_id', '=', auth()->user()->id)
                 ->get();
 
-            $cart = cart::select('id')
+            $cart = Cart::select('id')
                 ->where('customers_id', '=', $idcust[0]->id)
                 ->count();
 
@@ -248,7 +248,7 @@ class CartController extends Controller
 
             $arr = json_decode(json_encode($arr, true));
 
-            $cek = cart::select('products.name', 'products.pict_1', 'stocks.size', 'cart.price', 'cart.subtotal', 'cart.qty', 'cart.id')
+            $cek = Cart::select('products.name', 'products.pict_1', 'stocks.size', 'cart.price', 'cart.subtotal', 'cart.qty', 'cart.id')
                 ->join('stocks', 'stocks.id', '=', 'cart.stocks_id')
                 ->join('products', 'products.id', '=', 'cart.products_id')
                 ->join('customers', 'customers.id', '=', 'cart.customers_id')
@@ -363,7 +363,7 @@ class CartController extends Controller
             //     ->where('size', '=', $size[$key])
             //     ->first();
 
-            $cart = cart::findorfail($row);
+            $cart = Cart::findorfail($row);
             $cart->qty = $qty[$key];
             $cart->stocks_id = $size[$key];
             $cart->size = $size[$key];
