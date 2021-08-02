@@ -21,13 +21,13 @@ class Order_Custom extends Model
     ];
 
     public function customer(){
-        return $this->belongsTo(Customer::class, 'customers_id', 'id');
+        return $this->belongsTo(customer::class, 'customers_id', 'id');
     }
 
     public function produk(){
-        return $this->belongsTo(Product::class, 'products_id', 'id');
+        return $this->belongsTo(product::class, 'products_id', 'id');
     }
     public function confirm(){
-        return $this->belongsTo(ConfirmPayment::class, 'confirm_payments_id', 'id');
+        return $this->belongsTo(confirm_payment::class, 'confirm_payments_id', 'id');
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class product extends Model
 {
     // use HasFactory;
     // use SoftDeletes;
@@ -32,6 +32,6 @@ class Product extends Model
         return $this->hasMany(Order_Custom::class, 'products_id', 'id');
     }
     public function cart(){
-        return $this->hasMany(cart::class,'products_id','id');
+        return $this->hasMany(Cart::class,'products_id','id');
     }
 }
