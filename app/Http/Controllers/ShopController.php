@@ -41,7 +41,8 @@ class ShopController extends Controller
                 return view('package.product', [
                     'shop' => $product,
                     'cart' => 0,
-                    'footer' => $footer
+                    'footer' => $footer,
+                    'kategori' => $kategori
                 ]);
             } else {
                 $product = DB::table('products')

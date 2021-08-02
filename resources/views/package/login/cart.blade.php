@@ -53,7 +53,7 @@
                                             <!-- </button> -->
                                         </td>
                                         <td class="image-prod">
-                                            <div class="img" style="background-image: url({{'uploads/products/'.$key->pict_1}});"></div>
+                                            <div class="img" style="background-image: url({{'/uploads/products/'.$key->pict_1}});"></div>
                                         </td>
                                         <td class="product-name">
                                             <h3>{{ $key->name }}</h3>
