@@ -5,7 +5,7 @@
         <div class="popup-container">    
             <!-- Konten popup -->
             <a href="#">
-                <img width="70%" height="70%" src="{{'uploads/banner/payment.png'}}" alt="payment.png">
+                <img width="100%" height="100%" src="{{'uploads/banner/payment.png'}}" alt="payment.png">
             </a>
             <!-- <img src="Gambar/" alt=""> -->
             <a class="popup-close" href="#popup">X</a>
