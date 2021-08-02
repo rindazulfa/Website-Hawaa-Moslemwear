@@ -183,8 +183,8 @@
                 <tr>
                     <td class="service">Custom</td>
                     <td class="desc">{{$custom[0]->keterangan}}</td>
-                    <td class="unit">{{$custom[0]->ongkir}}</td>
-                    <td class="unit">{{$custom[0]->harga}}</td>
+                    <td class="unit">Rp. {{number_format($custom[0]->ongkir,2,',','.')}}</td>
+                    <td class="unit">Rp. {{number_format($custom[0]->harga,2,',','.')}}</td>
                     <td class="qty">{{$custom[0]->qty}}</td>
                     <td class="total">Rp. {{number_format($custom[0]->total,2,',','.')}}</td>
                 </tr>

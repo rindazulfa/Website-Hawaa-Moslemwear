@@ -189,8 +189,8 @@
                     <td class="service">Pembelian Produk</td>
                     <td class="desc">{{ $dp->name }}</td>
                     <td>{{ $dp->size }}</td>
-                    <td class="unit"> {{ $dp->ongkir }} </td>
-                    <td class="unit"> {{ $dp->price }} </td>
+                    <td class="unit">Rp. {{number_format($dp->ongkir,2,',','.')}}</td>
+                    <td class="unit">Rp. {{number_format($dp->total,2,',','.')}} </td>
                     <td class="qty"> {{ $dp->qty }}</td>
                     <td class="total">Rp. {{number_format($dp->subtotal,2,',','.')}}</td>
                 </tr>
