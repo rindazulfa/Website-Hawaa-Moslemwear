@@ -27,9 +27,9 @@ class Order_CustomController extends Controller
             )
             ->get();
 
-            // dd(
-            //     $page
-            // );
+        // dd(
+        //     $page
+        // );
 
         return view('admin/pages/penjualan_custom/index', [
             'page' => $page
@@ -166,15 +166,15 @@ class Order_CustomController extends Controller
                 'order_customs.date as tanggals',
                 'detail_order_customs.*'
             )
-            ->where('order_customs_id','=',$id)
+            ->where('order_customs_id', '=', $id)
             ->get();
-        
+
         // dd($page);
-        
+
         $pelanggan = DB::table('customers')
-        ->join('users','customers.users_id','=','users.id')
-        ->where('users_id','=', auth()->user()->id)
-        ->get();
+            ->join('users', 'customers.users_id', '=', 'users.id')
+            ->where('users_id', '=', auth()->user()->id)
+            ->get();
 
         return view('admin/pages/penjualan_custom/detail', [
             'produk' => $page,
@@ -244,6 +244,7 @@ class Order_CustomController extends Controller
                 ->join('users', 'users.id', '=', 'customers.users_id')
                 ->select(
                     'order_customs.*',
+                    'order_customs.date as tanggals',
                     'detail_order_customs.*',
                     'users.first_name'
                 )
@@ -280,6 +281,7 @@ class Order_CustomController extends Controller
                 ->join('users', 'users.id', '=', 'customers.users_id')
                 ->select(
                     'order_customs.*',
+                    'order_customs.date as tanggals',
                     'detail_order_customs.*',
                     'users.first_name'
                 )
@@ -303,6 +305,7 @@ class Order_CustomController extends Controller
                 ->join('users', 'users.id', '=', 'customers.users_id')
                 ->select(
                     'order_customs.*',
+                    'order_customs.date as tanggals',
                     'detail_order_customs.*',
                     'users.first_name'
                 )
@@ -323,6 +326,7 @@ class Order_CustomController extends Controller
                 ->join('users', 'users.id', '=', 'customers.users_id')
                 ->select(
                     'order_customs.*',
+                    'order_customs.date as tanggals',
                     'detail_order_customs.*',
                     'users.first_name'
                 )

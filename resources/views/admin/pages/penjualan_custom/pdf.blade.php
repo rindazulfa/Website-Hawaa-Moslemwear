@@ -35,7 +35,7 @@
         <tbody>
             @forelse($custom as $key)
             <tr>
-                <td>{{$key->date}}</td>
+                <td>{{$key->tanggals}}</td>
                 <td>{{$key->first_name}}</td>
                 <td>{{$key->status_pengerjaan}}</td>
                 <td> Rp. {{number_format($key->total,2,',','.')}}</td>
