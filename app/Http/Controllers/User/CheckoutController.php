@@ -64,7 +64,8 @@ class CheckoutController extends Controller
                 ]);
 
             $tujuan_upload = 'uploads/bukti';
-            $file->move($tujuan_upload, $nama_file);
+            $file->move(public_path($tujuan_upload), $nama_file);
+            
 
             // dd(
             //     $idconfirm

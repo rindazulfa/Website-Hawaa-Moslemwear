@@ -59,7 +59,7 @@ class ProfilController extends Controller
 
                     $file1 = $request->file('picture');
                     $namaFile1 = time() . '.' . $file1->getClientOriginalExtension();
-                    $file1->move('uploads/profil', $namaFile1);
+                    $file1->move(public_path('uploads/profil'), $namaFile1);
                 } catch (\Throwable $th) {
                     dd($th);
                 }
@@ -118,7 +118,7 @@ class ProfilController extends Controller
 
                 $file1 = $request->file('picture');
                 $namaFile1 = time() . '.' . $file1->getClientOriginalExtension();
-                $file1->move('uploads/profil', $namaFile1);
+                $file1->move(public_path('uploads/profil'), $namaFile1);
             } catch (\Throwable $th) {
                 dd($th);
             }

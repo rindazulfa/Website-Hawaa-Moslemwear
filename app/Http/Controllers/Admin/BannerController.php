@@ -58,7 +58,7 @@ class BannerController extends Controller
 
                     $file1 = $request->file('picture');
                     $namaFile1 = time() . '.' . $file1->getClientOriginalExtension();
-                    $file1->move('uploads/banner', $namaFile1);
+                    $file1->move(public_path('uploads/banner'), $namaFile1);
                 } catch (\Throwable $th) {
                     dd($th);
                 }
@@ -111,7 +111,7 @@ class BannerController extends Controller
 
                 $file1 = $request->file('picture');
                 $namaFile1 = time() . '.' . $file1->getClientOriginalExtension();
-                $file1->move('uploads/banner', $namaFile1);
+                $file1->move(public_path('uploads/banner'), $namaFile1);
             } catch (\Throwable $th) {
                 dd($th);
             }

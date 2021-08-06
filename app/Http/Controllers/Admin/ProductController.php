@@ -65,7 +65,7 @@ class ProductController extends Controller
                 // Pict 1
                 $file1 = $request->file('pict_1');
                 $namaFile1 = $dateNow->year . $dateNow->month . '_' .  $request->get('name')  . '1' . '.' . $file1->getClientOriginalExtension();
-                $file1->move('uploads/products', $namaFile1);
+                $file1->move(public_path('uploads/products'), $namaFile1);
             } catch (\Throwable $th) {
                 dd($th);
             }
@@ -74,7 +74,7 @@ class ProductController extends Controller
                 // Pict 2
                 $file2 = $request->file('pict_2');
                 $namaFile2 = $dateNow->year . $dateNow->month . '_' .  $request->get('name')  . '2' . '.' . $file2->getClientOriginalExtension();
-                $file2->move('uploads/products', $namaFile2);
+                $file2->move(public_path('uploads/products'), $namaFile2);
             } catch (\Throwable $th) {
                 dd($th);
             }
@@ -83,7 +83,7 @@ class ProductController extends Controller
                 // Pict 3
                 $file3 = $request->file('pict_3');
                 $namaFile3 = $dateNow->year . $dateNow->month . '_' .  $request->get('name')  . '3' . '.' . $file3->getClientOriginalExtension();
-                $file3->move('uploads/products', $namaFile3);
+                $file3->move(public_path('uploads/products'), $namaFile3);
             } catch (\Throwable $th) {
                 dd($th);
             }
@@ -190,7 +190,7 @@ class ProductController extends Controller
                     // Pict 1
                     $file1 = $request->file('pict_1');
                     $namaFile1 = $dateNow->year . $dateNow->month . '_' .  $request->get('name')  . '1' . '.' . $file1->getClientOriginalExtension();
-                    $file1->move('uploads/products', $namaFile1);
+                    $file1->move(public_path('uploads/products'), $namaFile1);
                     $product->pict_1 = $namaFile1;
                 } catch (\Throwable $th) {
                     dd($th);
@@ -206,7 +206,7 @@ class ProductController extends Controller
                     // Pict 2
                     $file2 = $request->file('pict_2');
                     $namaFile2 = $dateNow->year . $dateNow->month . '_' .  $request->get('name')  . '2' . '.' . $file2->getClientOriginalExtension();
-                    $file2->move('uploads/products', $namaFile2);
+                    $file2->move(public_path('uploads/products'), $namaFile2);
                     $product->pict_2 = $namaFile2;
                 } catch (\Throwable $th) {
                     dd($th);
@@ -222,7 +222,7 @@ class ProductController extends Controller
                     // Pict 3
                     $file3 = $request->file('pict_3');
                     $namaFile3 = $dateNow->year . $dateNow->month . '_' .  $request->get('name')  . '3' . '.' . $file3->getClientOriginalExtension();
-                    $file3->move('uploads/products', $namaFile3);
+                    $file3->move(public_path('uploads/products'), $namaFile3);
                     $product->pict_3 = $namaFile3;
                 } catch (\Throwable $th) {
                     dd($th);

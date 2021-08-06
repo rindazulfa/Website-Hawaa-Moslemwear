@@ -87,7 +87,7 @@ class CustomProductController extends Controller
                 'pict_desain' => $nama_file
             ]);
             $tujuan_upload = 'data_file';
-            $file->move($tujuan_upload, $nama_file);
+            $file->move(public_path($tujuan_upload), $nama_file);
 
             // dd(
             //     $cust_id[0]->id,
