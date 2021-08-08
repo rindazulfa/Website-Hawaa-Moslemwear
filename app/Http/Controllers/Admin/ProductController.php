@@ -54,7 +54,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('pict_1') || $request->hasFile('pict_2') || $request->hasFile('pict_3')) {
+        $data = $request->all();
+        $product = new product();
+        if ($request->hasFile('pict_1')) {
             $request->validate([
                 'image' => 'mimes:jpeg,jpg,png' // Only allow .jpg, .bmp and .png file types.
             ]);
@@ -66,41 +68,56 @@ class ProductController extends Controller
                 $file1 = $request->file('pict_1');
                 $namaFile1 = $dateNow->year . $dateNow->month . '_' .  $request->get('name')  . '1' . '.' . $file1->getClientOriginalExtension();
                 $file1->move(public_path('uploads/products'), $namaFile1);
+                $product->pict_1 = $namaFile1;
             } catch (\Throwable $th) {
                 dd($th);
             }
+           
 
+        }
+        elseif ($request->hasFile('pict_2')) {
+            $request->validate([
+                'image' => 'mimes:jpeg,jpg,png' // Only allow .jpg, .bmp and .png file types.
+            ]);
+
+            $dateNow = Carbon::now();
             try {
                 // Pict 2
                 $file2 = $request->file('pict_2');
                 $namaFile2 = $dateNow->year . $dateNow->month . '_' .  $request->get('name')  . '2' . '.' . $file2->getClientOriginalExtension();
                 $file2->move(public_path('uploads/products'), $namaFile2);
+                $product->pict_2 = $namaFile2;
             } catch (\Throwable $th) {
                 dd($th);
             }
+           
+    
+        }
+        elseif ($request->hasFile('pict_3')) {
+            $request->validate([
+                'image' => 'mimes:jpeg,jpg,png' // Only allow .jpg, .bmp and .png file types.
+            ]);
 
+            $dateNow = Carbon::now();
+           
             try {
                 // Pict 3
                 $file3 = $request->file('pict_3');
                 $namaFile3 = $dateNow->year . $dateNow->month . '_' .  $request->get('name')  . '3' . '.' . $file3->getClientOriginalExtension();
                 $file3->move(public_path('uploads/products'), $namaFile3);
+                $product->pict_3 = $namaFile3;
             } catch (\Throwable $th) {
                 dd($th);
             }
-            $data = $request->all();
-            $product = new product();
-            $product->name = $request->get('name');
-            $product->price = $request->get('price');
-            $product->desc = $request->get('desc');
-            $product->categories_id = $request->get('categories_id');
-            // dd($product);
-            // $product->category = $request->get('category');
-            $product->pict_1 = $namaFile1;
-            $product->pict_2 = $namaFile2;
-            $product->pict_3 = $namaFile3;
-            $product->save();
-
+           
+      
         }
+      
+        $product->name = $request->get('name');
+        $product->price = $request->get('price');
+        $product->desc = $request->get('desc');
+        $product->categories_id = $request->get('categories_id');
+        $product->save();
 
         return redirect()->route("stok_produk.create")->with("info", "Product has been created");
     }
